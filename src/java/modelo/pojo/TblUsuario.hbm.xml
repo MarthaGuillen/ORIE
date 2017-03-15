@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblUsuario" table="tbl_usuario" schema="public" optimistic-lock="version">
+        <id name="idUsuario" type="int">
+            <column name="id_usuario" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblUsuarioTipo" class="modelo.pojo.TblUsuarioTipo" fetch="select">
+            <column name="id_tipo" />
+        </many-to-one>
+        <property name="usuario" type="string">
+            <column name="usuario" length="250" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="250" />
+        </property>
+        <property name="pass" type="string">
+            <column name="pass" length="250" />
+        </property>
+        <property name="nombreCompleto" type="string">
+            <column name="nombre_completo" length="250" />
+        </property>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="estado" />
+        </property>
+        <property name="confirmacion" type="java.lang.Boolean">
+            <column name="confirmacion" />
+        </property>
+        <property name="idUsuarioCreo" type="java.lang.Integer">
+            <column name="id_usuario_creo" />
+        </property>
+        <property name="fechaCreacion" type="date">
+            <column name="fecha_creacion" length="13" />
+        </property>
+        <property name="idModificaCrea" type="java.lang.Integer">
+            <column name="id_modifica_crea" />
+        </property>
+        <property name="fechaModificacion" type="date">
+            <column name="fecha_modificacion" length="13" />
+        </property>
+        <set name="tblUsuarioSociedads" table="tbl_usuario_sociedad" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" />
+            </key>
+            <one-to-many class="modelo.pojo.TblUsuarioSociedad" />
+        </set>
+        <set name="tblUsuarioPerfils" table="tbl_usuario_perfil" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" not-null="true" />
+            </key>
+            <one-to-many class="modelo.pojo.TblUsuarioPerfil" />
+        </set>
+    </class>
+</hibernate-mapping>

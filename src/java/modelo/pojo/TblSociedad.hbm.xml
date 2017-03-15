@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblSociedad" table="tbl_sociedad" schema="public" optimistic-lock="version">
+        <id name="idSociedad" type="int">
+            <column name="id_sociedad" />
+            <generator class="assigned" />
+        </id>
+        <property name="sociedad" type="string">
+            <column name="sociedad" length="250" />
+        </property>
+        <property name="logo" type="string">
+            <column name="logo" />
+        </property>
+        <set name="tblUsuarioSociedads" table="tbl_usuario_sociedad" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_sociedad" />
+            </key>
+            <one-to-many class="modelo.pojo.TblUsuarioSociedad" />
+        </set>
+    </class>
+</hibernate-mapping>

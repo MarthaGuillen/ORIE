@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblAreaCuenta" table="tbl_area_cuenta" schema="public" optimistic-lock="version">
+        <id name="idArea" type="int">
+            <column name="id_area" />
+            <generator class="assigned" />
+        </id>
+        <property name="codigoA" type="string">
+            <column name="codigo_a" length="300" />
+        </property>
+        <property name="nombreA" type="string">
+            <column name="nombre_a" length="300" />
+        </property>
+        <set name="tblCuentaMadreCrs" table="tbl_cuenta_madre_cr" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_area" not-null="true" />
+            </key>
+            <one-to-many class="modelo.pojo.TblCuentaMadreCr" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblOcupaciones" table="tbl_ocupaciones" schema="public" optimistic-lock="version">
+        <id name="idOcupacion" type="int">
+            <column name="id_ocupacion" />
+            <generator class="assigned" />
+        </id>
+        <property name="ocupacion" type="string">
+            <column name="ocupacion" length="500" />
+        </property>
+        <property name="idUsuarioCreo" type="java.lang.Integer">
+            <column name="id_usuario_creo" />
+        </property>
+        <property name="fechaCreacion" type="date">
+            <column name="fecha_creacion" length="13" />
+        </property>
+        <property name="idModificaCrea" type="java.lang.Integer">
+            <column name="id_modifica_crea" />
+        </property>
+        <property name="fechaModificacion" type="date">
+            <column name="fecha_modificacion" length="13" />
+        </property>
+    </class>
+</hibernate-mapping>

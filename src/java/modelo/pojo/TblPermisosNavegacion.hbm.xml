@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblPermisosNavegacion" table="tbl_permisos_navegacion" schema="public" optimistic-lock="version">
+        <id name="idnav" type="int">
+            <column name="idnav" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblMenu" class="modelo.pojo.TblMenu" fetch="select">
+            <column name="id_menu" not-null="true" />
+        </many-to-one>
+        <property name="navegacion" type="string">
+            <column name="navegacion" length="150" not-null="true" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" />
+        </property>
+        <property name="pseudo" type="string">
+            <column name="pseudo" length="100" />
+        </property>
+        <set name="tblPerfilNavegacions" table="tbl_perfil_navegacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idnav" not-null="true" />
+            </key>
+            <one-to-many class="modelo.pojo.TblPerfilNavegacion" />
+        </set>
+    </class>
+</hibernate-mapping>

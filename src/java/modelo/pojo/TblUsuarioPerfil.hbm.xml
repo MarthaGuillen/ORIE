@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblUsuarioPerfil" table="tbl_usuario_perfil" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblPerfil" class="modelo.pojo.TblPerfil" fetch="select">
+            <column name="idperfil" />
+        </many-to-one>
+        <many-to-one name="tblUsuario" class="modelo.pojo.TblUsuario" fetch="select">
+            <column name="id_usuario" not-null="true" />
+        </many-to-one>
+        <property name="idUsuarioCreo" type="java.lang.Integer">
+            <column name="id_usuario_creo" />
+        </property>
+        <property name="fechaCreacion" type="date">
+            <column name="fecha_creacion" length="13" />
+        </property>
+        <property name="idModificaCrea" type="java.lang.Integer">
+            <column name="id_modifica_crea" />
+        </property>
+        <property name="fechaModificacion" type="date">
+            <column name="fecha_modificacion" length="13" />
+        </property>
+    </class>
+</hibernate-mapping>

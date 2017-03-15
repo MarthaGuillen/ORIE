@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblMenuLabel" table="tbl_menu_label" schema="public" optimistic-lock="version">
+        <id name="idLabel" type="int">
+            <column name="id_label" />
+            <generator class="assigned" />
+        </id>
+        <property name="label" type="string">
+            <column name="label" length="150" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

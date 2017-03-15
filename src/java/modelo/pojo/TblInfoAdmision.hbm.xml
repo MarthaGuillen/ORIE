@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblInfoAdmision" table="tbl_info_admision" schema="public" optimistic-lock="version">
+        <id name="idInfo" type="int">
+            <column name="id_info" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblEstudianteMatricula" class="modelo.pojo.TblEstudianteMatricula" fetch="select">
+            <column name="id_alumno" />
+        </many-to-one>
+        <property name="mes" type="string">
+            <column name="mes" length="50" />
+        </property>
+        <property name="anio" type="string">
+            <column name="anio" length="50" />
+        </property>
+        <property name="gradoActual" type="string">
+            <column name="grado_actual" length="50" />
+        </property>
+        <property name="idGrado" type="java.lang.Integer">
+            <column name="id_grado" />
+        </property>
+        <property name="idUsuarioCreo" type="java.lang.Integer">
+            <column name="id_usuario_creo" />
+        </property>
+        <property name="fechaCreacion" type="date">
+            <column name="fecha_creacion" length="13" />
+        </property>
+        <property name="idModificaCrea" type="java.lang.Integer">
+            <column name="id_modifica_crea" />
+        </property>
+        <property name="fechaModificacion" type="date">
+            <column name="fecha_modificacion" length="13" />
+        </property>
+    </class>
+</hibernate-mapping>

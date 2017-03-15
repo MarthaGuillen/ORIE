@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblCuentaHijaCr" table="tbl_cuenta_hija_cr" schema="public" optimistic-lock="version">
+        <id name="idHijaCr" type="int">
+            <column name="id_hija_cr" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblCuentaMadreCr" class="modelo.pojo.TblCuentaMadreCr" fetch="select">
+            <column name="id_madre_cr" not-null="true" />
+        </many-to-one>
+        <property name="codigoCr" type="string">
+            <column name="codigo_cr" length="150" not-null="true" />
+        </property>
+        <property name="nombreCr" type="string">
+            <column name="nombre_cr" length="300" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

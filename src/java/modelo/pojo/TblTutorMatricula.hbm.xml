@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblTutorMatricula" table="tbl_tutor_matricula" schema="public" optimistic-lock="version">
+        <id name="idTutor" type="int">
+            <column name="id_tutor" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="250" />
+        </property>
+        <property name="idOcupacion" type="java.lang.Integer">
+            <column name="id_ocupacion" />
+        </property>
+        <property name="nombreEmpresa" type="string">
+            <column name="nombre_empresa" length="150" />
+        </property>
+        <property name="direccionCasa" type="string">
+            <column name="direccion_casa" />
+        </property>
+        <property name="ciudadRes" type="string">
+            <column name="ciudad_res" length="500" />
+        </property>
+        <property name="idPaisRes" type="java.lang.Integer">
+            <column name="id_pais_res" />
+        </property>
+        <property name="telefonoCelular" type="string">
+            <column name="telefono_celular" length="30" />
+        </property>
+        <property name="direccionTrabajo" type="string">
+            <column name="direccion_trabajo" />
+        </property>
+        <property name="ciudadTrabajo" type="string">
+            <column name="ciudad_trabajo" length="500" />
+        </property>
+        <property name="idPaisTra" type="java.lang.Integer">
+            <column name="id_pais_tra" />
+        </property>
+        <property name="telefonoTrabajo" type="string">
+            <column name="telefono_trabajo" length="30" />
+        </property>
+        <property name="telefonoCasa" type="string">
+            <column name="telefono_casa" length="30" />
+        </property>
+        <property name="noIdentidad" type="string">
+            <column name="no_identidad" length="30" />
+        </property>
+        <property name="noPasaporte" type="string">
+            <column name="no_pasaporte" length="30" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="250" />
+        </property>
+        <property name="idUsuarioCreo" type="java.lang.Integer">
+            <column name="id_usuario_creo" />
+        </property>
+        <property name="fechaCreacion" type="date">
+            <column name="fecha_creacion" length="13" />
+        </property>
+        <property name="idModificaCrea" type="java.lang.Integer">
+            <column name="id_modifica_crea" />
+        </property>
+        <property name="fechaModificacion" type="date">
+            <column name="fecha_modificacion" length="13" />
+        </property>
+        <set name="tblEstudianteTutors" table="tbl_estudiante_tutor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_tutor" />
+            </key>
+            <one-to-many class="modelo.pojo.TblEstudianteTutor" />
+        </set>
+    </class>
+</hibernate-mapping>

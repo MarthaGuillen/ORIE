@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 15-mar-2017 16:17:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.pojo.TblOpciones" table="tbl_opciones" schema="public" optimistic-lock="version">
+        <id name="idOpcion" type="int">
+            <column name="id_opcion" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tblMenu" class="modelo.pojo.TblMenu" fetch="select">
+            <column name="id_menu" not-null="true" />
+        </many-to-one>
+        <property name="opcion" type="string">
+            <column name="opcion" length="150" not-null="true" />
+        </property>
+        <property name="pseudo" type="string">
+            <column name="pseudo" length="100" not-null="true" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" not-null="true" />
+        </property>
+        <set name="tblSubOpcioneses" table="tbl_sub_opciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_opcion" not-null="true" />
+            </key>
+            <one-to-many class="modelo.pojo.TblSubOpciones" />
+        </set>
+        <set name="tblPerfilOpcioneses" table="tbl_perfil_opciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_opcion" not-null="true" />
+            </key>
+            <one-to-many class="modelo.pojo.TblPerfilOpciones" />
+        </set>
+    </class>
+</hibernate-mapping>

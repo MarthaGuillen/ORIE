@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="gdcSinergia17" match-schema="public"/>
+  <table-filter match-name="tbl_menu_label"/>
+  <table-filter match-name="tbl_usuario"/>
+  <table-filter match-name="tbl_ocupaciones"/>
+  <table-filter match-name="tbl_usuario_sociedad"/>
+  <table-filter match-name="tbl_paises"/>
+  <table-filter match-name="tbl_sub_opciones"/>
+  <table-filter match-name="tbl_grados"/>
+  <table-filter match-name="tbl_cuenta_hija_cr"/>
+  <table-filter match-name="tbl_perfil_navegacion"/>
+  <table-filter match-name="tbl_cuenta_madre_cr"/>
+  <table-filter match-name="tbl_tutor_matricula"/>
+  <table-filter match-name="tbl_sociedad"/>
+  <table-filter match-name="tbl_menu"/>
+  <table-filter match-name="tbl_perfil_subopciones"/>
+  <table-filter match-name="tbl_nacionalidad"/>
+  <table-filter match-name="tbl_perfil_menus"/>
+  <table-filter match-name="tbl_opciones"/>
+  <table-filter match-name="tbl_usuario_tipo"/>
+  <table-filter match-name="tbl_estudiante_tutor"/>
+  <table-filter match-name="tbl_info_admision"/>
+  <table-filter match-name="tbl_area_cuenta"/>
+  <table-filter match-name="tbl_permisos_navegacion"/>
+  <table-filter match-name="tbl_perfil_opciones"/>
+  <table-filter match-name="tbl_estudiante_matricula"/>
+  <table-filter match-name="tbl_usuario_perfil"/>
+  <table-filter match-name="tbl_perfil"/>
+</hibernate-reverse-engineering>

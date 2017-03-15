@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://181.115.18.178:5433/gdcSinergia17</property>
+    <property name="hibernate.connection.username">gdcSinergia17</property>
+    <property name="hibernate.connection.password">sinergia</property>
+    <property name="hibernate.c3p0.min_size">1</property>
+    <property name="hibernate.c3p0.max_size">4000</property>
+    <property name="hibernate.c3p0.timeout">300</property>
+    <property name="hibernate.c3p0.max_statements">50</property>
+    <property name="hibernate.c3p0.idle_test_period">3000</property>
+    <!-- JDBC connection pool (use the built-in) -->
+    <property name="connection.pool_size">1</property>
+    <!-- Echo all executed SQL to stdout -->
+    <property name="show_sql">true</property>
+    <mapping resource="modelo/pojo/TblPerfilOpciones.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblUsuarioTipo.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblSubOpciones.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblUsuarioSociedad.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblCuentaMadreCr.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblEstudianteMatricula.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblMenu.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblPaises.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblPerfilMenus.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblMenuLabel.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblTutorMatricula.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblUsuario.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblInfoAdmision.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblUsuarioPerfil.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblEstudianteTutor.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblGrados.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblPerfilSubopciones.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblPerfil.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblPermisosNavegacion.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblCuentaHijaCr.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblPerfilNavegacion.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblAreaCuenta.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblSociedad.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblOcupaciones.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblNacionalidad.hbm.xml"/>
+    <mapping resource="modelo/pojo/TblOpciones.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
