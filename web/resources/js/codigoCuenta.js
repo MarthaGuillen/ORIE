@@ -14,7 +14,7 @@ function generarcodigocuentasresultado(){
         arrayfinal.push(array2codigo[i]);}
     }
     var idcuenta=arrayfinal[3];
-    alert(idcuenta);
+  
     var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {               
@@ -25,7 +25,7 @@ function generarcodigocuentasresultado(){
             }
         
         }
-       alert(idcuenta+ "estoy en ajax12211");
+       
       xhttp.open("POST", "obtenercodigo.gdc", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("idcuenta="+ idcuenta); 
