@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Sinergia14
  */
 @Controller
-public class matriculaPrimerIngreso {
+public class matriculaPrimerIngresoController {
     
     
             
