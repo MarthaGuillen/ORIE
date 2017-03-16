@@ -1,12 +1,11 @@
 <%-- 
-    Document   : pgPerfil
-    Created on : 22-feb-2017, 19:14:12
-    Author     : Sinergia14
+    Document   : pgCuentaBalance
+    Created on : 08-mar-2017, 8:13:29
+    Author     : Sinergia003
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
@@ -18,11 +17,10 @@
     <c:redirect url="login.gdc"/>
 </c:if>
 <c:set var="validaLista" value="${fn:length(sessionScope.ses_menus)}" />
-
 <html>
-    <head>
+   <head>
         <meta charset="utf-8">
-        <title>Grupo del campo</title>
+        <title>Grudo del campo</title>
         <meta name="keywords" content="Perfil GDC" />
         <meta name="description" content="Grupo del campo">
         <meta name="author" content="Sinergia">
@@ -37,21 +35,13 @@
 
         <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.css'/>">
+         <style type="text/css">
+            #alerta{
+                display :none ;
+            }
+        </style>
     </head>
     <body class="profile-page">
-        <!-------------------------------------------------------------+ 
-            <body> Helper Classes: 
-         ---------------------------------------------------------------+ 
-            '.sb-l-o' - Sets Left Sidebar to "open"
-            '.sb-l-m' - Sets Left Sidebar to "minified"
-            '.sb-l-c' - Sets Left Sidebar to "closed"
-
-            '.sb-r-o' - Sets Right Sidebar to "open"
-            '.sb-r-c' - Sets Right Sidebar to "closed"
-         ---------------------------------------------------------------+
-           Example: <body class="example-page sb-l-o sb-r-c">
-           Results: Sidebar left Open, Sidebar right Closed
-         --------------------------------------------------------------->
         <div id="skin-toolbox" style="display:none;">
             <div class="panel">
                 <div class="panel-heading">
@@ -187,11 +177,11 @@
             </div>
         </div>
         <!-- End: Theme Settings Pane -->
-         <div id="main">
+     <div id="main">
         <!-- Start: Header -->
     <header class="navbar navbar-fixed-top">
       <div class="navbar-branding">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="perfil.gdc">
           <b>ORIE</b>
         </a>
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
@@ -259,7 +249,7 @@
 
     </header>
     <!-- End: Header -->
-    <!-- Start: Sidebar Left -->
+     <!-- Start: Sidebar Left -->
     <aside id="sidebar_left" class="nano nano-primary affix">
 
       <!-- Start: Sidebar Left Content -->
@@ -286,8 +276,7 @@
           
         </ul>
         <!-- End: Sidebar Menu -->
-
-	      <!-- Start: Sidebar Collapse Button -->
+         <!-- Start: Sidebar Collapse Button -->
 	      <div class="sidebar-toggle-mini">
 	        <a href="#">
 	          <span class="fa fa-sign-out"></span>
@@ -299,61 +288,135 @@
       <!-- End: Sidebar Left Content -->
 
     </aside>
-    <!-- End: Sidebar Left -->    
-    <section id="content_wrapper">
-        
+    <!-- End: Sidebar Left -->   
+    <section id="content_wrapper" >
+        <div class="alert alert-danger alert-dismissable" id="alerta">
+            <button type="reset" class="close" data-dismiss="alert" aria-hidden="true"onclick="habilitar()">×</button>
+            <i class="fa fa-remove pr10"></i>
+            <div id="mensaje"></div>
+         </div>
         <section id="content" class="animated fadeIn">
             <div class="page-heading">
             <div class="media clearfix">
-              <div class="media-left pr30">
-                <a href="#">
-                  
-                    <img class="media-object mw150" height="150" width="350" src="<c:url value='/resources/img/${sessionScope.ses_logoSoc}'/>"   alt="...">
-                </a>
-              </div>                      
-              <div class="media-body va-m">
-                <h2 class="media-heading">${sessionScope.ses_usuario}
-                  <small> - ${nombrePerfil}</small>
-                </h2>
-                <p class="lead">${descPerfil}</p>
-                <p class="lead">Correo electrónico: ${sessionScope.ses_correo}</p>
-                <p class="lead">Sociedad default: ${sessionScope.ses_sociedadDefault}</p>
-              </div>
-            </div>
-        </div>
-        <h3 class="text-center mb25 fw400">Sociedades a las que pertenece:</h3>
-        <div class="row">
-            <c:forEach var="i" begin="0" end="${fn:length(soc)-1}">
-            <div class="col-md-4">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <span class="panel-icon">
-                            <i class="fa fa-tasks"></i>
-                        </span>
-                        <span class="panel-title"> ${soc[i]} </span>
-                    </div>
-                    <div class="panel-body">
-                       <img  src="<c:url value='/resources/img/${log[i]}'/>" class="img-responsive center-block">
+                <div class="admin-form">
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+                            <form  id="form-ui" id="formulario">
+                                <div class="section-divider mb40" id="spy1">
+                                    <span>Cuenta Balance</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Area de la Cuenta :</h3>  
+                                               
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <label class="field select">
+                                              <select class="form-control" name="Areap" id="area" >
+				                <option value="">Seleccione Area de la Cuenta</option>
+				                <%--   <c:forEach var="j" begin="0" end="${fn:length($id_area)-1}">
+                                                           <c:set var="contador" value="${j+1}"/>
+                                                          <option value="${id_area[j]}">${nombre_area[j]}</option>
+                                                          <option>
+                                                       </c:forEach>  --%>               
+				            </select>
+                                              
+                                            <i class="arrow"></i>
+                                          </label>
+                                        </div>
+                                      </div>
+                                   
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Departamento que pertenece  :</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <label class="field select">
+                                              <select class="form-control" name="departamentof" id="departamento">
+				                <option value="">Seleccione Departamento de la Cuenta</option>
+				              <%--  <c:forEach var="j" begin="0" end="${fn:length(id_depar)-1}">
+                                                           <c:set var="contador" value="${j+1}"/>
+                                                          <option value="${id_depar[j]}">${departamento[j]}</option>
+                                                          <option>
+                                                       </c:forEach> --%>
+				            </select>
+                                            <i class="arrow"></i>
+                                          </label>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Codigo De Cuenta:</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="codigo"placeholder="Codigo Generado ">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Nombre de la Cuenta:</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="nombre"placeholder="Ingrese el Nombre de la Cuenta">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="panel-footer text-right">
+                                    <button type="button" id ="t" class="button btn-primary" onclick="validarcentrocostodcia()"> Validate Form </button>
+                                    <button type="reset" class="button"> Cancel </button>
+                                  </div>
+                            </form>
+                         
+
+                        </div> 
+
                     </div>
                 </div>
+                
+                
             </div>
-            </c:forEach>
         </div>
+        
+       
         </section>
-        <a  class="btn btn-primary" href="CuentasBalance.gdc" class="button">Catalogos Balance</a>
-              <a class="btn btn-primary"  href="CuentaResultado.gdc" class="button">Catalogos Resultado</a>
-              <a class="btn btn-primary"  href="CuentaCentroCosto.gdc" class="button">Catalogos Centro de costo</a>
-              <a class="btn btn-primary"  href="CuentaCentroCostoDCIA.gdc" class="button">Catalogos Centro de costo DCIA</a>
+        
+              
     </section>
     
-         </div>  
-       <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
+    <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
        <script src="<c:url value='/resources/js/utility.js'/>"></script>
        <script src="<c:url value='/resources/js/demo.js'/>"></script>
        <script src="<c:url value='/resources/js/main.js'/>"></script>
        <script src="<c:url value='/resources/js/widgets.js'/>"></script>
        <script src="<c:url value='/resources/js/jsValidaPerfil.js'/>"></script>
+       <script src="<c:url value='/resources/js/Cuen_contabilidad.js'/>"></script>
+      
+       
+      
        <script type="text/javascript">
         jQuery(document).ready(function() {
 
@@ -399,6 +462,9 @@
               }
             });
         });
+
     </script>
+    
+  
     </body>
 </html>
