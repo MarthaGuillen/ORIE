@@ -50,7 +50,7 @@ String rep=Cuentaresultado.agregarcuentaresultado(Integer.parseInt(tipocr),codig
                            
     ) throws Exception{
     ModelAndView mv= new ModelAndView("pgcargarcombo");
-    System.out.println( codigocr );
+    
     
     cuentaresultadoDAO Cuentaresultado=new cuentaresultadoDAO();
     ArrayList<String> id_area = new ArrayList<String>();
@@ -94,7 +94,7 @@ String rep=Cuentaresultado.agregarcuentaresultado(Integer.parseInt(tipocr),codig
    
       
       
-        System.out.println(cantidad+"  estoy mandando al AAAAAAAAAAAAAAAAAAAAAAAAAAAAjax");
+        
        
       mv.addObject("numerocuenta",cantidad);
     return mv;
@@ -103,12 +103,13 @@ String rep=Cuentaresultado.agregarcuentaresultado(Integer.parseInt(tipocr),codig
       @RequestMapping("CuentaResultado.gdc")
     public ModelAndView funCuentaresultado(){
     ModelAndView mv= new ModelAndView("pgSC_CuentaResultado");
+    cuentaresultadoDAO infocuentar=new cuentaresultadoDAO();
     //obtener areacuentaResultados
         ArrayList<String> id_areacr = new ArrayList<String>();
         ArrayList<String> codigo_areacr = new ArrayList<String>();        
         ArrayList<String> nombre_areacr = new ArrayList<String>();        
-        cuentaresultadoDAO infoarea=new cuentaresultadoDAO();
-        List resparea =infoarea.areacr();
+       
+        List resparea =infocuentar.areacr();
         List<Object[]> listDatosarea = resparea;
             for (Object[] datos : listDatosarea) {
                 id_areacr .add((String) datos[0].toString());
@@ -118,51 +119,46 @@ String rep=Cuentaresultado.agregarcuentaresultado(Integer.parseInt(tipocr),codig
             }
      //obtener tipo
      ArrayList<String> id_tipocr = new ArrayList<String>();
+     ArrayList<String> id_area = new ArrayList<String>();
         ArrayList<String> nombre_tipocr = new ArrayList<String>();        
         ArrayList<String> codigo_tipocr = new ArrayList<String>();        
-        cuentaresultadoDAO infotipo=new cuentaresultadoDAO();
-        List resptipo =infotipo.tipocr();
+      
+        List resptipo =infocuentar.tipocr();
         List<Object[]> listDatostipo = resptipo;
            for (Object[] datos : listDatostipo) {
                 id_tipocr.add((String) datos[0].toString());
+                id_area.add((String) datos[1].toString());
                codigo_tipocr.add((String) datos[2].toString());
                 nombre_tipocr.add((String) datos[3].toString());  
                  }
-    /* ArrayList<String> codigoarea = new ArrayList<String>();
-        ArrayList<String> nombrearea = new ArrayList<String>();        
-        ArrayList<String> codigomadre = new ArrayList<String>();        
-        ArrayList<String> nombremadre = new ArrayList<String>();        
-        ArrayList<String> codigohija = new ArrayList<String>();        
-        ArrayList<String>  nombrehija = new ArrayList<String>();        
-        contabilidadDAO infocuentar=new contabilidadDAO();
-        List respCR = infocuentar.CuentasResultado();
-        List<Object[]> listDatosCR = respCR;
-           for (Object[] datos : listDatosCR) {
-                codigoarea.add((String) datos[0].toString());
-                nombrearea.add((String) datos[1].toString());
-               codigomadre.add((String) datos[2].toString());
-                nombremadre.add((String) datos[3].toString());  
-                codigohija.add((String) datos[4].toString());  
-                nombrehija.add((String) datos[5].toString());  
+           // cuenta de resultado
+           
+           ArrayList<String> id_cuenta = new ArrayList<String>();
+           ArrayList<String> id_madre = new ArrayList<String>();
+           ArrayList<String> codigo_cuenta = new ArrayList<String>();        
+           ArrayList<String> nombre_cuenta = new ArrayList<String>();        
+          
+           List respcuentar =infocuentar.CuentasResultado();
+           List<Object[]> listDatoscuentar = respcuentar;
+           for (Object[] datos : listDatoscuentar) {
+                id_cuenta.add((String) datos[0].toString());
+                id_madre.add((String) datos[1].toString());
+               codigo_cuenta.add((String) datos[2].toString());
+                nombre_cuenta.add((String) datos[3].toString());  
                  }
-           
-           
-           System.out.println(id_areacr);
-           System.out.println(codigo_areacr);
-           System.out.println(nombre_areacr);
-           System.out.println(listDatosarea );
-    mv.addObject("codigoarea" ,codigoarea);
-    mv.addObject("nombrearea" ,nombrearea);
-    mv.addObject("codigomadre" ,codigomadre);
-    mv.addObject("nombremadre" ,nombremadre);
-    mv.addObject("codigohija" ,codigohija);
-    mv.addObject("nombrehija" ,nombrehija);*/
+ //area de la cuenta
     mv.addObject("id_areacr",id_areacr );
     mv.addObject("codigo_areacr",codigo_areacr );
     mv.addObject("nombre_areacr", nombre_areacr);
+    //tipo de la cuenta
     mv.addObject("id_tipocr",id_tipocr);
     mv.addObject("codigo_tipocr",codigo_tipocr);
     mv.addObject("nombre_tipocr",nombre_tipocr);
+    //cuenta resultado
+    mv.addObject("id_cuenta",id_cuenta);
+    mv.addObject("id_madre",id_madre);
+    mv.addObject("codigo_cuenta",codigo_cuenta);
+    mv.addObject("nombre_cuenta",nombre_cuenta);
   
     return mv;
     }

@@ -88,7 +88,7 @@ public class cuentaresultadoDAO {
      public List areacr(){
         
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "Select * from tbl_area_cuenta";
+        String sql = "select * from fn_SCselectcuentaArea();";
         
         List<Object[]> listaget = new ArrayList<Object[]>();
         try {
@@ -108,14 +108,16 @@ public class cuentaresultadoDAO {
      public List tipocr(){
         
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "Select * from tbl_cuenta_madre_cr";
+        String sql = "select * from fn_SCselectcuentamadre();";
         
         List<Object[]> listaget = new ArrayList<Object[]>();
         try {
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createSQLQuery(sql);
+            System.out.println("***************************************");
+            System.out.println("*****"+q.list());
             listaget = q.list();
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }finally { 
@@ -126,11 +128,9 @@ public class cuentaresultadoDAO {
         return listaget;
     }
 public List CuentasResultado(){
-        
+        //select cuentas hijas
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "Select codigo_a,nombre_a,codigom_cr,nombre_crm,codigo_cr,nombre_cr from tbl_cuenta_madre_cr inner join\n" +
-                        "tbl_cuenta_hija_cr on tbl_cuenta_madre_cr.id_madre_cr = tbl_cuenta_hija_cr.id_madre_cr  inner join\n" +
-                        "tbl_area_cuenta on tbl_area_cuenta.id_area = tbl_cuenta_madre_cr.id_area";
+        String sql = " select * from fn_SCselectcuentaresultado()";
         
         List<Object[]> listaget = new ArrayList<Object[]>();
         try {

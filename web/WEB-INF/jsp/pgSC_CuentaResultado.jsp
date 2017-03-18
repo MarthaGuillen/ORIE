@@ -1,4 +1,4 @@
-<%-- 
+p<%-- 
     Document   : pgCuentaBalance
     Created on : 08-mar-2017, 8:13:29
     Author     : Sinergia003
@@ -20,7 +20,7 @@
 <html>
    <head>
         <meta charset="utf-8">
-        <title>Grudo del campo</title>
+        <title>Grupo del campo</title>
         <meta name="keywords" content="Perfil GDC" />
         <meta name="description" content="Grupo del campo">
         <meta name="author" content="Sinergia">

@@ -21,7 +21,8 @@ function generarcodigocuentasresultado(){
                 document.getElementById("numerocuentas").innerHTML = xhttp.responseText;
                var codigoarea=$("#cuentar").val();
                var numero =parseInt(codigoarea)+1;
-               $("#codigo").val(arraycodigo[0]+numero.toString());
+               var codigo=arraycodigo[0];
+               $("#codigo").val(codigo.substring( 0,codigo.length-1)+numero.toString());
             }
         
         }
@@ -59,7 +60,8 @@ function llenarcombocuentasResultados(){
                 
                  var cadena="<option value=''>Seleccione El Area de la Cuenta</option>";
                  for (var i = 0; i < arraycodigoarea.length; i++) {
-                     var codigo=arraycodigoarea[i].trim()+arraycodigotipo[i].trim()+"000"; 
+                     var cadcodigo=arraycodigoarea[i].trim()+arraycodigotipo[i].trim();
+                     var codigo=cadcodigo+"000"; 
                      
                      
                cadena+=" <option value='"+arrayid_tipo[i]+"'>"+codigo+" "+arraynombretip[i]+"</option>";
