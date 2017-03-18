@@ -293,35 +293,145 @@
     <section id="content_wrapper" >
         
         <section id="content" class="animated fadeIn">
-            <div class="page-heading">
+            
+             <!-- begin: .tray-left -->
+        <section id="content" class="table-layout animated fadeIn">
+
+        <!-- begin: .tray-left -->
+        <aside class="tray tray-left tray290">
+
+          <h4> Admin Widgets -
+            <small>A Theme Exclusive</small>
+          </h4>
+          <ul class="icon-list">
+            <li>
+              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
+              <b> Author:</b> Admin Designs
+            </li>
+            <li>
+              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
+              <b> License:</b> CC - Commercial 3.0
+            </li>
+            <li>
+              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
+              <b> Info:</b>
+              <a href="http://www.themeforest.net/user/AdminDesigns"> www.admindesigns.com </a>
+            </li>
+          </ul>
+
+          <div id="nav-spy">
+            <ul class="nav tray-nav tray-nav-border" data-smoothscroll="-145" data-spy="affix" data-offset-top="200">
+              <li class="active">
+                <a href="#subcuentamayor">
+                 Crear  Sub-Cuenta Mayor</a>
+              </li>
+              <li>
+                <a href="#cuentamayor">
+                  Crear  Cuenta Mayor</a>
+              </li>
+              <li>
+                <a href="#cuentaorigen">
+                  Crear cuenta Origen</a>
+              </li>
+              
+            </ul>
+          </div>
+
+        </aside>
+        <!-- end: .tray-left -->
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center">
+
+        
+
+         
+        
+       
+            <div class="page-heading" id="subcuentamayor">
             <div class="media clearfix">
                 <div class="admin-form">
                     <div class="panel heading-border">
                         <div class="panel-body bg-light">
                             <form  id="form-ui">
                                 <div class="section-divider mb40" id="spy1">
-                                    <span>Cuenta Balance</span>
+                                    <span>Sub-Cuenta </span>
                                 </div>
+                                <div class="row">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="section">
+                                            <label class="field " for="areacr">
+                                                <h3>Cuenta Origén:</h3>  
+                                            </label>
+                                        </div>
+                                    
+                                     
+                                        <div class="section">
+                                          <label class="field select">
+                                              <select class="form-control" name="CATALOGO" id="areacr" onchange="llenarcombocuentasResultados()">
+				                <option value="">Seleccione la Cuenta de Origen</option>
+				                
+				            </select>
+                                             
+                                            <i class="arrow"></i>
+                                          </label>
+                                        
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="section">
+                                            <label class="field " for="areacr">
+                                                <h3>Cuenta :</h3>  
+                                            </label>
+                                        </div>
+                                   
+                                        <div class="section">
+                                          <label class="field select">
+                                              <select class="form-control" name="CATALOGO" id="areacr" onchange="llenarcombocuentasResultados()">
+				                <option value="">Seleccione  la Cuenta </option>
+				                
+				            </select>
+                                             
+                                            <i class="arrow"></i>
+                                          </label>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Sociedad:</h3>  
+                                            </label>
+                                        </div>
+                                    
+                                        <div class="section">
+                                          <label class="field select">
+                                              <select class="form-control" name="CATALOGO" id="areacr" onchange="llenarcombocuentasResultados()">
+				                <option value="">Seleccione  la Sociedad</option>
+				                
+				            </select>
+                                             
+                                            <i class="arrow"></i>
+                                          </label>
+                                        </div>
+                                      </div>
+                                </div>
+                               
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="section">
                                             <label class="field ">
-                                                <h3>Categoria de Cuenta:</h3>  
+                                                <h3>Codigo De Cuenta:</h3>  
                                             </label>
                                         </div>
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                          <label class="field select">
-                                            <select class="form-control" name="CATALOGO">
-				                <option value="">Seleccione Categoria de la Cuenta (A,P,PR,D)</option>
-				                <option value="1">Activo</option>
-				                <option value="2">Pasivo</option>
-				                <option value="3">Patrimonio</option>
-				                <option value="4">Depreciacion</option>
-				            </select>
-                                            <i class="arrow"></i>
-                                          </label>
+                                            <input class="form-control" type="text" name="" id ="codigo"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
                                         </div>
                                       </div>
                                 </div>
@@ -329,109 +439,65 @@
                                     <div class="col-md-6">
                                         <div class="section">
                                             <label class="field ">
-                                                <h3>Seleccione el tipo de Cuenta que desea Crear</h3>  
+                                                <h3>Nombre de la Cuenta:</h3>  
                                             </label>
                                         </div>
                                     </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="nombre"placeholder="Ingrese el Nombre de la Cuenta">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
-                                        <div class="hidden-xs row">
-                                    <label class="switch switch-round block mt15" onclick="cuentabanco()" >
-                                        <input type="radio" name="tipocuenta" id="fr7" value="banco">
-                                        <label for="fr7" data-on="Act." data-off="NO"></label>
-                                        <span>N de Cuenta Bancarias</span>
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Descripción del Estado :</h3>  
+                                            </label> 
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="descripcion"placeholder="Ingrese el Nombre de la Cuenta">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Observación de la Cuenta  :</h3>  
+                                            </label> 
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="descripcion"placeholder="Ingrese el Nombre de la Cuenta">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Depuración  :</h3>  
+                                            </label> 
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="depuracion"placeholder="Ingrese el Nombre de la Cuenta">
+                                        </div>
+                                      </div>
+                                </div>
+                                   <label class="switch block mt15">
+                                        <input type="checkbox" name="features" id="idestadoV" value="popups" checked>
+                                        <label for="f4" data-on="ON" data-off="OFF"></label>
+                                        <span>Estado de la Cuenta </span>
                                       </label>
-                                            <label class="switch switch-round block mt15" onclick="cuentanormal()" >
-                                          <input type="radio" name="tipocuenta" id="fr8" value="cuenta" checked>
-                                        <label for="fr7" data-on="Act." data-off="NO"></label>
-                                        <span>Cuenta Normal</span>
-                                      </label>
-                                </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> 
-
-                    </div>
-                </div>
-                
-                
-            </div>
-        </div>
-        
-       <section id="contentbanco" class="animated fadeIn">
-            <div class="page-heading">
-            <div class="media clearfix">
-                <div class="admin-form">
-                    <div class="panel heading-border">
-                        <div class="panel-body bg-light">
-                            <form  id="formcuentas">
-                                <div class="section-divider mb40" id="spy1">
-                                    <span>Crear Cuenta Balance</span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Bancos:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="row selectContainer">
-				            <select class="form-control" name="CATALOGO">
-				                <option value="">Seleccione El Banco </option>
-				                <option value="1">BAC</option>
-				                <option value="2">FICOHSA</option>
-				                <option value="3">BANCO DEL PAIS</option>
-				                <option value="4">ATLANTIDA</option>
-				            </select>
-				        
-                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Codigo De Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                 </div>
-                                 <div class="col-xs-6">
-                                         <input class="form-control" type="text" name="" id ="codigobancuenta"placeholder="Codigo Generado por los Seleccione de area y Tipo">
-                                 </div>
-                                    
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Numero de Cuenta Bancaria:</h3>  
-                                            </label>
-                                        </div>
-                                 </div>
-                                 <div class="col-xs-6">
-                                         <input class="form-control" type="text" name="" id ="nombrebancuenta"placeholder="Ingrese el numero de cuenta Bancaria">
-                                 </div>
-                                    
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Tipo de Moneda</h3>  
-                                            </label>
-                                        </div>
-                                 </div>
-                                     <div class="col-xs-3">
-                                    <input type="radio" name=""> MN
-                                    </div>
-                                    <div class="col-xs-3">
-                                            <input  type="radio" name="" >ME
-                                     </div>
-                                </div>
                                 <div class="panel-footer text-right">
-                                    <button type="submit" class="button btn-primary"> Validate Form </button>
+                                    <button type="button" class="button btn-primary"onclick="validarcuentaresultado()"> Validate Form </button>
                                     <button type="reset" class="button"> Cancel </button>
                                   </div>
                             </form>
@@ -443,69 +509,149 @@
                 
             </div>
         </div>
-        
-       
-        </section>
-        <section id="contentcuenta" class="animated fadeIn">
-            <div class="page-heading">
+           
+            </div>
+             <div class="page-heading" id="cuentamayor">
             <div class="media clearfix">
                 <div class="admin-form">
                     <div class="panel heading-border">
                         <div class="panel-body bg-light">
-                            <form  id="formcuentas">
+                            <form  id="form-ui">
                                 <div class="section-divider mb40" id="spy1">
-                                    <span>Crear Cuenta Balance</span>
+                                    <span>Cuenta Mayor</span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="section">
                                             <label class="field ">
-                                                <h3>Tipo de la Cuenta:</h3>  
+                                                <h3>Cuenta Origen :</h3>  
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="row selectContainer">
-				            <select class="form-control" name="CATALOGO">
-				                <option value="">Seleccione El Tipo de la Cuenta</option>
-				                <option value="1">Caja General</option>
-				                <option value="2">Fondos de Caja</option>
-				                <option value="3">Depositos A Plazo Fijo</option>
-				                <option value="4">Cuentas por Cobrar</option>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <label class="field select">
+                                              <select class="form-control" name="CATALOGO" id="areacr" onchange="llenarcombocuentasResultados()">
+				                <option value="">Seleccione la Cuenta Origen</option>
+				                
 				            </select>
-				        
-                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Codigo De Cuenta:</h3>  
-                                            </label>
+                                             
+                                            <i class="arrow"></i>
+                                          </label>
                                         </div>
-                                 </div>
-                                 <div class="col-xs-6">
-                                         <input class="form-control" type="text" name="" id ="codigocuenta"placeholder="Codigo Generado por los Seleccione de area y Tipo">
-                                 </div>
-                                    
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Nombre de Cuenta :</h3>  
-                                            </label>
-                                        </div>
-                                 </div>
-                                 <div class="col-xs-6">
-                                         <input class="form-control" type="text" name="" id ="nombrecuenta"placeholder="Ingrese el numero de cuenta Bancaria">
-                                 </div>
-                                    
+                                      </div>
                                 </div>
                                
-                                  <div class="panel-footer text-right">
-                                    <button type="submit" class="button btn-primary"> Validate Form </button>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Codigo De Cuenta:</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                            <input class="form-control" type="text" name="" id ="codigo"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Nombre de la Cuenta:</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="nombre"placeholder="Ingrese el Nombre de la Cuenta">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Observación:</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="obsevacion"placeholder="Ingrese el Nombre de la Cuenta">
+                                        </div>
+                                      </div>
+                                      </div>
+                                </div>
+                                <div class="panel-footer text-right">
+                                    <button type="button" class="button btn-primary"onclick="validarcuentaresultado()"> Validate Form </button>
+                                    <button type="reset" class="button"> Cancel </button>
+                                  </div>
+                            </form>
+                        </div> 
+
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="page-heading" id="cuentaorigen">
+            <div class="media clearfix">
+                <div class="admin-form">
+                    <div class="panel heading-border">
+                        <div class="panel-body bg-light">
+                            <form  id="form-ui">
+                                <div class="section-divider mb40" id="spy1">
+                                    <span>Cuenta Origén</span>
+                                </div>
+                               
+                               
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Codigo De Cuenta:</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                            <input class="form-control" type="text" name="" id ="codigo"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Nombre de la Cuenta:</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="nombre"placeholder="Ingrese el Nombre de la Cuenta">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Observación:</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="section">
+                                          <input class="form-control" type="text" name="" id ="nombre"placeholder="Ingrese el Nombre de la Cuenta">
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="panel-footer text-right">
+                                    <button type="button" class="button btn-primary"onclick="validarcuentaresultado()"> Validate Form </button>
                                     <button type="reset" class="button"> Cancel </button>
                                   </div>
                             </form>
@@ -519,6 +665,60 @@
         </div>
         
        
+       
+     <%--  <section id="content" class="animated fadeIn">
+            <div class="page-heading">
+                <div class="media clearfix">
+                    <div class="admin-form">
+                        <div class="panel heading-border">
+                            <div class="panel-body bg-light">
+                                <div class="col-sm-12">
+                                        <div class="panel">
+                                          <div class="panel-body pn">
+                                            <div class="bs-component">
+                                              <table class="table">
+                                                <thead>
+                                                  <tr class="danger">
+                                                    <th>#</th>
+                                                    <th>First Name</th>
+                                                    <th>
+                                                      
+                                                    </th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                     <c:forEach var="j" begin="0" end="${fn:length(codigoarea)-1}">
+                                                    <c:set var="contador" value="${j+1}"/>
+                                                    <option value=""></option>
+                                                          <tr>
+                                                    <td>${codigoarea[j]}</td>
+                                                    <td>${nombrearea[j]}</td>
+                                                    <td>${codigomadre[j]}</td>
+                                                    <td>${nombremadre[j]}</td>
+                                                    <td>${codigohija[j]}</td>
+                                                    <td>${nombrehija[j]}</td>
+                                                                                                       
+                                                  </tr>
+                                                    </c:forEach> 
+                                                 
+                                                 
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>--%>
+              
+ 
+
+        </div>
+        <!-- end: .tray-center -->
         </section>
         </section>
         
