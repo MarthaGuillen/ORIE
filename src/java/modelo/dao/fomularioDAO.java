@@ -37,4 +37,65 @@ public class fomularioDAO {
         return listaget;
     }
     
+    public List cargaPaises() {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_capturapaises()";
+     
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            return listaget;
+
+        } catch (Exception e) {
+            e.printStackTrace();System.out.println(e);
+        }finally { 
+          session.close();
+        }
+        return listaget;
+    }
+    
+     public String insertaFormulario(String us) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select fn_insertaFormulario('" + us + "')";
+        
+        List<String> listaget = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return listaget.get(0).toString();
+    }
+     
+     public String insertaFase1(String pnombre,String snombre, String papellido,String sapellido,String direccion,String ciudad,String telefono,
+            String genero,String edad,String fechanac,String pais,String nacionalidad,String nIdentidad, String email, String idfo, String idu) {
+         
+        Session session = HibernateUtil.getSessionFactory().openSession();                                                             
+        String sql = "SELECT fn_insertafase1('"+pnombre+"','"+snombre+"','"+papellido+"','"+sapellido+"','"+direccion+"','"+ciudad+"','"+telefono+"','"+genero+"','"+edad+"','"+fechanac+"','"+pais+"','"+nacionalidad+"','"+nIdentidad+"','"+email+"','"+idfo+"','"+idu+"')";
+        
+        List<String> listaget = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return listaget.get(0).toString();
+    } 
+    
 }

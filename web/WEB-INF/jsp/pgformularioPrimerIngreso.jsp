@@ -40,6 +40,7 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/magnific-popup.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/cssIndex/sweetalert2.min.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/core.css'/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrapValidator.css'/>">
         <link rel="stylesheet" href="<c:url value='/resources/css/default.css'/>" id="theme_base">
         <link rel="stylesheet" href="<c:url value='/resources/css/default.date.css'/>" id="theme_date">
         <link rel="stylesheet" href="<c:url value='/resources/css/default.time.css'/>" id="theme_time">
@@ -134,6 +135,22 @@
         height: 50%;
         width: 80%;
       }
+      body.modal-open #wrap{
+                -webkit-filter: blur(7px);
+                -moz-filter: blur(15px);
+                -o-filter: blur(15px);
+                -ms-filter: blur(15px);
+                filter: blur(15px);
+                
+            }
+
+            .modal-backdrop {background: #000;}
+              
+            .close {
+                font-size: 50px;
+                display:block;
+               
+            }
     </style>
     <body class="admin-wizard-page">
         <!-------------------------------------------------------------+ 
@@ -435,17 +452,23 @@
                 <div class="tab-content">
                     <!--Div datos 1--> 
                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor1">
+                        <form id="defaultForm" action="#"
+                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
                         <div class="content-header">
                           <h2><b class="text-success">Información sobre el estudiante</b></h2>
                         </div>
                         
-                        <div class="row">
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
                         <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
                             <div class="form-group">
-                                <label for="pnestudiante">Primer Nombre:</label>
-                                <input  class="gui-input form-control" maxlength="120" type="text" id="pnestudiante" name="" placeholder="Primer Nombre">
-                            </div> 
-                        </div>
+                                <label for="pnestudiante">*Primer Nombre:</label>
+                                <input maxlength="120" type="text" class="form-control gui-input" name="pnestudiante" id="pnestudiante" placeholder="Primer nombre" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" />
+                        
+                            </div>
+                        </div>    
                         <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
                           
                             <div class="form-group">
@@ -456,8 +479,8 @@
                         <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
                           
                             <div class="form-group">
-                                <label for="paestudiante">Primer Apellido:</label>
-                                <input class="gui-input form-control" type="text" maxlength="120"  id="paestudiante" name="" placeholder="Primer Apellido">
+                                <label for="paestudiante">*Primer Apellido:</label>
+                                <input class="form-control gui-input" type="text" maxlength="120"  id="paestudiante" name="paestudiante" placeholder="Primer Apellido" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
                             </div>  
                         </div>
                         <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
@@ -469,7 +492,7 @@
                         </div>    
                         </div>  
                         
-                        <div class="row" id="capturaDire">
+                        <div class="row" id="capturaDire" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
                             <h3 style="margin-left: 6px;"><b class="text-success">Mi ubicación actual:</b></h3> 
                             <div class="col-md-4">
                                 <div id="map" style="position: relative;width: 100%;height: 250px;border-radius: 10px 10px 10px 10px;
@@ -482,18 +505,18 @@
                             </div>
                             
                         </div>
-                        <div class="row">
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
                             <br><br>    
                             <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                                 <div class="form-group">
-                                    <label for="direcestudiante">Dirección de casa:</label>
-                                    <textarea class="form-control" id="direcestudiante" rows="4"></textarea>
+                                    <label for="direcestudiante">*Dirección de casa:</label>
+                                    <textarea data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="form-control" id="direcestudiante" name="direcestudiante" rows="4"></textarea>
                                 </div> 
                             </div>
                             <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                                 <div class="form-group">
-                                    <label for="ciudestudiante">Ciudad:</label>
-                                    <input class="gui-input form-control" type="text" maxlength="180" id ="ciudestudiante" name="" placeholder="Ciudad">
+                                    <label for="ciudestudiante">*Ciudad:</label>
+                                    <input data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="gui-input form-control" type="text" maxlength="180" id ="ciudestudiante" name="ciudestudiante" placeholder="Ciudad">
                                 </div>  
                             </div>    
                             <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
@@ -503,35 +526,56 @@
                                 </div>  
                             </div>  
                         </div> 
-                        <div class="row">
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
                             <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
-                                <label class="control-label mb15">Género:</label>
+                                <label class="control-label mb15">*Género:</label>
+                                <label style="color:red;display:none;" id="genval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                 <div class="radio-custom radio-success mb5">
-                                    <input type="radio" id="mascu" name="radioGenero">
+                                    <input type="radio" id="mascu" value="M"  name="radioGenero">
                                     <label for="mascu">Masculino</label>
                                 </div>
                                 <div class="radio-custom radio-success mb5">
-                                    <input type="radio" id="feme" name="radioGenero">
+                                    <input type="radio" id="feme" value="F"  name="radioGenero">
                                     <label for="feme">Femenino</label>
                                 </div>
                             </div> 
-                            <div class="col-md-3 col-sm-3 col-lg-3">
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
                                 <div class="form-group">
-                                    <label for="edad">Edad:</label>
-                                    <input class="gui-input form-control" maxlength="15" type="number" id ="edad" name="" placeholder="Edad" max="120" min="1">
+                                    <label for="edad">*Edad:</label>
+                                    <input class="gui-input form-control" maxlength="15" type="number" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" id ="edad" name="edad" placeholder="Edad" max="120" min="1">
                                 </div>
                             </div> 
                             <div class="col-md-3 col-sm-3 col-lg-3">
                                 <div class="form-group">
-                                    <label for="edad">Fecha de Nacimiento:</label>
-                                    <input type="text" style="cursor:pointer;" id="fechanac" name="fechanac" class="form-control fieldset__input" />
+                                    <label for="edad">*Fecha de Nacimiento:</label>
+                                    <input type="text" data-bv-trigger="change" required data-bv-notempty-message="Campo obligatorio" style="cursor:pointer;" id="fechanac" name="fechanac" class="form-control" />
                                 </div>
                             
                             </div> 
                             <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
                                 <div class="form-group">
-                                    <label>Nacionalidad:</label>
-                                    <select class="select2-single form-control" id="nacionalidad">
+                                    <label>*País de nacimiento:</label>
+                                    <label style="color:red;display:none;" id="paisval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="select2-single form-control"  id="pais" name="pais">
+                                        <option value=""></option>
+                                        <c:set var="valida" value="${fn:length(paisTemp)}" />
+                                        <c:if test="${valida > 0}">
+                                            <c:forEach var="i" begin="0" end="${fn:length(paisTemp)-1}">
+                                                <option value="${idpaisTemp[i]}">${paisTemp[i]}</option>
+                                            </c:forEach>
+                                        </c:if>
+                                    </select>
+                                    
+                                </div>
+                            </div> 
+                            
+                        </div>
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                            <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                                <div class="form-group">
+                                    <label>*Nacionalidad:</label>
+                                    <label style="color:red;display:none;" id="nacionval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="select2-single form-control" id="nacionalidad" name="nacionalidad" data-bv-trigger="keyup" required="required" data-bv-notempty-message="Campo obligatorio">
                                         <option value=""></option>
                                         <c:set var="valida" value="${fn:length(nacionTemp)}" />
                                         <c:if test="${valida > 0}">
@@ -543,9 +587,30 @@
                                     
                                 </div>
                             </div> 
-                            
-                        </div>
+                            <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                                 <div class="form-group">
+                                    <label for="nIdentidad">*Número de identidad:</label>
+                                    <input class="gui-input form-control" nacionalidad maxlength="13" type="text" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" id ="nIdentidad" name="nIdentidad" placeholder="xxxxxxxxxxxxx">
+                                </div>           
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                                <div class="form-group">
+                                    <label for="correo">Correo electrónico:</label>
+                                    <input class="gui-input form-control" maxlength="150" type="email" id ="correo" name="correo" placeholder="example@dominio.com">
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                            <div class="form-group">
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                <button type="submit" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                            </div>
+                            </div>
+                        </div>  
+                          
+                        </form>                
                     </div>
+                    </div>                    
                     <!--Div datos 2-->      
                     <div role="tabpanel" class="tab-pane fade" id="Section2">
                         <h3>Section 2</h3>
@@ -579,31 +644,36 @@
         </div>
     </div>
 </div>
-                
+        <div id="ajaxtemp"></div>        
         </section>
     </section>
                             
        <!-- Modal -->
-  <div class="modal fade" id="modalDirec" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Mapa</h4>
-        </div>
-        <div class="modal-body">
-            
-            <input type="text" id="coords" />
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>                   
+        <div class="modal" id="modalcarg" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="container">
+              
+            <div class='row' > 
+                   <div class="col-sm-12">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button id="btnCerrar" type="button" class="close" data-dismiss="modal" style="color:white;">×</button>  
+                        <br>                        
+                        <div id="errores">
+                            <div class="panel">
+                                      <div class="panel-body p10">
+                                        <blockquote class="mbn ml10">
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat Lorem ipsum dolor sit amet, dolor sit amet lorem adpiz. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean felis sapien, vestibulum in dignissim vitae, condimentum eu nibh. </p>
+                                          <small>Someone famous</small>
+                                        </blockquote>
+                                      </div>
+                            </div>
+                                                        
+                        </div>
+                    </div>
+                    </div>
+                   
+            </div>                 
+            </div>
+        </div>                  
     
          </div>  
        <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
@@ -612,7 +682,7 @@
        <script src="<c:url value='/resources/js/demo.js'/>"></script>
        <script src="<c:url value='/resources/js/main.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery.magnific-popup.js'/>"></script>
-       <script src="<c:url value='/resources/js/jquery.validate.min.js'/>"></script>
+       <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery.steps.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jsvalidaFormulario.js'/>"></script>
        <script src="<c:url value='/resources/js/validCampo.js'/>"></script>
