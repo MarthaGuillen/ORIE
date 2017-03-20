@@ -20,7 +20,7 @@ public class cuentabalanceDAO {
         public String agregarsubcuentabalance(
        int origen,int cuenta,int sociedad,
                String codigosub, String nombre,String descripcion,String observacion
-                ,String depuracion,boolean estado){
+                ,String depuracion,boolean estado,int user){
           
    
     String resp="";
@@ -43,7 +43,7 @@ public class cuentabalanceDAO {
     }
         
         public String agregarcuentabalance(
-       int origen,String codigosub, String nombre,String observacion){
+       int origen,String codigosub, String nombre,String observacion,int user){
           
    
     String resp="";
@@ -65,7 +65,7 @@ public class cuentabalanceDAO {
     return resp;
     }
         public String agregarcuentorigen(
-       String codigoorigen,String nombreorigen,String observacionorigen){
+       String codigoorigen,String nombreorigen,String observacionorigen , int user){
           
    
     String resp="";

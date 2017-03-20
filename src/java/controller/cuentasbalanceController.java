@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import modelo.dao.loginDAO;
 import modelo.dao.perfilDAO;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.jboss.logging.Param;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,10 +41,11 @@ public class cuentasbalanceController {
            @RequestParam("nombre")  String nombre,
             @RequestParam("descripcion") String descripcion,
             @RequestParam("observacion") String observacion,
-             @RequestParam("estado")boolean estado
+             @RequestParam("estado")boolean estado,
+             HttpServletRequest request
        )throws Exception{
        ModelAndView mv=new ModelAndView("pgSCagregarcuentabalance");
-      
+       int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
        return mv;
        }
       @RequestMapping(value = "agregarcuenta.gdc",method =RequestMethod.POST)
@@ -52,20 +53,22 @@ public class cuentasbalanceController {
           @RequestParam("origenmayor") int origenmayor,
           @RequestParam("codigomayor") String codigomayor,
           @RequestParam("nombremayor") String nombremayor,
-          @RequestParam("obsevacionmayor") String obsevacionmayor           
+          @RequestParam("obsevacionmayor") String obsevacionmayor,
+          HttpServletRequest request
        )throws Exception{
        ModelAndView mv=new ModelAndView("pgSCagregarcuentabalance");
-      
+      int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
        return mv;
        }
       @RequestMapping(value = "agregarorigen.gdc",method =RequestMethod.POST)
        public ModelAndView funAgregarcuentaorigen(
           @RequestParam("codigoorigen") String codigoorigen,
           @RequestParam("nombreorigen") String nombreorigen,
-          @RequestParam("observacionorigen") String observacionorigen                  
+          @RequestParam("observacionorigen") String observacionorigen,
+            HttpServletRequest request
        )throws Exception{
        ModelAndView mv=new ModelAndView("pgSCagregarcuentabalance");
-      
+       int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
        return mv;
        }
       
