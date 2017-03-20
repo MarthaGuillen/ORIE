@@ -369,7 +369,7 @@
                                      
                                         <div class="section">
                                           <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="areacr" onchange="llenarcombocuentasResultados()">
+                                              <select class="form-control" name="CATALOGO" id="origen" onchange="#">
 				                <option value="">Seleccione la Cuenta de Origen</option>
 				                
 				            </select>
@@ -390,7 +390,7 @@
                                    
                                         <div class="section">
                                           <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="areacr" onchange="llenarcombocuentasResultados()">
+                                              <select class="form-control" name="CATALOGO" id="cuenta" onchange="#">
 				                <option value="">Seleccione  la Cuenta </option>
 				                
 				            </select>
@@ -410,7 +410,7 @@
                                     
                                         <div class="section">
                                           <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="areacr" onchange="llenarcombocuentasResultados()">
+                                              <select class="form-control" name="CATALOGO" id="sociedad" onchange="llenarcombocuentasResultados()">
 				                <option value="">Seleccione  la Sociedad</option>
 				                
 				            </select>
@@ -431,7 +431,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                            <input class="form-control" type="text" name="" id ="codigo"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
+                                            <input class="form-control" type="text" name="" id ="codigocuenta"placeholder="Codigo Generado " value="">
                                         </div>
                                       </div>
                                 </div>
@@ -439,7 +439,7 @@
                                     <div class="col-md-6">
                                         <div class="section">
                                             <label class="field ">
-                                                <h3>Nombre de la Cuenta:</h3>  
+                                                <h3>Nombre de la Sub-Cuenta:</h3>  
                                             </label>
                                         </div>
                                     </div>
@@ -459,7 +459,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                          <input class="form-control" type="text" name="" id ="descripcion"placeholder="Ingrese el Nombre de la Cuenta">
+                                          <input class="form-control" type="text" name="" id ="descripcion"placeholder="Descripcion">
                                         </div>
                                       </div>
                                 </div>
@@ -473,7 +473,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                          <input class="form-control" type="text" name="" id ="descripcion"placeholder="Ingrese el Nombre de la Cuenta">
+                                          <input class="form-control" type="text" name="" id ="observacion"placeholder="Observación">
                                         </div>
                                       </div>
                                 </div>
@@ -487,7 +487,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                          <input class="form-control" type="text" name="" id ="depuracion"placeholder="Ingrese el Nombre de la Cuenta">
+                                          <input class="form-control" type="text" name="" id ="depuracion"placeholder="Depuración">
                                         </div>
                                       </div>
                                 </div>
@@ -531,7 +531,7 @@
                                      <div class="col-md-6">
                                         <div class="section">
                                           <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="areacr" onchange="llenarcombocuentasResultados()">
+                                              <select class="form-control" name="CATALOGO" id="origenmayor" onchange="llenarcombocuentasResultados()">
 				                <option value="">Seleccione la Cuenta Origen</option>
 				                
 				            </select>
@@ -552,7 +552,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                            <input class="form-control" type="text" name="" id ="codigo"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
+                                            <input class="form-control" type="text" name="" id ="codigomayor"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
                                         </div>
                                       </div>
                                 </div>
@@ -566,7 +566,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                          <input class="form-control" type="text" name="" id ="nombre"placeholder="Ingrese el Nombre de la Cuenta">
+                                          <input class="form-control" type="text" name="" id ="nombremayor"placeholder="Ingrese el Nombre de la Cuenta">
                                         </div>
                                       </div>
                                 </div>
@@ -580,19 +580,22 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                          <input class="form-control" type="text" name="" id ="obsevacion"placeholder="Ingrese el Nombre de la Cuenta">
+                                          <input class="form-control" type="text" name="" id ="obsevacionmayor"placeholder="Ingrese el Nombre de la Cuenta">
                                         </div>
                                       </div>
                                       </div>
-                                </div>
+                                
                                 <div class="panel-footer text-right">
                                     <button type="button" class="button btn-primary"onclick="validarcuentaresultado()"> Validate Form </button>
                                     <button type="reset" class="button"> Cancel </button>
                                   </div>
                             </form>
                         </div> 
-
                     </div>
+                        
+
+                    
+                </div>
                 </div>
                 
                 
@@ -618,7 +621,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                            <input class="form-control" type="text" name="" id ="codigo"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
+                                            <input class="form-control" type="text" name="" id ="codigoorigen"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
                                         </div>
                                       </div>
                                 </div>
@@ -632,7 +635,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                          <input class="form-control" type="text" name="" id ="nombre"placeholder="Ingrese el Nombre de la Cuenta">
+                                          <input class="form-control" type="text" name="" id ="nombreorigen"placeholder="Ingrese el Nombre de la Cuenta">
                                         </div>
                                       </div>
                                 </div>
@@ -646,7 +649,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                          <input class="form-control" type="text" name="" id ="nombre"placeholder="Ingrese el Nombre de la Cuenta">
+                                          <input class="form-control" type="text" name="" id ="observacionorigen"placeholder="Ingrese el Nombre de la Cuenta">
                                         </div>
                                       </div>
                                 </div>
