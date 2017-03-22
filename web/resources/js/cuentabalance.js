@@ -132,7 +132,7 @@ function validarcuentaBalanceorigen(){
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
-               
+                alert(xhttp.responseText);
                          }
         
         }
@@ -144,4 +144,31 @@ function validarcuentaBalanceorigen(){
  }
     
     
+}
+
+function llenarcombobox(){
+ var origen=$("#origenmayor").val();
+       
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              
+                document.getElementById("alerta").innerHTML = xhttp.responseText;
+               var id=$("#id").val();
+               var codigo=$("#codigocuenta").val();
+               var nombre=$("#nombrecuenta").val()
+                var cadena="<option value=''>Seleccione El Area de la Cuenta</option>";
+                 for (var i = 0; i < id.length; i++) {                
+               cadena+=" <option value='"+id[i]+"'>"+codigo[i]+" "+nombre[i]+"</option>";
+            }
+           
+            $("#cuenta").html(cadena);
+                         }
+        
+        }
+       
+      xhttp.open("POST", "xddxfdg.gdc", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
+        xhttp.send("origen="+origen);   
+ 
 }

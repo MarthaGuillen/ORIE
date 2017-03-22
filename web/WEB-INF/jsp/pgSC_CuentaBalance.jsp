@@ -249,6 +249,7 @@
       </ul>
 
     </header>
+     
     <!-- End: Header -->
      <!-- Start: Sidebar Left -->
     <aside id="sidebar_left" class="nano nano-primary affix">
@@ -345,7 +346,7 @@
 
         
 
-         
+            <div id="alerta" ></div>
         
        
             <div class="page-heading" id="subcuentamayor">
@@ -369,9 +370,11 @@
                                      
                                         <div class="section">
                                           <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="origen" onchange="#">
+                                              <select class="form-control" name="CATALOGO" id="origen" onchange="llenarcombobox()">
 				                <option value="">Seleccione la Cuenta de Origen</option>
-				                
+                                                <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
+                                                    <option value="${idorigen[i]}">${nombreorigen[i]}</option>
+                                                </c:forEach>
 				            </select>
                                              
                                             <i class="arrow"></i>
@@ -390,7 +393,7 @@
                                    
                                         <div class="section">
                                           <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="cuenta" onchange="#">
+                                              <select class="form-control" name="CATALOGO" id="cuenta" >
 				                <option value="">Seleccione  la Cuenta </option>
 				                
 				            </select>
@@ -412,7 +415,9 @@
                                           <label class="field select">
                                               <select class="form-control" name="CATALOGO" id="sociedad" onchange="llenarcombocuentasResultados()">
 				                <option value="">Seleccione  la Sociedad</option>
-				                
+				                 <c:forEach var="i" begin="0" end="${fn:length(idsociedad)-1}">
+                                                    <option value="${idsociedad[i]}">${sociedadnombre[i]}</option>
+                                                </c:forEach>
 				            </select>
                                              
                                             <i class="arrow"></i>
@@ -491,17 +496,14 @@
                                         </div>
                                       </div>
                                 </div>
-                                   <label class="switch block mt15">
-                                        <input type="checkbox" name="features" id="idestadoV" value="popups" checked>
-                                        <label for="f4" data-on="ON" data-off="OFF"></label>
-                                        <span>Estado de la Cuenta </span>
-                                      </label>
+                                   
                                 <div class="panel-footer text-right">
-                                    <button type="button" class="button btn-primary"onclick="validarcuentaresultado()"> Validate Form </button>
+                                    <button type="button" class="button btn-primary"onclick="ver()"> Validate Form </button>
                                     <button type="reset" class="button"> Cancel </button>
                                   </div>
                             </form>
                         </div> 
+                        
 
                     </div>
                 </div>
@@ -531,9 +533,11 @@
                                      <div class="col-md-6">
                                         <div class="section">
                                           <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="origenmayor" onchange="llenarcombocuentasResultados()">
+                                              <select class="form-control" name="CATALOGO" id="origenmayor" >
 				                <option value="">Seleccione la Cuenta Origen</option>
-				                
+				                 <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
+                                                    <option value="${idorigen[i]}">${nombreorigen[i]}</option>
+                                                </c:forEach>
 				            </select>
                                              
                                             <i class="arrow"></i>
@@ -586,7 +590,7 @@
                                       </div>
                                 
                                 <div class="panel-footer text-right">
-                                    <button type="button" class="button btn-primary"onclick="validarcuentaresultado()"> Validate Form </button>
+                                    <button type="button" class="button btn-primary"onclick="validarcuentaBalancemayor()"> Validate Form </button>
                                     <button type="reset" class="button"> Cancel </button>
                                   </div>
                             </form>
@@ -654,7 +658,7 @@
                                       </div>
                                 </div>
                                 <div class="panel-footer text-right">
-                                    <button type="button" class="button btn-primary"onclick="validarcuentaresultado()"> Validate Form </button>
+                                    <button type="button" class="button btn-primary"onclick="validarcuentaBalanceorigen()"> Validate Form </button>
                                     <button type="reset" class="button"> Cancel </button>
                                   </div>
                             </form>
@@ -727,7 +731,8 @@
         
               
     </section>
-    
+     </div>
+    <script src="<c:url value='/resources/js/cuentabalance.js'/>"></script>
     <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
        <script src="<c:url value='/resources/js/utility.js'/>"></script>
