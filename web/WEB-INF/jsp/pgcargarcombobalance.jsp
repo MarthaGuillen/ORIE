@@ -26,9 +26,10 @@
          <script src="<c:url value='/resources/js/cuentabalance.js'/>"></script>
         <div id="info">
            
-            <input type="hidden" value="${idcuenta}" id="id">
+            
             <input type="hidden" value="${codigocuenta}" id="codigocuenta">
             <input type="hidden" value="${nombrecuenta}" id="nombrecuenta">
+            <input type="hidden" value="${idcuenta}" id="prueba">
            
         </div>
     </body>

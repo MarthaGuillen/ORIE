@@ -19,13 +19,13 @@ import org.hibernate.Transaction;
 public class cuentabalanceDAO {
         public String agregarsubcuentabalance(
                  int cuenta,int sociedad,
-               String codigosub, String nombre,String descripcion,String observacion
-               ,boolean estado,int user){
+               String codigosub, String nombre,String observacion
+               ,String depuracion,int user){
           
    
     String resp="";
-    String sql = "EXEC fnscinsertsubcuenta('"+cuenta+"','"+sociedad+"','"+codigosub+"','"+nombre+"','"+descripcion+
-            "','"+observacion+"','"+estado+"','"+user+"')";
+    String sql = "SELECT fnscinsertsubcuenta('"+cuenta+"','"+sociedad+"','"+codigosub+"','"+nombre+
+            "','"+observacion+"','"+depuracion+"','"+user+"')";
         List<String> r=new ArrayList<String>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -39,7 +39,7 @@ public class cuentabalanceDAO {
             resp = "Fallo";
             e.printStackTrace();
         }
-        System.out.println(resp);
+        System.out.println(resp+" "+r);
     return resp;
     }
         

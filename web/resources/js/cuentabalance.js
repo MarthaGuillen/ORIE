@@ -1,37 +1,33 @@
 function validarcuentaBalance(){
      var e=0;
     var mjs="";
-    var origen= $("#origen").val().trim();
-    var cuenta=$("#cuenta").val().trim();
+    var cuenta= $("#cuenta").val().trim();
     var sociedad=$("#sociedad").val().trim();
-    var codigosub=$("#codigocuenta").val().trim();
-    var nombre=$("#nombre").val().trim();
-    var descripcion=$("#descripcion").val().trim();
+    var codigosub=$("#codigosub").val().trim();
+    var nombre=$("#nombresub").val().trim();
     var observacion=$("#observacion").val().trim();
     var depuracion=$("#depuracion").val().trim();
-    var estado=$("#idestadoV").val();
-    if(origen==""){
-         e = 1;
-        mjs += "<h5>Seleccione el origen de la Cuenta.</h5>"
-    }
+    alert(codigosub);
     if(cuenta==""){
          e = 1;
-        mjs += "<h5>Seleccione la Cuenta.</h5>"
+        mjs += "<h5>Seleccione  la Cuenta.</h5>"
     }
     if(sociedad==""){
          e = 1;
-        mjs += "<h5>Seleccione la sociedad que pertenece.</h5>"
+        mjs += "<h5>Seleccione  la sociedad.</h5>"
     }
     if(codigosub==""){
          e = 1;
-        mjs += "<h5>error en el codigo.</h5>"
+        mjs += "<h5>Ingrese el codigo.</h5>"
     }
-   
-    if(e==1){
-      $("#alerta").css("display" ,"block" );
-      $("#mensaje").html(mjs);
-     $("#t").attr('disabled', true);
-  }else{
+    if(nombre==""){
+         e = 1;
+        mjs += "<h5>Ingrese el Nombre.</h5>"}
+    
+    if (e==1) {
+        
+    }else{
+    
        
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -42,17 +38,16 @@ function validarcuentaBalance(){
                          }
         
         }
-       
+       console.log(cuenta+"  "+sociedad+" "+" "+codigosub+" "+nombre)
       xhttp.open("POST", "agregarsubcuenta.gdc", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
-        xhttp.send("origen=" + origen + "&cuenta="+cuenta+"&sociedad="+sociedad+
-                "&codigosub="+codigosub+"&nombre="+nombre+"&descripcion="+descripcion+"&observacion="+observacion
-                +"&depuracion="+depuracion+"&estado="+estado);   
+        xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad+"&codigosub="+codigosub+"&nombre="+nombre+"&observacion="+observacion
+                +"&depuracion="+depuracion);   
  }
     
     
-}
 
+}
 
 function validarcuentaBalancemayor(){
      var e=0;
@@ -147,27 +142,41 @@ function validarcuentaBalanceorigen(){
 }
 
 function llenarcombobox(){
- var origen=$("#origenmayor").val();
-       
+ var origen=$("#origen").val().trim();
+     
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
-               var id=$("#id").val();
+               var idcuenta=$("#prueba").val();
                var codigo=$("#codigocuenta").val();
-               var nombre=$("#nombrecuenta").val()
-                var cadena="<option value=''>Seleccione El Area de la Cuenta</option>";
-                 for (var i = 0; i < id.length; i++) {                
-               cadena+=" <option value='"+id[i]+"'>"+codigo[i]+" "+nombre[i]+"</option>";
+               var nombre=$("#nombrecuenta").val();
+              
+                 var lid_tipo= idcuenta.substring(1, idcuenta.length-1);
+           
+                 var lcodigoarea= codigo.substring(1, codigo.length-1);
+                
+                 var lnombretipo= nombre.substring(1, nombre.length-1);
+                
+                 
+                 var arrayid_tipo=lid_tipo.split(",");
+                 var arraycodigoarea=lcodigoarea.split(",");               
+                 var arraynombretip=lnombretipo.split(",");
+               
+                 var cadena="<option value=''>Seleccione El Area de la Cuenta</option>";
+                 for (var i = 0; i < arraycodigoarea.length; i++) {
+                 
+               cadena+=" <option value='"+arrayid_tipo[i]+"'>"+arraycodigoarea[i]+"  "+arraynombretip[i]+"</option>";
             }
            
+            
             $("#cuenta").html(cadena);
                          }
         
         }
        
-      xhttp.open("POST", "xddxfdg.gdc", true);
+      xhttp.open("POST", "combobalance.gdc", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("origen="+origen);   
  

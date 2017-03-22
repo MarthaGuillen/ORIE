@@ -35,6 +35,10 @@ public class cuentasbalanceController {
                 codigo.add((String) datos[1].toString());
                 nombre.add((String) datos[2]);
                         }  
+             
+        System.out.println(origen);
+        System.out.println(codigo);
+        System.out.println(nombre);
             mv.addObject("idorigen",origen);
             mv.addObject("codigoorigen",codigo);
             mv.addObject("nombreorigen",nombre);
@@ -49,6 +53,7 @@ public class cuentasbalanceController {
          sociedadnombre.add((String)datos[1].toString());
          logo.add((String)datos[1].toString());
      }
+       
      mv.addObject("idsociedad",idsociedad);
      mv.addObject("sociedadnombre",sociedadnombre);
      mv.addObject("logo",logo);
@@ -62,20 +67,18 @@ public class cuentasbalanceController {
       
       @RequestMapping(value = "agregarsubcuenta.gdc",method =RequestMethod.POST)
        public ModelAndView funAgregarsubcuenta(
-          @RequestParam("origen") int origen,
           @RequestParam("cuenta") int cuenta,
           @RequestParam("sociedad") int sociedad,
           @RequestParam("codigosub") String codigosub,
            @RequestParam("nombre")  String nombre,
-            @RequestParam("descripcion") String descripcion,
             @RequestParam("observacion") String observacion,
-             @RequestParam("estado")boolean estado,
+             @RequestParam("depuracion") String depuracion,
              HttpServletRequest request
        )throws Exception{
        ModelAndView mv=new ModelAndView("pgSCagregarcuentabalance");
        int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
        cuentabalanceDAO balance = new cuentabalanceDAO();
-       String resp=balance.agregarsubcuentabalance(cuenta, sociedad, codigosub, nombre, descripcion, observacion, estado, cuenta);
+       String resp=balance.agregarsubcuentabalance(cuenta, sociedad, codigosub, nombre, observacion, depuracion, idusuario);
        return mv;
        }
      
@@ -117,9 +120,9 @@ public class cuentasbalanceController {
                return mv;
        }
       
-    @RequestMapping(value="xddxfdg.gdc", method = RequestMethod.POST)
+    @RequestMapping(value="combobalance.gdc", method = RequestMethod.POST)
     public ModelAndView funCuentaresultadoe(
-                      @RequestParam("origen") String codigocr     
+                      @RequestParam("origen") int codigocr     
                            
     ) throws Exception{
     ModelAndView mv= new ModelAndView("pgcargarcombobalance");
@@ -128,7 +131,9 @@ public class cuentasbalanceController {
     ArrayList<String> idcuenta = new ArrayList<String>();
     ArrayList<String> codigocuenta = new ArrayList<String>();
     ArrayList<String> nombrecuenta = new ArrayList<String>();
-    List cuentasmadres =balance.obtenercuenta(Integer.parseInt(codigocr));
+        System.out.println("controller.cuentasbalanceController.funCuentaresultadoe()");
+        System.out.println(codigocr);
+    List cuentasmadres =balance.obtenercuenta(codigocr);
     
      List<Object[]> listDatosmadre = cuentasmadres;
             for (Object[] datos : listDatosmadre) {
@@ -138,12 +143,9 @@ public class cuentasbalanceController {
                            }  
            
             
-        System.out.println("Ajax?????????????");
-        System.out.println( idcuenta);
-        System.out.println(codigocuenta);
-        System.out.println( nombrecuenta);
+   
        
-            mv.addObject(" idcuenta", idcuenta);
+            mv.addObject("idcuenta", idcuenta);
             mv.addObject("codigocuenta",codigocuenta);
             mv.addObject("nombrecuenta",nombrecuenta);
             

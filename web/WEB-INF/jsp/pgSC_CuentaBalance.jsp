@@ -386,7 +386,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="section">
-                                            <label class="field " for="areacr">
+                                            <label class="field " for="cuenta">
                                                 <h3>Cuenta :</h3>  
                                             </label>
                                         </div>
@@ -413,7 +413,7 @@
                                     
                                         <div class="section">
                                           <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="sociedad" onchange="llenarcombocuentasResultados()">
+                                              <select class="form-control" name="CATALOGO" id="sociedad" >
 				                <option value="">Seleccione  la Sociedad</option>
 				                 <c:forEach var="i" begin="0" end="${fn:length(idsociedad)-1}">
                                                     <option value="${idsociedad[i]}">${sociedadnombre[i]}</option>
@@ -436,7 +436,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                            <input class="form-control" type="text" name="" id ="codigocuenta"placeholder="Codigo Generado " value="">
+                                            <input class="form-control" type="text" name="" id ="codigosub"placeholder="Codigo Generado " value="">
                                         </div>
                                       </div>
                                 </div>
@@ -450,11 +450,11 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
-                                          <input class="form-control" type="text" name="" id ="nombre"placeholder="Ingrese el Nombre de la Cuenta">
+                                          <input class="form-control" type="text" name="" id ="nombresub"placeholder="Ingrese el Nombre de la Cuenta">
                                         </div>
                                       </div>
                                 </div>
-                                <div class="row">
+                                <%-- <div class="row">
                                     <div class="col-md-6">
                                         <div class="section">
                                             <label class="field ">
@@ -467,7 +467,7 @@
                                           <input class="form-control" type="text" name="" id ="descripcion"placeholder="Descripcion">
                                         </div>
                                       </div>
-                                </div>
+                                    </div>--%>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="section">
@@ -498,12 +498,12 @@
                                 </div>
                                    
                                 <div class="panel-footer text-right">
-                                    <button type="button" class="button btn-primary"onclick="ver()"> Validate Form </button>
+                                    <button type="button" class="button btn-primary"onclick="validarcuentaBalance()"> Validate Form </button>
                                     <button type="reset" class="button"> Cancel </button>
                                   </div>
-                            </form>
                         </div> 
-                        
+                        </form>
+
 
                     </div>
                 </div>
