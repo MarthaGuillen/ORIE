@@ -77,6 +77,22 @@ public class matriculaPrimerIngresoController {
                 mv.addObject("paisTemp",nompPa);
                 mv.addObject("idpaisTemp",idPa);
             
+                
+                
+                
+                //Para info de Padre o tutor
+                List listaOcp = opc.cargaOcupaciones();
+                ArrayList<String> nompOcp = new ArrayList<String>();
+                ArrayList<String> idOcp = new ArrayList<String>();
+                List<Object[]> listDatosOcp = listaOcp;
+                for (Object[] datos : listDatosOcp) {
+                    idOcp.add((String) datos[0].toString());
+                    nompOcp.add((String) datos[1].toString());  
+                    
+
+                }
+                mv.addObject("ocupacionesTemp",nompOcp);
+                mv.addObject("idocupacionesTemp",idOcp);
             
             }
         
@@ -125,6 +141,57 @@ public class matriculaPrimerIngresoController {
                 String ema = new String(email.getBytes("ISO-8859-1"), "UTF-8");
                 //inserta forma 1 
                 String resp = opc.insertaFase1(pn,sn, pa,sa,dir,ciu,telefono,gen,edad,fechanac,pais,nac,nIdentidad, ema,idf,idu);
+                
+            
+            }
+        
+        
+        }
+        
+        
+        return mv;
+    }
+    
+    
+    @RequestMapping(value = "formulariofase2.gdc", method = RequestMethod.POST)
+    public ModelAndView guarda2form(HttpServletRequest request,
+            @RequestParam("nompadre") String NombrePadre, 
+            @RequestParam("espadre") String esPadre,
+            @RequestParam("celpadre") String CelPadre,
+            @RequestParam("idpadre") String idpadre,
+            @RequestParam("correopadre") String correopadre,
+            @RequestParam("teldompadre") String teldompadre,
+            @RequestParam("paisdompadre") String paisdompadre,
+            @RequestParam("ciudompadre") String ciudompadre,
+            @RequestParam("dirdompadre") String dirdompadre,
+            @RequestParam("emptrapad") String emptrapad,
+            @RequestParam("ocuptrapad") String ocuptrapad,
+            @RequestParam("teltrapad") String teltrapad,
+            @RequestParam("paistrapad") String paistrapad,
+            @RequestParam("ciutrapad") String ciutrapad,
+            @RequestParam("dirtrapad") String dirtrapad,
+            @RequestParam("pasaporte") String pasaporte
+    ) throws Exception {
+      
+        ModelAndView mv = new ModelAndView("pgFormularioAjax");
+        fomularioDAO opc = new fomularioDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+                //Manda a insertar padre o tutor
+                String idu = (String) request.getSession().getAttribute("ses_idusuario");
+                String idf = (String) request.getSession().getAttribute("ses_formulario");
+                       
+                String np = new String(NombrePadre.getBytes("ISO-8859-1"), "UTF-8");
+                String cp = new String(correopadre.getBytes("ISO-8859-1"), "UTF-8");
+                String cdp = new String(ciudompadre.getBytes("ISO-8859-1"), "UTF-8");
+                String ddp = new String(dirdompadre.getBytes("ISO-8859-1"), "UTF-8");
+                String etp = new String(emptrapad.getBytes("ISO-8859-1"), "UTF-8");
+                String otp = new String(ocuptrapad.getBytes("ISO-8859-1"), "UTF-8");
+                String ctp = new String(ciutrapad.getBytes("ISO-8859-1"), "UTF-8");
+                String dtp = new String(dirtrapad.getBytes("ISO-8859-1"), "UTF-8");
+                
+                //inserta forma 2 
+                String resp = opc.insertaFase2(np,esPadre, CelPadre,idpadre,cp,teldompadre,paisdompadre,cdp,ddp,etp,otp,teltrapad,paistrapad, ctp,dtp, idu, idf, pasaporte);
                 
             
             }

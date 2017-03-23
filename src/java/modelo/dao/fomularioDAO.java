@@ -97,5 +97,50 @@ public class fomularioDAO {
 
         return listaget.get(0).toString();
     } 
+     
+     
+     public List cargaOcupaciones() {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_capturaocupaciones()";
+     
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            return listaget;
+
+        } catch (Exception e) {
+            e.printStackTrace();System.out.println(e);
+        }finally { 
+          session.close();
+        }
+        return listaget;
+    }
+     
+     public String insertaFase2(String NomprePadre,String EsPadre, String CelPadre,String idpadre,String correoPadre,String teldompadre,String paisdompadre,
+            String ciudompadre,String dirdompadre,String emptrapad,String ocuptrapad,String teltrapad,String paistrapad, String ciutrapad, String dirtrapad,
+            String idUsuario, String idFormulario, String pasaporte) {
+         
+        Session session = HibernateUtil.getSessionFactory().openSession();                                                             
+        String sql = "SELECT fn_insertafase2('"+NomprePadre+"','"+EsPadre+"','"+CelPadre+"','"+idpadre+"','"+pasaporte+"','"+correoPadre+"','"+teldompadre+"','"+paisdompadre+"','"
+                +ciudompadre+"','"+dirdompadre+"','"+emptrapad+"','"+ocuptrapad+"','"+teltrapad+"','"+paistrapad+"','"+ciutrapad+"','"+dirtrapad+"','"+idUsuario
+                +"','"+idFormulario+"')";
+        
+        List<String> listaget = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return listaget.get(0).toString();
+    } 
     
 }
