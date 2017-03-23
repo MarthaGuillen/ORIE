@@ -18,19 +18,20 @@ import org.hibernate.Transaction;
  */
 public class cuentabalanceDAO {
         public String agregarsubcuentabalance(
-       int origen,int cuenta,int sociedad,
-               String codigosub, String nombre,String descripcion,String observacion
-                ,String depuracion,boolean estado,int user){
+                 int cuenta,int sociedad,
+               String codigosub, String nombre,String observacion
+               ,String depuracion,int user){
           
    
     String resp="";
-    String sql = "";
-        
+    String sql = "SELECT fnscinsertsubcuenta('"+cuenta+"','"+sociedad+"','"+codigosub+"','"+nombre+
+            "','"+observacion+"','"+depuracion+"','"+user+"')";
+        List<String> r=new ArrayList<String>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
             Query query = session.createSQLQuery(sql);
-            int result = query.executeUpdate();
+             r = query.list();
             resp = "exito..";
             t.commit();
             session.close();
@@ -38,7 +39,7 @@ public class cuentabalanceDAO {
             resp = "Fallo";
             e.printStackTrace();
         }
-        System.out.println(resp);
+        System.out.println(resp+" "+r);
     return resp;
     }
         
@@ -47,13 +48,13 @@ public class cuentabalanceDAO {
           
    
     String resp="";
-    String sql = "";
-        
+    String sql = " SELECT fn_scinsertcuentamayor('"+origen+"','"+codigosub+"','"+nombre+"','"+observacion+"','"+user+"')";
+        List<String> r=new ArrayList<String>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
             Query query = session.createSQLQuery(sql);
-            int result = query.executeUpdate();
+             r= query.list();
             resp = "exito..";
             t.commit();
             session.close();
@@ -61,21 +62,21 @@ public class cuentabalanceDAO {
             resp = "Fallo";
             e.printStackTrace();
         }
-        System.out.println(resp);
+        System.out.println(resp+"  ->"+r);
     return resp;
     }
         public String agregarcuentorigen(
        String codigoorigen,String nombreorigen,String observacionorigen , int user){
-          
-   
+            System.out.println("modelo.dao.cuentabalanceDAO.agregarcuentorigen()");
+   System.out.println(codigoorigen+" "+ nombreorigen+" "+  observacionorigen+" "+ user);
     String resp="";
-    String sql = "";
-        
+    String sql = "SELECT  fnscinsertcuentaorigen('"+codigoorigen+"','"+nombreorigen+"','"+observacionorigen+"','"+user+"')";
+        List<String> r=new ArrayList<String>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
             Query query = session.createSQLQuery(sql);
-            int result = query.executeUpdate();
+            r= query.list();
             resp = "exito..";
             t.commit();
             session.close();
@@ -83,13 +84,54 @@ public class cuentabalanceDAO {
             resp = "Fallo";
             e.printStackTrace();
         }
-        System.out.println(resp);
+        
+        System.out.println(resp+"---->"+r);
     return resp;
     }
-            public List llenarcuentamadre(int codigo){
+            public List obtenercuentaorigen(){
         
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = " ="+ codigo+"";
+        String sql = "  select * from  fn_scselectcuentabalanceorigen();";
+        
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+
+       
+        return listaget;
+    }
+            public List obtenersociedad(){
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = " select *from tbl_sociedad ;";
+        
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+
+       
+        return listaget;
+    }
+            public List obtenercuenta(int id){
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = " select * from fn_scselectcuentabalance ('"+id+"')";
         
         List<Object[]> listaget = new ArrayList<Object[]>();
         try {
