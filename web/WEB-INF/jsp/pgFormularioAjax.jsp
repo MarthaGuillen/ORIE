@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
+        <input type="hidden" id="idPadTutor" name="idPadTutor" value="">
     </body>
 </html>

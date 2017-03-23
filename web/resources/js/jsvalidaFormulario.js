@@ -40,6 +40,21 @@ $( document ).ready(function() {
         {placeholder: "País de nacimiento",
                  allowClear: true
         });
+                
+        $("#paisPadTutor").select2(
+        {placeholder: "País",
+                 allowClear: true
+        });
+                
+        $("#paisTrabPadTutor").select2(
+        {placeholder: "País",
+                 allowClear: true
+        });
+                
+        $("#ocupacionPadTutor").select2(
+        {placeholder: "Ocupación",
+                 allowClear: true
+        });
         
      
         $('#defaultForm').bootstrapValidator().on('success.form.bv', function(e) {
@@ -81,8 +96,6 @@ $( document ).ready(function() {
                 xhttp.onreadystatechange = function() {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                          document.getElementById("ajaxtemp").innerHTML = xhttp.responseText;
-                            
-
                     }
                 }
 
@@ -95,12 +108,81 @@ $( document ).ready(function() {
                          +"&email="+email);
             }
         });;
-    
+        
+        $('#formTutor').bootstrapValidator().on('success.form.bv', function(e) {
+            
+            var error = 0;
+            var pasaporte = $('#pasaportePadTutor').val();
+            var idPad = $('#nIdentidadPadTutor').val();
+            
+            if(pasaporte == "" && idPad==""){
+                swal(
+                    'Error',
+                    'Favor ingresar el numero de identidad o pasaporte para continuar.',
+                    'warning'
+                )
+                error = 1;
+            }
+            
+            if(error==0){
+                $('#tutoresCreados').show();
+                var cantidad = $('#cantidad').val();
+                var nombre = $('#nomPadTutor').val();
+                var rol = $('#TipoPadTutor option:selected').val();
+                var roltext = $('#TipoPadTutor option:selected').text();
+                var celPad = $('#telcelPadTutor').val();
+                var correoPad = $('#correoPadTutor').val();
+                var teldompad = $('#telDomPadTutor').val();
+                var paisdompad = $('#paisPadTutor').val();
+                var ciudompad = $('#ciudPadTutor').val();
+                var dirdompad = $('#direccionPadTutor').val();
+                var emptrapad = $('#empresaPadTutor').val();
+                var ocuptrapad = $('#ocupacionPadTutor').val();
+                if(ocuptrapad == ''){
+                    ocuptrapad = 0;
+                }
+                var teltrapad = $('#telTrabPadTutor').val();
+                var paistrapad = $('#paisTrabPadTutor').val();
+                if(paistrapad == ''){
+                    paistrapad = 0;
+                }
+                var ciutrapad = $('#ciudTrabPadTutor').val();
+                var dirtrapad = $('#direccionTrabPadTutor').val();
+
+
+
+                var xhttp = new XMLHttpRequest();
+                var idPadTutor = 0;
+                xhttp.onreadystatechange = function() {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        document.getElementById("ajaxtemp").innerHTML = xhttp.responseText;
+                        idPadTutor = $('#idPadTutor').val(); 
+                    }
+                }
+                xhttp.open("POST", "formulariofase2.gdc", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("nompadre="+nombre+"&espadre="+rol+"&celpadre="+celPad
+                         +"&idpadre="+idPad+"&correopadre="+correoPad+"&teldompadre="+teldompad
+                         +"&paisdompadre="+paisdompad+"&ciudompadre="+ciudompad+"&dirdompadre="+dirdompad
+                         +"&emptrapad="+emptrapad+"&ocuptrapad="+ocuptrapad+"&teltrapad="+teltrapad
+                         +"&paistrapad="+paistrapad+"&ciutrapad="+ciutrapad+"&dirtrapad="+dirtrapad+"&pasaporte="+pasaporte);  
+                
+                $('#cantidad').val(parseInt(cantidad)+1);
+                $('#tablaPadTutor > tbody:last-child').append('<tr><td>'+idPadTutor+'</td><td>'+nombre+'</td><td>'+roltext+'</td></tr>');
+                
+                $('#formTutor').bootstrapValidator('resetForm', true);
+                
+            }  
+        });
 });
+
 
 $(function(){
     $('#telestudiante').validCampoFranz('+-0123456789');   
-    
+    $('#telcelPadTutor').validCampoFranz('+-0123456789');   
+    $('#nIdentidadPadTutor').validCampoFranz('0123456789');       
+    $('#telDomPadTutor').validCampoFranz('+-0123456789');   
+    $('#telTrabPadTutor').validCampoFranz('+-0123456789');  
 });
 
 
