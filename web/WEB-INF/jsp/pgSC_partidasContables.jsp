@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pgCuentaBalance
-    Created on : 08-mar-2017, 8:13:29
+    Document   : pgSC_partidasContables
+    Created on : 22-mar-2017, 14:39:27
     Author     : Sinergia003
 --%>
 
@@ -14,7 +14,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <c:set var="valida" value="${sessionScope.ses_estado}" />
 <c:if test="${valida != 'Activa'}">
-    <c:redirect url="login.gdc"/>
+<c:redirect url="login.gdc"/>
 </c:if>
 <c:set var="validaLista" value="${fn:length(sessionScope.ses_menus)}" />
 <html>
@@ -261,7 +261,7 @@
 
         <!-- Start: Sidebar Left Menu -->
         <ul class="nav sidebar-menu">
-            <c:if test="${validaLista > 0}">
+              <c:if test="${validaLista > 0}">
                 <c:forEach var="i" begin="0" end="${fn:length(sessionScope.ses_labels)-1}">
                     <li class="sidebar-label pt20">${sessionScope.ses_labels[i]}</li>
                     <c:forEach var="j" begin="0" end="${fn:length(sessionScope.ses_urlmen)-1}">
@@ -297,9 +297,9 @@
             
              <!-- begin: .tray-left -->
         <section id="content" class="table-layout animated fadeIn">
-
+            <%--
         <!-- begin: .tray-left -->
-        <aside class="tray tray-left tray290">
+             <aside class="tray tray-left tray290">
 
           <h4> Admin Widgets -
             <small>A Theme Exclusive</small>
@@ -340,7 +340,7 @@
 
         </aside>
         <!-- end: .tray-left -->
-
+--%>
         <!-- begin: .tray-center -->
         <div class="tray tray-center">
 
@@ -359,22 +359,57 @@
                                     <span>Sub-Cuenta </span>
                                 </div>
                                 <div class="row">
+                                       <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="section">
+                                            <label class="field " for="fecha">
+                                                <h3>Fecha:</h3>  
+                                            </label>
+                                        </div>
+                                        <div class="section">
+                                            <input class="form-control" type="date" name="" id ="fecha" value="" onload="fechaActual()">
+                                        </div>
+                                    </div>
+                                     <div class="col-md-4">
+                                        <div class="section">
+                                            <label class="field " for="fecha">
+                                                <h3>Sociedad :</h3>  
+                                            </label>
+                                        </div>
+                                        <div class="section">
+                                            <input class="form-control" type="text" name="" id ="Sociedad" value="${sessionScope.ses_sociedadDefault}" disabled>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-4">
+                                        <div class="section">
+                                            <label class="field " for="fecha">
+                                                <h3>N. de Transaccion :</h3>  
+                                            </label>
+                                        </div>
+                                        <div class="section">
+                                            <input class="form-control" type="text" name="" id ="transaccion" value="Ingrese en numero de transaccion" >
+                                        </div>
+                                    </div>
+                                        
+                                      
+                                </div>
+                                    
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-md-7">
                                         <div class="section">
                                             <label class="field " for="areacr">
-                                                <h3>Cuenta Origén:</h3>  
+                                                <h3>Cuenta</h3>  
                                             </label>
                                         </div>
                                     
                                      
                                         <div class="section">
                                           <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="origen" onchange="llenarcombobox()">
+                                              <select class="form-control" name="CATALOGO" id="cuenta" >
 				                <option value="">Seleccione la Cuenta de Origen</option>
-                                                <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
+                                                <%-- <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
                                                     <option value="${idorigen[i]}">${nombreorigen[i]}</option>
-                                                </c:forEach>
+                                                </c:forEach>--%>
 				            </select>
                                              
                                             <i class="arrow"></i>
@@ -382,120 +417,52 @@
                                         
                                       </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
+                                    <div class=" col-md-5">
                                         <div class="section">
-                                            <label class="field " for="cuenta">
-                                                <h3>Cuenta :</h3>  
+                                            <label class="field " >
+                                                <h3>Seleccione el tipo de cuenta:</h3>  
                                             </label>
                                         </div>
+                                      <div class="col-md-6">
+                                      <label for="acredor" class="option block mt15">
+                                <input type="radio" name="tipocuenta" id="acredor" value="female">
+                                <span class="radio"></span>Acredor</label>
+                              
+                                    </div>        
+                                 <div class="col-md-6">
+                                      <label for="deudor" class="option block mt15">
+                                <input type="radio" name="tipocuenta" id="deudor" value="other">
+                                <span class="radio"></span>Deudor</label>
+                              
+                                    </div> 
+                                    </div>
                                    
-                                        <div class="section">
-                                          <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="cuenta" >
-				                <option value="">Seleccione  la Cuenta </option>
-				                
-				            </select>
-                                             
-                                            <i class="arrow"></i>
-                                          </label>
-                                        </div>
-                                      </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
+                            <div class="row">
+                               <div class="col-md-6">
+                                <div class="section">
+                                    <label class="field " >
+                                        <h3>Descripción:</h3>  
+                                    </label>
+                                </div>
+
+                                <div class="section">
+                                    <input class="form-control" type="text" name="" id ="descripcion"placeholder="Ingrese la descripcion " value="">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
                                         <div class="section">
                                             <label class="field ">
-                                                <h3>Sociedad:</h3>  
+                                                <h3>Monto</h3>  
                                             </label>
                                         </div>
                                     
                                         <div class="section">
-                                          <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="sociedad" >
-				                <option value="">Seleccione  la Sociedad</option>
-				                 <c:forEach var="i" begin="0" end="${fn:length(idsociedad)-1}">
-                                                    <option value="${idsociedad[i]}">${sociedadnombre[i]}</option>
-                                                </c:forEach>
-				            </select>
-                                             
-                                            <i class="arrow"></i>
-                                          </label>
+                                            <input class="form-control" type="text" name="" id ="monto"placeholder="Lps. 000.00 " value="">
                                         </div>
                                       </div>
                                 </div>
                                
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Codigo De Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                            <input class="form-control" type="text" name="" id ="codigosub"placeholder="Codigo Generado " value="">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Nombre de la Sub-Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <input class="form-control" type="text" name="" id ="nombresub"placeholder="Ingrese el Nombre de la Cuenta">
-                                        </div>
-                                      </div>
-                                </div>
-                                <%-- <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Descripción del Estado :</h3>  
-                                            </label> 
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <input class="form-control" type="text" name="" id ="descripcion"placeholder="Descripcion">
-                                        </div>
-                                      </div>
-                                    </div>--%>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Observación de la Cuenta  :</h3>  
-                                            </label> 
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <input class="form-control" type="text" name="" id ="observacion"placeholder="Observación">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Depuración  :</h3>  
-                                            </label> 
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <input class="form-control" type="text" name="" id ="depuracion"placeholder="Depuración">
-                                        </div>
-                                      </div>
-                                </div>
                                    
                                 <div class="panel-footer text-right">
                                     <button type="button" class="button btn-primary"onclick="validarcuentaBalance()"> Validate Form </button>
@@ -513,156 +480,65 @@
         </div>
            
             </div>
-             <div class="page-heading" id="cuentamayor">
+            
+          <div class="page-heading" id="subcuentamayor">
             <div class="media clearfix">
                 <div class="admin-form">
                     <div class="panel heading-border">
                         <div class="panel-body bg-light">
-                            <form  id="form-ui">
-                                <div class="section-divider mb40" id="spy1">
-                                    <span>Cuenta Mayor</span>
+                             <div class="section-divider mb40" id="spy1">
+                                    <span>Partida Contable</span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Cuenta Origen :</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="origenmayor" >
-				                <option value="">Seleccione la Cuenta Origen</option>
-				                 <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
-                                                    <option value="${idorigen[i]}">${nombreorigen[i]}</option>
-                                                </c:forEach>
-				            </select>
-                                             
-                                            <i class="arrow"></i>
-                                          </label>
-                                        </div>
-                                      </div>
-                                </div>
-                               
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Codigo De Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                            <input class="form-control" type="text" name="" id ="codigomayor"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Nombre de la Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <input class="form-control" type="text" name="" id ="nombremayor"placeholder="Ingrese el Nombre de la Cuenta">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Observación:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <input class="form-control" type="text" name="" id ="obsevacionmayor"placeholder="Ingrese el Nombre de la Cuenta">
-                                        </div>
-                                      </div>
-                                      </div>
-                                
-                                <div class="panel-footer text-right">
-                                    <button type="button" class="button btn-primary"onclick="validarcuentaBalancemayor()"> Validate Form </button>
-                                    <button type="reset" class="button"> Cancel </button>
-                                  </div>
-                            </form>
-                        </div> 
-                    </div>
-                        
+                            <div class="row">
+                                <table class="table">
+                                <thead>
+                                  <tr class="primary">
+                                    <th>#</th>
+                                    <th>Fecha</th>
+                                    <th>N.Transaccion</th>                                    
+                                    <th>Descripcion</th>                                    
+                                    <th> Debe</th>                                    
+                                    <th> Haber</th>                                    
+                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                  </tr>
+                                  <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                  </tr>
+                                  <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                  </tr>
+                                  <tr>
+                                    <td>4</td>
+                                    <td>Sussy</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                  </tr>
+                                </tbody>
+                              </table
+                            </div>
 
-                    
-                </div>
-                </div>
-                
-                
-            </div>
-            <div class="page-heading" id="cuentaorigen">
-            <div class="media clearfix">
-                <div class="admin-form">
-                    <div class="panel heading-border">
-                        <div class="panel-body bg-light">
-                            <form  id="form-ui" data-toggle="validator">
-                                <div class="section-divider mb40" id="spy1">
-                                    <span>Cuenta Origén</span>
-                                </div>
-                               
-                               
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Codigo De Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                            <input class="form-control" type="text" name="" id ="codigoorigen"placeholder="Codigo Generado por los Seleccione de area y Tipo" value=""required>
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Nombre de la Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <input class="form-control" type="text" name="" id ="nombreorigen"placeholder="Ingrese el Nombre de la Cuenta"required>
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Observación:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <input class="form-control" type="text" name="" id ="observacionorigen"placeholder="Ingrese el Nombre de la Cuenta">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="panel-footer text-right">
-                                    <button type="submit" class="button btn-primary"onclick="validarcuentaBalanceorigen()"> Validate Form </button>
-                                    <button type="reset" class="button"> Cancel </button>
-                                  </div>
-                            </form>
-                        </div> 
 
                     </div>
                 </div>
@@ -670,88 +546,29 @@
                 
             </div>
         </div>
+           
+            </div>
         
        
        
-     <%--  <section id="content" class="animated fadeIn">
-            <div class="page-heading">
-                <div class="media clearfix">
-                    <div class="admin-form">
-                        <div class="panel heading-border">
-                            <div class="panel-body bg-light">
-                                <div class="col-sm-12">
-                                        <div class="panel">
-                                          <div class="panel-body pn">
-                                            <div class="bs-component">
-                                              <table class="table">
-                                                <thead>
-                                                  <tr class="danger">
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>
-                                                      
-                                                    </th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                     <c:forEach var="j" begin="0" end="${fn:length(codigoarea)-1}">
-                                                    <c:set var="contador" value="${j+1}"/>
-                                                    <option value=""></option>
-                                                          <tr>
-                                                    <td>${codigoarea[j]}</td>
-                                                    <td>${nombrearea[j]}</td>
-                                                    <td>${codigomadre[j]}</td>
-                                                    <td>${nombremadre[j]}</td>
-                                                    <td>${codigohija[j]}</td>
-                                                    <td>${nombrehija[j]}</td>
-                                                                                                       
-                                                  </tr>
-                                                    </c:forEach> 
-                                                 
-                                                 
-                                                </tbody>
-                                              </table>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>--%>
-              
+     
  
 
         </div>
         <!-- end: .tray-center -->
         </section>
         </section>
-      
+        
               
     </section>
+    
+    
      </div>
-     
-     <div class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-        <div class="modal-body"id="cuerpo" >
-        <p>One fine body&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-     
-    <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
+                                            
+                                            
+                                            
+                                            
+    <script src="<c:url value='/resources/js/SC_PartidasCuentas.js'/>"></script>
     <script src="<c:url value='/resources/js/SC_Cuentabalance.js'/>"></script>
     <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
@@ -760,7 +577,7 @@
        <script src="<c:url value='/resources/js/main.js'/>"></script>
        <script src="<c:url value='/resources/js/widgets.js'/>"></script>
        <script src="<c:url value='/resources/js/jsValidaPerfil.js'/>"></script>
-       <script src="<c:url value='/resources/js/SC_Cuen_contabilidad.js'/>"></script>
+       <script src="<c:url value='/resources/js/Cuen_contabilidad.js'/>"></script>
        
     <script type="text/javascript">
   jQuery(document).ready(function() {

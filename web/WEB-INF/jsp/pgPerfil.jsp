@@ -344,6 +344,7 @@
               <a class="btn btn-primary"  href="CuentaResultado.gdc" class="button">Catalogos Resultado</a>
               <a class="btn btn-primary"  href="CuentaCentroCosto.gdc" class="button">Catalogos Centro de costo</a>
               <a class="btn btn-primary"  href="CuentaCentroCostoDCIA.gdc" class="button">Catalogos Centro de costo DCIA</a>
+              <a class="btn btn-primary"  href="PartidasContables.gdc" class="button">Partidas Contables</a>
     </section>
     
          </div>  

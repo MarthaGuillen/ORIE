@@ -393,54 +393,7 @@ p<%--
         
        
         </section>
-     <%--  <section id="content" class="animated fadeIn">
-            <div class="page-heading">
-                <div class="media clearfix">
-                    <div class="admin-form">
-                        <div class="panel heading-border">
-                            <div class="panel-body bg-light">
-                                <div class="col-sm-12">
-                                        <div class="panel">
-                                          <div class="panel-body pn">
-                                            <div class="bs-component">
-                                              <table class="table">
-                                                <thead>
-                                                  <tr class="danger">
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>
-                                                      
-                                                    </th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                     <c:forEach var="j" begin="0" end="${fn:length(codigoarea)-1}">
-                                                    <c:set var="contador" value="${j+1}"/>
-                                                    <option value=""></option>
-                                                          <tr>
-                                                    <td>${codigoarea[j]}</td>
-                                                    <td>${nombrearea[j]}</td>
-                                                    <td>${codigomadre[j]}</td>
-                                                    <td>${nombremadre[j]}</td>
-                                                    <td>${codigohija[j]}</td>
-                                                    <td>${nombrehija[j]}</td>
-                                                                                                       
-                                                  </tr>
-                                                    </c:forEach> 
-                                                 
-                                                 
-                                                </tbody>
-                                              </table>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>--%>
+     
               
     </section>
     
@@ -451,8 +404,8 @@ p<%--
        <script src="<c:url value='/resources/js/main.js'/>"></script>
        <script src="<c:url value='/resources/js/widgets.js'/>"></script>
        <script src="<c:url value='/resources/js/jsValidaPerfil.js'/>"></script>
-       <script src="<c:url value='/resources/js/Cuen_contabilidad.js'/>"></script>
-       <script src="<c:url value='/resources/js/codigoCuenta.js'/>"></script>
+       <script src="<c:url value='/resources/js/SC_Cuen_contabilidad.js'/>"></script>
+       <script src="<c:url value='/resources/js/SC_CodigoCuenta.js'/>"></script>
        <script type="text/javascript">
         jQuery(document).ready(function() {
 

@@ -7,25 +7,27 @@ function validarcuentaBalance(){
     var nombre=$("#nombresub").val().trim();
     var observacion=$("#observacion").val().trim();
     var depuracion=$("#depuracion").val().trim();
-    alert(codigosub);
+    alert("nnn");
     if(cuenta==""){
-         e = 1;
-        mjs += "<h5>Seleccione  la Cuenta.</h5>"
+     
+         $("#cuenta").css("border", "5px solid red")
     }
     if(sociedad==""){
-         e = 1;
-        mjs += "<h5>Seleccione  la sociedad.</h5>"
+      
+        $("#sociedad").css("border", "5px solid red")
     }
     if(codigosub==""){
-         e = 1;
-        mjs += "<h5>Ingrese el codigo.</h5>"
+         
+         $("#codigosub").css("border", "5px solid red")
     }
     if(nombre==""){
-         e = 1;
-        mjs += "<h5>Ingrese el Nombre.</h5>"}
+      
+         $("#nombresub").css("border", "5px solid red")
     
     if (e==1) {
-        
+        $('#myModal').on('shown.bs.modal', function () {
+  $('#cuerpo').val( mjs);
+})
     }else{
     
        
@@ -47,7 +49,7 @@ function validarcuentaBalance(){
     
     
 
-}
+}}
 
 function validarcuentaBalancemayor(){
      var e=0;
