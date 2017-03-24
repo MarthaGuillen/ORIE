@@ -30,6 +30,30 @@ $( document ).ready(function() {
                         $(document.activeElement).blur();
                     }
         });
+        
+        $('#fechain').pickadate({
+                    selectMonths: true,
+                    selectYears: true,
+                    format: 'dd/mm/yyyy',
+                    formatSubmit: 'dd/mm/yyyy',
+                    min: new Date(1950,1,1),
+                    max: true,
+                    onClose: function() {
+                        $(document.activeElement).blur();
+                    }
+        });
+        
+        $('#fechafin').pickadate({
+                    selectMonths: true,
+                    selectYears: true,
+                    format: 'dd/mm/yyyy',
+                    formatSubmit: 'dd/mm/yyyy',
+                    min: new Date(1950,1,1),
+                    max: true,
+                    onClose: function() {
+                        $(document.activeElement).blur();
+                    }
+        });
     
         $("#nacionalidad").select2(
         {placeholder: "Nacionalidad",
@@ -53,6 +77,16 @@ $( document ).ready(function() {
                 
         $("#ocupacionPadTutor").select2(
         {placeholder: "Ocupación",
+                 allowClear: true
+        });
+        
+        $("#paisOtraEsc").select2(
+        {placeholder: "País",
+                 allowClear: true
+        });
+        
+        $("#paisEscAct").select2(
+        {placeholder: "País",
                  allowClear: true
         });
         
@@ -156,7 +190,11 @@ $( document ).ready(function() {
                 xhttp.onreadystatechange = function() {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                         document.getElementById("ajaxtemp").innerHTML = xhttp.responseText;
-                        idPadTutor = $('#idPadTutor').val(); 
+                        idPadTutor = $('#idPadTutor').val();
+                        
+                        $('#tablaPadTutor > tbody:last-child').append('<tr><td>'+nombre+'</td><td>'+roltext+'</td><td><a href="#" onclick="eliminarPadTutor('+idPadTutor+');" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i></a></td></tr>');
+
+                        $('#formTutor').bootstrapValidator('resetForm', true);
                     }
                 }
                 xhttp.open("POST", "formulariofase2.gdc", true);
@@ -166,13 +204,44 @@ $( document ).ready(function() {
                          +"&paisdompadre="+paisdompad+"&ciudompadre="+ciudompad+"&dirdompadre="+dirdompad
                          +"&emptrapad="+emptrapad+"&ocuptrapad="+ocuptrapad+"&teltrapad="+teltrapad
                          +"&paistrapad="+paistrapad+"&ciutrapad="+ciutrapad+"&dirtrapad="+dirtrapad+"&pasaporte="+pasaporte);  
-                
-                $('#cantidad').val(parseInt(cantidad)+1);
-                $('#tablaPadTutor > tbody:last-child').append('<tr><td>'+idPadTutor+'</td><td>'+nombre+'</td><td>'+roltext+'</td></tr>');
-                
-                $('#formTutor').bootstrapValidator('resetForm', true);
-                
             }  
+        });
+        
+        $('#formOtraInfo').bootstrapValidator().on('success.form.bv', function(e) {
+              $('#formOtraInfo').bootstrapValidator('resetForm', true);
+        });
+        
+        $('#formHermanos').bootstrapValidator().on('success.form.bv', function(e) {
+            var NombreHermano = $('#NombreHerm').val();
+            var EdadHermano = $('#EdadHerm').val();
+            var EscuelaHermano = $('#EscuelaHerm').val();
+            
+            $('#hermanosCreados').show();
+                
+            $('#tablaHermanos > tbody:last-child').append('<tr><td>'+NombreHermano+'</td><td>'+EdadHermano+'</td><td>'+EscuelaHermano+'</td><td><a href="#" onclick="" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i></a></td></tr>');
+
+            $('#formHermanos').bootstrapValidator('resetForm', true);
+        });
+        
+        $('#formInfoEducacion').bootstrapValidator().on('success.form.bv', function(e) {
+              $('#formInfoEducacion').bootstrapValidator('resetForm', true);
+        });
+        
+        $('#formOtrasEscuelas').bootstrapValidator().on('success.form.bv', function(e) {
+            var NombreEscuela = $('#NombreOtraEsc').val();
+            var CiudadEscuela = $('#CiudadOtraEsc').val();
+            var PaisEscuela = $('#paisOtraEsc option:selected').text();
+            var RazonTraslado = $('#trasOtraEsc').val();
+            
+            $('#EscuelasCreadas').show();
+                            
+            $('#tablaEscuelas > tbody:last-child').append('<tr><td>'+NombreEscuela+'</td><td>'+PaisEscuela+'</td><td>'+CiudadEscuela+'</td><td>'+RazonTraslado+'</td><td><a href="#" onclick="" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i></a></td></tr>');
+
+            $('#formOtrasEscuelas').bootstrapValidator('resetForm', true);
+        });
+        
+        $('#formOtros').bootstrapValidator().on('success.form.bv', function(e) {
+              $('#formOtros').bootstrapValidator('resetForm', true);
         });
 });
 
@@ -244,4 +313,12 @@ function guardarfase1(){
     
     $("#modalcarg").modal('show');
     
+}
+
+function eliminarPadTutor(idtutor){
+    //Codigo para eliminar el tutor
+}
+
+function eliminarHermano(idHermano){
+    //Codigo para eliminar el tutor
 }
