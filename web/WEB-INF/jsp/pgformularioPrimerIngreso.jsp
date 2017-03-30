@@ -613,7 +613,7 @@
                     </div>                    
                     <!--Div datos 2-->      
                     <div role="tabpanel" class="tab-pane fade" id="Section2">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor1">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor2">
                             <form id="formTutor" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -790,9 +790,9 @@
                                     <table class="table" id="tablaPadTutor">
                                         <thead>
                                           <tr class="success">
-                                            <th>#</th>
                                             <th>Nombre</th>
                                             <th>Rol</th>
+                                            <th>Eliminar</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -807,24 +807,574 @@
                     </div>
  
                     <div role="tabpanel" class="tab-pane fade" id="Section3">
-                        <h3>Section 3</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium, metus et scelerisque dignissim, ligula est imperdiet nisl, sit amet malesuada nunc felis in nisi. Nullam dapibus ligula dui, in rhoncus purus euismod nec. Duis in lacinia neque. Etiam tellus.
-                        </p>
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor3">
+                            <form id="formOtraInfo" action="#"
+                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
+                                <div class="content-header">
+                                    <h2><b class="text-success">Información Familiar</b></h2>
+                                </div>
+                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                                            <div class="form-group">
+                                                <label for="nomPadTutor">El estudiante vive con?</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 col-lg-8 col-xs-8">
+                                            <div class="form-group">
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ViveCon1" name="ViveCon">
+                                                    <label for="ViveCon1">Padre</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ViveCon2" name="ViveCon">
+                                                    <label for="ViveCon2">Madre</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ViveCon3" name="ViveCon">
+                                                    <label for="ViveCon3">Ambos</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ViveCon4" name="ViveCon">
+                                                    <label for="ViveCon4">Otro</label>
+                                                </div>
+                                                <textarea rows="3" style="vertical-align: top;"></textarea>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                                            <div class="form-group">
+                                                <label for="nomPadTutor">¿A quién se le informa la decisión de admisión?</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 col-lg-8 col-xs-8">
+                                            <div class="form-group">
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ResponsableAdmi1" name="ResponsableAdmi">
+                                                    <label for="ResponsableAdmi1">Padre</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ResponsableAdmi2" name="ResponsableAdmi">
+                                                    <label for="ResponsableAdmi2">Madre</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ResponsableAdmi3" name="ResponsableAdmi">
+                                                    <label for="ResponsableAdmi3">Ambos</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ResponsableAdmi4" name="ResponsableAdmi">
+                                                    <label for="ResponsableAdmi4">Otro</label>
+                                                </div>
+                                                <textarea rows="3" style="vertical-align: top;"></textarea>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                                            <div class="form-group">
+                                                <label for="nomPadTutor">¿Responsable por compromisos financieros?</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 col-lg-8 col-xs-8">
+                                            <div class="form-group">
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ComFin1" name="ComFin1">
+                                                    <label for="ComFin1">Padre</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ComFin2" name="ComFin2">
+                                                    <label for="ComFin2">Madre</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ComFin3" name="ComFin3">
+                                                    <label for="ComFin3">Ambos</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="ComFin4" name="ComFin4">
+                                                    <label for="ComFin4">Otro</label>
+                                                </div>
+                                                <textarea rows="3" style="vertical-align: top;"></textarea>
+                                            </div>
+                                        </div>  
+                                    </div>                        
+                                </div>  
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                        <label>A continuación marque las que aplica:</label><br/><br/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                        <div class="checkbox-custom fill checkbox-success checkbox-inline mb5">
+                                            <input type="checkbox" id="PadFall">
+                                            <label for="PadFall">Padre Fallecido</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                        <div class="checkbox-custom fill checkbox-success checkbox-inline mb5">
+                                            <input type="checkbox" id="PadDiv">
+                                            <label for="PadDiv">Padres Divorciados</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                        <div class="checkbox-custom fill checkbox-success checkbox-inline mb5">
+                                            <input type="checkbox" id="SegNupPad">
+                                            <label for="SegNupPad">Segundas Nupcias de Padre</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                        <div class="checkbox-custom fill checkbox-success checkbox-inline mb5">
+                                            <input type="checkbox" id="PadViveFH">
+                                            <label for="PadViveFH">Padre vive fuera de Honduras?</label>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                        <div class="checkbox-custom fill checkbox-success checkbox-inline mb5">
+                                            <input type="checkbox" id="MadFall">
+                                            <label for="MadFall">Madre Fallecida</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                        <div class="checkbox-custom fill checkbox-success checkbox-inline mb5">
+                                            <input type="checkbox" id="PadSep">
+                                            <label for="PadSep">Padres Separados</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                        <div class="checkbox-custom fill checkbox-success checkbox-inline mb5">
+                                            <input type="checkbox" id="SegNupMad">
+                                            <label for="SegNupMad">Segundas Nupcias de Madre</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                        <div class="checkbox-custom fill checkbox-success checkbox-inline mb5">
+                                            <input type="checkbox" id="MadViveFH">
+                                            <label for="MadViveFH">Madre vive fuera de Honduras?</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="infoCustodio">Si los padres están divorciados o separados, quien tiene la custodia legal del estudiante?</label>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="infoCustodio" name="infoCustodio" rows="4"></textarea>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label for="LenguaMat">Lengua materna:</label>
+                                            <input class="gui-input form-control" type="text" maxlength="180" id ="LenguaMat" name="LenguaMat" placeholder="Español">
+                                        </div>  
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label for="LenguaHab">Lengua hablada en casa:</label>
+                                            <input class="gui-input form-control" type="text" maxlength="180" id ="LenguaHab" name="LenguaHab" placeholder="Ingles">
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block" id="botonform3Info"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </form>
+                            <hr/>
+                            <form id="formHermanos" action="#"
+                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
+                                <div class="row">
+                                    <h3 style="margin-left: 6px;"><b class="text-success">Información de Hermanos:</b></h3>
+                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="NombreHerm">Nombre de Hermano/Hermana:</label>
+                                            <input class="gui-input form-control" type="text" maxlength="180" id ="NombreHerm" name="NombreHerm" placeholder="Nombre Completo">
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label for="EdadHerm">Edad:</label>
+                                            <input class="gui-input form-control" maxlength="15" type="number" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" id ="EdadHerm" name="EdadHerm" placeholder="Edad" max="120" min="1">
+                                        </div>  
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label for="EscuelaHerm">Escuela:</label>
+                                            <input class="gui-input form-control" type="text" maxlength="180" id ="EscuelaHerm" name="EscuelaHerm" placeholder="Escuela">
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block" id="botonform3Herm"><span class="glyphicon glyphicon-plus"></span> Agregar </button>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div id="hermanosCreados" class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em; display: none;">
+                                    <hr style="border: 1px solid #0e6e15;">
+                                    <h2><b class="text-success">Hermanos agregados:</b></h2>
+                                    <div class="row">
+                                        <table class="table" id="tablaHermanos">
+                                            <thead>
+                                              <tr class="success">
+                                                <th>Nombre</th>
+                                                <th>Edad</th>
+                                                <th>Escuela</th>
+                                                <th>Eliminar</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                        <br/>
+                                    </div>
+                                </div>    
+                                
+                            </form>
+                        </div>
                     </div>
                     
                     <div role="tabpanel" class="tab-pane fade" id="Section4">
-                        <h3>Section 4</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium, metus et scelerisque dignissim, ligula est imperdiet nisl, sit amet malesuada nunc felis in nisi. Nullam dapibus ligula dui, in rhoncus purus euismod nec. Duis in lacinia neque. Etiam tellus.
-                        </p>
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor4">
+                            <form id="formInfoEducacion" action="#"
+                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
+                                <div class="content-header">
+                                    <h2><b class="text-success">Educación</b></h2>
+                                </div>
+                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="AplicaPV">¿Aplicando por primera vez a una escuela?</label>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="AplicaSi" name="AplicaPV">
+                                                    <label for="AplicaSi">Si</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="AplicaNo" name="AplicaPV">
+                                                    <label for="AplicaNo">No</label>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <hr/>
+                                    <h3><b class="text-success">Escuela Actual:</b></h3>
+                                    <div class="row">
+                                        <div class="col-md-7 col-sm-7 col-lg-7 col-xs-7">
+                                            <div class="form-group">
+                                                <label for="NomEscuelaAct">Escuela Actual:</label>
+                                                <input class="gui-input form-control" type="text" maxlength="180" id ="NomEscuelaAct" name="NomEscuelaAct" placeholder="Nombre de Escuela">
+                                            </div>  
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
+                                            <div class="form-group">
+                                                <label for="TipoEscuela">Tipo:</label>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="EscuelaPub" name="TipoEscuela">
+                                                    <label for="EscuelaPub">Pública</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="EscuelaPriv" name="TipoEscuela">
+                                                    <label for="EscuelaPriv">Privada</label>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="fechain">Fecha de Ingreso:</label>
+                                                <input type="text" data-bv-trigger="change" required data-bv-notempty-message="Campo obligatorio" style="cursor:pointer;" id="fechain" name="fechain" class="form-control" />
+                                            </div>
+                                        </div> 
+                                        <div class="col-md-3 col-sm-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="fechafin">Fecha de Finalización:</label>
+                                                <input type="text" data-bv-trigger="change" required data-bv-notempty-message="Campo obligatorio" style="cursor:pointer;" id="fechafin" name="fechafin" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                            <div class="form-group">
+                                                <label>País:</label>
+                                                <label style="color:red;display:none;" id="paisEscActval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                                <select class="select2-single form-control"  id="paisEscAct" name="paisEscAct" style="width: 100%">
+                                                    <option value=""></option>
+                                                    <c:set var="valida" value="${fn:length(paisTemp)}" />
+                                                    <c:if test="${valida > 0}">
+                                                        <c:forEach var="i" begin="0" end="${fn:length(paisTemp)-1}">
+                                                            <option value="${idpaisTemp[i]}">${paisTemp[i]}</option>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </select>
+                                            </div>  
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                            <div class="form-group">
+                                                <label for="CodPost">Código Postal:</label>
+                                                <input class="gui-input form-control" maxlength="15" type="number" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" id ="CodPost" name="CodPost" placeholder="Código Postal" min="1">
+                                            </div>  
+                                        </div>
+                                    </div>
+                                    <div class="row"> 
+                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label for="CiudadEscAct">Ciudad:</label>
+                                                <input class="gui-input form-control" type="text" maxlength="180" id ="CiudadEscAct" name="CiudadEscAct" placeholder="Ciudad">
+                                            </div>  
+                                        </div>  
+                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label for="EstadoEscAct">Estado:</label>
+                                                <input class="gui-input form-control" type="text" maxlength="180" id ="EstadoEscAct" name="EstadoEscAct" placeholder="Estado">
+                                            </div>  
+                                        </div> 
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="direccionEscAct">Dirección:</label>
+                                                <textarea class="form-control" id="direccionEscAct" name="direccionEscAct" rows="4"></textarea>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                    <hr> 
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="NomDirEscAct">Nombre del Director:</label>
+                                                <input class="gui-input form-control" type="text" maxlength="180" id ="NomDirEscAct" name="NomDirEscAct" placeholder="Director">
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                    <div class="row">                                           
+                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label for="telDirEscAct">Teléfono:</label>
+                                                <input data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="gui-input form-control" maxlength="15" type="text" id ="telDirEscAct" name="telDirEscAct" placeholder="Teléfono Celular">
+                                            </div>
+                                        </div>   
+                                       <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                           <div class="form-group">
+                                               <label for="CorreoDirEscAct">Correo electrónico:</label>
+                                               <input class="gui-input form-control" maxlength="150" type="email" id ="CorreoDirEscAct" name="CorreoDirEscAct" placeholder="example@dominio.com">
+                                           </div>
+                                       </div>
+                                    </div> 
+                                </div>
+                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block" id="botonform4EscActual"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </form>
+                            <hr/>
+                            <form id="formOtrasEscuelas" action="#"
+                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
+                                <div class="row">
+                                    <h3 style="margin-left: 6px;"><b class="text-success">Otras escuelas a las que ha asistido desde preescolar:</b></h3>
+                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="NombreOtraEsc">Nombre de Escuela:</label>
+                                            <input class="gui-input form-control" type="text" maxlength="180" id ="NombreOtraEsc" name="NombreOtraEsc" placeholder="Escuela">
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label for="CiudadOtraEsc">Ciudad:</label>
+                                            <input class="gui-input form-control" type="text" maxlength="180" id ="CiudadOtraEsc" name="CiudadOtraEsc" placeholder="Ciudad">
+                                        </div>  
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label>País:</label>
+                                            <label style="color:red;display:none;" id="paisOtraEscval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                            <select class="select2-single form-control"  id="paisOtraEsc" name="paisOtraEsc" style="width: 100%">
+                                                <option value=""></option>
+                                                <c:set var="valida" value="${fn:length(paisTemp)}" />
+                                                <c:if test="${valida > 0}">
+                                                    <c:forEach var="i" begin="0" end="${fn:length(paisTemp)-1}">
+                                                        <option value="${idpaisTemp[i]}">${paisTemp[i]}</option>
+                                                    </c:forEach>
+                                                </c:if>
+                                            </select>
+                                        </div>    
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="trasOtraEsc">Razon de Traslado:</label>
+                                            <textarea class="form-control" id="trasOtraEsc" name="trasOtraEsc" rows="4"></textarea>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block" id="botonform5OtrasEsc"><span class="glyphicon glyphicon-plus"></span> Agregar </button>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div id="EscuelasCreadas" class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em; display: none;">
+                                    <hr style="border: 1px solid #0e6e15;">
+                                    <h2><b class="text-success">Escuelas previas:</b></h2>
+                                    <div class="row">
+                                        <table class="table" id="tablaEscuelas">
+                                            <thead>
+                                              <tr class="success">
+                                                <th>Nombre</th>
+                                                <th>País</th>
+                                                <th>Ciudad</th>
+                                                <th>Razon de Traslado</th>
+                                                <th>Eliminar</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                        <br/>
+                                    </div>
+                                </div>    
+                                
+                            </form>
+                        </div>
                     </div>
-                    
                     <div role="tabpanel" class="tab-pane fade" id="Section5">
-                        <h3>Section 5</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium, metus et scelerisque dignissim, ligula est imperdiet nisl, sit amet malesuada nunc felis in nisi. Nullam dapibus ligula dui, in rhoncus purus euismod nec. Duis in lacinia neque. Etiam tellus.
-                        </p>
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor5">
+                            <form id="formOtros" action="#"
+                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
+                                <div class="content-header">
+                                    <h2><b class="text-success">Otros</b></h2>
+                                </div>
+                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="AplicaDCI">¿Ha aplicado anteriormente a DelCampo International School?</label>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="AplicaDCISi" name="AplicaDCI">
+                                                    <label for="AplicaDCISi">Si</label>
+                                                </div>
+                                                <div class="radio-custom radio-success radio-inline mb5">
+                                                    <input type="radio" id="AplicaDCINo" name="AplicaDCI">
+                                                    <label for="AplicaDCINo">No</label>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>¿Cómo escuchó sobre DelCampo International School?</label><br/><br/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1"></div>
+                                                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
+                                                    <div class="checkbox-custom fill checkbox-success mb5">
+                                                        <input type="checkbox" id="EscPagWeb">
+                                                        <label for="EscPagWeb">Página Web</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1"></div>
+                                                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
+                                                    <div class="form-group">
+                                                        <div class="checkbox-custom fill checkbox-success mb5">
+                                                            <input type="checkbox" id="EscPub">
+                                                            <label for="EscPub">Publicidad (Revistas, Periódicos, etc.) Especifique:</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                                    <textarea id="escPubOtr" name="escPubOtr" rows="3" class="form-control" style="vertical-align: top;"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1"></div>
+                                                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
+                                                    <div class="checkbox-custom fill checkbox-success mb5">
+                                                        <input type="checkbox" id="EscPanBro">
+                                                        <label for="EscPanBro">Panfleto o Brochure</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1"></div>
+                                                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
+                                                    <div class="checkbox-custom fill checkbox-success mb5">
+                                                        <input type="checkbox" id="EscFamAm">
+                                                        <label for="EscFamAm">Familiares y Amistades (Nombre de la Persona:)</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                                    <textarea id="EscFamAmDet" name="EscFamAmDet" rows="3" class="form-control" style="vertical-align: top;"></textarea>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1"></div>
+                                                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
+                                                    <div class="checkbox-custom fill checkbox-success mb5">
+                                                        <input type="checkbox" id="EscOtros">
+                                                        <label for="EscOtros">Otros</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                                    <textarea id="EscOtrosDet" name="EscOtrosDet" rows="3" class="form-control" style="vertical-align: top;"></textarea>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>    
+                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                            <button type="submit" class="btn btn-lg btn-primary btn-block" id="botonform4EscActual"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -193,7 +193,7 @@ public class matriculaPrimerIngresoController {
                 //inserta forma 2 
                 String resp = opc.insertaFase2(np,esPadre, CelPadre,idpadre,cp,teldompadre,paisdompadre,cdp,ddp,etp,otp,teltrapad,paistrapad, ctp,dtp, idu, idf, pasaporte);
                 
-            
+                mv.addObject("idPadTutor",resp);
             }
         
         
