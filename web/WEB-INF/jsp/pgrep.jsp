@@ -13,7 +13,7 @@
     </head>
     <body>
         <div id="alerta"  >
-            
+            <input type="hidden" value="${id}" id="idt">
         </div>
     </body>
 </html>

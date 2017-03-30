@@ -335,6 +335,11 @@
                   Crear cuenta Origen</a>
               </li>
               
+              <li>
+                <a href="#vercuentas">
+                 Ver Cuentas</a>
+              </li>
+              
             </ul>
           </div>
 
@@ -347,10 +352,12 @@
         
 
             <div id="alerta" ></div>
+            
         
        
             <div class="page-heading" id="subcuentamayor">
             <div class="media clearfix">
+                <div id="resp2" ></div>
                 <div class="admin-form">
                     <div class="panel heading-border">
                         <div class="panel-body bg-light">
@@ -498,8 +505,8 @@
                                 </div>
                                    
                                 <div class="panel-footer text-right">
-                                    <button type="button" class="button btn-primary"onclick="validarcuentaBalance()"> Validate Form </button>
-                                    <button type="reset" class="button"> Cancel </button>
+                                    <button type="button" class="button btn-primary"onclick="validarcuentaBalance()">  Agregar Cuenta </button>
+                                    <button type="reset" class="button"> Cancelar </button>
                                   </div>
                         </div> 
                         </form>
@@ -590,8 +597,8 @@
                                       </div>
                                 
                                 <div class="panel-footer text-right">
-                                    <button type="button" class="button btn-primary"onclick="validarcuentaBalancemayor()"> Validate Form </button>
-                                    <button type="reset" class="button"> Cancel </button>
+                                    <button type="button" class="button btn-primary"onclick="validarcuentaBalancemayor()"> Agregar Cuenta </button>
+                                    <button type="reset" class="button"> Cancelar </button>
                                   </div>
                             </form>
                         </div> 
@@ -658,8 +665,8 @@
                                       </div>
                                 </div>
                                 <div class="panel-footer text-right">
-                                    <button type="submit" class="button btn-primary"onclick="validarcuentaBalanceorigen()"> Validate Form </button>
-                                    <button type="reset" class="button"> Cancel </button>
+                                    <button type="submit" class="button btn-primary"onclick="validarcuentaBalanceorigen()"> Agregar Origen </button>
+                                    <button type="reset" class="button"> Cancelar </button>
                                   </div>
                             </form>
                         </div> 
@@ -673,37 +680,34 @@
         
        
        
-     <%--  <section id="content" class="animated fadeIn">
+     <section id="content" class="animated fadeIn">
             <div class="page-heading">
                 <div class="media clearfix">
                     <div class="admin-form">
                         <div class="panel heading-border">
                             <div class="panel-body bg-light">
                                 <div class="col-sm-12">
-                                        <div class="panel">
+                                    <div class="panel" id="vercuentas">
                                           <div class="panel-body pn">
-                                            <div class="bs-component">
+                                              <h1>Cuentas </h1>
                                               <table class="table">
                                                 <thead>
-                                                  <tr class="danger">
+                                                  <tr class="primary">
                                                     <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>
-                                                      
-                                                    </th>
+                                                    <th>Codigo</th>
+                                                    <th>Nombre de la cuenta </th>                                                    
+                                                    
                                                   </tr>
                                                 </thead>
                                                 <tbody>
-                                                     <c:forEach var="j" begin="0" end="${fn:length(codigoarea)-1}">
+                                                     <c:forEach var="j" begin="0" end="${fn:length(idtabla)-1}">
                                                     <c:set var="contador" value="${j+1}"/>
                                                     <option value=""></option>
                                                           <tr>
-                                                    <td>${codigoarea[j]}</td>
-                                                    <td>${nombrearea[j]}</td>
-                                                    <td>${codigomadre[j]}</td>
-                                                    <td>${nombremadre[j]}</td>
-                                                    <td>${codigohija[j]}</td>
-                                                    <td>${nombrehija[j]}</td>
+                                                    <td>${idtabla[j]}</td>
+                                                    <td>${tablacodigo[j]}</td>
+                                                    <td>${tablanombre[j]}</td>
+                                                    
                                                                                                        
                                                   </tr>
                                                     </c:forEach> 
@@ -711,7 +715,7 @@
                                                  
                                                 </tbody>
                                               </table>
-                                            </div>
+                                            
                                           </div>
                                         </div>
                                       </div>
@@ -720,7 +724,7 @@
                     </div>
                 </div>
             </div>
-        </section>--%>
+        </section>
               
  
 
@@ -751,7 +755,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
      
-    <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
+    
     <script src="<c:url value='/resources/js/SC_Cuentabalance.js'/>"></script>
     <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>

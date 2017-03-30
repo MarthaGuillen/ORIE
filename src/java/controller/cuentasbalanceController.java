@@ -57,8 +57,23 @@ public class cuentasbalanceController {
      mv.addObject("idsociedad",idsociedad);
      mv.addObject("sociedadnombre",sociedadnombre);
      mv.addObject("logo",logo);
-     
-     
+     //tabla
+     ArrayList<String> idtabla =new ArrayList<String>();   
+     ArrayList<String> tablacodigo =new ArrayList<String>();   
+     ArrayList<String> tablanombre =new ArrayList<String>();  
+     List Tabla =balance.ver();
+     List<Object[]> tab=Tabla;
+     for(Object [] datos: tab){
+         idtabla.add((String)datos[0].toString());
+         tablacodigo.add((String)datos[1].toString());
+         tablanombre.add((String)datos[2].toString());
+     }
+        System.out.println(idtabla);
+        System.out.println(tablacodigo);
+        System.out.println(tablanombre);
+      mv.addObject("idtabla",idtabla);
+      mv.addObject("tablacodigo",tablacodigo);
+      mv.addObject("tablanombre",tablanombre);
     return mv;
     }
       
@@ -79,6 +94,8 @@ public class cuentasbalanceController {
        int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
        cuentabalanceDAO balance = new cuentabalanceDAO();
        String resp=balance.agregarsubcuentabalance(cuenta, sociedad, codigosub, nombre, observacion, depuracion, idusuario);
+       
+       mv.addObject("resp",resp);
        return mv;
        }
      
@@ -96,7 +113,7 @@ public class cuentasbalanceController {
       int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
       cuentabalanceDAO balance = new cuentabalanceDAO();
       String resp=balance.agregarcuentabalance(origenmayor, codigomayor, nombremayor, obsevacionmayor, idusuario);
-      
+      mv.addObject("resp",resp);
        return mv;
        }
       
@@ -117,7 +134,8 @@ public class cuentasbalanceController {
           System.out.println("controller.cuentasbalanceController.funAgregarcuentaorigen()");
           System.out.println(codigoorigen+" "+ nombreorigen+" "+  observacionorigen+" "+ idusuario);
         resp = balance.agregarcuentorigen(codigoorigen, nombreorigen, observacionorigen,idusuario);
-               return mv;
+        mv.addObject("resp",resp);
+        return mv;
        }
       
     @RequestMapping(value="combobalance.gdc", method = RequestMethod.POST)

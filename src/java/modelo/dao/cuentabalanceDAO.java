@@ -148,5 +148,46 @@ public class cuentabalanceDAO {
        
         return listaget;
     }
-    
+   
+            public List ver (){
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = " Select id_subcuentabalance,codigo, nombretp from tbl_subcuentabalance ";
+        
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+
+       
+        return listaget;
+    }
+  public List vercuenta(){
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = " select * from fn_sccuentabalance ()";
+        
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+
+       
+        return listaget;
+    }
+
 }

@@ -7,40 +7,43 @@ function validarcuentaBalance(){
     var nombre=$("#nombresub").val().trim();
     var observacion=$("#observacion").val().trim();
     var depuracion=$("#depuracion").val().trim();
-    alert("nnn");
+    console.log(cuenta+"  "+sociedad+" "+" "+codigosub+" "+nombre);
+    
     if(cuenta==""){
-     
-         $("#cuenta").css("border", "5px solid red")
+      e=1;
+         $("#cuenta").css("border", "5px solid red");
     }
     if(sociedad==""){
-      
-        $("#sociedad").css("border", "5px solid red")
+       e=1;
+        $("#sociedad").css("border", "5px solid red");
     }
     if(codigosub==""){
-         
-         $("#codigosub").css("border", "5px solid red")
+          e=1;
+         $("#codigosub").css("border", "5px solid red");
     }
     if(nombre==""){
-      
-         $("#nombresub").css("border", "5px solid red")
+      e=1;
+         $("#nombresub").css("border", "5px solid red");
+     }
     
     if (e==1) {
-        $('#myModal').on('shown.bs.modal', function () {
-  $('#cuerpo').val( mjs);
-})
+        alert("Estoy aca4");
+        $("#resp2").html("<h1>Ingrese los datos</h1>");
     }else{
     
-       
+       alert("Estoy aca 2");
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
-               
+                       var resp= $("#resp").val();
+                       
+                        $("#resp2").html("<h1> La operacion Fue: Exitosa</h1>");
                          }
         
         }
-       console.log(cuenta+"  "+sociedad+" "+" "+codigosub+" "+nombre)
+       console.log(cuenta+"  "+sociedad+" "+" "+codigosub+" "+nombre);
       xhttp.open("POST", "agregarsubcuenta.gdc", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad+"&codigosub="+codigosub+"&nombre="+nombre+"&observacion="+observacion
@@ -49,7 +52,7 @@ function validarcuentaBalance(){
     
     
 
-}}
+}
 
 function validarcuentaBalancemayor(){
      var e=0;
@@ -61,15 +64,15 @@ function validarcuentaBalancemayor(){
     
     if(origenmayor==""){
          e = 1;
-        mjs += "<h5>Seleccione el origen de la Cuenta.</h5>"
+        $("#origenmayor").css("border", "5px solid red");
     }
     if(codigomayor==""){
          e = 1;
-        mjs += "<h5>Codigo Generado.</h5>"
+      $("#codigomayor").css("border", "5px solid red");
     }
     if(nombremayor==""){
          e = 1;
-        mjs += "<h5>Ingrese el Nombre.</h5>"
+        $("#nombremayor").css("border", "5px solid red");
     }
     
    
@@ -84,7 +87,8 @@ function validarcuentaBalancemayor(){
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
-               
+                var resp= $("#resp").val();
+                       $("#resp2").html("<h1> La operacion Fue: Exitosa</h1>");
                          }
         
         }
@@ -106,16 +110,13 @@ function validarcuentaBalanceorigen(){
         
     if(codigoorigen==""){
          e = 1;
-        mjs += "<h5>Seleccione el origen de la Cuenta.</h5>"
+       $("#codigoorigen").css("border", "5px solid red");
     }
     if(nombreorigen==""){
          e = 1;
-        mjs += "<h5>Codigo Generado.</h5>"
+        $("#nombreorigen").css("border", "5px solid red");
     }
-    if(observacionorigen==""){
-         e = 1;
-        mjs += "<h5>Ingrese el Nombre.</h5>"
-    }
+   
     
    
     if(e==1){
@@ -129,7 +130,8 @@ function validarcuentaBalanceorigen(){
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
-                alert(xhttp.responseText);
+                 var resp= $("#resp").val();
+                       $("#resp2").html("<h1> La operacion Fue: Exitosa</h1>");
                          }
         
         }

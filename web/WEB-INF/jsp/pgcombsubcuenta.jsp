@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pgcargarcombobalance
-    Created on : 21-mar-2017, 15:51:48
+    Document   : pgcombsubcuenta
+    Created on : 30-mar-2017, 9:51:16
     Author     : Sinergia003
 --%>
 
@@ -26,12 +26,10 @@
          <script src="<c:url value='/resources/js/cuentabalance.js'/>"></script>
         <div id="info">
            
+        <input type="hidden" value="${subcodigocuenta}" id="subcodigocuenta">
+            <input type="hidden" value="${subnombrecuenta}" id="subnombrecuenta">
+            <input type="hidden" value="${subidcuenta}" id="subprueba">
             
-            <input type="hidden" value="${codigocuenta}" id="codigocuenta">
-            <input type="hidden" value="${nombrecuenta}" id="nombrecuenta">
-            <input type="hidden" value="${idcuenta}" id="prueba">
-            
-           
-        </div>
+      </div>      
     </body>
 </html>
