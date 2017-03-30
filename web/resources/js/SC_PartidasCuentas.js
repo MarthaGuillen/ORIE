@@ -39,7 +39,15 @@ $( document ).ready(function() {
         });
         
         $("#origen").select2(
+        {placeholder: "Seleccione Origen",
+                 allowClear: true
+        });
+        $("#sociedad").select2(
         {placeholder: "Seleccione Sociedad",
+                 allowClear: true
+        });
+        $("#subcuenta").select2(
+        {placeholder: "Seleccione Sub-cuenta",
                  allowClear: true
         });
        
@@ -98,8 +106,7 @@ $( document ).ready(function() {
                alert(idcrearpartida);
                 xhttp.open("POST", "agregarpartida.gdc", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("idcrearpartida="+idcrearpartida+"&subcuenta="+subcuenta+"&descripcion="+descripcion+"&debe="+debe+"&haber="+haber+
-                        "&movimiento="+movimiento);
+                xhttp.send("idcrearpartida="+idcrearpartida+"&subcuenta="+subcuenta+"&descripcion="+descripcion+"&debe="+debe+"&haber="+haber+"&movimiento="+movimiento);
             // Obtenemos el numero de filas (td) que tiene la primera columna
             // (tr) del id "tabla"
             var tds=$("#tpartida tr:first td").length;
@@ -156,10 +163,11 @@ $( document ).ready(function() {
            if(saldodebe>saldohaber){
                
                total=saldodebe-saldohaber;
-                final="<tr></td><td></td><td></td><td>Saldo</td><td>"+total.toFixed(2)+"</td> <td ></td></tr>";
-           }if(saldodebe<saldohaber){
+                final="<tr><td></td><td>Saldo</td><td>"+total.toFixed(2)+"</td> <td ></td></tr>";
+           }
+           if(saldodebe<saldohaber){
                total=saldohaber-saldodebe;
-               final="<tr ><td></td><td>Saldo</td><td ></td><td '>"+total.toFixed(2)+"</td></tr>";
+               final="<tr><td></td><td>Saldo</td><td ></td><td '>"+total.toFixed(2)+"</td></tr>";
            }
          
           $("#saldo").html(final);

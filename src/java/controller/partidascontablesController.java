@@ -147,8 +147,7 @@ public class partidascontablesController {
     public  ModelAndView funagregartpartida(
               @RequestParam("idcrearpartida") int idcrearpartida,
               @RequestParam("subcuenta") int subcuenta,
-              @RequestParam("descripcion") String descripcion,
-            @RequestParam("transaccion")  String transaccion,
+              @RequestParam("descripcion") String descripcion,           
             @RequestParam("debe")  float debe,
             @RequestParam("haber")  float haber,
             @RequestParam("movimiento") String movimiento,
@@ -159,10 +158,10 @@ public class partidascontablesController {
          System.out.println("");
     int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
         partidaDAO partida =new partidaDAO();
-       /* List<String> id=partida.agregardatospartida(idcrearpartida,subcuenta,descripcion, debe, haber,movimiento,idusuario);
+       List<String> id=partida.agregardatospartida(idcrearpartida,subcuenta,descripcion, debe, haber,movimiento,idusuario);
        System.out.println("Regreso del Dao");
        System.out.println(id);
-        mv.addObject("id",id);*/
+        mv.addObject("id",id);
     return mv;
     }
 }
