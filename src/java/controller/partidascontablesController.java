@@ -161,7 +161,61 @@ public class partidascontablesController {
        List<String> id=partida.agregardatospartida(idcrearpartida,subcuenta,descripcion, debe, haber,movimiento,idusuario);
        System.out.println("Regreso del Dao");
        System.out.println(id);
-        mv.addObject("id",id);
+        mv.addObject("numerocuenta",id);
+    return mv;
+    }
+    
+    
+    @RequestMapping (value = "obteneroperacion.gdc",method = RequestMethod.POST)
+    public ModelAndView funtobtoperacion(@RequestParam("transaccion") int transaccion ){
+    ModelAndView mv = new ModelAndView("pgrep");
+    partidaDAO partida = new partidaDAO();
+    List t =partida.obteneroperacion(transaccion);
+    
+    ArrayList<String> tran =  new ArrayList<String>();
+    ArrayList<String> descripcion = new ArrayList<String>();
+    ArrayList<String> debe = new ArrayList<String>();
+    ArrayList<String> haber = new ArrayList<String>();
+    ArrayList<String> movimiento = new ArrayList<String>();
+     List<Object[]> listDatos = t;
+            for (Object[] datos : listDatos) {
+                tran.add((String) datos[0].toString());
+                descripcion.add((String) datos[1]);
+                debe.add((String) datos[2].toString());
+                haber.add((String) datos[3].toString());
+                movimiento.add((String) datos[4]);
+                           }  
+     System.out.println(tran);
+     System.out.println(descripcion);
+     System.out.println(debe);
+     System.out.println(haber);
+     System.out.println(movimiento);
+    mv.addObject("dato1",tran);
+    mv.addObject("dato2",descripcion);
+    mv.addObject("dato3",debe);
+    mv.addObject("dato4",haber);
+    mv.addObject("dato5",movimiento);
+    return mv;
+    }
+       @RequestMapping(value = "modificarpartida.gdc" ,method =RequestMethod.POST)
+    public  ModelAndView funmodificartpartida(
+              @RequestParam("idcrearpartida") int idcrearpartida,
+             
+              @RequestParam("descripcion") String descripcion,           
+            @RequestParam("debe")  float debe,
+            @RequestParam("haber")  float haber,
+            @RequestParam("movimiento") String movimiento,
+            HttpServletRequest request
+    ){
+    ModelAndView mv =new ModelAndView("pgobtener");
+         System.out.println("controller.partidascontablesController.funagregarpartida() estou anjaklsa");
+         System.out.println("");
+    int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
+        partidaDAO partida =new partidaDAO();
+       List<String> id=partida.actualizaroperacion(idcrearpartida,descripcion, debe, haber,movimiento,idusuario);
+       System.out.println("Regreso del Dao");
+       System.out.println(id);
+        mv.addObject("numerocuenta",id);
     return mv;
     }
 }

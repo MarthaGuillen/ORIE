@@ -87,4 +87,45 @@ public class partidaDAO {
        
         return listaget;
     }
+      public List obteneroperacion(int operacion ){
+          System.out.println("Estoy en el dao de obtener operacion");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_scobteneroperacion("+operacion+")";
+        
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+
+       System.out.println("saliendo actualizaroperacion" +listaget);
+        return listaget;
+    }
+      public List actualizaroperacion(int operacion,String Descripcion,float debe,float haber,String movimiento,int usuario ){
+          System.out.println("Estoy en el dao de Actualizar operacion");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_scobteneroperacion('"+ operacion+"','"+Descripcion+"','"+debe+"','"+haber
+                +"','"+movimiento+"','"+ usuario+"' )";
+        
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+          
+       System.out.println("saliendo Obtener operacion" +listaget);
+        return listaget;
+    }
 }

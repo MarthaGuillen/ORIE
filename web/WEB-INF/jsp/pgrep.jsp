@@ -14,6 +14,11 @@
     <body>
         <div id="alerta"  >
             <input type="hidden" value="${id}" id="idt">
+            <input type="hidden" value="${dato1}" id="dato1">
+            <input type="hidden" value="${dato2}" id="dato2">
+            <input type="hidden" value="${dato3}" id="dato3">
+            <input type="hidden" value="${dato4}" id="dato4">
+            <input type="hidden" value="${dato5}" id="dato5">
         </div>
     </body>
 </html>

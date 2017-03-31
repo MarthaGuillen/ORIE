@@ -463,15 +463,15 @@
        
             <div class="page-heading" >
             <div class="media clearfix">
-                     <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active">
+         <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active" id="btncrearpartidas">
                         
                         <a href="#crearpartidas" aria-controls="informacion" role="tab" data-toggle="tab">
                             <img style="position: relative;top:15px;"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive"><br>
                             <i class="fa fa-user"></i>Crear Partida
                         </a>
                     </li>
-                    <li role="presentation">
+                    <li role="presentation" id="btnverpartidas">
                         <a href="#Section2" aria-controls="tutor" role="tab" data-toggle="tab">
                             <img style="position: relative;top:15px;left: -10px;"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive"><br>
                             <i class="fa fa-group"></i>Ver partidas
@@ -480,13 +480,18 @@
                     
                     
                     
-                </ul>
+                </ul> 
+                            <br><br>
+            <div class="page-heading"id="crearpartidas" >
+              
+            <div class="media clearfix">
+                   
                 <div class="admin-form">
             
                     <div class="panel heading-border">
                         
                      
-                        <div class="panel-body bg-light" id="crearpartidas">
+                        <div class="panel-body bg-light" >
                             <form  id="form-ui"action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -635,17 +640,26 @@
                          
                                 </div>
                             <div class="row">
-                                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-                                     <button type="button" class="button btn-primary" id="add"> Agregar a la Partida </button>
+                                
+                                   <div class="panel-footer text-right" id="btnt"style="display:none;">
+                                   
+                                    <button type="button" class="button btn-primary"id="add" > Agregar a la Partida </button>
                                     <button type="reset" class="button"> Cancelar </button>
-                                 </div> 
-                            </div><br>
+                                  </div>
+                                   <div class="panel-footer text-right" id="btnmodificar"style="display:none;">
+                                   
+                                    <button type="button" class="button btn-primary"id="modificar">   Modificar   </button>
+                                    <button type="reset" class="button"> Cancelar </button>
+                                  </div>
+                            </div>
+                            
+                                
                             <div class="row">
                                 <table class="table table-responsive" id="tpartida">
                                 <thead>
                                   <tr class="primary">
                                     
-                                    <th>N.Transaccion</th>                                    
+                                      <th >N.Transaccion</th>                                    
                                     <th>Descripcion</th>                                    
                                     <th> Debe</th>                                    
                                     <th> Haber</th>                                    
@@ -666,9 +680,9 @@
                                         <td></td>
                                     </tr>
                                 </tfoot>
-                              </table
+                                </table>
                             </div>
-
+                          </div>
 
                     </div>
                 </div>
@@ -685,7 +699,7 @@
  
 
         </div> 
-          
+       
         <!-- end: .tray-center -->
         </section>
         </section>
@@ -696,7 +710,8 @@
     
      </div>
                                             
-                                            
+        
+                                              
                                             
      
     <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
