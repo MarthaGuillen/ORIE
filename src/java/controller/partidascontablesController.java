@@ -271,7 +271,7 @@ public class partidascontablesController {
      }
     @RequestMapping(value ="librodiarioobtener.gdc", method = RequestMethod.POST)
      public ModelAndView funbuscaroperaciones(@RequestParam("fecha") String fecha) throws Exception{
-     ModelAndView mv = new ModelAndView("pgobtener");
+     ModelAndView mv = new ModelAndView("pgobtenerinfoL");
      partidaDAO libro = new partidaDAO();
      List repuest = libro.filtrolibrodiario(fecha);
      ArrayList<String> idpartida = new ArrayList<String>();
@@ -302,11 +302,19 @@ public class partidascontablesController {
                         }  
              String tabla="";
             creartabla tab = new creartabla();
-          tabla=  tab.crearlibro(idpartida, fechapartida, nombrepartida, nombrecuenta,
-                    codigocuenta, iddatospartida, Descripcion, debe, haber, usuario);
-          System.out.println("controller.partidascontablesController.funbuscaroperaciones()");
-          System.out.println(usuario);
-            mv.addObject("numerocuenta",tabla);
+          /*tabla=  tab.crearlibro(idpartida, fechapartida, nombrepartida, nombrecuenta,
+                    codigocuenta, iddatospartida, Descripcion, debe, haber, usuario);*/
+          
+            mv.addObject("dato1",idpartida);
+            mv.addObject("dato2",fechapartida);
+            mv.addObject("dato3",nombrepartida);
+            mv.addObject("dato4",nombrecuenta);
+            mv.addObject("dato5",codigocuenta);
+            mv.addObject("dato6",iddatospartida);
+            mv.addObject("dato7",Descripcion);
+            mv.addObject("dato8",debe);
+            mv.addObject("dato9",haber);
+            mv.addObject("dato10",usuario);
      return mv;
      }
 }

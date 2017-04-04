@@ -534,10 +534,55 @@ function librodiario(){
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               
                 document.getElementById("alerta2").innerHTML = xhttp.responseText;
-               var idcuenta=$("#cuentar").val();
-              alert(idcuenta);
-             console.log(idcuenta);
-            $("#tablalibro").append(idcuenta);
+               var idpartida=$("#dato1").val();
+               var fecha=$("#dato2").val();
+               var nombrepartida=$("#dato3").val();
+               var nombrecuenta=$("#dato4").val();
+               var codigocuenta=$("#dato5").val();
+               var transaccion=$("#dato6").val();
+               var descripcion=$("#dato7").val();
+               var debe=$("#dato8").val();
+               var haber=$("#dato9").val();
+               var usuario=$("#dato10").val();
+               alert(fecha);
+               alert(debe);
+              var l_idpartida = idpartida.substring(1,idpartida.length-1);
+              var l_fecha = fecha.substring(1,fecha.length-1);
+              var l_nombrepartida = nombrepartida.substring(1,nombrepartida.length-1);
+              var l_nombrecuenta = nombrecuenta.substring(1,nombrecuenta.length-1);
+              var l_codigocuenta = codigocuenta.substring(1,codigocuenta.length-1);
+             var l_transaccion = transaccion.substring( 1 ,transaccion.length-1);
+              var l_descripcion = descripcion.substring(1,descripcion.length-1);
+              var l_debe = debe.substring(1,debe.length-1);
+              var l_haber = haber.substring(1,haber.length-1);
+              var l_usuario = usuario.substring(1,usuario.length-1);
+              var array_idpartida = l_idpartida.split(",");
+              var array_fecha=l_fecha.split(",");
+              var array_nombrepartida=l_nombrepartida.split(",");
+              var array_nombrecuenta=l_nombrecuenta.split(",");
+              var array_codigocuenta=l_codigocuenta.split(",");
+              var array_transaccion=l_transaccion.split(",");
+              var array_descripcion=l_descripcion.split(",");
+              var array_debe=l_debe.split(",");
+              var array_haber=l_haber.split(",");
+              var array_usuario=l_usuario.split(",");
+              var temp3 ="";
+              var fila="";
+              for (var i = 0; i < array_idpartida.length-1; i++) {
+                  
+                    if (array_idpartida[i]!=temp3) {
+                         fila+="<tr>";
+                    temp3=array_idpartida[i];
+                    fila+="<td>"+array_nombrepartida[i]+"</td>";
+                    
+                    fila+="<tr>";
+                }
+                 
+            }
+              
+              
+              
+            $("#tablalibro").append(fila);
             
            
                          }

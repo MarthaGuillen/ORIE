@@ -28,15 +28,19 @@ public class creartabla {
             rowpartidad+="<tr>";
             rowpartidad+="<td>"+nombrepartida.get(i)+"</td>";
             rowpartidad+="<td>";
-        /*    for (int j = 0; j < idpartida.size()-1; j++) {
+            rowpartidad+="<tr><td>aqui estoy1</td></tr>";
+            rowpartidad+="<tr><td>aqui estoy2</td></tr>";
+            rowpartidad+="</td>";
+            
+         /*for (int j = 0; j < idpartida.size()-1; j++) {
                    if(idpartida.get(i)==idpartida.get(j)){
-                   rowd+="<tr>"+codigocuenta.get(j)+" "+nombrecuenta.get(j)+"</tr>";
+                   rowd+="<tr><td>"+codigocuenta.get(j)+" "+nombrecuenta.get(j)+"</td></tr>";
                    }
                 }
-            
+              
              rowpartidad+=rowd;
              rowpartidad+="</td>";
-            rowd="";
+            rowd=""; 
              rowpartidad+="<td>";
             for (int k = 0; k < idpartida.size()-1; k++) {
                    if(idpartida.get(i)==idpartida.get(k)){
@@ -69,6 +73,7 @@ public class creartabla {
             rowpartidad+="</tr>\n";
             
             }
+              System.out.println(i+" "+rowpartidad);
               
              
         }

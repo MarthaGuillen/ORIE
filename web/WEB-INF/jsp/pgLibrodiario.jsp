@@ -517,7 +517,7 @@
                             <table class="table table-responsive" id="tablalibro">
                                 <thead>
                                     <tr class="primary">
-                                        <th>fecha</th>
+                                       
                                         <th>nombre Partida</th>
                                         <th>cuenta</th>
                                         <th>Descripcion</th>

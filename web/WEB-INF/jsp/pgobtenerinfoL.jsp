@@ -31,11 +31,11 @@
             <input type="hidden" value="${dato3}" id="dato3">
             <input type="hidden" value="${dato4}" id="dato4">
             <input type="hidden" value="${dato5}" id="dato5">
-            <input type="hidden" value="${dato6}" id="dato5">
-            <input type="hidden" value="${dato7}" id="dato5">
-            <input type="hidden" value="${dato8}" id="dato5">
-            <input type="hidden" value="${dato9}" id="dato5">
-            <input type="hidden" value="${dato10}" id="dato5">
+            <input type="hidden" value="${dato6}" id="dato6">
+            <input type="hidden" value="${dato7}" id="dato7">
+            <input type="hidden" value="${dato8}" id="dato8">
+            <input type="hidden" value="${dato9}" id="dato9">
+            <input type="hidden" value="${dato10}" id="dato10">
             
         </div>
     </body>
