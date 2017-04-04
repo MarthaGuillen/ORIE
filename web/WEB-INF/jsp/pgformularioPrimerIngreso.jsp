@@ -430,7 +430,7 @@
                     </li>
                     <li role="presentation"><a href="#Section3" aria-controls="otra" role="tab" data-toggle="tab" style="text-align: center">
                              <img style="position: relative;top:15px;left: -10px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
-                            <i class="fa fa-home"></i>Otra<br/>Información</a>
+                            <i class="fa fa-home"></i>Otra<br/>Informaciónes</a>
                     </li>
                     <li role="presentation"><a href="#Section4" aria-controls="educacion" role="tab" data-toggle="tab">
                              <img style="position: relative;top:15px;left: -10px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
