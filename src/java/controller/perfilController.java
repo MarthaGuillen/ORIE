@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import modelo.dao.perfilDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -45,7 +46,7 @@ public class perfilController {
             mv.addObject("descPerfil", decr);
 
             //Captura label de menus
-            List listalabel = opc.cargaMeuLabel();
+            List listalabel = opc.cargaMeuLabelPorPerfil(Integer.parseInt(idp));
             ArrayList<String> label = new ArrayList<String>();
             ArrayList<String> idlbl = new ArrayList<String>();
             List<Object[]> listDatoslbl = listalabel;
@@ -165,6 +166,25 @@ public class perfilController {
         }
         }
         return mv;
-    } 
+    }
+    
+    @RequestMapping(value = "activaSoc.gdc")
+    public ModelAndView infosOC(@RequestParam("idsoc") int idsoc,HttpServletRequest request) throws Exception {
+        ModelAndView mv = new ModelAndView("pgContenedorAjax");
+        
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+                perfilDAO opc = new perfilDAO();
+                int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
+                String resp = opc.activasoci(idusuario,idsoc,idusuario);
+                //activasoci
+                
+                mv.addObject("resp", resp);
+            }
+        }
+        return mv;
+    }    
+    
+    
     
 }

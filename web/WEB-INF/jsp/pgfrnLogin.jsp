@@ -128,10 +128,7 @@
                                               <button  class="btn btn-primary reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                             </span>          
                                         </div>
-                                        
-                                        
                                         <br></br>
-                                        <div class="pull-right"><a style="cursor:pointer;color:black;"><span class="glyphicon glyphicon-refresh"></span> Recuperar Contraseña</a></div>
                                         <br></br>
                                         <a class="btn btn-lg btn-success btn-block" onclick="validaLogin();">Inciar sesion</a>
                                     

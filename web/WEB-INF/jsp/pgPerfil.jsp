@@ -34,11 +34,13 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme2.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme3.css'/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/imageBack.css'/>">
 
         <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.css'/>">
     </head>
     <body class="profile-page">
+   
         <!-------------------------------------------------------------+ 
             <body> Helper Classes: 
          ---------------------------------------------------------------+ 
@@ -273,12 +275,14 @@
                 <c:forEach var="i" begin="0" end="${fn:length(sessionScope.ses_labels)-1}">
                     <li class="sidebar-label pt20">${sessionScope.ses_labels[i]}</li>
                     <c:forEach var="j" begin="0" end="${fn:length(sessionScope.ses_urlmen)-1}">
+                    <c:if test="${sessionScope.ses_idmenlbl[j] == sessionScope.ses_idlbl[i]}">
                     <li>
                         <a href="${sessionScope.ses_urlmen[j]}">
                           <span class="${sessionScope.ses_iconosmenu[j]}"></span>
                           <span class="sidebar-title">${sessionScope.ses_menus[j]}</span>
                         </a>
                     </li>
+                    </c:if>
                     </c:forEach>
                 </c:forEach>
             </c:if>
@@ -326,28 +330,50 @@
             <c:forEach var="i" begin="0" end="${fn:length(soc)-1}">
             <div class="col-md-4">
                 <div class="panel">
-                    <div class="panel-heading">
-                        <span class="panel-icon">
-                            <i class="fa fa-tasks"></i>
-                        </span>
-                        <span class="panel-title"> ${soc[i]} </span>
-                    </div>
-                    <div class="panel-body">
-                       <img  src="<c:url value='/resources/img/${log[i]}'/>" class="img-responsive center-block">
-                    </div>
+                    
                 </div>
             </div>
             </c:forEach>
+            <div class="services">
+                
+                <div class="container">
+                    <c:forEach var="i" begin="0" end="${fn:length(soc)-1}">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="hovereffect">
+                            <img class="img-responsive" src="<c:url value='/resources/img/${log[i]}'/>"  alt="">
+                            <div class="overlay">
+                               <h2>${soc[i]}</h2>
+                              
+                               <button onclick="cargadefault('${idsoc[i]}')" class='btn btn-lg btn-primary'>Establecer como default</button>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    </c:forEach>           
+                </div>    
+                
+                
+            </div>
         </div>
+        
         </section>
-        <a  class="btn btn-primary" href="CuentasBalance.gdc" class="button">Catalogos Balance</a>
-              <a class="btn btn-primary"  href="CuentaResultado.gdc" class="button">Catalogos Resultado</a>
-              <a class="btn btn-primary"  href="CuentaCentroCosto.gdc" class="button">Catalogos Centro de costo</a>
-              <a class="btn btn-primary"  href="CuentaCentroCostoDCIA.gdc" class="button">Catalogos Centro de costo DCIA</a>
-              <a class="btn btn-primary"  href="PartidasContables.gdc" class="button">Partidas Contables</a>
+        
     </section>
     
-         </div>  
+         </div> 
+         <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="<c:url value='/resources/img/Loading.gif'/>" class="icon" />
+                            <h4>Cargando...</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+              <div id="ajaxSociedad"></div>      
        <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
        <script src="<c:url value='/resources/js/utility.js'/>"></script>

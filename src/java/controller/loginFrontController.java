@@ -87,9 +87,14 @@ public class loginFrontController {
         request.getSession().setAttribute("ses_estado", "Des");
         request.getSession().setAttribute("ses_fechc", "");
         request.getSession().setAttribute("ses_fechm", "");
-        
+        perfilDAO opc = new perfilDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+            int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
+            String id = opc.insertaBitacora("Se cerro sesion", 16, 6, idusuario);
        
-       
+        }
+        }
         return mv;
     }  
     
@@ -102,7 +107,14 @@ public class loginFrontController {
         request.getSession().setAttribute("ses_estado", "Des");
         request.getSession().setAttribute("ses_fechc", "");
         request.getSession().setAttribute("ses_fechm", "");
-        
+        perfilDAO opc = new perfilDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+            int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
+            String id = opc.insertaBitacora("Se cerro sesion", 16, 6, idusuario);
+       
+        }
+        }
        
        
         return mv;
