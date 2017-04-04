@@ -544,8 +544,7 @@ function librodiario(){
                var debe=$("#dato8").val();
                var haber=$("#dato9").val();
                var usuario=$("#dato10").val();
-               alert(fecha);
-               alert(debe);
+               
               var l_idpartida = idpartida.substring(1,idpartida.length-1);
               var l_fecha = fecha.substring(1,fecha.length-1);
               var l_nombrepartida = nombrepartida.substring(1,nombrepartida.length-1);
@@ -566,11 +565,12 @@ function librodiario(){
               var array_debe=l_debe.split(",");
               var array_haber=l_haber.split(",");
               var array_usuario=l_usuario.split(",");
-              var temp3 ="";
+              var temp3 ="uu";
               var fila="";
               for (var i = 0; i < array_idpartida.length-1; i++) {
                   
-                    if (array_idpartida[i]!=temp3) {
+                    if (array_idpartida[i]!==temp3) {
+                        console.log(temp3+"  "+array_idpartida[i]);
                          fila+="<tr>";
                     temp3=array_idpartida[i];
                     fila+="<td>"+array_nombrepartida[i]+"</td>";
