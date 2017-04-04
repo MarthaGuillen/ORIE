@@ -56,7 +56,7 @@
             border-bottom: 1px solid #0e6e15;
         }
         .tab .nav-tabs li{
-            margin: 0 2px 0 0;
+            margin: 0;
             position: relative;
         }
         /*.tab .nav-tabs li.active:before{
@@ -77,7 +77,7 @@
         }*/
         .tab .nav-tabs li a{
             border: none;
-            padding: 13px 35px;
+            padding: 13px 30px;
             font-size: 14px;
             color: #777;
             background: transparent;
@@ -409,8 +409,8 @@
     <section id="content_wrapper">
         <section id="content" class="animated fadeIn">
                 <div class="content-header">
-                    <h2><b class="text-success">Formulario de Solicitud para Admisión 2016-2017</b></h2>
-                    <p class="text-justify"><strong>Instrucciones:</strong> Este parte es del paquete de admisión usado en DelCampo International School
+                    <h2><b class="text-success">Formulario de Solicitud para Matrícula 2016-2017</b></h2>
+                    <p class="text-justify"><strong>Instrucciones:</strong> Este parte es del paquete de matrícula usado en DelCampo International School
                      favor completar este formato cuidadosamente, teniendo la opcion que usted puede adjuntar directamente los documentos requeridos
                     para el grado que desea matricular.</p>
                 </div>
@@ -420,31 +420,36 @@
             <div class="tab" role="tabpanel">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active">
-                        
-                        <a href="#Section1" aria-controls="informacion" role="tab" data-toggle="tab">
-                            <img style="position: relative;top:15px;"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
-                            <i class="fa fa-user"></i>Información sobre el estudiante
-                        </a>
+                    <li role="presentation" class="active"><a href="#Section1" aria-controls="informacion" role="tab" data-toggle="tab">
+                            <img style="position: relative;top:15px;left: -10px;" width="20px"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                            <i class="fa fa-graduation-cap"></i>Estudiante</a>
                     </li>
-                    <li role="presentation">
-                        <a href="#Section2" aria-controls="tutor" role="tab" data-toggle="tab">
-                            <img style="position: relative;top:15px;left: -10px;"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
-                            <i class="fa fa-group"></i>Tutor/Tutora
-                        </a>
+                    <li role="presentation"><a href="#Section2" aria-controls="tutor" role="tab" data-toggle="tab" style="text-align: center">
+                            <img style="position: relative;top:15px;left: -10px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                            <i class="fa fa-group"></i> Padres y/o<br/>Tutores</a>
                     </li>
-                    <li role="presentation">
-                        <a href="#Section3" aria-controls="otra" role="tab" data-toggle="tab">
-                             <img style="position: relative;top:15px;left: -10px;"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
-                            <i class="fa fa-folder"></i>Otra Información
-                        </a>
+                    <li role="presentation"><a href="#Section3" aria-controls="otra" role="tab" data-toggle="tab" style="text-align: center">
+                             <img style="position: relative;top:15px;left: -10px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                            <i class="fa fa-home"></i>Otra<br/>Información</a>
                     </li>
                     <li role="presentation"><a href="#Section4" aria-controls="educacion" role="tab" data-toggle="tab">
-                             <img style="position: relative;top:15px;left: -10px;"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
-                            <i class="fa fa-dedent"></i>Educación</a>
+                             <img style="position: relative;top:15px;left: -10px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                            <i class="fa fa-th-list"></i>Educación</a>
                     </li>
-                    <li role="presentation"><a href="#Section5" aria-controls="otros" role="tab" data-toggle="tab">
-                            <img style="position: relative;top:15px;left: -25px;"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                    <li role="presentation"><a href="#Section5" aria-controls="salud" role="tab" data-toggle="tab">
+                             <img style="position: relative;top:15px;left: -25px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                            <i class="fa fa-heartbeat"></i>Salud</a>
+                    </li>
+                    <li role="presentation"><a href="#Section6" aria-controls="transporte" role="tab" data-toggle="tab">
+                             <img style="position: relative;top:15px;left: -25px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                            <i class="fa fa-bus"></i>Transporte</a>
+                    </li>
+                    <li role="presentation"><a href="#Section7" aria-controls="otros" role="tab" data-toggle="tab" style="text-align: center">
+                            <img style="position: relative;top:15px;left: -25px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                            <i class="fa fa-files-o "></i>Documentos<br/> Adjuntos</a>
+                    </li>
+                    <li role="presentation"><a href="#Section8" aria-controls="otros" role="tab" data-toggle="tab">
+                            <img style="position: relative;top:15px;left: -25px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-list-alt"></i>Otros</a>
                     </li>
                 </ul>
@@ -600,6 +605,26 @@
                                 </div>
                             </div>
                         </div> 
+                        <hr/>
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                <h5>En caso de emergencia llamar a:</h5>
+                            </div> 
+                        </div>
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                <div class="form-group">
+                                    <label for="nomemergencia">*Nombre</label>
+                                    <input maxlength="150" type="text" class="form-control gui-input" name="nomemergencia" id="nomemergencia" placeholder="Nombre" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" />
+                                </div>
+                            </div> 
+                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                 <div class="form-group">
+                                    <label for="telemergencia">*Telefono:</label>
+                                    <input class="gui-input form-control" maxlength="15" type="text" id ="telemergencia" name="telemergencia" placeholder="Teléfono" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
+                                </div>           
+                            </div>
+                        </div> 
                         <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
@@ -614,13 +639,67 @@
                     <!--Div datos 2-->      
                     <div role="tabpanel" class="tab-pane fade" id="Section2">
                         <div class="admin-form theme-primary mw1000 center-block" id="contenedor2">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    <div class="content-header">
+                                        <h2><b class="text-success">Información del padre o tutor</b></h2>
+                                        <p>A continuación puede seleccionar un padre y/o tutor encargado para este estudiante.<br/>En la parte inferior puede ingresar la información sobre otros padres o tutores.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    <c:set var="validapt" value="${fn:length(idpadreTutor)}" />
+                                    <c:if test="${validapt > 0}">
+                                        <table class="table">
+                                            <thead>
+                                                <tr class="primary">
+                                                    <th></th>
+                                                    <th>Nombre</th>
+                                                    <th>Teléfono</th>
+                                                    <th>Correo</th>
+                                                    <th>País</th>
+                                                    <th>Identidad/Pasaporte</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach var="i" begin="0" end="${fn:length(idpadreTutor)-1}">
+                                                    <tr>
+                                                        <c:if test="${esPadreTutor[i].toString() == '1'}">
+                                                            <td><span class="label label-system">Padre</span></td>
+                                                        </c:if>
+                                                        <c:if test="${esPadreTutor[i].toString() == '0'}">
+                                                            <td><span class="label label-warning">Tutor</span></td>
+                                                        </c:if>
+                                                        <td><b>${nombrePadreTutor[i]}</b></td>
+                                                        <td>${telefonoPadreTutor[i]}</td>
+                                                        <td>${correoPadreTutor[i]}</td>
+                                                        <td>${paisPadreTutor[i]}</td>
+                                                        <td>${idnPadreTutor[i]} / ${pasaPadreTutor[i]}</td>
+                                                        <td class="text-right">
+                                                            <label class="checkbox-custom fill checkbox-system mb5">
+                                                                <input type="checkbox" name="padSel" value="${idpadreTutor[i]}">
+                                                                <span class="checkbox"></span>
+                                                            </label>
+                                                          </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </c:if>
+                                </div>
+                            </div>
+                            <hr/>      
                             <form id="formTutor" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
-                                <div class="content-header">
-                                    <h2><b class="text-success">Información del padre o tutor</b></h2>
-                                </div>
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"> 
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                        <h2><b class="text-success">Nuevo Padre o Tutor:</b></h2>
+                                    </div>
+                                </div>  
                                 <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
                                     <div class="row">
                                         <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
@@ -819,84 +898,84 @@
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                                             <div class="form-group">
-                                                <label for="nomPadTutor">El estudiante vive con?</label>
+                                                <label>El estudiante vive con?</label>
                                             </div>
                                         </div>
                                         <div class="col-md-8 col-sm-8 col-lg-8 col-xs-8">
                                             <div class="form-group">
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ViveCon1" name="ViveCon">
+                                                    <input type="radio" id="ViveCon1" name="ViveCon" value="Padre">
                                                     <label for="ViveCon1">Padre</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ViveCon2" name="ViveCon">
+                                                    <input type="radio" id="ViveCon2" name="ViveCon" value="Madre">
                                                     <label for="ViveCon2">Madre</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ViveCon3" name="ViveCon">
+                                                    <input type="radio" id="ViveCon3" name="ViveCon" value="Ambos">
                                                     <label for="ViveCon3">Ambos</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ViveCon4" name="ViveCon">
+                                                    <input type="radio" id="ViveCon4" name="ViveCon" value="Otro">
                                                     <label for="ViveCon4">Otro</label>
                                                 </div>
-                                                <textarea rows="3" style="vertical-align: top;"></textarea>
+                                                <textarea rows="3" style="vertical-align: top;" id="ViveConOtro" name="ViveConOtro"></textarea>
                                             </div>
                                         </div> 
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                                             <div class="form-group">
-                                                <label for="nomPadTutor">¿A quién se le informa la decisión de admisión?</label>
+                                                <label>¿A quién se le informa la decisión de admisión?</label>
                                             </div>
                                         </div>
                                         <div class="col-md-8 col-sm-8 col-lg-8 col-xs-8">
                                             <div class="form-group">
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ResponsableAdmi1" name="ResponsableAdmi">
+                                                    <input type="radio" id="ResponsableAdmi1" name="ResponsableAdmi" value="Padre">
                                                     <label for="ResponsableAdmi1">Padre</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ResponsableAdmi2" name="ResponsableAdmi">
+                                                    <input type="radio" id="ResponsableAdmi2" name="ResponsableAdmi" value="Padre">
                                                     <label for="ResponsableAdmi2">Madre</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ResponsableAdmi3" name="ResponsableAdmi">
+                                                    <input type="radio" id="ResponsableAdmi3" name="ResponsableAdmi" value="Ambos">
                                                     <label for="ResponsableAdmi3">Ambos</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ResponsableAdmi4" name="ResponsableAdmi">
+                                                    <input type="radio" id="ResponsableAdmi4" name="ResponsableAdmi" value="Otro">
                                                     <label for="ResponsableAdmi4">Otro</label>
                                                 </div>
-                                                <textarea rows="3" style="vertical-align: top;"></textarea>
+                                                <textarea rows="3" style="vertical-align: top;" id="ResAdmiOtro" name="ResAdmiOtro"></textarea>
                                             </div>
                                         </div>  
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                                             <div class="form-group">
-                                                <label for="nomPadTutor">¿Responsable por compromisos financieros?</label>
+                                                <label>¿Responsable por compromisos financieros?</label>
                                             </div>
                                         </div>
                                         <div class="col-md-8 col-sm-8 col-lg-8 col-xs-8">
                                             <div class="form-group">
-                                                <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ComFin1" name="ComFin1">
+                                                <div class="radio-custom radio-success radio-inline mb5" value="Padre">
+                                                    <input type="radio" id="ComFin1" name="ComFin">
                                                     <label for="ComFin1">Padre</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ComFin2" name="ComFin2">
+                                                    <input type="radio" id="ComFin2" name="ComFin" value="Madre">
                                                     <label for="ComFin2">Madre</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ComFin3" name="ComFin3">
+                                                    <input type="radio" id="ComFin3" name="ComFin" value="Ambos">
                                                     <label for="ComFin3">Ambos</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="ComFin4" name="ComFin4">
+                                                    <input type="radio" id="ComFin4" name="ComFin" value="Otro">
                                                     <label for="ComFin4">Otro</label>
                                                 </div>
-                                                <textarea rows="3" style="vertical-align: top;"></textarea>
+                                                <textarea rows="3" style="vertical-align: top;" id="ComfinOtro" name="ComfinOtro"></textarea>
                                             </div>
                                         </div>  
                                     </div>                        
@@ -978,13 +1057,13 @@
                                     <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
                                         <div class="form-group">
                                             <label for="LenguaMat">Lengua materna:</label>
-                                            <input class="gui-input form-control" type="text" maxlength="180" id ="LenguaMat" name="LenguaMat" placeholder="Español">
+                                            <input data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="gui-input form-control" type="text" maxlength="180" id ="LenguaMat" name="LenguaMat" placeholder="Español">
                                         </div>  
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
                                         <div class="form-group">
                                             <label for="LenguaHab">Lengua hablada en casa:</label>
-                                            <input class="gui-input form-control" type="text" maxlength="180" id ="LenguaHab" name="LenguaHab" placeholder="Ingles">
+                                            <input data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="gui-input form-control" type="text" maxlength="180" id ="LenguaHab" name="LenguaHab" placeholder="Ingles">
                                         </div>  
                                     </div>
                                 </div>
@@ -1270,6 +1349,14 @@
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section5">
                         <div class="admin-form theme-primary mw1000 center-block" id="contenedor5">
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section6">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor6">
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section7">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor7">
                             <form id="formOtros" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -1344,11 +1431,24 @@
                                                 <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
                                                     <div class="checkbox-custom fill checkbox-success mb5">
                                                         <input type="checkbox" id="EscFamAm">
-                                                        <label for="EscFamAm">Familiares y Amistades (Nombre de la Persona:)</label>
+                                                        <label for="EscFamAm">Familiar o amistad de DCIS (Nombre de la Persona:)</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
                                                     <textarea id="EscFamAmDet" name="EscFamAmDet" rows="3" class="form-control" style="vertical-align: top;"></textarea>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1"></div>
+                                                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
+                                                    <div class="checkbox-custom fill checkbox-success mb5">
+                                                        <input type="checkbox" id="EscEmp">
+                                                        <label for="EscEmp">Empleado de DCIS (Nombre de la Persona:)</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                                    <textarea id="EscEmpDet" name="EscEmpDet" rows="3" class="form-control" style="vertical-align: top;"></textarea>
                                                 </div>
                                             </div>
                                             <br/>

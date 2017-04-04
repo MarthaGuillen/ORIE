@@ -87,19 +87,43 @@ public class matriculaPrimerIngresoController {
                 List<Object[]> listDatosOcp = listaOcp;
                 for (Object[] datos : listDatosOcp) {
                     idOcp.add((String) datos[0].toString());
-                    nompOcp.add((String) datos[1].toString());  
-                    
-
+                    nompOcp.add((String) datos[1].toString()); 
                 }
                 mv.addObject("ocupacionesTemp",nompOcp);
                 mv.addObject("idocupacionesTemp",idOcp);
-            
-            }
-        
-        
+                
+                
+                List listaPadTutores = opc.cargaPadresTutores(idu);
+                ArrayList<String> idPadTut = new ArrayList<String>();
+                ArrayList<String> nompPadTut = new ArrayList<String>();
+                ArrayList<String> telPadTut = new ArrayList<String>();
+                ArrayList<String> paisPatTut = new ArrayList<String>();
+                ArrayList<String> idnPadTut = new ArrayList<String>();
+                ArrayList<String> pasaPadTut = new ArrayList<String>();
+                ArrayList<String> correoPadTut = new ArrayList<String>();
+                ArrayList<String> esPatTut = new ArrayList<String>();
+                List<Object[]> listDatPadTut = listaPadTutores;
+                for (Object[] datos : listDatPadTut) {
+                    idPadTut.add((String) datos[0].toString());
+                    nompPadTut.add((String) datos[1].toString()); 
+                    telPadTut.add((String) datos[2].toString());
+                    paisPatTut.add((String) datos[3].toString()); 
+                    idnPadTut.add((String) datos[4].toString());
+                    pasaPadTut.add((String) datos[5].toString()); 
+                    correoPadTut.add((String) datos[6].toString());
+                    esPatTut.add((String) datos[7].toString()); 
+                }
+                
+                mv.addObject("idpadreTutor",idPadTut);
+                mv.addObject("nombrePadreTutor",nompPadTut);
+                mv.addObject("telefonoPadreTutor",telPadTut);
+                mv.addObject("paisPadreTutor",paisPatTut);
+                mv.addObject("idnPadreTutor",idnPadTut);
+                mv.addObject("pasaPadreTutor",pasaPadTut);
+                mv.addObject("correoPadreTutor",correoPadTut);
+                mv.addObject("esPadreTutor",esPatTut);
+            }        
         }
-        
-        
         return mv;
     }
     
@@ -119,7 +143,9 @@ public class matriculaPrimerIngresoController {
             @RequestParam("pais") String pais,
             @RequestParam("nacionalidad") String nacionalidad,
             @RequestParam("nIdentidad") String nIdentidad,
-            @RequestParam("email") String email
+            @RequestParam("email") String email,
+            @RequestParam("nombreem") String NomEmergencia,
+            @RequestParam("telem") String TelEmergencia
     ) throws Exception {
       
         ModelAndView mv = new ModelAndView("pgFormularioAjax");
@@ -139,8 +165,9 @@ public class matriculaPrimerIngresoController {
                 String gen = new String(genero.getBytes("ISO-8859-1"), "UTF-8");
                 String nac = new String(nacionalidad.getBytes("ISO-8859-1"), "UTF-8");
                 String ema = new String(email.getBytes("ISO-8859-1"), "UTF-8");
+                String nomem = new String(NomEmergencia.getBytes("ISO-8859-1"), "UTF-8");
                 //inserta forma 1 
-                String resp = opc.insertaFase1(pn,sn, pa,sa,dir,ciu,telefono,gen,edad,fechanac,pais,nac,nIdentidad, ema,idf,idu);
+                String resp = opc.insertaFase1(pn,sn, pa,sa,dir,ciu,telefono,gen,edad,fechanac,pais,nac,nIdentidad, ema, nomem, TelEmergencia,idf,idu);
                 
             
             }
@@ -200,6 +227,75 @@ public class matriculaPrimerIngresoController {
         }
         
         
+        return mv;
+    }
+    
+    
+    @RequestMapping(value = "formulariofase3.gdc", method = RequestMethod.POST)
+    public ModelAndView guarda3form(HttpServletRequest request,
+            @RequestParam("vivecon") String vivecon, 
+            @RequestParam("infadmi") String infadmi,
+            @RequestParam("compfin") String compfin,
+            @RequestParam("padfall") String padfall,
+            @RequestParam("madfall") String madfall,
+            @RequestParam("paddiv") String paddiv,
+            @RequestParam("padsep") String padsep,
+            @RequestParam("segnuppad") String segnuppad,
+            @RequestParam("segnupmad") String segnupmad,
+            @RequestParam("padhn") String padhn,
+            @RequestParam("madhn") String madhn,
+            @RequestParam("custlegal") String custlegal,
+            @RequestParam("lengmat") String lengmat,
+            @RequestParam("lenghg") String lenghg
+    ) throws Exception {
+      
+        ModelAndView mv = new ModelAndView("pgFormularioAjax");
+        fomularioDAO opc = new fomularioDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+                //Manda a insertar padre o tutor
+                String idu = (String) request.getSession().getAttribute("ses_idusuario");
+                String idf = (String) request.getSession().getAttribute("ses_formulario");
+                       
+                String vvc = new String(vivecon.getBytes("ISO-8859-1"), "UTF-8");
+                String ifa = new String(infadmi.getBytes("ISO-8859-1"), "UTF-8");
+                String cpf = new String(compfin.getBytes("ISO-8859-1"), "UTF-8");
+                String cstl = new String(custlegal.getBytes("ISO-8859-1"), "UTF-8");
+                String lm = new String(lengmat.getBytes("ISO-8859-1"), "UTF-8");
+                String lh = new String(lenghg.getBytes("ISO-8859-1"), "UTF-8");
+                
+                //inserta forma 2 
+                String resp = opc.insertaFase3(vvc,ifa, cpf,padfall,madfall,paddiv,padsep,segnuppad,segnupmad,padhn,madhn,cstl,lm, lh, idu, idf);
+                
+            }
+        }
+        return mv;
+    }
+    
+    
+    @RequestMapping(value = "formulariofase4.gdc", method = RequestMethod.POST)
+    public ModelAndView guarda4form(HttpServletRequest request,
+            @RequestParam("nom") String nombre, 
+            @RequestParam("edad") String edad,
+            @RequestParam("escuela") String escuela
+    ) throws Exception {
+      
+        ModelAndView mv = new ModelAndView("pgFormularioAjax");
+        fomularioDAO opc = new fomularioDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+                //Manda a insertar padre o tutor
+                String idu = (String) request.getSession().getAttribute("ses_idusuario");
+                String idf = (String) request.getSession().getAttribute("ses_formulario");
+                       
+                String nom = new String(nombre.getBytes("ISO-8859-1"), "UTF-8");
+                String esc = new String(escuela.getBytes("ISO-8859-1"), "UTF-8");
+                
+                //inserta forma 2 
+                String resp = opc.insertaFase4(nom, edad, esc, idu, idf);
+                
+            }
+        }
         return mv;
     }
     
