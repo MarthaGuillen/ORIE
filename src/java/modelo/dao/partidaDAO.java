@@ -107,10 +107,10 @@ public class partidaDAO {
        System.out.println("saliendo actualizaroperacion" +listaget);
         return listaget;
     }
-      public List actualizaroperacion(int operacion,String Descripcion,float debe,float haber,String movimiento,int usuario ){
-          System.out.println("Estoy en el dao de Actualizar operacion");
+            public List actualizaroperacion(int operacion,String Descripcion,float debe,float haber,String movimiento,int usuario ){
+          System.out.println("Estoy en el dao de Actualizar operacion modificacion");
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "select * from fn_scobteneroperacion('"+ operacion+"','"+Descripcion+"','"+debe+"','"+haber
+        String sql = "select fn_scmodificaroperaciones('"+ operacion+"','"+Descripcion+"','"+debe+"','"+haber
                 +"','"+movimiento+"','"+ usuario+"' )";
         
         List<Object[]> listaget = new ArrayList<Object[]>();
@@ -128,4 +128,49 @@ public class partidaDAO {
        System.out.println("saliendo Obtener operacion" +listaget);
         return listaget;
     }
+
+            public List mostrarpartidas(){
+          System.out.println("Estoy en el dao de Actualizar operacion modificacion");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select *from  fn_scobtenerpartida()";
+        
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+          
+       System.out.println("saliendo Obtener operacion" +listaget);
+        return listaget;
+    }
+            public List filtrolibrodiario( String fecha ){
+         System.out.println("saliendo Obtener operacion libro");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select p.id_partida,p.fecha,p.nombrepartida, s.nombretp,s.codigo,  o.id_datospartida, o.descripcion, o.debe,o.haber, u.usuario from tbl_operaciones as o \n" +
+"inner join tbl_partida as p on p.id_partida = o.id_partida\n" +
+"inner join tbl_subcuentabalance as s on s.id_subcuentabalance =o.id_subcuentabalance \n" +
+"inner join tbl_usuario as u on u.id_usuario = o.id_usuario_creo where p.fecha = '"+ fecha+"'";
+        
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+          
+       System.out.println("saliendo Obtener operacion libro" +listaget);
+        return listaget;
+    }
+
 }

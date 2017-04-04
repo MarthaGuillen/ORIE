@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pgSC_partidasContables
-    Created on : 22-mar-2017, 14:39:27
+    Document   : pgLibrodiario
+    Created on : 03-abr-2017, 12:51:47
     Author     : Sinergia003
 --%>
 
@@ -402,127 +402,62 @@
       <!-- End: Sidebar Left Content -->
 
     </aside>
-    <!-- End: Sidebar Left -->   
-    <section id="content_wrapper" >
-        
+    <!-- End: Sidebar Left -->    
+    <section id="content_wrapper">
         <section id="content" class="animated fadeIn">
-            
-             <!-- begin: .tray-left -->
-        <section id="content" class="table-layout animated fadeIn">
-            <%--
-        <!-- begin: .tray-left -->
-             <aside class="tray tray-left tray290">
-
-          <h4> Admin Widgets -
-            <small>A Theme Exclusive</small>
-          </h4>
-          <ul class="icon-list">
-            <li>
-              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Author:</b> Admin Designs
-            </li>
-            <li>
-              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> License:</b> CC - Commercial 3.0
-            </li>
-            <li>
-              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Info:</b>
-              <a href="http://www.themeforest.net/user/AdminDesigns"> www.admindesigns.com </a>
-            </li>
-          </ul>
-
-          <div id="nav-spy">
-            <ul class="nav tray-nav tray-nav-border" data-smoothscroll="-145" data-spy="affix" data-offset-top="200">
-              <li class="active">
-                <a href="#subcuentamayor">
-                 Crear  Sub-Cuenta Mayor</a>
-              </li>
-              <li>
-                <a href="#cuentamayor">
-                  Crear  Cuenta Mayor</a>
-              </li>
-              <li>
-                <a href="#cuentaorigen">
-                  Crear cuenta Origen</a>
-              </li>
               
-            </ul>
-          </div>
-
-        </aside>
-        <!-- end: .tray-left -->
---%>
-        <!-- begin: .tray-center -->
-        <div class="tray tray-center">
-
-        
-
-            <div id="alerta2" ></div>
+                <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tab" role="tabpanel">
+                <!-- Nav tabs -->
               
-       
-            <div class="page-heading" >
-            <div class="media clearfix">
-         <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active" id="btncrearpartidas">
-                        
-                        <a href="#crearpartidas" aria-controls="informacion" role="tab" data-toggle="tab">
-                            
-                            <i class="fa fa-user"></i>Crear Partida
-                        </a>
-                    </li>
-                    <li role="presentation" id="btnverpartidas">
-                        <a href="#Section2" aria-controls="tutor" role="tab" data-toggle="tab">
-                            <i class="fa fa-group"></i>Ver partidas
-                        </a>
-                    </li>
-                    
-                    
-                    
-                </ul> 
-                            <br><br>
-            <div class="page-heading"id="crearpartidas" >
-              
-            <div class="media clearfix">
-                   
-                <div class="admin-form">
-            
-                    <div class="panel heading-border">
-                        
-                     
-                        <div class="panel-body bg-light" >
-                            <form  id="form-ui"action="#"
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!--Div datos 1--> 
+                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor1">
+                        <form id="defaultForm" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
-                                <div class="section-divider mb40" id="spy1">
-                                    <span> </span>
-                                </div>
-                                <div class="row">
-                                    <div class="row">
-                                       <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="nombret">*Nombre :</label><label style="color:red;display:none;" id="nombreval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                                <textarea data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="form-control" id="nombret" name="nombret" rows="2"></textarea>
-                                            </div> 
-                                        </div> 
-                                    </div>
-                                       <div class="row">
-                                   <div class="col-md-3 col-sm-3 col-lg-3">
-                                <div class="form-group">
-                                    <label for="fecha">*Fecha :<label style="color:red;display:none;" id="fechaval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label></label>
-                                    <input type="text" data-bv-trigger="change" required data-bv-notempty-message="Campo obligatorio" style="cursor:pointer;" id="fecha" name="fecha" class="form-control" />
-                                </div>
-                                 </div> 
-                                  
-                                  
-                                  <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
-                                <div class="form-group">
-                                    <label>Origen:</label>
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
+                        <div class="content-header">
+                            <h2><b class="text-success">Libro Diario</b></h2>
+                        </div>
+                        
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                            <div class="form-group">
+                                <label for="pnestudiante">Sociedad:</label>
+                                <input maxlength="120" type="text" class="form-control gui-input"  id="pnestudiante" value="${ses_sociedadDefault}" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" />
+                                <input type="hidden" id="idsociedad" value="${ses_idsociedad}">
+                            </div>
+                        </div>    
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                          
+                            <div class="form-group">
+                                <label for="snestudiante">Fecha:</label>
+                                <input  class="gui-input form-control" maxlength="120" type="text" id="fecha" name="" >
+                            </div> 
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                          
+                            <div class="form-group">
+                                <label for="paestudiante">Periodo:</label>
+                                <input class="form-control gui-input" type="text" maxlength="120"  id="paestudiante" name="paestudiante"  data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
+                            </div>  
+                        </div>
+                          
+                        </div>  
+                            <div id="alerta2"></div>
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                           <div class="form-group">
+                                    <label>Cuenta Origen:</label>
                                     <label style="color:red;display:none;" id="origenval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                    <select class="select2-single form-control"  id="origen" name="origen"onchange="llenarcombcuenta()">
+                                    <select class="select2-single form-control"  id="origen" name="pais" onchange="llenarcombcuenta()">
                                         <option value=""></option>
-                                        <c:set var="valida" value="${fn:length(idorigen)}" />
+                                         <c:set var="valida" value="${fn:length(idorigen)}" />
                                         <c:if test="${valida > 0}">
                                              <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
                                                     <option value="${idorigen[i]}">${nombreorigen[i]}</option>
@@ -530,238 +465,98 @@
                                         </c:if>
                                     </select>
                                     
-                                          </div>
-                                    </div> 
-                                        <div class="col-md-4 col-sm-4col-lg-4 col-xs-4">
-                                <div class="form-group">
-                                    <label>Cuenta:</label>
+                                </div>
+                        </div>    
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                          
+                            <div class="form-group">
+                                    <label>Cuenta :</label>
                                     <label style="color:red;display:none;" id="cuentaval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                    <select class="select2-single form-control"  id="cuenta" name="cuenta" >
+                                    <select class="select2-single form-control"  id="cuenta" name="pais" onchange="llenarcombosub()">
                                         <option value=""></option>
-                                       
+                                      
                                     </select>
                                     
-                                          </div>
-                                    </div> 
-                              
-                             </div>
-                                        <div class="row">
-                               <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
-                                <div class="form-group">
-                                    <label>Sociedad:</label>
-                                    <label style="color:red;display:none;" id="sociedadval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                    <select class="select2-single form-control"  id="sociedad" name="sociedad"onchange="llenarcombosubcuenta()">
-                                        <option value=""></option>
-                                        <c:set var="valida" value="${fn:length(idsociedad)}" />
-                                        <c:if test="${valida > 0}">
-                                             <c:forEach var="i" begin="0" end="${fn:length(idsociedad)-1}">
-                                                 <c:if test="${idsociedad[i] != '4'}">
-                                                    <option value="${idsociedad[i]}">${sociedadnombre[i]}</option>
-                                                    </c:if>
-                                                </c:forEach>
-                                        </c:if>
-                                    </select>
-                                    
-                                          </div>
-                                    </div> 
-                                     
-                                <div class="col-md-4 col-sm-4col-lg-4 col-xs-4">
-                                <div class="form-group">
-                                    <label>Sub-Cuenta:</label>
+                                </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                          
+                           <div class="form-group">
+                                    <label>Sub-cuenta:</label>
                                     <label style="color:red;display:none;" id="subcuentaval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                    <select class="select2-single form-control"  id="subcuenta" name="cuenta" >
+                                    <select class="select2-single form-control"  id="subcuenta" name="pais">
                                         <option value=""></option>
-                                       
+                                        <c:set var="valida" value="${fn:length(paisTemp)}" />
+                                        <c:if test="${valida > 0}">
+                                            <c:forEach var="i" begin="0" end="${fn:length(paisTemp)-1}">
+                                                <option value="${idpaisTemp[i]}">${paisTemp[i]}</option>
+                                            </c:forEach>
+                                        </c:if>
                                     </select>
                                     
-                                          </div>
-                                    </div>
-                                    </div>     
-                                        
+                                </div> 
+                        </div>
+                          
+                        </div>  
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
                          
-                                        <div class="panel-footer text-right" id="btnagregar">
-                                    <button type="button" class="button btn-primary"id="crearpart" > Agregar a la Partida </button>
-                                    <button type="reset" class="button"> Cancelar </button>
-                                  </div>
-                        </div> 
-                        </form>
-
-              
-                    </div>
-                </div>
-                
-               
-            </div>
-                                       
-        </div>
-          
-            </div>
-              <div class="page-heading"id="partida" style="display:none;">
-                
-                          <div class="media clearfix" >
-                <div class="admin-form">
-                    <div class="panel heading-border">
-                        <div class="panel-body bg-light">
-                             <div class="section-divider mb40" id="spy1">
-                                    <span>Partida Contable</span>
-                                </div>
-                            <div class="row">
+                        
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                          
+                             <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                            <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="Descripcion">*Descripción:</label><label style="color:red;display:none;" id="descripcionval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                                <textarea data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="form-control" name="des" rows="2"id="des"></textarea>
-                                            </div> 
-                                </div>
-                             
-                            </div>
-                             <div class="row">
-                               
-                                  <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
-                                <label class="control-label mb15">*Seleccione el movimiento:</label><label style="color:red;display:none;" id="movival"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                <label style="color:red;display:none;" id="movival"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                <div class="radio-custom radio-success mb5">
-                                    <input type="radio" id="Debito" value="D"  name="movi">
-                                    <label for="Debito">DEBE</label>
-                                </div>
-                                <div class="radio-custom radio-success mb5">
-                                    <input type="radio" id="Credito" value="H"  name="movi">
-                                    <label for="Credito">HABER</label>
+                                    <button type="button" class="btn btn-lg btn-primary btn-block" onclick="librodiario()"><span class="glyphicon glyphicon-list-alt"></span> Generar Filtos</button>
                                 </div>
                             </div>
-                                  <div id="alerta3" ></div>
-              
-                             <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
-                                            <div class="form-group">
-                                                <label for="monto">*Monto:</label><label style="color:red;display:none;" id="montoval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                                <input data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio"onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
-                                                       class="gui-input form-control" type="text" maxlength="180" id ="monto" name="monto" placeholder="Lps. 0000.00">
-                                            </div>  
-                             </div>
-                                 
-                         
-                                </div>
-                            <div class="row">
-                                
-                                   <div class="panel-footer text-right" id="btnt"style="display:none;">
-                                   
-                                    <button type="button" class="button btn-primary"id="add" > Agregar a la Partida </button>
-                                    <button type="reset" class="button"> Cancelar </button>
-                                  </div>
-                                   <div class="panel-footer text-right" id="btnmodificar"style="display:none;">
-                                   
-                                    <button type="button" class="button btn-primary"id="modificar">   Modificar   </button>
-                                    <button type="reset" class="button"> Cancelar </button>
-                                  </div>
-                            </div>
-                            
-                                
-                            <div class="row">
-                                <table class="table table-responsive" id="tpartida">
+                        </div> 
+                        </div>
+                          
+                        </div>  
+                        <div>
+                            <table class="table table-responsive" id="tablalibro">
                                 <thead>
-                                  <tr class="primary">
-                                    
-                                      <th >N.Transaccion</th>                                    
-                                    <th>Descripcion</th>                                    
-                                    <th> Debe</th>                                    
-                                    <th> Haber</th>                                    
-                                    <th> </th>  
-                                  </tr>
-                                </thead>
-                                <tbody >
-                               
-                                </tbody>
-                                <tfoot id="saldo" >
-                                    
-                                    <tr<%-- class="primary"--%>>
-                                        
-                                        <td></td>
-                                        <td>Saldo</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tr class="primary">
+                                        <th>fecha</th>
+                                        <th>nombre Partida</th>
+                                        <th>cuenta</th>
+                                        <th>Descripcion</th>
+                                        <th>debe</th>
+                                        <th>Haber</th>
+                                        <th>usuario</th>
+                                        <th>Descripcion</th>
                                     </tr>
-                                </tfoot>
-                                </table>
-                            </div>
-                          </div>
-
-                    </div>
-                </div>
-                
-                
-            </div>
-        </div>
-              <div class="page-heading"id="verpartida" style="display:none;">
-                
-                          <div class="media clearfix" >
-                <div class="admin-form">
-                    <div class="panel heading-border">
-                        <div class="panel-body bg-light">
-                                <div class="row">
-                                <table class="table table-responsive" id="infodatos">
-                                <thead>
-                                  <tr class="primary">
-                                    
-                                      <th>N. Referencia</th>                                    
-                                      <th>Nombre de partida</th>                                    
-                                    <th>Sociedad</th>                                    
-                                    <th>Fecha</th>                                    
-                                    <th>Usuario Que Creo</th>                                    
-                                                                       
-                                    <th> </th>  
-                                  </tr>
                                 </thead>
-                                <tbody >
-                                    <c:set var="valida" value="${fn:length(npartida)}" />
-                                        <c:if test="${valida > 0}">
-                                             <c:forEach var="i" begin="0" end="${fn:length(npartida)-1}">
-                                                 <tr>
-                                                <td>${npartida[i]}</td>                                    
-                                                <td>${nombrepartida[i]}</td>                                    
-                                              <td>${sociedadpartida[i]}</td>                                   
-                                              <td>${fechap[i]}</td>                    
-                                              <td>${usuariopartida[i]}</td> 
-                                              <td></td>
-                                                 </tr>
-                                                </c:forEach>
-                                        </c:if>
+                                <tbody>
+                                    
+                                    
                                 </tbody>
-                               
-                                </table>
-                            </div>
-                          </div>
+                            </table>
 
+                        </div>
+                        
+                     
+                       
+                          
+                        </form>                
                     </div>
+                    </div>                    
+                    <!--Div datos 2-->      
+                    
                 </div>
-                
-                
             </div>
         </div>
-           
-            </div>
-        
-       
-       
-     
- 
-
-        </div> 
-       
-        <!-- end: .tray-center -->
+    </div>
+</div>
+        <div id="ajaxtemp"></div>        
         </section>
-        </section>
-        
-              
     </section>
+                            
+       <!-- Modal -->
+        \               
     
-    
-     </div>
-                                            
-        
-                                              
-                                            
-     
-    <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
+         </div>  
+       <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
        <script src="<c:url value='/resources/js/utility.js'/>"></script>
        <script src="<c:url value='/resources/js/demo.js'/>"></script>
@@ -770,6 +565,7 @@
        <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery.steps.min.js'/>"></script>
       
+      
        <script src="<c:url value='/resources/js/jquery.waypoints.min.js'/>"></script>
        <script src="<c:url value='/resources/jsOr/sweetalert2.min.js'/>"></script>
        <script src="<c:url value='/resources/js/picker.js'/>"></script>
@@ -777,119 +573,36 @@
        <script src="<c:url value='/resources/js/globalize.min.js'/>"></script>
        <script src="<c:url value='/resources/js/select2.min.js'/>"></script>
        <script src="<c:url value='/resources/js/typeahead.bundle.min.js'/>"></script>
+        <script src="<c:url value='/resources/js/SC_PartidasCuentas.js'/>"></script>
+       <script type="text/javascript">
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            // Init Theme Core      
+            Core.init();
+
+            // Init Demo JS
+            Demo.init();
+
+            
+            });
+        
+           
+    </script>
+   
+      
        
-       
-                                        
-    <script src="<c:url value='/resources/js/SC_PartidasCuentas.js'/>"></script>
-  
-    <script type="text/javascript">
-  jQuery(document).ready(function() {
-
-    "use strict";
-
-    // Init Theme Core    
-    Core.init();
-
-    // Init Demo JS  
-    Demo.init();
-
-
-    // Form Switcher
-    $('#form-switcher > button').on('click', function() {
-      var btnData = $(this).data('form-layout');
-      var btnActive = $('#form-elements-pane .admin-form.active');
-
-      // Remove any existing animations and then fade current form out
-      btnActive.removeClass('slideInUp').addClass('animated fadeOutRight animated-shorter');
-      // When above exit animation ends remove leftover classes and animate the new form in
-      btnActive.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-        btnActive.removeClass('active fadeOutRight animated-shorter');
-        $('#' + btnData).addClass('active animated slideInUp animated-shorter')
-      });
-    });
-
-    // Cache several DOM elements
-    var pageHeader = $('.content-header').find('b');
-    var adminForm = $('.admin-form');
-    var options = adminForm.find('.option');
-    var switches = adminForm.find('.switch');
-    var buttons = adminForm.find('.button');
-    var Panel = adminForm.find('.panel');
-
-    // Form Skin Switcher
-    $('#skin-switcher a').on('click', function() {
-      var btnData = $(this).data('form-skin');
-
-      $('#skin-switcher a').removeClass('item-active');
-      $(this).addClass('item-active')
-
-      adminForm.each(function(i, e) {
-        var skins = 'theme-primary theme-info theme-success theme-warning theme-danger theme-alert theme-system theme-dark';
-        var panelSkins = 'panel-primary panel-info panel-success panel-warning panel-danger panel-alert panel-system panel-dark';
-        $(e).removeClass(skins).addClass('theme-' + btnData);
-        Panel.removeClass(panelSkins).addClass('panel-' + btnData);
-        pageHeader.removeClass().addClass('text-' + btnData);
-      });
-
-      $(options).each(function(i, e) {
-        if ($(e).hasClass('block')) {
-          $(e).removeClass().addClass('block mt15 option option-' + btnData);
-        } else {
-          $(e).removeClass().addClass('option option-' + btnData);
-        }
-      });
-      $(switches).each(function(i, ele) {
-        if ($(ele).hasClass('switch-round')) {
-          if ($(ele).hasClass('block')) {
-            $(ele).removeClass().addClass('block mt15 switch switch-round switch-' + btnData);
-          } else {
-            $(ele).removeClass().addClass('switch switch-round switch-' + btnData);
-          }
-        } else {
-          if ($(ele).hasClass('block')) {
-            $(ele).removeClass().addClass('block mt15 switch switch-' + btnData);
-          } else {
-            $(ele).removeClass().addClass('switch switch-' + btnData);
-          }
-        }
-
-      });
-      buttons.removeClass().addClass('button btn-' + btnData);
-    });
-
-    setTimeout(function() {
-      adminForm.addClass('theme-primary');
-      Panel.addClass('panel-primary');
-      pageHeader.addClass('text-primary');
-
-      $(options).each(function(i, e) {
-        if ($(e).hasClass('block')) {
-          $(e).removeClass().addClass('block mt15 option option-primary');
-        } else {
-          $(e).removeClass().addClass('option option-primary');
-        }
-      });
-      $(switches).each(function(i, ele) {
-
-        if ($(ele).hasClass('switch-round')) {
-          if ($(ele).hasClass('block')) {
-            $(ele).removeClass().addClass('block mt15 switch switch-round switch-primary');
-          } else {
-            $(ele).removeClass().addClass('switch switch-round switch-primary');
-          }
-        } else {
-          if ($(ele).hasClass('block')) {
-            $(ele).removeClass().addClass('block mt15 switch switch-primary');
-          } else {
-            $(ele).removeClass().addClass('switch switch-primary');
-          }
-        }
-      });
-      buttons.removeClass().addClass('button btn-primary');
-    }, 800);
-
-  });
-  </script>
- 
+      
+       <style>
+  /*page demo styles*/
+  .wizard .steps .fa,
+  .wizard .steps .glyphicon,
+  .wizard .steps .glyphicon {
+    display: none;
+  }
+  </style>
     </body>
 </html>
+
+

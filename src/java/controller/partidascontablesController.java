@@ -39,12 +39,13 @@ public class partidascontablesController {
      mv.addObject("idsociedad",idsociedad);
      mv.addObject("sociedadnombre",sociedadnombre);
      mv.addObject("logo",logo);
+      //obtener cuenta origen
     ArrayList<String> origen = new ArrayList<String>();
     ArrayList<String> codigo = new ArrayList<String>();
     ArrayList<String> nombre = new ArrayList<String>();
      
     List cuentaorigen =balance.obtenercuentaorigen();
-    //obtener cuenta origen
+   
      List<Object[]> listDatoorigen = cuentaorigen;
             for (Object[] datos : listDatoorigen) {
                 origen.add((String) datos[0].toString());
@@ -58,7 +59,28 @@ public class partidascontablesController {
             mv.addObject("idorigen",origen);
             mv.addObject("codigoorigen",codigo);
             mv.addObject("nombreorigen",nombre);
-       
+                   
+           //obtener datos de la partida
+       partidaDAO p =new partidaDAO();
+         List resp = p.mostrarpartidas();
+         ArrayList<String> npartida =  new ArrayList<String>();
+    ArrayList<String> nombrepartida = new ArrayList<String>();
+    ArrayList<String> fechap = new ArrayList<String>();
+    ArrayList<String> sociedadpartida = new ArrayList<String>();
+    ArrayList<String> usuariopartida = new ArrayList<String>();
+     List<Object[]> listDatos = resp;
+            for (Object[] datos : listDatos) {
+                npartida.add((String) datos[0].toString());
+                nombrepartida.add((String) datos[1]);
+                fechap.add((String) datos[2].toString());
+                sociedadpartida.add((String) datos[3].toString());
+                usuariopartida.add((String) datos[4]);
+                           } 
+            mv.addObject("npartida",npartida);
+            mv.addObject("nombrepartida",nombrepartida);
+            mv.addObject("fechap",fechap);
+            mv.addObject("sociedadpartida",sociedadpartida);
+            mv.addObject("usuariopartida",usuariopartida);
      
     return mv;
     }
@@ -89,6 +111,7 @@ public class partidascontablesController {
             mv.addObject("idcuenta", idcuenta);
             mv.addObject("codigocuenta",codigocuenta);
             mv.addObject("nombrecuenta",nombrecuenta);
+
              
      
     return  mv;
@@ -197,10 +220,9 @@ public class partidascontablesController {
     mv.addObject("dato5",movimiento);
     return mv;
     }
-       @RequestMapping(value = "modificarpartida.gdc" ,method =RequestMethod.POST)
+          @RequestMapping(value = "modificarpartida.gdc" ,method =RequestMethod.POST)
     public  ModelAndView funmodificartpartida(
-              @RequestParam("idcrearpartida") int idcrearpartida,
-             
+              @RequestParam("transaccion") int transaccion,
               @RequestParam("descripcion") String descripcion,           
             @RequestParam("debe")  float debe,
             @RequestParam("haber")  float haber,
@@ -208,14 +230,83 @@ public class partidascontablesController {
             HttpServletRequest request
     ){
     ModelAndView mv =new ModelAndView("pgobtener");
-         System.out.println("controller.partidascontablesController.funagregarpartida() estou anjaklsa");
-         System.out.println("");
+         System.out.println("controller.partidascontablesController.funmodificartpartida() estou anjaklsa");
+         System.out.println(" estoy ingresando al dao funmodificartpartida");
     int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
         partidaDAO partida =new partidaDAO();
-       List<String> id=partida.actualizaroperacion(idcrearpartida,descripcion, debe, haber,movimiento,idusuario);
-       System.out.println("Regreso del Dao");
+       List<String> id=partida.actualizaroperacion(transaccion,descripcion, debe, haber,movimiento,idusuario);
+       System.out.println("Regreso del Dao funmodificartpartida");
        System.out.println(id);
         mv.addObject("numerocuenta",id);
     return mv;
     }
+    
+     @RequestMapping(value = "librodiario.gdc")
+     public ModelAndView funcLibrodiario( HttpServletRequest request){
+      ModelAndView mv = new ModelAndView("pgLibrodiario");
+   
+ //obtener cuenta origen
+ cuentabalanceDAO balance = new cuentabalanceDAO();
+    ArrayList<String> origen = new ArrayList<String>();
+    ArrayList<String> codigo = new ArrayList<String>();
+    ArrayList<String> nombre = new ArrayList<String>();
+     
+    List cuentaorigen =balance.obtenercuentaorigen();
+   
+     List<Object[]> listDatoorigen = cuentaorigen;
+            for (Object[] datos : listDatoorigen) {
+                origen.add((String) datos[0].toString());
+                codigo.add((String) datos[1].toString());
+                nombre.add((String) datos[2]);
+                        }  
+             
+        System.out.println(origen);
+        System.out.println(codigo);
+        System.out.println(nombre);
+            mv.addObject("idorigen",origen);
+            mv.addObject("codigoorigen",codigo);
+            mv.addObject("nombreorigen",nombre);
+                   
+      return mv;
+     }
+    @RequestMapping(value ="librodiarioobtener.gdc", method = RequestMethod.POST)
+     public ModelAndView funbuscaroperaciones(@RequestParam("fecha") String fecha) throws Exception{
+     ModelAndView mv = new ModelAndView("pgobtener");
+     partidaDAO libro = new partidaDAO();
+     List repuest = libro.filtrolibrodiario(fecha);
+     ArrayList<String> idpartida = new ArrayList<String>();
+    ArrayList<String> fechapartida = new ArrayList<String>();
+    ArrayList<String> nombrepartida = new ArrayList<String>();
+    ArrayList<String> nombrecuenta = new ArrayList<String>();
+    ArrayList<String> codigocuenta = new ArrayList<String>();
+    ArrayList<String> iddatospartida = new ArrayList<String>();
+    ArrayList<String> Descripcion = new ArrayList<String>();
+    ArrayList<String> debe = new ArrayList<String>();
+    ArrayList<String> haber = new ArrayList<String>();
+    ArrayList<String> usuario = new ArrayList<String>();
+     
+   
+   
+     List<Object[]> listDatoorigen = repuest;
+            for (Object[] datos : listDatoorigen) {
+                idpartida.add((String) datos[0].toString());
+                fechapartida.add((String) datos[1].toString());
+                nombrepartida.add((String) datos[2]);
+                nombrecuenta.add((String) datos[3]);
+                codigocuenta.add((String) datos[4]);
+                iddatospartida.add((String) datos[5].toString());
+                Descripcion.add((String) datos[6]);
+                debe.add((String) datos[7].toString());
+                haber.add((String) datos[8].toString());
+                usuario.add((String) datos[9]);
+                        }  
+             String tabla="";
+            creartabla tab = new creartabla();
+          tabla=  tab.crearlibro(idpartida, fechapartida, nombrepartida, nombrecuenta,
+                    codigocuenta, iddatospartida, Descripcion, debe, haber, usuario);
+          System.out.println("controller.partidascontablesController.funbuscaroperaciones()");
+          System.out.println(usuario);
+            mv.addObject("numerocuenta",tabla);
+     return mv;
+     }
 }

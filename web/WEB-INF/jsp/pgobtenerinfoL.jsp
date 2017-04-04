@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pgobtener
-    Created on : 14-mar-2017, 10:52:13
+    Document   : pgobtenerinfoL
+    Created on : 04-abr-2017, 7:50:42
     Author     : Sinergia003
 --%>
 
@@ -26,7 +26,16 @@
          <script src="<c:url value='/resources/js/codigoCuenta.js'/>"></script>
         <div id="info">
            
-            <input type="hidden" value="${numerocuenta}" id="cuentar">
+            <input type="hidden" value="${dato1}" id="dato1">
+            <input type="hidden" value="${dato2}" id="dato2">
+            <input type="hidden" value="${dato3}" id="dato3">
+            <input type="hidden" value="${dato4}" id="dato4">
+            <input type="hidden" value="${dato5}" id="dato5">
+            <input type="hidden" value="${dato6}" id="dato5">
+            <input type="hidden" value="${dato7}" id="dato5">
+            <input type="hidden" value="${dato8}" id="dato5">
+            <input type="hidden" value="${dato9}" id="dato5">
+            <input type="hidden" value="${dato10}" id="dato5">
             
         </div>
     </body>

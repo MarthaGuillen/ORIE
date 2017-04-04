@@ -322,23 +322,23 @@
 
           <div id="nav-spy">
             <ul class="nav tray-nav tray-nav-border" data-smoothscroll="-145" data-spy="affix" data-offset-top="200">
-              <li class="active">
+                <li  onclick="activarsubcuenta()">
                 <a href="#subcuentamayor">
                  Crear  Sub-Cuenta Mayor</a>
               </li>
-              <li>
+              <li onclick="activarscuenta()">
                 <a href="#cuentamayor">
                   Crear  Cuenta Mayor</a>
               </li>
-              <li>
+              <li onclick="activarorigen()">
                 <a href="#cuentaorigen">
                   Crear cuenta Origen</a>
               </li>
               
-              <li>
+              <%-- <li>
                 <a href="#vercuentas">
                  Ver Cuentas</a>
-              </li>
+                </li>--%>
               
             </ul>
           </div>
@@ -520,7 +520,7 @@
         </div>
            
             </div>
-             <div class="page-heading" id="cuentamayor">
+             <div class="page-heading" id="cuentamayor" style="display:none;">
             <div class="media clearfix">
                 <div class="admin-form">
                     <div class="panel heading-border">
@@ -611,7 +611,7 @@
                 
                 
             </div>
-            <div class="page-heading" id="cuentaorigen">
+            <div class="page-heading" id="cuentaorigen"style="display:none;">
             <div class="media clearfix">
                 <div class="admin-form">
                     <div class="panel heading-border">
@@ -680,7 +680,7 @@
         
        
        
-     <section id="content" class="animated fadeIn">
+     <section id="content" class="animated fadeIn"style="display:none;">
             <div class="page-heading">
                 <div class="media clearfix">
                     <div class="admin-form">

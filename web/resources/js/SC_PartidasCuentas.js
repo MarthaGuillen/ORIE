@@ -6,6 +6,7 @@ var fecha2;
 var i;
 var ii=0;
 var tem;
+var  ip=0;
 jQuery('form[data-toggle="validator"] select').on('change', function(event) {
     event.preventDefault();
     jQuery(this).find('option[disabled]').remove();
@@ -33,7 +34,8 @@ $( document ).ready(function() {
                         $(document.activeElement).blur();
                     }
         });
-    
+   
+  
         $("#cuenta").select2(
         {placeholder: "Seleccione la Cuenta",
                  allowClear: true
@@ -97,76 +99,12 @@ $( document ).ready(function() {
             var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
-                         document.getElementById("alerta2").innerHTML = xhttp.responseText;
+                         document.getElementById("alerta3").innerHTML = xhttp.responseText;
                         var id =$("#cuentar").val();
                         
                         transaccion=  id.substring(1, id.length-1);
                         
-                         // Obtenemos el numero de filas (td) que tiene la primera columna
-            // (tr) del id "tabla"
-            var tds=$("#tpartida tr:first td").length;
-            // Obtenemos el total de columnas (tr) del id "tabla"
-            var trs=$("#tabla tr").length;
-            var nuevaFila="<tr id='fila"+ii+"'>";
-            
-            if(trs==0){
-                
-                nuevaFila+="<td>"+transaccion+"</td>";
-                nuevaFila+="<td>"+descripcion+"</td>";
-                 if(movimiento=="D"){
-                    nuevaFila +="<td>"+parseFloat(monto)+"</td>";
-                    nuevaFila+="<td></td>";
-                     saldodebe = parseFloat(saldodebe) + parseFloat(monto) ;
-                    }else if(movimiento=="H"){
-                      nuevaFila+="<td></td>";  
-                      nuevaFila +="<td>"+monto+"</td>";
-                      saldohaber = parseFloat(saldohaber) + parseFloat(monto);
-                            }
-                            nuevaFila+="<td><a href='#'onclick='modificar("+transaccion+","+ii+")'><span class='glyphicon glyphicon-pencil' ></a></td>";
-    
-                
-            }
-            else{
-            for(var i=0;i<tds;i++){
-                // añadimos las columnas
-               
-               
-                nuevaFila+="<td>"+transaccion+"</td>";
-                nuevaFila+="<td>"+descripcion+"</td>";
-                 if(movimiento=="D"){
-                    nuevaFila +="<td class='debe'>"+parseFloat(monto)+"</td>";
-                    nuevaFila+="<td class='haber'></td>";
-                    saldodebe = parseFloat(saldodebe) + parseFloat(monto) ;
-                      
-                    }else if(movimiento=="H"){
-                      nuevaFila+="<td class='debe'></td>";  
-                      nuevaFila +="<td class='haber'>"+monto+"</td>";
-                      saldohaber = parseFloat(saldohaber) + parseFloat(monto);
-                      }
-                      nuevaFila+="<td><a href='#'onclick='modificar("+transaccion,ii+")'><span class='glyphicon glyphicon-pencil' ></a></td>";
-            }}
-            // Añadimos una columna con el numero total de columnas.
-            // Añadimos uno al total, ya que cuando cargamos los valores para la
-            // columna, todavia no esta añadida
-            nuevaFila+="</tr>";
-             var final="<td></td><td></td> <td></td>"
-            $("#tpartida").append(nuevaFila);
-           $("#monto").val("");
-         $("#descripcion").val("");
-           $("#transaccion").val("");
-           
-            var final="";
-           if(saldodebe>saldohaber){
-               
-               total=saldodebe-saldohaber;
-                final="<tr><td></td><td>Saldo</td><td>"+total.toFixed(2)+"</td> <td ></td></tr>";
-           }
-           if(saldodebe<saldohaber){
-               total=saldohaber-saldodebe;
-               final="<tr><td></td><td>Saldo</td><td ></td><td '>"+total.toFixed(2)+"</td></tr>";
-           }
-         
-          $("#saldo").html(final);
+              creartabla(transaccion,descripcion,monto,movimiento) ;   
         
                     }
                 }
@@ -243,24 +181,25 @@ $( document ).ready(function() {
          
          $("#btncrearpartidas").click(function(){
               document.getElementById('crearpartidas').style.display = 'block';
+              document.getElementById('btnagregar').style.display = 'block';
                document.getElementById('partida').style.display = 'none';
-               document.getElementById('partida').style.display = 'none';
+               document.getElementById('verpartida').style.display = 'none';
+                $("#nombret").val("");
+         $("#fecha").val("");
+    
                
          });
          $("#btnverpartidas").click(function(){
+             var obtener=" ver";
               document.getElementById('crearpartidas').style.display = 'none';
                document.getElementById('partida').style.display = 'none';
-                document.getElementById('partida').style.display = 'block';
+                document.getElementById('verpartida').style.display = 'block';
+           
          });
          $("#modificar").click(function(){
               document.getElementById('btnt').style.display = 'block'; 
                 document.getElementById('btnmodificar').style.display = 'none';
-                $("#des").val("");
-                 $("#monto").val("");
-                  $("#Debito").attr('checked', false);
-                  $("#Credito").attr('checked', false);
-                   var monto=$("#monto").val();
-                   $("#fila"+tem).remove();
+          var monto=$("#monto").val();   
           var descripcion=$("#des").val();
           
            var movimiento=$('input:radio[name=movi]:checked').val();
@@ -286,8 +225,7 @@ $( document ).ready(function() {
            
            if(e==0){
                    ii=1+ii;                  
-             var  f =new Date();
-             fecha2=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+             
               if(movimiento=="D"){
                    debe=monto;
                       
@@ -303,94 +241,32 @@ $( document ).ready(function() {
             var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
-                         document.getElementById("alerta2").innerHTML = xhttp.responseText;
+                         document.getElementById("alerta3").innerHTML = xhttp.responseText;
                         var id =$("#cuentar").val();
-                        
-                        transaccion=  id.substring(1, id.length-1);
-                        
-                         // Obtenemos el numero de filas (td) que tiene la primera columna
-            // (tr) del id "tabla"
-            var tds=$("#tpartida tr:first td").length;
-            // Obtenemos el total de columnas (tr) del id "tabla"
-            var trs=$("#tabla tr").length;
-            var nuevaFila="<tr id='fila'"+ii+">";
-            
-            if(trs==0){
-                
-                nuevaFila+="<td>"+transaccion+"</td>";
-                nuevaFila+="<td>"+descripcion+"</td>";
-                 if(movimiento=="D"){
-                    nuevaFila +="<td>"+parseFloat(monto)+"</td>";
-                    nuevaFila+="<td></td>";
-                     saldodebe = parseFloat(saldodebe) + parseFloat(monto) ;
-                    }else if(movimiento=="H"){
-                      nuevaFila+="<td></td>";  
-                      nuevaFila +="<td>"+monto+"</td>";
-                      saldohaber = parseFloat(saldohaber) + parseFloat(monto);
-                            }
-                            nuevaFila+="<td><a href='#'onclick='modificar("+transaccion+","+ii+")'><span class='glyphicon glyphicon-pencil' ></a></td>";
-    
-                
-            }
-            else{
-            for(var i=0;i<tds;i++){
-                // añadimos las columnas
-               
-               
-                nuevaFila+="<td>"+transaccion+"</td>";
-                nuevaFila+="<td>"+descripcion+"</td>";
-                 if(movimiento=="D"){
-                    nuevaFila +="<td class='debe'>"+parseFloat(monto)+"</td>";
-                    nuevaFila+="<td class='haber'></td>";
-                    saldodebe = parseFloat(saldodebe) + parseFloat(monto) ;
+                        var res =id.substring(1, id.length-1);
                       
-                    }else if(movimiento=="H"){
-                      nuevaFila+="<td class='debe'></td>";  
-                      nuevaFila +="<td class='haber'>"+monto+"</td>";
-                      saldohaber = parseFloat(saldohaber) + parseFloat(monto);
-                      }
-                      nuevaFila+="<td><a href='#'onclick='modificar("+transaccion,ii+")'><span class='glyphicon glyphicon-pencil' ></a></td>";
-            }}
-            // Añadimos una columna con el numero total de columnas.
-            // Añadimos uno al total, ya que cuando cargamos los valores para la
-            // columna, todavia no esta añadida
-            nuevaFila+="</tr>";
-             var final="<td></td><td></td> <td></td>"
-            $("#tpartida").append(nuevaFila);
-           $("#monto").val("");
-         $("#descripcion").val("");
-           $("#transaccion").val("");
-           
-            var final="";
-           if(saldodebe>saldohaber){
-               
-               total=saldodebe-saldohaber;
-                final="<tr><td></td><td>Saldo</td><td>"+total.toFixed(2)+"</td> <td ></td></tr>";
-           }
-           if(saldodebe<saldohaber){
-               total=saldohaber-saldodebe;
-               final="<tr><td></td><td>Saldo</td><td ></td><td '>"+total.toFixed(2)+"</td></tr>";
-           }
-         
-          $("#saldo").html(final);
-        
+                            transaccion=tem;
+                            tem=0;
+                             creartabla(transaccion,descripcion,monto,movimiento) ;   
+          
+                        
+                        
+                   
                     }
                 }
                  
               
                 xhttp.open("POST", "modificarpartida.gdc", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("idcrearpartida="+idcrearpartida+"&descripcion="+descripcion+"&debe="+debe+"&haber="+haber+"&movimiento="+movimiento);
-                 $("#des").val("");
-                 $("#monto").val("");
-                  $("#Debito").attr('checked', false);
-                  $("#Credito").attr('checked', false);
+                xhttp.send("transaccion="+tem+"&descripcion="+descripcion+"&debe="+debe+"&haber="+haber+"&movimiento="+movimiento);
+                console.log("Ingresando al ajax");
                
     }
          });    
            
         
 });
+
 function llenarcombcuenta(){
        var origen=$("#origen").val().trim();
        var xhttp = new XMLHttpRequest();
@@ -488,7 +364,7 @@ function llenarcombosubcuenta(){
                var d=$("#dato3").val();
                var h=$("#dato4").val();
                var tm=$("#dato5").val();
-               $("#fila" + fila).remove();
+              
                  var transaccion= idoperacion.substring(1, idoperacion.length-1);
                  var descri= descripcion.substring(1, descripcion.length-1);
                  var debe= d.substring(1, d.length-1);
@@ -500,18 +376,29 @@ function llenarcombosubcuenta(){
                   if(tipo==="D"){
                       
                       document.getElementById("Debito").checked=true;
-                      total=total-parseFloat(debe);
+                      saldodebe=saldodebe-parseFloat(debe);
                       console.log(parseFloat(debe));
                       $("#monto").val(debe);
                     
                   }else if(tipo==="H"){
                       document.getElementById("Credito").checked=true;
                                            
-                      total=total-parseFloat(haber);
+                      saldohaber=saldohaber-parseFloat(haber);
                       $("#monto").val(parseFloat(haber));
                      
                   }
-                  
+                     if(saldodebe>saldohaber){
+               
+               total=saldodebe-saldohaber;
+                final="<tr><td></td><td>Saldo</td><td>"+total.toFixed(2)+"</td> <td ></td></tr>";
+           }
+           if(saldodebe<saldohaber){
+               total=saldohaber-saldodebe;
+               final="<tr><td></td><td>Saldo</td><td ></td><td '>"+total.toFixed(2)+"</td></tr>";
+           }
+          $("#fila" + fila).remove();
+          $("#saldo").html(final);
+             ii=ii-1;       
                 }
         
         };
@@ -522,6 +409,144 @@ function llenarcombosubcuenta(){
        
  }
 
+function creartabla(t,d,monto,movi){
+    ii=ii+1;
+                   // Obtenemos el numero de filas (td) que tiene la primera columna
+            // (tr) del id "tabla"
+            var tds=$("#tpartida tr:first td").length;
+            // Obtenemos el total de columnas (tr) del id "tabla"
+            var trs=$("#tabla tr").length;
+            var nuevaFila="<tr id='fila"+ii+"'>";
+                   
+            if(trs==0){
+                
+                nuevaFila+="<td>"+t+"</td>";
+                nuevaFila+="<td>"+d+"</td>";
+                 if(movi=="D"){
+                    nuevaFila +="<td>"+monto+"</td>";
+                    nuevaFila+="<td></td>";
+                     saldodebe = parseFloat(saldodebe) + parseFloat(monto) ;
+                    }else if(movi=="H"){
+                      nuevaFila+="<td></td>";  
+                      nuevaFila +="<td>"+monto+"</td>";
+                      saldohaber = parseFloat(saldohaber) + parseFloat(monto);
+                            }
+                            nuevaFila+="<td><a href='#'onclick='modificar("+t+","+ii+")'><span class='glyphicon glyphicon-pencil' ></a></td>";
+    
+                
+            }
+            else{
+            for(var i=0;i<tds;i++){
+                // añadimos las columnas
+               
+               
+                nuevaFila+="<td>"+t+"</td>";
+                nuevaFila+="<td>"+d+"</td>";
+                 if(movi=="D"){
+                    nuevaFila +="<td >"+monto.toFixed(2)+"</td>";
+                    nuevaFila+="<td ></td>";
+                    saldodebe = parseFloat(saldodebe) + parseFloat(monto) ;
+                      
+                    }else if(movi=="H"){
+                      nuevaFila+="<td ></td>";  
+                      nuevaFila +="<td >"+monto.toFixed(2)+"</td>";
+                      saldohaber = parseFloat(saldohaber) + parseFloat(monto);
+                      }
+                      nuevaFila+="<td><a href='#'onclick='modificar("+t,ii+")'><span class='glyphicon glyphicon-pencil' ></a></td>";
+            }}
+            // Añadimos una columna con el numero total de columnas.
+            // Añadimos uno al total, ya que cuando cargamos los valores para la
+            // columna, todavia no esta añadida
+            nuevaFila+="</tr>";
+             var final="<td></td><td></td> <td></td>"
+            $("#tpartida").append(nuevaFila);
+           $("#monto").val("");
+         $("#descripcion").val("");
+           $("#transaccion").val("");
+           
+            var final="";
+           if(saldodebe>saldohaber){
+               
+               total=saldodebe-saldohaber;
+                final="<tr><td></td><td>Saldo</td><td>"+total.toFixed(2)+"</td> <td ></td></tr>";
+           }
+           if(saldodebe<saldohaber){
+               total=saldohaber-saldodebe;
+               final="<tr><td></td><td>Saldo</td><td ></td><td '>"+total.toFixed(2)+"</td></tr>";
+           }
+         
+          $("#saldo").html(final);
+                  $("#des").val("");
+                 $("#monto").val("");
+                  $("#Debito").attr('checked', false);
+                  $("#Credito").attr('checked', false);
+    
+}
 
+function llenarcombosub(){
+ var sociedad=$("#idsociedad").val().trim();
+ var cuenta=$("#cuenta").val().trim();
+   
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              
+                document.getElementById("alerta2").innerHTML = xhttp.responseText;
+               var idcuenta=$("#subprueba").val();
+               var codigo=$("#subcodigocuenta").val();
+               var nombre=$("#subnombrecuenta").val();
+              
+                 var lid_tipo= idcuenta.substring(1, idcuenta.length-1);
+           
+                 var lcodigoarea= codigo.substring(1, codigo.length-1);
+                
+                 var lnombretipo= nombre.substring(1, nombre.length-1);
+                
+                 
+                 var arrayid_tipo=lid_tipo.split(",");
+                 var arraycodigoarea=lcodigoarea.split(",");               
+                 var arraynombretip=lnombretipo.split(",");
+              
+                 var cadena="<option value=''>Seleccione El Area de la Cuenta</option>";
+                 for (var i = 0; i < arraycodigoarea.length; i++) {
+                 
+               cadena+=" <option value='"+arrayid_tipo[i]+"'>"+arraycodigoarea[i]+"  "+arraynombretip[i]+"</option>";
+            }
+           
+            
+            $("#subcuenta").html(cadena);
+                         }
+        
+        }
+        
+      xhttp.open("POST", "llenarsubcuenta.gdc", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
+        xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad);   
+ 
+}
 
+function librodiario(){
+ var fecha=$("#fecha").val().trim();
+
+   
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              
+                document.getElementById("alerta2").innerHTML = xhttp.responseText;
+               var idcuenta=$("#cuentar").val();
+              alert(idcuenta);
+             console.log(idcuenta);
+            $("#tablalibro").append(idcuenta);
+            
+           
+                         }
+        
+        }
+        
+      xhttp.open("POST", "librodiarioobtener.gdc", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
+        xhttp.send("fecha="+fecha);   
+ 
+}
 

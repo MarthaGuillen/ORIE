@@ -1,3 +1,22 @@
+
+
+function activarsubcuenta(){
+    document.getElementById('subcuentamayor').style.display = 'block';
+    document.getElementById('cuentamayor').style.display = 'none';
+    document.getElementById('cuentaorigen').style.display = 'none';
+} 
+function activarscuenta(){
+     document.getElementById('subcuentamayor').style.display ='none' ;
+    document.getElementById('cuentamayor').style.display = 'block';
+    document.getElementById('cuentaorigen').style.display = 'none';
+} 
+function activarorigen(){
+     document.getElementById('subcuentamayor').style.display ='none' ;
+    document.getElementById('cuentamayor').style.display ='none';
+    document.getElementById('cuentaorigen').style.display =  'block';
+} 
+
+
 function validarcuentaBalance(){
      var e=0;
     var mjs="";
