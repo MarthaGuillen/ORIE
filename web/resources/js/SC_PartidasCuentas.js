@@ -267,6 +267,8 @@ $( document ).ready(function() {
         
 });
 
+
+
 function llenarcombcuenta(){
        var origen=$("#origen").val().trim();
        var xhttp = new XMLHttpRequest();

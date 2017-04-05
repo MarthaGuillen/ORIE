@@ -372,17 +372,19 @@
        
 
         <!-- Start: Sidebar Left Menu -->
-        <ul class="nav sidebar-menu">
-              <c:if test="${validaLista > 0}">
+       <ul class="nav sidebar-menu">
+            <c:if test="${validaLista > 0}">
                 <c:forEach var="i" begin="0" end="${fn:length(sessionScope.ses_labels)-1}">
                     <li class="sidebar-label pt20">${sessionScope.ses_labels[i]}</li>
                     <c:forEach var="j" begin="0" end="${fn:length(sessionScope.ses_urlmen)-1}">
+                    <c:if test="${sessionScope.ses_idmenlbl[j] == sessionScope.ses_idlbl[i]}">
                     <li>
                         <a href="${sessionScope.ses_urlmen[j]}">
                           <span class="${sessionScope.ses_iconosmenu[j]}"></span>
                           <span class="sidebar-title">${sessionScope.ses_menus[j]}</span>
                         </a>
                     </li>
+                    </c:if>
                     </c:forEach>
                 </c:forEach>
             </c:if>

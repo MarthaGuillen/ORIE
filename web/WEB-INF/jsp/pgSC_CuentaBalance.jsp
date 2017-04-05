@@ -27,13 +27,17 @@
         <meta name="author" content="Sinergia">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="<c:url value='/resources/favicon/favicon.ico'/>">
-        <!-- Font CSS (Via CDN) -->
-        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600'>
         <!-- Theme CSS -->
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme2.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme3.css'/>">
-
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/magnific-popup.css'/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/cssIndex/sweetalert2.min.css'/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/core.css'/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrapValidator.css'/>">
+        <link rel="stylesheet" href="<c:url value='/resources/css/default.css'/>" id="theme_base">
+        <link rel="stylesheet" href="<c:url value='/resources/css/default.date.css'/>" id="theme_date">
+        <link rel="stylesheet" href="<c:url value='/resources/css/default.time.css'/>" id="theme_time">
         <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.css'/>">
         <style type="text/css">
@@ -265,12 +269,14 @@
                 <c:forEach var="i" begin="0" end="${fn:length(sessionScope.ses_labels)-1}">
                     <li class="sidebar-label pt20">${sessionScope.ses_labels[i]}</li>
                     <c:forEach var="j" begin="0" end="${fn:length(sessionScope.ses_urlmen)-1}">
+                    <c:if test="${sessionScope.ses_idmenlbl[j] == sessionScope.ses_idlbl[i]}">
                     <li>
                         <a href="${sessionScope.ses_urlmen[j]}">
                           <span class="${sessionScope.ses_iconosmenu[j]}"></span>
                           <span class="sidebar-title">${sessionScope.ses_menus[j]}</span>
                         </a>
                     </li>
+                    </c:if>
                     </c:forEach>
                 </c:forEach>
             </c:if>
@@ -367,74 +373,78 @@
                                 </div>
                                 <div class="row">
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">
                                         <div class="section">
-                                            <label class="field " for="areacr">
+                                            <label class="field " for="area">
                                                 <h3>Cuenta Origén:</h3>  
                                             </label>
                                         </div>
                                     
                                      
-                                        <div class="section">
-                                          <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="origen" onchange="llenarcombobox()">
-				                <option value="">Seleccione la Cuenta de Origen</option>
-                                                <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
+                                         <div class="form-group">
+                                    
+                                    <label style="color:red;display:none;" id="origenval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="select2-single form-control"  id="origen" name="origen">
+                                        <option value=""></option>
+                                        <c:set var="valida" value="${fn:length(idorigen)}" />
+                                        <c:if test="${valida > 0}">
+                                             <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
                                                     <option value="${idorigen[i]}">${nombreorigen[i]}</option>
                                                 </c:forEach>
-				            </select>
-                                             
-                                            <i class="arrow"></i>
-                                          </label>
-                                        
-                                      </div>
+                                        </c:if>
+                                    </select>
+                                    
+                                          </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">
                                         <div class="section">
                                             <label class="field " for="cuenta">
                                                 <h3>Cuenta :</h3>  
                                             </label>
                                         </div>
                                    
-                                        <div class="section">
-                                          <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="cuenta" >
-				                <option value="">Seleccione  la Cuenta </option>
-				                
-				            </select>
-                                             
-                                            <i class="arrow"></i>
-                                          </label>
-                                        </div>
+                                        <div class="form-group">
+                                  
+                                    <label style="color:red;display:none;" id="cuentaval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="select2-single form-control"  id="cuenta" name="cuenta" >
+                                        <option value=""></option>
+                                       
+                                    </select>
+                                    
+                                          </div>
                                       </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">
                                         <div class="section">
                                             <label class="field ">
                                                 <h3>Sociedad:</h3>  
                                             </label>
                                         </div>
                                     
-                                        <div class="section">
-                                          <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="sociedad" >
-				                <option value="">Seleccione  la Sociedad</option>
-				                 <c:forEach var="i" begin="0" end="${fn:length(idsociedad)-1}">
+                                         <div class="form-group">
+                                    <label>Sociedad:</label>
+                                    <label style="color:red;display:none;" id="sociedadval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="select2-single form-control"  id="sociedad" name="sociedad"onchange="llenarcombosubcuenta()">
+                                        <option value=""></option>
+                                        <c:set var="valida" value="${fn:length(idsociedad)}" />
+                                        <c:if test="${valida > 0}">
+                                             <c:forEach var="i" begin="0" end="${fn:length(idsociedad)-1}">
+                                                 <c:if test="${idsociedad[i] != '4'}">
                                                     <option value="${idsociedad[i]}">${sociedadnombre[i]}</option>
+                                                    </c:if>
                                                 </c:forEach>
-				            </select>
-                                             
-                                            <i class="arrow"></i>
-                                          </label>
-                                        </div>
+                                        </c:if>
+                                    </select>
+                                    
+                                          </div>
                                       </div>
                                 </div>
                                
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
                                         <div class="section">
                                             <label class="field ">
                                                 <h3>Codigo De Cuenta:</h3>  
@@ -443,63 +453,54 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
+                                            <label style="color:red;display:none;" id="codigosubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                             <input class="form-control" type="text" name="" id ="codigosub"placeholder="Codigo Generado " value="">
                                         </div>
                                       </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
                                         <div class="section">
                                             <label class="field ">
                                                 <h3>Nombre de la Sub-Cuenta:</h3>  
                                             </label>
                                         </div>
                                     </div>
-                                     <div class="col-md-6">
+                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
                                         <div class="section">
+                                             <label style="color:red;display:none;" id="codigosubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                           <input class="form-control" type="text" name="" id ="nombresub"placeholder="Ingrese el Nombre de la Cuenta">
                                         </div>
                                       </div>
                                 </div>
-                                <%-- <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Descripción del Estado :</h3>  
-                                            </label> 
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <input class="form-control" type="text" name="" id ="descripcion"placeholder="Descripcion">
-                                        </div>
-                                      </div>
-                                    </div>--%>
+                                
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
                                         <div class="section">
                                             <label class="field ">
                                                 <h3>Observación de la Cuenta  :</h3>  
                                             </label> 
                                         </div>
                                     </div>
-                                     <div class="col-md-6">
+                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
                                         <div class="section">
+                                             <label style="color:red;display:none;" id="observacionval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                           <input class="form-control" type="text" name="" id ="observacion"placeholder="Observación">
                                         </div>
                                       </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
                                         <div class="section">
                                             <label class="field ">
                                                 <h3>Depuración  :</h3>  
                                             </label> 
                                         </div>
                                     </div>
-                                     <div class="col-md-6">
+                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
                                         <div class="section">
-                                          <input class="form-control" type="text" name="" id ="depuracion"placeholder="Depuración">
+                                             <label style="color:red;display:none;" id="depuracionval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                          <input class="form-control" type="text" name="" id ="depuracion" placeholder="Depuración">
                                         </div>
                                       </div>
                                 </div>
@@ -530,27 +531,31 @@
                                     <span>Cuenta Mayor</span>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
                                         <div class="section">
                                             <label class="field ">
                                                 <h3>Cuenta Origen :</h3>  
                                             </label>
                                         </div>
                                     </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                          <label class="field select">
-                                              <select class="form-control" name="CATALOGO" id="origenmayor" >
-				                <option value="">Seleccione la Cuenta Origen</option>
-				                 <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                       <div class="form-group">
+                                    
+                                    <label style="color:red;display:none;" id="origen2val"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="form-control select2-single "  id="origen2" name="origen2">
+                                        <option value=""></option>
+                                        <c:set var="valida" value="${fn:length(idorigen)}"/>
+                                        <c:if test="${valida > 0}">
+                                             <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
                                                     <option value="${idorigen[i]}">${nombreorigen[i]}</option>
                                                 </c:forEach>
-				            </select>
-                                             
-                                            <i class="arrow"></i>
-                                          </label>
-                                        </div>
-                                      </div>
+                                        </c:if>
+                                    </select>
+                                    
+                                          </div>
+                                    </div>
+                                       
+                                    
                                 </div>
                                
                                 <div class="row">
@@ -563,6 +568,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
+                                             <label style="color:red;display:none;" id="codigosubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                             <input class="form-control" type="text" name="" id ="codigomayor"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
                                         </div>
                                       </div>
@@ -577,6 +583,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
+                                             <label style="color:red;display:none;" id="codigosubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                           <input class="form-control" type="text" name="" id ="nombremayor"placeholder="Ingrese el Nombre de la Cuenta">
                                         </div>
                                       </div>
@@ -591,6 +598,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
+                                             <label style="color:red;display:none;" id="codigosubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                           <input class="form-control" type="text" name="" id ="obsevacionmayor"placeholder="Ingrese el Nombre de la Cuenta">
                                         </div>
                                       </div>
@@ -632,6 +640,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
+                                             <label style="color:red;display:none;" id="codigosubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                             <input class="form-control" type="text" name="" id ="codigoorigen"placeholder="Codigo Generado por los Seleccione de area y Tipo" value=""required>
                                         </div>
                                       </div>
@@ -646,6 +655,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
+                                             <label style="color:red;display:none;" id="codigosubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                           <input class="form-control" type="text" name="" id ="nombreorigen"placeholder="Ingrese el Nombre de la Cuenta"required>
                                         </div>
                                       </div>
@@ -660,6 +670,7 @@
                                     </div>
                                      <div class="col-md-6">
                                         <div class="section">
+                                             <label style="color:red;display:none;" id="codigosubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                           <input class="form-control" type="text" name="" id ="observacionorigen"placeholder="Ingrese el Nombre de la Cuenta">
                                         </div>
                                       </div>
@@ -756,15 +767,25 @@
 </div><!-- /.modal -->
      
     
-    <script src="<c:url value='/resources/js/SC_Cuentabalance.js'/>"></script>
+   
     <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
        <script src="<c:url value='/resources/js/utility.js'/>"></script>
        <script src="<c:url value='/resources/js/demo.js'/>"></script>
        <script src="<c:url value='/resources/js/main.js'/>"></script>
-       <script src="<c:url value='/resources/js/widgets.js'/>"></script>
-       <script src="<c:url value='/resources/js/jsValidaPerfil.js'/>"></script>
+       <script src="<c:url value='/resources/js/jquery.magnific-popup.js'/>"></script>
+       <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
+       <script src="<c:url value='/resources/js/jquery.steps.min.js'/>"></script>
+      
+       <script src="<c:url value='/resources/js/jquery.waypoints.min.js'/>"></script>
+       <script src="<c:url value='/resources/jsOr/sweetalert2.min.js'/>"></script>
+       <script src="<c:url value='/resources/js/picker.js'/>"></script>
+       <script src="<c:url value='/resources/js/picker.date.js'/>"></script>
+       <script src="<c:url value='/resources/js/globalize.min.js'/>"></script>
+       <script src="<c:url value='/resources/js/select2.min.js'/>"></script>
+       <script src="<c:url value='/resources/js/typeahead.bundle.min.js'/>"></script>
        <script src="<c:url value='/resources/js/SC_Cuen_contabilidad.js'/>"></script>
+        <script src="<c:url value='/resources/js/SC_Cuentabalance.js'/>"></script>
        
     <script type="text/javascript">
   jQuery(document).ready(function() {

@@ -1,4 +1,49 @@
 
+jQuery('form[data-toggle="validator"] select').on('change', function(event) {
+    event.preventDefault();
+    jQuery(this).find('option[disabled]').remove();
+});
+
+$( document ).ready(function() {
+    
+        $("#activaTema").click(function() {  
+            if($("#activaTema").is(':checked')) {  
+                  document.getElementById('skin-toolbox').style.display = 'block';
+            } else {  
+                 document.getElementById('skin-toolbox').style.display = 'none';
+            }  
+        }); 
+    
+    
+   
+  
+        $("#origen").select2(
+        {placeholder: "Seleccione Origen",
+                 allowClear: true
+        });
+        
+        
+        $("#cuenta").select2(
+        {placeholder: "Seleccione Cuenta",
+                 allowClear: true
+        });
+        $("#sociedad").select2(
+        {placeholder: "Seleccione Sociedad",
+                 allowClear: true
+        });
+      
+       
+       $("#add").click(function(){});
+       $("#crearpart").click(function () {}); 
+         
+         $("#btncrearpartidas").click(function(){});
+         $("#btnverpartidas").click(function(){});
+         $("#modificar").click(function(){});    
+           
+        
+});
+
+
 
 function activarsubcuenta(){
     document.getElementById('subcuentamayor').style.display = 'block';
