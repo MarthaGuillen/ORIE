@@ -170,6 +170,27 @@ public class perfilDAO {
        
     }
     
+    public List cargaMeuLabelPorPerfil(int idp){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_capturalabelperfil('"+idp+"')";
+        
+        
+        List<Object> filmList = new ArrayList<Object>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            //int result = q.executeUpdate();
+            filmList = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return filmList;
+       
+    }
+    
      public List cargaSociedad(int idu){
         Session session = HibernateUtil.getSessionFactory().openSession();
         String sql = "select * from fn_capturasociedadUsuario('"+idu+"') ";
@@ -188,6 +209,48 @@ public class perfilDAO {
         }
         session.close();
         return filmList;
+       
+    }
+     
+     public String activasoci(int idu, int ids, int idum){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select fn_seleccionasociedad ('"+idu+"','"+ids+"','"+idum+"') as soc";
+        
+        
+        List<String> filmList = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            //int result = q.executeUpdate();
+            filmList = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return filmList.get(0).toString();
+       
+    }
+     
+     public String insertaBitacora(String desc, int idt, int ideve, int idus){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select fn_insertaBitacora('"+desc+"','"+idt+"','"+ideve+"','"+idus+"') as inserta";
+        
+        
+        List<String> filmList = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            //int result = q.executeUpdate();
+            filmList = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return filmList.get(0).toString();
        
     }
     

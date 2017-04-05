@@ -1,8 +1,9 @@
 <%-- 
-    Document   : pgPerfil
-    Created on : 22-feb-2017, 19:14:12
+    Document   : pgAdminUser
+    Created on : 04-abr-2017, 17:39:40
     Author     : Sinergia14
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,6 +19,18 @@
     <c:redirect url="login.gdc"/>
 </c:if>
 <c:set var="validaLista" value="${fn:length(sessionScope.ses_menus)}" />
+
+<c:set var="acceso" value="adminuser.gdc" />
+<c:set var="sigueAcceso" value="no" />
+<c:forEach var="i" begin="0" end="${fn:length(sessionScope.ses_urlmen)-1}">
+    <c:if test="${acceso == sessionScope.ses_urlmen[i]}">
+        <c:set var="sigueAcceso" value="Si" />
+    </c:if>
+</c:forEach>
+<c:if test="${sigueAcceso eq 'no'}">
+    <c:redirect url="perfil.gdc"/>
+</c:if>
+
 
 <html>
     <head>
@@ -306,57 +319,7 @@
     <!-- End: Sidebar Left -->    
     <section id="content_wrapper">
         
-        <section id="content" class="animated fadeIn">
-            <div class="page-heading">
-            <div class="media clearfix">
-              <div class="media-left pr30">
-                <a href="#">
-                  
-                    <img class="media-object mw150 img-responsive"  src="<c:url value='/resources/img/${sessionScope.ses_logoSoc}'/>"   alt="...">
-                </a>
-              </div>                      
-              <div class="media-body va-m">
-                <h2 class="media-heading">${sessionScope.ses_usuario}
-                  <small> - ${nombrePerfil}</small>
-                </h2>
-                <p class="lead">${descPerfil}</p>
-                <p class="lead">Correo electrónico: ${sessionScope.ses_correo}</p>
-                <p class="lead">Sociedad default: ${sessionScope.ses_sociedadDefault}</p>
-              </div>
-            </div>
-        </div>
-        <h3 class="text-center mb25 fw400">Sociedades a las que pertenece:</h3>
-        <div class="row">
-            <c:forEach var="i" begin="0" end="${fn:length(soc)-1}">
-            <div class="col-md-4">
-                <div class="panel">
-                    
-                </div>
-            </div>
-            </c:forEach>
-            <div class="services">
-                
-                <div class="container">
-                    <c:forEach var="i" begin="0" end="${fn:length(soc)-1}">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="hovereffect">
-                            <img class="img-responsive" src="<c:url value='/resources/img/${log[i]}'/>"  alt="">
-                            <div class="overlay">
-                               <h2>${soc[i]}</h2>
-                              
-                               <button onclick="cargadefault('${idsoc[i]}')" class='btn btn-lg btn-primary'>Establecer como default</button>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    </c:forEach>           
-                </div>    
-                
-                
-            </div>
-        </div>
-        
-        </section>
+       
         
     </section>
     
@@ -373,14 +336,14 @@
                 </div>
             </div>
         </div>     
-              <div id="ajaxSociedad"></div>      
+       <div id="ajaxSociedad"></div>      
        <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
        <script src="<c:url value='/resources/js/utility.js'/>"></script>
        <script src="<c:url value='/resources/js/demo.js'/>"></script>
        <script src="<c:url value='/resources/js/main.js'/>"></script>
        <script src="<c:url value='/resources/js/widgets.js'/>"></script>
-       <script src="<c:url value='/resources/js/jsValidaPerfil.js'/>"></script>
+       
        <script type="text/javascript">
         jQuery(document).ready(function() {
 
@@ -429,3 +392,4 @@
     </script>
     </body>
 </html>
+
