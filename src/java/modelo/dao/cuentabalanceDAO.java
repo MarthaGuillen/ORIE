@@ -189,5 +189,26 @@ public class cuentabalanceDAO {
        
         return listaget;
     }
+  public List generarcatalagos(int sociedad){
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "  select  * from fn_sccatalago('"+sociedad+"')";
+        
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+
+       System.out.println("modelo.dao.cuentabalanceDAO.generarcatalagos()");
+       System.out.println(listaget);
+        return listaget;
+    }
 
 }

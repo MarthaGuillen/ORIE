@@ -31,6 +31,7 @@
         <!-- Font CSS (Via CDN) -->
         <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600'>
         <!-- Theme CSS -->
+         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/jquery.dataTables.min.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme2.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme3.css'/>">
@@ -411,50 +412,7 @@
             
              <!-- begin: .tray-left -->
         <section id="content" class="table-layout animated fadeIn">
-            <%--
-        <!-- begin: .tray-left -->
-             <aside class="tray tray-left tray290">
-
-          <h4> Admin Widgets -
-            <small>A Theme Exclusive</small>
-          </h4>
-          <ul class="icon-list">
-            <li>
-              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Author:</b> Admin Designs
-            </li>
-            <li>
-              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> License:</b> CC - Commercial 3.0
-            </li>
-            <li>
-              <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-              <b> Info:</b>
-              <a href="http://www.themeforest.net/user/AdminDesigns"> www.admindesigns.com </a>
-            </li>
-          </ul>
-
-          <div id="nav-spy">
-            <ul class="nav tray-nav tray-nav-border" data-smoothscroll="-145" data-spy="affix" data-offset-top="200">
-              <li class="active">
-                <a href="#subcuentamayor">
-                 Crear  Sub-Cuenta Mayor</a>
-              </li>
-              <li>
-                <a href="#cuentamayor">
-                  Crear  Cuenta Mayor</a>
-              </li>
-              <li>
-                <a href="#cuentaorigen">
-                  Crear cuenta Origen</a>
-              </li>
-              
-            </ul>
-          </div>
-
-        </aside>
-        <!-- end: .tray-left -->
---%>
+          
         <!-- begin: .tray-center -->
         <div class="tray tray-center">
 
@@ -498,7 +456,7 @@
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
                               data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                                 <div class="section-divider mb40" id="spy1">
-                                    <span> </span>
+                                    <span>Partida Contable</span>
                                 </div>
                                 <div class="row">
                                     <div class="row">
@@ -586,36 +544,80 @@
                                     <button type="reset" class="button"> Cancelar </button>
                                   </div>
                         </div> 
-                        </form>
-
-              
-                    </div>
-                </div>
-                
-               
-            </div>
-                                       
-        </div>
-          
-            </div>
-              <div class="page-heading"id="partida" style="display:none;">
-                
-                          <div class="media clearfix" >
-                <div class="admin-form">
-                    <div class="panel heading-border">
-                        <div class="panel-body bg-light">
+                                        <div class="panel-body bg-light" id="partida" style="display:none;"      >
                              <div class="section-divider mb40" id="spy1">
-                                    <span>Partida Contable</span>
+                                    <span>Operaciones Contable</span>
                                 </div>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                             <div class="form-group">
-                                                <label for="Descripcion">*Descripción:</label><label style="color:red;display:none;" id="descripcionval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                                <label for="Descripcion">*Concepto:</label><label style="color:red;display:none;" id="descripcionval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                                 <textarea data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="form-control" name="des" rows="2"id="des"></textarea>
                                             </div> 
                                 </div>
                              
                             </div>
+                           <div class="row">
+                               <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                <div class="form-group">
+                                    <label>Origen:</label>
+                                    <label style="color:red;display:none;" id="origenval2"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="select2-single form-control"  id="origen2" name="origen2"onchange="llenarcombcuenta2()" style=" width: 100%;">
+                                        <option value=""></option>
+                                        <c:set var="valida" value="${fn:length(idorigen)}" />
+                                        <c:if test="${valida > 0}">
+                                             <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
+                                                    <option value="${idorigen[i]}">${nombreorigen[i]}</option>
+                                                </c:forEach>
+                                        </c:if>
+                                    </select>
+                                    
+                                          </div>
+                                    </div> 
+                                 <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                <div class="form-group">
+                                    <label>Cuenta:</label>
+                                    <label style="color:red;display:none;" id="cuentaval2"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="select2-single form-control"  id="cuenta2" name="cuenta" style=" width: 100%;">
+                                        <option value=""></option>
+                                       
+                                    </select>
+                                    
+                                          </div>
+                                    </div> 
+                                       
+                               <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                <div class="form-group">
+                                    <label>Sociedad:</label>
+                                    <label style="color:red;display:none;" id="sociedadval2"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="select2-single form-control"  id="sociedad2" name="sociedad"onchange="llenarcombosubcuenta2()"style=" width: 100%;">
+                                        <option value=""></option>
+                                        <c:set var="valida" value="${fn:length(idsociedad)}" />
+                                        <c:if test="${valida > 0}">
+                                             <c:forEach var="i" begin="0" end="${fn:length(idsociedad)-1}">
+                                                 <c:if test="${idsociedad[i] != '4'}">
+                                                    <option value="${idsociedad[i]}">${sociedadnombre[i]}</option>
+                                                    </c:if>
+                                                </c:forEach>
+                                        </c:if>
+                                    </select>
+                                    
+                                          </div>
+                                    </div> 
+                                     
+                                <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                <div class="form-group">
+                                    <label>Sub-Cuenta:</label>
+                                    <label style="color:red;display:none;" id="subcuentaval2"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="select2-single form-control"  id="subcuenta2" name="cuenta" style=" width: 100%;">
+                                        <option value=""></option>
+                                       
+                                    </select>
+                                    
+                                          </div>
+                                    </div>
+                                    
+                           </div>               
                              <div class="row">
                                
                                   <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
@@ -658,7 +660,7 @@
                             
                                 
                             <div class="row">
-                                <table class="table table-responsive" id="tpartida">
+                                <table class="table table-responsive" id="tpartida" cellspacing="0" width="100%">
                                 <thead>
                                   <tr class="primary">
                                     
@@ -666,13 +668,15 @@
                                     <th>Descripcion</th>                                    
                                     <th> Debe</th>                                    
                                     <th> Haber</th>                                    
-                                    <th> </th>  
+                                    <th>Estado</th>  
+                                    <th>Compensando</th>  
+                                    <th>Crear Compensación</th>  
                                   </tr>
                                 </thead>
                                 <tbody >
                                
                                 </tbody>
-                                <tfoot id="saldo" >
+                                <tfoot id="saldo"  style="color: green;">
                                     
                                     <tr<%-- class="primary"--%>>
                                         
@@ -681,18 +685,26 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </tfoot>
                                 </table>
                             </div>
                           </div>
+                        </form>
 
+              
                     </div>
                 </div>
                 
-                
+               
             </div>
+                                       
         </div>
+          
+            </div>
+              
               <div class="page-heading"id="verpartida" style="display:none;">
                 
                           <div class="media clearfix" >
@@ -783,7 +795,7 @@
        
                                         
     <script src="<c:url value='/resources/js/SC_PartidasCuentas.js'/>"></script>
-  
+    <script src="<c:url value='/resources/jsOr/jquery.dataTables.min.js'/>"></script>
     <script type="text/javascript">
   jQuery(document).ready(function() {
 
