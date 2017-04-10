@@ -19,5 +19,6 @@
         
     <body>
         <input type="hidden" id="respLog" value="${resp}">
+        <input type="hidden" id="cadenares" value="${cadena}">
     </body>
 </html>

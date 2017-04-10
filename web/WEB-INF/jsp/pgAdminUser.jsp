@@ -48,9 +48,11 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme2.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme3.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/imageBack.css'/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/magnific-popup.css'/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/ssi-modal.css'/>">
 
-        <!-- Admin Forms CSS -->
-        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.css'/>">
+         <!-- Admin Forms CSS -->
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.min.css'/>">
     </head>
     <body class="profile-page">
    
@@ -318,18 +320,166 @@
     </aside>
     <!-- End: Sidebar Left -->    
     <section id="content_wrapper">
-        
-       
-        
-    </section>
+        <section id="content" class="animated fadeIn">
+            <div class="content-header">
+            <div class="col-md-4">
+                <a class="btn active btn-primary btn-block" onclick="nuevoUser();"><img src="<c:url value='/resources/img/new-user.png'/>" class="icon" /> Nuevo Usuario</a>
+            </div>
+            </div>      
+        </section>
+        <div id="secContenedor">    
+        <section id="content" class="animated fadeIn">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <c:set var="validapt" value="${fn:length(idusLista)}" />
+                        <c:if test="${validapt > 0}">
+                        <table class="table table-striped">
+                            <tbody>
+                                <c:forEach var="i" begin="0" end="${fn:length(idusLista)-1}">
+                                <c:set var="contador" value="${i+1}" />    
+                                <tr>
+                                    <td>
+                                        <h3><span class="label label-primary">${contador}</span></h3>
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            <b>${perfilLista[i]}</b>
+                                        </h4>
+                                        <p>@${usuarioLista[i]}</p>
+                                        <p>Creado por: ${creadorLista[i]}</p>
+                                    </td>
+                                    <td>
+                                        <c:if test="${estadoLista[i].toString() == 'true'}">
+                                            <span class="label label-success">Habilitado</span>
+                                        </c:if>
+                                        <c:if test="${estadoLista[i].toString() == 'false'}">
+                                            <span class="label label-default">Deshabilitado</span>
+                                        </c:if>
+                                        
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            <b>${nombrecLista[i]}</b>
+                                        </h4>
+                                        <a href="mailto:ramonvillaw@gmail.com">${correoLista[i]}</a>
+                                    </td>
+                                    <td>
+                                        <c:if test="${estadoLista[i].toString() == 'true'}">
+                                           <button class="btn btn-default" onclick="cambiaestado('d','${idusLista[i]}');" type="button"><i class="fa fa-fw s fa-remove"></i>Deshabilitar</button>
+                                        </c:if>
+                                        <c:if test="${estadoLista[i].toString() == 'false'}">
+                                            <button class="btn btn-default" onclick="cambiaestado('h','${idusLista[i]}');" type="button"><i class="fa fa-fw s fa-check"></i>Habilitar</button>
+                                        </c:if>
+                                    </td>            
+                                    <td>
+                                        <div class="btn-group">
+                                            
+                                            <button onclick="configurar('${idusLista[i]}','${idpLista[i]}');" class="btn btn-default" type="button">
+                                                <i class="fa fa-fw fa-cog"></i>Configurar perfil</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        </c:if>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
     
-         </div> 
+        <div id="secNuevo" style="display:none;">
+        <section id="content" class="animated fadeIn">
+            
+            <div class="container">
+                <div class="row">
+                    <div class="content-header">
+                        
+                            <h2 class="text-center"><b class="text-primary">Nuevo Usuario</b></h2>
+                        
+                    </div> 
+                    <div class="row">
+                        <div class="panel heading-border">
+                            <div class="panel-body bg-light"> 
+                                <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label for="usuario">Usuario:</label>
+                                      <input type="text" id="usuario" class="form-control" placeholder="Usuario...">
+                                  </div>  
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label for="correo">Correo electrónico:</label>
+                                      <input type="email" id="correo" class="form-control" placeholder="Correo electrónico...">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label for="nombrec">Nombre completo:</label>
+                                      <input type="text" id="nombrec" class="form-control" placeholder="Nombre completo...">
+                                  </div>
+                                </div>
+                                </div> 
+                                <div class="row">
+                                    <div class="col-md-4">
+                                      <div class="form-group">
+                                          <label for="nombrec">Contraseña:</label>
+                                          <input type="text" id="contrasenia" class="form-control" placeholder="Contraseña...">
+                                      </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-rounded btn-success" onclick="cargaperfil();"><span class="glyphicon glyphicon-indent-left"></span> Asignar perfil</button>
+                                <div id="contenedorresp"></div>
+                                <div style="display:none;">
+                                <div id="tabPerfiles">
+            <br>
+            <table class="table">
+                <thead>
+                    <tr class="success">
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                       <c:set var="valilis" value="${fn:length(idper)}" />
+                       <c:if test="${valilis > 0}">
+                           <c:forEach var="i" begin="0" end="${fn:length(idper)-1}">
+                           <c:set var="contador" value="${i+1}" />   
+                           <tr>
+                                <td>${contador}</td>
+                                <td>${nomper[i]}</td>
+                                <td>${desc[i]}</td>
+                                <td><button type="button" class="btn btn-rounded btn-success btn-block" onclick="cargaidperfil('${idper[i]}');">Cargar</button></td>
+                           </tr>
+                           </c:forEach>
+                       </c:if> 
+                       
+                    
+                    
+                </tbody>
+            </table>
+        </div></div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </section>
+        </div>               
+    </section>
+    </div> 
          <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="text-center">
-                            <img src="<c:url value='/resources/img/Loading.gif'/>" class="icon" />
+                            <img src="<c:url value='/resources/img/cargaGif.gif'/>" class="icon" />
                             <h4>Cargando...</h4>
                         </div>
                     </div>
@@ -343,7 +493,11 @@
        <script src="<c:url value='/resources/js/demo.js'/>"></script>
        <script src="<c:url value='/resources/js/main.js'/>"></script>
        <script src="<c:url value='/resources/js/widgets.js'/>"></script>
-       
+       <script src="<c:url value='/resources/js/jquery.magnific-popup.js'/>"></script>
+       <script src="<c:url value='/resources/js/jsValidaAdminUser.js'/>"></script>
+       <script src="<c:url value='/resources/js/ssi-modal.js'/>"></script>
+
+      
        <script type="text/javascript">
         jQuery(document).ready(function() {
 
