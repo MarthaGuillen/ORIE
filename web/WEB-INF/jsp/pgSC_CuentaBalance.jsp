@@ -367,7 +367,7 @@
                                         <c:set var="valida" value="${fn:length(idorigen)}" />
                                         <c:if test="${valida > 0}">
                                              <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
-                                                    <option value="${idorigen[i]}">${nombreorigen[i]}</option>
+                                                    <option value="${idorigen[i]}">${nombreorigen2[i]}</option>
                                                 </c:forEach>
                                         </c:if>
                                     </select>
@@ -421,21 +421,7 @@
                                       </div>
                                 </div>
                                
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Codigo De Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                            <label style="color:red;display:none;" id="codigosubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                            <input class="form-control" type="text" name="" id ="codigosub"placeholder="Codigo Generado " value="">
-                                        </div>
-                                      </div>
-                                </div>
+                               
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
                                         <div class="section">

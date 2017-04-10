@@ -1,4 +1,3 @@
-
 jQuery('form[data-toggle="validator"] select').on('change', function(event) {
     event.preventDefault();
     jQuery(this).find('option[disabled]').remove();
@@ -125,11 +124,11 @@ $( document ).ready(function() {
     var origen= $("#origen").val().trim();
     var cuenta= $("#cuenta").val().trim();
     var sociedad=$("#sociedad").val().trim();
-    var codigosub=$("#codigosub").val().trim();
+ 
     var nombre=$("#nombresub").val().trim();
     var observacion=$("#observacion").val().trim();
     var depuracion=$("#depuracion").val().trim();
-    console.log(cuenta+"  "+sociedad+" "+" "+codigosub+" "+nombre);
+    console.log(cuenta+"  "+sociedad+" "+" "+nombre);
     
     if(origen==""){
       e=1;
@@ -145,11 +144,11 @@ $( document ).ready(function() {
        e=1;
         document.getElementById('sociedadval').style.display = 'block'; 
     }
-    if(codigosub==""){
+  /*  if(codigosub==""){
           e=1;
          $("#codigosub").addClass("camposvacios");
          document.getElementById('codigosubval').style.display = 'block'; 
-    }
+    }*/
     if(nombre==""){
       e=1;
          $("#nombresub").addClass("camposvacios");
@@ -167,32 +166,35 @@ $( document ).ready(function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
-                       var resp= $("#resp").val();
+                       var resp= $("#resp2").val();
+                       alert(resp);
+                       var re =resp;
                        swal(
-                                'Exito!!!...',
-                                'Sub-Cuenta agregada .'
-                            )  
+                                
+                                'Codigo de Sub-Cuenta Es:    '+
+                                re.toString()  //preguntar      
+                            ) ; 
                          document.getElementById('origenval').style.display = 'none'; 
                          document.getElementById('cuentaval').style.display = 'none'; 
                          document.getElementById('sociedadval').style.display = 'none';
-                         $("#codigosub").removeClass("camposvacios");
-                         document.getElementById('codigosubval').style.display = 'none'; 
+                       /*  $("#codigosub").removeClass("camposvacios");
+                         document.getElementById('codigosubval').style.display = 'none'; */
                          $("#nombresub").removeClass("camposvacios");
                          document.getElementById('nombresubval').style.display = 'none'; 
                          $("#origen").select2("val", "");
                          $("#cuenta").select2("val", "");
                          $("#sociedad").select2("val", "");
-                         $("#codigosub").val("");
+                        // $("#codigosub").val("");
                          $("#nombresub").val("");
                         $("#observacion").val("");
                         $("#depuracion").val("");
                          }
         
         }
-       console.log(cuenta+"  "+sociedad+" "+" "+codigosub+" "+nombre);
-      xhttp.open("POST", "agregarsubcuenta.gdc", true);
+       console.log(cuenta+"  "+sociedad+" "+nombre);
+      xhttp.open("POST", "agregarsubcuenta.gdc", true);//uytyutyutyu
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
-        xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad+"&codigosub="+codigosub+"&nombre="+nombre+"&observacion="+observacion
+        xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad+"&nombre="+nombre+"&observacion="+observacion
                 +"&depuracion="+depuracion);   
  }
     
@@ -331,15 +333,15 @@ function limpiar(){
                        document.getElementById('origenval').style.display = 'none'; 
                          document.getElementById('cuentaval').style.display = 'none'; 
                          document.getElementById('sociedadval').style.display = 'none';
-                         $("#codigosub").removeClass("camposvacios");
-                         document.getElementById('codigosubval').style.display = 'none'; 
+                        /* $("#codigosub").removeClass("camposvacios");
+                         document.getElementById('codigosubval').style.display = 'none'; */
                          $("#nombresub").removeClass("camposvacios");
                          document.getElementById('nombresubval').style.display = 'none'; 
                          $("#origen").attr("selected",false);
                           $('#origen').select2("val", "");
                          $("#cuenta").select2("val", "");
                          $("#sociedad").select2("val", "");
-                         $("#codigosub").val("");
+                         //$("#codigosub").val("");
                          $("#nombresub").val("");
                         $("#observacion").val("");
                         $("#depuracion").val("");
@@ -407,7 +409,7 @@ function llenarcombobox(){
                          }
         
         }
-       
+       console.log(origen);
       xhttp.open("POST", "combobalance.gdc", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("origen="+origen);   

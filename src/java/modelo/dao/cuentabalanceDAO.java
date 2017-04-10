@@ -17,14 +17,13 @@ import org.hibernate.Transaction;
  * @author Sinergia003
  */
 public class cuentabalanceDAO {
-        public String agregarsubcuentabalance(
-                 int cuenta,int sociedad,
-               String codigosub, String nombre,String observacion
+        public List<String> agregarsubcuentabalance(
+                 int cuenta,int sociedad,String nombre,String observacion
                ,String depuracion,int user){
           
    
     String resp="";
-    String sql = "SELECT fnscinsertsubcuenta('"+cuenta+"','"+sociedad+"','"+codigosub+"','"+nombre+
+    String sql = "SELECT fnscinsertsubcuenta('"+cuenta+"','"+sociedad+"','"+nombre+
             "','"+observacion+"','"+depuracion+"','"+user+"')";
         List<String> r=new ArrayList<String>();
         try {
@@ -40,7 +39,7 @@ public class cuentabalanceDAO {
             e.printStackTrace();
         }
         System.out.println(resp+" "+r);
-    return resp;
+    return r;
     }
         
         public String agregarcuentabalance(

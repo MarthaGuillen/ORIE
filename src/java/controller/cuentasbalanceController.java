@@ -35,13 +35,13 @@ public class cuentasbalanceController {
                 codigo.add((String) datos[1].toString());
                 nombre.add((String) datos[2]);
                         }  
-             
+        System.out.println("controller.cuentasbalanceController.funCuentabalance() Enviando");     
         System.out.println(origen);
         System.out.println(codigo);
         System.out.println(nombre);
             mv.addObject("idorigen",origen);
             mv.addObject("codigoorigen",codigo);
-            mv.addObject("nombreorigen",nombre);
+            mv.addObject("nombreorigen2",nombre);
      //obtener sociedad
      ArrayList<String> idsociedad =new ArrayList<String>();   
      ArrayList<String> sociedadnombre =new ArrayList<String>();   
@@ -109,9 +109,9 @@ public class cuentasbalanceController {
        ModelAndView mv=new ModelAndView("pgSCagregarcuentabalance");
        int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
        cuentabalanceDAO balance = new cuentabalanceDAO();
-       String resp=balance.agregarsubcuentabalance(cuenta, sociedad, codigosub, nombre, observacion, depuracion, idusuario);
-       
-       mv.addObject("resp",resp);
+        List resp=balance.agregarsubcuentabalance(cuenta, sociedad, nombre, observacion, depuracion, idusuario);
+          System.out.println("controller.cuentasbalanceController.funAgregarsubcuenta()"+resp.get(0));
+       mv.addObject("resp",resp.get(0));
        return mv;
        }
      
