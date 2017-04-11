@@ -62,7 +62,7 @@ public class partidascontablesController {
                    
            //obtener datos de la partida
        partidaDAO p =new partidaDAO();
-         List resp = p.mostrarpartidas();
+       /*  List resp = p.mostrarpartidas();
          ArrayList<String> npartida =  new ArrayList<String>();
     ArrayList<String> nombrepartida = new ArrayList<String>();
     ArrayList<String> fechap = new ArrayList<String>();
@@ -80,7 +80,7 @@ public class partidascontablesController {
             mv.addObject("nombrepartida",nombrepartida);
             mv.addObject("fechap",fechap);
             mv.addObject("sociedadpartida",sociedadpartida);
-            mv.addObject("usuariopartida",usuariopartida);
+            mv.addObject("usuariopartida",usuariopartida);*/
      
     return mv;
     }
@@ -153,6 +153,7 @@ public class partidascontablesController {
      @RequestMapping(value = "crearpartida.gdc" ,method =RequestMethod.POST)
     public  ModelAndView funcrearpartida(
               @RequestParam("nombret") String nombret,
+            @RequestParam("subcuenta") int subcuenta,
             @RequestParam("fecha")  String fecha,
             @RequestParam("sociedad")  int sociedad,
            
@@ -161,7 +162,7 @@ public class partidascontablesController {
     ModelAndView mv =new ModelAndView("pgrep");
     int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
         partidaDAO partida =new partidaDAO();
-        List<String> id=partida.agregarpartida( sociedad, nombret, fecha,idusuario);
+        List<String> id=partida.agregarpartida(subcuenta, sociedad, nombret, fecha,idusuario);
        
         mv.addObject("id",id);
     return mv;
@@ -317,4 +318,58 @@ public class partidascontablesController {
             mv.addObject("dato10",usuario);
      return mv;
      }
+       
+     
+    @RequestMapping(value = "modificarestadopartida.gdc" ,method =RequestMethod.POST)
+    public  ModelAndView funestadopartida(
+              @RequestParam("transaccion") int transaccion,HttpServletRequest request
+             
+    ){
+    ModelAndView mv =new ModelAndView("pgobtenerinfoL");
+      
+    int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
+        partidaDAO partida =new partidaDAO();
+       List<String> estadoo=partida.cambiarestado(transaccion,idusuario);
+       System.out.println("Regreso del Dao f");
+       System.out.println(estadoo.get(0));
+        mv.addObject("dato1",estadoo.get(0));
+    return mv;
+    }
+    @RequestMapping(value = "partidast.gdc" ,method =RequestMethod.POST)
+    public  ModelAndView funactualizardatosdepartidas(
+              @RequestParam("sociedad") int sociedad      
+    ){
+    ModelAndView mv =new ModelAndView("pgobtenerinfoL");
+      
+    
+         //obtener datos de la partida
+       partidaDAO p =new partidaDAO();
+         List resp = p.mostrarpartidas(sociedad);
+         ArrayList<String> idpartida =  new ArrayList<String>();
+    ArrayList<String> codigopartida = new ArrayList<String>();
+    ArrayList<String> fechap = new ArrayList<String>();
+    ArrayList<String> nombrepartida = new ArrayList<String>();
+    ArrayList<String> usuariopartida = new ArrayList<String>();
+     List<Object[]> listDatos = resp;
+            for (Object[] datos : listDatos) {
+                idpartida.add((String) datos[0].toString());
+                codigopartida.add((String) datos[1]);
+                fechap.add((String) datos[2].toString());
+                nombrepartida.add((String) datos[3].toString());
+                usuariopartida.add((String) datos[4]);
+                           } 
+            mv.addObject("dato_1",idpartida);
+            mv.addObject("dato_2",codigopartida);
+            mv.addObject("dato_3",fechap);
+            mv.addObject("dato_4",nombrepartida);
+            mv.addObject("dato_5",usuariopartida);
+            System.out.println("controller.partidascontablesController.funactualizardatosdepartidas()");
+            System.out.println(idpartida+" "+codigopartida+" "+fechap);
+    return mv;
+    }
+    
+ 
+
 }
+
+ 

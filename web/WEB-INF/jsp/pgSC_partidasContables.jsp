@@ -431,7 +431,7 @@
                             <i class="fa fa-user"></i>Crear Partida
                         </a>
                     </li>
-                    <li role="presentation" id="btnverpartidas">
+                    <li role="presentation" id="btnverpartidas" onclick="mostrarpartidas()">
                         <a href="#Section2" aria-controls="tutor" role="tab" data-toggle="tab">
                             <i class="fa fa-group"></i>Ver partidas
                         </a>
@@ -440,7 +440,7 @@
                     
                     
                 </ul> 
-                            <br><br>
+                                        <br><br>
             <div class="page-heading"id="crearpartidas" >
               
             <div class="media clearfix">
@@ -668,9 +668,7 @@
                                     <th>Descripcion</th>                                    
                                     <th> Debe</th>                                    
                                     <th> Haber</th>                                    
-                                    <th>Estado</th>  
-                                    <th>Compensando</th>  
-                                    <th>Crear Compensación</th>  
+                                  
                                   </tr>
                                 </thead>
                                 <tbody >
@@ -684,9 +682,7 @@
                                         <td>Saldo</td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        
                                     </tr>
                                 </tfoot>
                                 </table>
@@ -711,6 +707,8 @@
                 <div class="admin-form">
                     <div class="panel heading-border">
                         <div class="panel-body bg-light">
+                            <input type="hidden" id="sociedadp" value="${ses_idsociedad}">
+                            <h2 class="Primary">${ses_sociedadDefault}</h2>
                                 <div class="row">
                                 <table class="table table-responsive" id="infodatos">
                                 <thead>

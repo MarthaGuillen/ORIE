@@ -381,7 +381,7 @@ function llenarcombobox(){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-              
+             limpiarcombo();
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
                var idcuenta=$("#prueba").val();
                var codigo=$("#codigocuenta").val();
@@ -409,7 +409,7 @@ function llenarcombobox(){
                          }
         
         }
-       console.log(origen);
+      
       xhttp.open("POST", "combobalance.gdc", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("origen="+origen);   
@@ -489,4 +489,10 @@ function crearcatalagos(sociedad ){
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("idSociedad="+sociedad);   
  
+}
+function limpiarcombo(){
+ 
+    $("#cuenta").select2("val", "");
+    $("#sociedad").select2("val", "");
+   
 }

@@ -17,17 +17,11 @@
     <c:redirect url="login.gdc"/>
 </c:if>
 <c:set var="validaLista" value="${fn:length(sessionScope.ses_menus)}" />
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-    </head>
-    <body>
-         <script src="<c:url value='/resources/js/codigoCuenta.js'/>"></script>
+
         <div id="info">
            
             <input type="hidden" value="${numerocuenta}" id="cuentar">
+            <input type="hidden" value="${estado}" id="cuentar2">
             
         </div>
-    </body>
-</html>
+    
