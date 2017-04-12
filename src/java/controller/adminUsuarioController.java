@@ -141,24 +141,27 @@ public class adminUsuarioController {
 
                     }
                     
+                    String cadena1 = "<div class='col-md-6'>";
+                    String cadena2 = "<div class='col-md-6'>";
+                    int cambiante = 0;
                     for(int i=0;i<idlbl.size();i++){
-                       cadena += "<h2><small>"+label.get(i).toString()+"</small></h2>"; 
+                       cadena += "<h2>"+label.get(i).toString()+"</h2>"; 
                        cadena += "<ul style='list-style-type:none'>";
                        for(int j=0;j<idMen.size();j++){
                             if(idMenlbl.get(j).toString() == null ? idlbl.get(i).toString() == null : idMenlbl.get(j).toString().equals(idlbl.get(i).toString())){
                                 cadena += "<li><div class='checkbox-custom fill checkbox-success mb5'>";
-                                cadena += "<input type='checkbox' id='men"+idMen.get(j)+"' value='men"+idMen.get(j)+"' onclick=\"activaVista('divmen"+idMen.get(j)+"');\">";
+                                cadena += "<input type='checkbox'  checked=\"\" disabled=\"\" id='men"+idMen.get(j)+"' value='men"+idMen.get(j)+"' onclick=\"activaVista('divmen"+idMen.get(j)+"');\">";
                                 cadena += "<label for='men"+idMen.get(j)+"'>"+menu.get(j)+"</label>";
-                                cadena += "</div><li>";
+                                cadena += "</div></li>";
                                 cadena += "<ul style='list-style-type:none'>";
                                 cadena += "<div id='divmen"+idMen.get(j)+"'>";
                                 for(int k=0;k<idnav.size();k++){
                                    if(idmenNav.get(k) == null ? idMen.get(j) == null : idmenNav.get(k).equals(idMen.get(j))){
                                        
                                        cadena += "<li><div class='checkbox-custom fill checkbox-success mb5'>";
-                                       cadena += "<input type='checkbox' id='nav"+idnav.get(k)+"' value='nav"+idnav.get(k)+"' onclick=\"activaNav('"+idnav.get(j)+"');\">";
+                                       cadena += "<input  checked=\"\" disabled=\"\" type='checkbox' id='nav"+idnav.get(k)+"' value='nav"+idnav.get(k)+"' onclick=\"activaNav('"+idnav.get(j)+"');\">";
                                        cadena += "<label for='nav"+idnav.get(k)+"'>"+nav.get(k)+"</label>";
-                                       cadena += "</div><li>";
+                                       cadena += "</div></li>";
                                        
                                    }
                                 }
@@ -167,10 +170,21 @@ public class adminUsuarioController {
                             }
                        }
                        cadena += "</ul>";
-                       
-                    
+                       if(cambiante==0){
+                          cambiante = 1; 
+                          cadena1 += cadena;
+                       }else{
+                          cambiante = 0; 
+                          cadena2 += cadena;
+                       }
+                       cadena = "";
                     }
-                    mv.addObject("cadena",cadena);
+                    cadena1 += "</div>";
+                    cadena1 += "</div>";
+                    mv.addObject("cadena1",cadena1);
+                    mv.addObject("cadena2",cadena2);
+                    mv.addObject("validaCadena","si");
+
             }
         
         

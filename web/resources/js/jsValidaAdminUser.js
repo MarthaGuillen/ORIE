@@ -19,29 +19,26 @@ function cargaperfil(){
     
 }
 
-function cargaidperfil(id){
+function cargaidperfil(id,nomp){
     ssi_modal.close();
     $("#processing-modal").modal('show');
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
-                        document.getElementById("ajaxSociedad").innerHTML = xhttp.responseText;
-                        var cad = $("#cadenares").val();
-                        document.getElementById("contenedorresp").innerHTML = cad;
-                    
+                        document.getElementById("contenedorresp").innerHTML = xhttp.responseText;
+                        $("#processing-modal").modal('hide');
+                        
+                        document.getElementById("nomperf").innerHTML = nomp;
+                        
+                        $("#idperfilselec").val(id);
                     }
     }
     xhttp.open("POST", "cargaPerfilSel.gdc", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("idpe="+id);
-    
-    
-   
 }
 
 function nuevoUser(){
-    
-    
     document.getElementById('secContenedor').style.display = 'none';
     document.getElementById('secNuevo').style.display = 'block';
 }

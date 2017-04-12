@@ -362,7 +362,7 @@
                                         <h4>
                                             <b>${nombrecLista[i]}</b>
                                         </h4>
-                                        <a href="mailto:ramonvillaw@gmail.com">${correoLista[i]}</a>
+                                        <a href="#">${correoLista[i]}</a>
                                     </td>
                                     <td>
                                         <c:if test="${estadoLista[i].toString() == 'true'}">
@@ -432,7 +432,12 @@
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-rounded btn-success" onclick="cargaperfil();"><span class="glyphicon glyphicon-indent-left"></span> Asignar perfil</button>
-                                <div id="contenedorresp"></div>
+                                <div class="row">
+                                    <input type="hidden" id="idperfilselec">
+                                    <h1 class="title text-center" id="nomperf"></h1>
+                                    <div id="contenedorresp"></div>
+                                </div>
+                                
                                 <div style="display:none;">
                                 <div id="tabPerfiles">
             <br>
@@ -455,7 +460,7 @@
                                 <td>${contador}</td>
                                 <td>${nomper[i]}</td>
                                 <td>${desc[i]}</td>
-                                <td><button type="button" class="btn btn-rounded btn-success btn-block" onclick="cargaidperfil('${idper[i]}');">Cargar</button></td>
+                                <td><button type="button" class="btn btn-rounded btn-success btn-block" onclick="cargaidperfil('${idper[i]}','${nomper[i]}');">Cargar</button></td>
                            </tr>
                            </c:forEach>
                        </c:if> 
@@ -474,7 +479,7 @@
         </div>               
     </section>
     </div> 
-         <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
+         <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -486,7 +491,7 @@
                 </div>
             </div>
         </div>     
-       <div id="ajaxSociedad"></div>      
+       <div id="ajaxSociedad" style="display:none;"></div>      
        <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
        <script src="<c:url value='/resources/js/utility.js'/>"></script>
