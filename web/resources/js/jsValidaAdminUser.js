@@ -38,7 +38,20 @@ function cargaidperfil(id,nomp){
     xhttp.send("idpe="+id);
 }
 
-function nuevoUser(){
+function nuevoUser(){  
     document.getElementById('secContenedor').style.display = 'none';
     document.getElementById('secNuevo').style.display = 'block';
 }
+
+$( document ).ready(function() {
+    $('#defaultForm').bootstrapValidator().on('success.form.bv', function(e) {
+           //Variable de error 
+           
+           var e = 0;
+             
+            
+           
+        });
+    
+    
+});

@@ -50,7 +50,8 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/imageBack.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/magnific-popup.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/ssi-modal.css'/>">
-
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrapValidator.css'/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/fonts/glyphicons-pro/glyphicons-pro.css'/>">
          <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.min.css'/>">
     </head>
@@ -320,15 +321,15 @@
     </aside>
     <!-- End: Sidebar Left -->    
     <section id="content_wrapper">
+        
+        <div id="secContenedor">    
         <section id="content" class="animated fadeIn">
             <div class="content-header">
             <div class="col-md-4">
                 <a class="btn active btn-primary btn-block" onclick="nuevoUser();"><img src="<c:url value='/resources/img/new-user.png'/>" class="icon" /> Nuevo Usuario</a>
             </div>
-            </div>      
-        </section>
-        <div id="secContenedor">    
-        <section id="content" class="animated fadeIn">
+            <br><br>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -402,75 +403,136 @@
                     </div> 
                     <div class="row">
                         <div class="panel heading-border">
-                            <div class="panel-body bg-light"> 
+                            
+                            <div class="panel-body bg-light">
+                                
                                 <div class="row">
+                                <form id="defaultForm" action="#"
+                                    data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                                    data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                                    data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">      
                                 <div class="col-md-4">
                                   <div class="form-group">
                                       <label for="usuario">Usuario:</label>
-                                      <input type="text" id="usuario" class="form-control" placeholder="Usuario...">
+                                      <input  maxlength="25" type="text" id="usuario" class="form-control gui-input" placeholder="Usuario..." data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
                                   </div>  
                                 </div>
                                 <div class="col-md-4">
                                   <div class="form-group">
                                       <label for="correo">Correo electrónico:</label>
-                                      <input type="email" id="correo" class="form-control" placeholder="Correo electrónico...">
+                                      <input  maxlength="120" type="email" id="correo" class="form-control gui-input" placeholder="Correo electrónico..." data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
                                   </div>
                                 </div>
                                 <div class="col-md-4">
                                   <div class="form-group">
                                       <label for="nombrec">Nombre completo:</label>
-                                      <input type="text" id="nombrec" class="form-control" placeholder="Nombre completo...">
+                                      <input maxlength="120" type="text" id="nombrec" class="form-control gui-input" placeholder="Nombre completo..." data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
                                   </div>
                                 </div>
-                                </div> 
-                                <div class="row">
-                                    <div class="col-md-4">
+                                <div class="col-md-4">
                                       <div class="form-group">
                                           <label for="nombrec">Contraseña:</label>
-                                          <input type="text" id="contrasenia" class="form-control" placeholder="Contraseña...">
+                                          <input maxlength="8" type="text" id="contrasenia" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="form-control gui-input" placeholder="Contraseña...">
                                       </div>
                                     </div>
-                                </div>
-                                <button type="button" class="btn btn-rounded btn-success" onclick="cargaperfil();"><span class="glyphicon glyphicon-indent-left"></span> Asignar perfil</button>
+                               
                                 <div class="row">
+                                    <button type="button" class="btn btn-rounded btn-success" onclick="cargaperfil();"><span class="glyphicon glyphicon-indent-left"></span> Asignar perfil</button>
                                     <input type="hidden" id="idperfilselec">
                                     <h1 class="title text-center" id="nomperf"></h1>
                                     <div id="contenedorresp"></div>
-                                </div>
-                                
+                                </div>  
+                                <!--Perfiles-->
                                 <div style="display:none;">
-                                <div id="tabPerfiles">
-            <br>
-            <table class="table">
-                <thead>
-                    <tr class="success">
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Seleccionar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                       <c:set var="valilis" value="${fn:length(idper)}" />
-                       <c:if test="${valilis > 0}">
-                           <c:forEach var="i" begin="0" end="${fn:length(idper)-1}">
-                           <c:set var="contador" value="${i+1}" />   
-                           <tr>
-                                <td>${contador}</td>
-                                <td>${nomper[i]}</td>
-                                <td>${desc[i]}</td>
-                                <td><button type="button" class="btn btn-rounded btn-success btn-block" onclick="cargaidperfil('${idper[i]}','${nomper[i]}');">Cargar</button></td>
-                           </tr>
-                           </c:forEach>
-                       </c:if> 
-                       
-                    
-                    
-                </tbody>
-            </table>
-        </div></div> 
+                                    <div id="tabPerfiles">
+                                        <br>
+                                        <table class="table">
+                                            <thead>
+                                                <tr class="success">
+                                                    <th>#</th>
+                                                    <th>Nombre</th>
+                                                    <th>Descripción</th>
+                                                    <th>Seleccionar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <c:set var="valilis" value="${fn:length(idper)}" />
+                                                <c:if test="${valilis > 0}">
+                                                    <c:forEach var="i" begin="0" end="${fn:length(idper)-1}">
+                                                        <c:set var="contador" value="${i+1}" />   
+                                                        <tr>
+                                                            <td>${contador}</td>
+                                                            <td>${nomper[i]}</td>
+                                                            <td>${desc[i]}</td>
+                                                            <td><button type="button" class="btn btn-rounded btn-success btn-block" onclick="cargaidperfil('${idper[i]}','${nomper[i]}');">Cargar</button></td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:if> 
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div> 
+                                <!--FIn Perfiles--> 
+                                <!--Sociedades-->               
+                                                <h4><b class="text-primary">Seleccione las sociedades a las que pertenecerà el usuario:</b></h4>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr class="success">
+                                                            <th>#</th>
+                                                            <th>Nombre</th>
+                                                            <th>Seleccionar</th>
+                                                            <th>Default</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <c:set var="valilis" value="${fn:length(idsoci)}" />
+                                                        <c:if test="${valilis > 0}">
+                                                            <c:forEach var="i" begin="0" end="${fn:length(idsoci)-1}">
+                                                                <c:set var="contador" value="${i+1}" />   
+                                                                <tr>
+                                                                    <td>${contador}</td>
+                                                                    <td>${nomsoc[i]}</td>
+                                                                    <td>
+                                                                        <div class="checkbox-custom fill checkbox-success mb5">
+                                                                            <input type="checkbox" id="soc${idsoci[i]}">
+                                                                            <label for="soc${idsoci[i]}"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="radio-custom radio-success mb5">
+                                                                            <input type="radio" id="rdsoci${idsoci[i]}" name="socdefault">
+                                                                            <label for="rdsoci${idsoci[i]}"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                        </c:if> 
+
+
+
+                                                    </tbody>
+                                                </table>             
+
+                                                <!--fin sociedades--> 
+                                                <div class=" pull-right">  
+                                                    <br><br>
+                                                    <button type="submit" class="btn btn-lg btn-primary"><span class="glyphicons glyphicons-user_add"></span> Crear Usuario</button>
+                                                </div>
+                                </form> 
+                                </div> 
+                                
+                                    
+                                
+                                              
+                                                 
+                            
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -501,7 +563,7 @@
        <script src="<c:url value='/resources/js/jquery.magnific-popup.js'/>"></script>
        <script src="<c:url value='/resources/js/jsValidaAdminUser.js'/>"></script>
        <script src="<c:url value='/resources/js/ssi-modal.js'/>"></script>
-
+       <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
       
        <script type="text/javascript">
         jQuery(document).ready(function() {

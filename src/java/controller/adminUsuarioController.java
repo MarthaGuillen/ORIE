@@ -75,6 +75,20 @@ public class adminUsuarioController {
                 mv.addObject("idper",idper);
                 mv.addObject("nomper",nomper);
                 mv.addObject("desc",desc);
+                
+                //cargaa sociedades
+                List listaSoci = opc.cargaSociedades();
+                ArrayList<String> idsoci = new ArrayList<String>();
+                ArrayList<String> nomsoc = new ArrayList<String>();
+                List<Object[]> listSoc = listaSoci;
+                for (Object[] datos : listSoc) {
+                    idsoci.add((String) datos[0].toString()); 
+                    nomsoc.add((String) datos[1].toString()); 
+                    
+                }
+                mv.addObject("idsoci",idsoci);
+                mv.addObject("nomsoc",nomsoc);
+                
             }
         
         

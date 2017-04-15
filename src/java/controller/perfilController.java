@@ -42,6 +42,7 @@ public class perfilController {
 
             } 
             request.getSession().setAttribute("ses_idperfil", idp);
+            request.getSession().setAttribute("ses_tipoperfil", nom);
             mv.addObject("nombrePerfil", nom);
             mv.addObject("descPerfil", decr);
 
