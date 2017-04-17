@@ -4601,6 +4601,11 @@ a.bg-dark:hover {
   background-color: #53AB1B;
   color: #666;
 }
+
+.bg-light1 {
+  background-color: #ffffff;
+  color: #666;
+}
 a.bg-light:hover {
   background-color: #e8e8e8 !important;
 }
