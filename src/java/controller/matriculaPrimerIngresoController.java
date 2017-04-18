@@ -29,15 +29,9 @@ public class matriculaPrimerIngresoController {
         ModelAndView mv = new ModelAndView("pgFroMatriculaPrimerIngreso");
         
         if((String) request.getSession().getAttribute("ses_idusuario") != null){
-            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
-            
-            
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){            
             }
-        
-        
         }
-        
-        
         return mv;
     }
     
@@ -70,6 +64,87 @@ public class matriculaPrimerIngresoController {
                 List<Object[]> listDatosPA = listaPA;
                 for (Object[] datos : listDatosPA) {
                     idPa.add((String) datos[0].toString());
+                    nompPa.add((String) datos[1].toString()); 
+                }
+                mv.addObject("paisTemp",nompPa);
+                mv.addObject("idpaisTemp",idPa);                
+            }        
+        }
+        return mv;
+    }
+    
+    @RequestMapping(value = "PadTutores.gdc")
+    public ModelAndView ListadoPadresTutores(HttpServletRequest request) throws Exception {
+        ModelAndView mv = new ModelAndView("pgformularioPrimerIngresoListaPadTutor");
+        fomularioDAO opc = new fomularioDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){    
+                String idu = (String) request.getSession().getAttribute("ses_idusuario");               
+                
+                String idf = (String) request.getSession().getAttribute("ses_formulario");
+                
+                List listaPadTutores = opc.cargaPadresTutores(idu, idf);
+                ArrayList<String> idPadTut = new ArrayList<String>();
+                ArrayList<String> nompPadTut = new ArrayList<String>();
+                ArrayList<String> telPadTut = new ArrayList<String>();
+                ArrayList<String> paisPatTut = new ArrayList<String>();
+                ArrayList<String> idnPadTut = new ArrayList<String>();
+                ArrayList<String> pasaPadTut = new ArrayList<String>();
+                ArrayList<String> correoPadTut = new ArrayList<String>();
+                ArrayList<String> esPatTut = new ArrayList<String>();                
+                ArrayList<String> esteForm = new ArrayList<String>();
+                List<Object[]> listDatPadTut = listaPadTutores;
+                
+                String padOriginales = "";
+                
+                for (Object[] datos : listDatPadTut) {
+                    idPadTut.add((String) datos[0].toString());
+                    nompPadTut.add((String) datos[1].toString()); 
+                    telPadTut.add((String) datos[2].toString());
+                    paisPatTut.add((String) datos[3].toString()); 
+                    idnPadTut.add((String) datos[4].toString());
+                    pasaPadTut.add((String) datos[5].toString()); 
+                    correoPadTut.add((String) datos[6].toString());
+                    esPatTut.add((String) datos[7].toString()); 
+                    if(((String) datos[8].toString()).equals(idf)){
+                        esteForm.add("1"); 
+                        if(padOriginales.equals("")){
+                            padOriginales = ((String) datos[0].toString());
+                        }else{
+                            padOriginales = padOriginales + "," +((String) datos[0].toString());
+                        }
+                    }else{
+                        esteForm.add("0"); 
+                    }
+                }
+                mv.addObject("idpadreTutor",idPadTut);
+                mv.addObject("nombrePadreTutor",nompPadTut);
+                mv.addObject("telefonoPadreTutor",telPadTut);
+                mv.addObject("paisPadreTutor",paisPatTut);
+                mv.addObject("idnPadreTutor",idnPadTut);
+                mv.addObject("pasaPadreTutor",pasaPadTut);
+                mv.addObject("correoPadreTutor",correoPadTut);
+                mv.addObject("esPadreTutor",esPatTut);
+                mv.addObject("esteForm",esteForm);
+                mv.addObject("padOriginales",padOriginales);
+            }        
+        }
+        return mv;
+    }
+    
+    @RequestMapping(value = "formPadTutor.gdc")
+    public ModelAndView PadreOTutorform(HttpServletRequest request) throws Exception {
+        ModelAndView mv = new ModelAndView("pgformularioPrimerIngresoformPadTutor");
+        fomularioDAO opc = new fomularioDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+                //Inserta formulario admision                
+                List listaPA = opc.cargaPaises();
+                ArrayList<String> nompPa = new ArrayList<String>();
+                ArrayList<String> idPa = new ArrayList<String>();
+                List<Object[]> listDatosPA = listaPA;
+                for (Object[] datos : listDatosPA) {
+                    idPa.add((String) datos[0].toString());
                     nompPa.add((String) datos[1].toString());  
                     
 
@@ -91,42 +166,38 @@ public class matriculaPrimerIngresoController {
                 }
                 mv.addObject("ocupacionesTemp",nompOcp);
                 mv.addObject("idocupacionesTemp",idOcp);
-                
-                
-                List listaPadTutores = opc.cargaPadresTutores(idu);
-                ArrayList<String> idPadTut = new ArrayList<String>();
-                ArrayList<String> nompPadTut = new ArrayList<String>();
-                ArrayList<String> telPadTut = new ArrayList<String>();
-                ArrayList<String> paisPatTut = new ArrayList<String>();
-                ArrayList<String> idnPadTut = new ArrayList<String>();
-                ArrayList<String> pasaPadTut = new ArrayList<String>();
-                ArrayList<String> correoPadTut = new ArrayList<String>();
-                ArrayList<String> esPatTut = new ArrayList<String>();
-                List<Object[]> listDatPadTut = listaPadTutores;
-                for (Object[] datos : listDatPadTut) {
-                    idPadTut.add((String) datos[0].toString());
-                    nompPadTut.add((String) datos[1].toString()); 
-                    telPadTut.add((String) datos[2].toString());
-                    paisPatTut.add((String) datos[3].toString()); 
-                    idnPadTut.add((String) datos[4].toString());
-                    pasaPadTut.add((String) datos[5].toString()); 
-                    correoPadTut.add((String) datos[6].toString());
-                    esPatTut.add((String) datos[7].toString()); 
-                }
-                
-                mv.addObject("idpadreTutor",idPadTut);
-                mv.addObject("nombrePadreTutor",nompPadTut);
-                mv.addObject("telefonoPadreTutor",telPadTut);
-                mv.addObject("paisPadreTutor",paisPatTut);
-                mv.addObject("idnPadreTutor",idnPadTut);
-                mv.addObject("pasaPadreTutor",pasaPadTut);
-                mv.addObject("correoPadreTutor",correoPadTut);
-                mv.addObject("esPadreTutor",esPatTut);
             }        
         }
         return mv;
     }
     
+    @RequestMapping(value = "AgregarPadTutores.gdc", method = RequestMethod.POST)
+    public ModelAndView AddTutores(HttpServletRequest request,
+            @RequestParam("valSel") String padTut,
+            @RequestParam("del") String delPadTut) throws Exception {
+        ModelAndView mv = new ModelAndView("pgFormularioAjax");
+        fomularioDAO opc = new fomularioDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+                
+                String idu = (String) request.getSession().getAttribute("ses_idusuario");
+                String idf = (String) request.getSession().getAttribute("ses_formulario");
+                
+                String tut = new String(padTut.getBytes("ISO-8859-1"), "UTF-8");
+                String del = new String(delPadTut.getBytes("ISO-8859-1"), "UTF-8");
+                
+                String r = opc.insertaAgregadosPad(tut, del, idu, idf);
+            }
+        }
+                
+        return mv;
+    }
+    
+    @RequestMapping(value = "vacio.gdc")
+    public ModelAndView vacio(HttpServletRequest request) throws Exception {
+        ModelAndView mv = new ModelAndView("pgvacio");
+        return mv;
+    }
     
     @RequestMapping(value = "formulariofase1.gdc", method = RequestMethod.POST)
     public ModelAndView guarda1form(HttpServletRequest request,

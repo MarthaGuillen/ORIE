@@ -57,10 +57,10 @@ public class fomularioDAO {
         return listaget;
     }
     
-    public List cargaPadresTutores(String us) {
+    public List cargaPadresTutores(String us, String form) {
         
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "select * from fn_capturaTutores('"+us+"')";
+        String sql = "select * from fn_capturaTutores('"+us+"', '"+form+"')";
      
         List<Object[]> listaget = new ArrayList<Object[]>();
         try {
@@ -258,7 +258,27 @@ public class fomularioDAO {
          
         Session session = HibernateUtil.getSessionFactory().openSession();                                                             
         String sql = "SELECT fn_insertafase7('"+ApPrevia+"','"+PagWeb+"','"+Pub+"','"+PubDet+"','"+Panf+"','"+fam+"','"+famNom+"','"+emp+"','"
-                +empNom+"','"+otros+"','"+otrosDet+"''"+idUsuario+"','"+idFormulario+"')";
+                +empNom+"','"+otros+"','"+otrosDet+"','"+idUsuario+"','"+idFormulario+"')";
+        
+        List<String> listaget = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return listaget.get(0).toString();
+    } 
+     
+     public String insertaAgregadosPad(String idRelacionados, String idEliminados, String idUsuario, String idFormulario) {
+         
+        Session session = HibernateUtil.getSessionFactory().openSession();                                                             
+        String sql = "SELECT fn_relacionaPadTutor('"+idRelacionados+"','"+idEliminados+"','"+idUsuario+"','"+idFormulario+"')";
         
         List<String> listaget = new ArrayList<String>();
         try {
