@@ -9,7 +9,7 @@ var Demo = function() {
 
   // Demo AdminForm Functions
   var runDemoForms = function() {
-
+    
     // Prevents directory response when submitting a demo form
     $('.admin-form').on('submit', function(e) {
 
@@ -50,9 +50,9 @@ var Demo = function() {
 
   // Demo AdminForm Functions
   var runDemoSourceCode = function() {
-
+    
     var bsElement = $(".bs-component");
-
+    
     if (bsElement.length) {
 
       // allow caching of demo resources
@@ -61,11 +61,11 @@ var Demo = function() {
       });
 
       // load highlight.js plugin stylesheet from admindesigns.com
-      $("<link/>", {
+      /*$("<link/>", {
         rel: "stylesheet",
         type: "text/css",
         href: "http://admindesigns.com/demos/admin/theme/vendor/plugins/highlight/styles/github.css"
-      }).appendTo("head");
+      }).appendTo("head");*/
 
       // load highlight.js plugin script from admindesigns.com
       $.getScript("http://admindesigns.com/demos/admin/theme/vendor/plugins/highlight/highlight.pack.js");
@@ -177,9 +177,9 @@ var Demo = function() {
 
   // DEMO FUNCTIONS - primarily trash
   var runDemoSettings = function() {
-
-    if ($('#skin-toolbox').length) {
-
+    
+    if (1) {
+      
       // Toggles Theme Settings Tray
       $('#skin-toolbox .panel-heading').on('click', function() {
         $('#skin-toolbox').toggleClass('toolbox-open');
@@ -197,12 +197,32 @@ var Demo = function() {
       // Possible Component Skins
       var headerSkins = "bg-primary bg-success bg-info bg-warning bg-danger bg-alert bg-system bg-dark";
       var sidebarSkins = "sidebar-light light dark";
-
+      var cabecera = "";
+      var cabecera1 = "";
+      
+      if(tipoperf==="Administrador"){
+          cabecera = "bg-light";
+          cabecera1 = "sidebar-dark";
+      }else{
+        if(sociedaddef==="DelCampo International School S.A. de C.V."){
+           cabecera = "bg-dark";
+           cabecera1 = "sidebar-dark"; 
+        }
+        if(sociedaddef==="The Academy DelCampo International School S.A. de C.V."){
+           cabecera = "bg-system";
+           cabecera1 = "sidebar-system";  
+        }
+        if(sociedaddef==="Sport Center and Spa Casa Campo S.A de C.V."){
+           cabecera = "bg-alert";
+           cabecera1 = "sidebar-alert";  
+        }
+      }
+              
       // Theme Settings
       var settingsObj = {
         // 'headerTone': true,
-        'headerSkin': '',
-        'sidebarSkin': 'sidebar-default',
+        'headerSkin': cabecera,
+        'sidebarSkin': cabecera1,
         'headerState': 'navbar-fixed-top',
         'sidebarState': 'affix',
         'sidebarAlign': '',
@@ -212,13 +232,17 @@ var Demo = function() {
 
       // Local Storage Theme Key
       var themeKey = 'admin-settings1';
-
+         
       // Local Storage Theme Get
+      //localStorage.setItem(themeKey, JSON.stringify(settingsObj));
+      localStorage.setItem(themeKey, JSON.stringify(settingsObj));
       var themeGet = localStorage.getItem(themeKey);
-
+      
       // Set new key if one doesn't exist
       if (themeGet === null) {
         localStorage.setItem(themeKey, JSON.stringify(settingsObj));
+              
+
         themeGet = localStorage.getItem(themeKey);
       }
 
@@ -532,8 +556,9 @@ var Demo = function() {
     });
 
   }
-
+   
   return {
+     
     init: function() {
       runDemoForms();
       runDemoTopbar();

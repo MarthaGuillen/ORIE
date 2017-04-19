@@ -35,7 +35,10 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme2.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme3.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/imageBack.css'/>">
-
+        <script>
+            var sociedaddef = "${sessionScope.ses_sociedadDefault}";
+            var tipoperf = "${sessionScope.ses_tipoperfil}";
+        </script>
         <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.css'/>">
     </head>
@@ -54,140 +57,7 @@
            Example: <body class="example-page sb-l-o sb-r-c">
            Results: Sidebar left Open, Sidebar right Closed
          --------------------------------------------------------------->
-        <div id="skin-toolbox" style="display:none;">
-            <div class="panel">
-                <div class="panel-heading">
-                    <span class="panel-icon">
-                        <i class="fa fa-gear text-primary"></i>
-                    </span>
-                    <span class="panel-title"> Opciones visuales</span>
-                </div>
-                <div class="panel-body pn">
-                    <ul class="nav nav-list nav-list-sm pl15 pt10" role="tablist">
-                        <li class="active">
-                            <a href="#toolbox-header" role="tab" data-toggle="tab">Color barra de título</a>
-                        </li>
-                        <li>
-                            <a href="#toolbox-sidebar" role="tab" data-toggle="tab">Barra de navegación</a>
-                        </li>
-                        <li>
-                            <a href="#toolbox-settings" role="tab" data-toggle="tab">Diseño de barra de titulo</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content p20 ptn pb15">
-                        <div role="tabpanel" class="tab-pane active" id="toolbox-header">
-                            <form id="toolbox-header-skin">
-                                <h4 class="mv20">Colores</h4>
-                                <div class="skin-toolbox-swatches">
-                                    <div class="checkbox-custom checkbox-disabled fill mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin8" checked value="">
-                                        <label for="headerSkin8">Light</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-primary mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin1" value="bg-primary">
-                                        <label for="headerSkin1">Primario</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-info mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin3" value="bg-info">
-                                        <label for="headerSkin3">Información</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-warning mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin4" value="bg-warning">
-                                        <label for="headerSkin4">Advertencia</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-danger mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin5" value="bg-danger">
-                                        <label for="headerSkin5">Peligro</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-alert mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin6" value="bg-alert">
-                                        <label for="headerSkin6">Alerta</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-system mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin7" value="bg-system">
-                                        <label for="headerSkin7">Sistema</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-success mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin2" value="bg-success">
-                                        <label for="headerSkin2">Del Campo</label>
-                                    </div>
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin9" value="bg-dark">
-                                        <label for="headerSkin9">Oscuro</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="toolbox-sidebar">
-                            <form id="toolbox-sidebar-skin">
-                                <h4 class="mv20">Color menu lateral</h4>
-                                <div class="skin-toolbox-swatches">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="radio" name="sidebarSkin" checked id="sidebarSkin3" value="">
-                                        <label for="sidebarSkin3">Dark</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-disabled mb5">
-                                        <input type="radio" name="sidebarSkin" id="sidebarSkin1" value="sidebar-light">
-                                        <label for="sidebarSkin1">Light</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-light mb5">
-                                        <input type="radio" name="sidebarSkin" id="sidebarSkin2" value="sidebar-light light">
-                                        <label for="sidebarSkin2">Lighter</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="toolbox-settings">
-                            <form id="toolbox-settings-misc">
-                                <h4 class="mv20 mtn">Opciones de diseño</h4>
-                                <div class="form-group">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="checkbox" checked="" id="header-option">
-                                        <label for="header-option">Cabecera fija</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="checkbox" checked="" id="sidebar-option">
-                                        <label for="sidebar-option">Menu fijo</label>
-                                    </div>
-                                </div>
-                                <div class="form-group" style="display:none;">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="checkbox" id="breadcrumb-option">
-                                        <label for="breadcrumb-option">Fixed Breadcrumbs</label>
-                                    </div>
-                                </div>
-                                <div class="form-group" style="display:none;">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="checkbox" id="breadcrumb-hidden">
-                                        <label for="breadcrumb-hidden">Hide Breadcrumbs</label>
-                                    </div>
-                                </div>
-                                <h4 class="mv20">Opciones de diseño</h4>
-                                <div class="form-group">
-                                    <div class="radio-custom mb5">
-                                        <input type="radio" id="fullwidth-option" checked name="layout-option">
-                                        <label for="fullwidth-option">Fullwidth Layout</label>
-                                    </div>
-                                </div>
-                                <div class="form-group mb20">
-                                    <div class="radio-custom radio-disabled mb5">
-                                        <input type="radio" id="boxed-option" name="layout-option" disabled>
-                                        <label for="boxed-option">Boxed Layout
-                                            <b class="text-muted">(Coming Soon)</b>
-                                        </label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="form-group mn br-t p15">
-                        <a href="#" id="clearLocalStorage" class="btn btn-primary btn-block pb10 pt10">Limpiar configuración</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- End: Theme Settings Pane -->
          <div id="main">
         <!-- Start: Header -->
@@ -229,21 +99,7 @@
             <span class="caret caret-tp hidden-xs"></span>
           </a>
           <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
-            <li class="dropdown-header clearfix">
-              <div class="pull-left ml12">
-                  <p>Activar/Desactivar Configuracion de tema</p>
-                  <div class="pull-right">
-                        <div class="switch switch-success round switch-inline">
-                            <input id="activaTema" type="checkbox">
-                            <label for="activaTema"></label>
-                        </div>
-                  </div>
-                  
-              </div>
-
-              
-
-            </li>  
+             
             <li class="list-group-item">
               <a href="#" class="animated animated-short fadeInUp">
                 <span class="fa fa-user"></span> Perfil
@@ -317,7 +173,7 @@
               </div>                      
               <div class="media-body va-m">
                 <h2 class="media-heading">${sessionScope.ses_usuario}
-                  <small> - ${nombrePerfil}</small>
+                  <small> - ${sessionScope.ses_tipoperfil}</small>
                 </h2>
                 <p class="lead">${descPerfil}</p>
                 <p class="lead">Correo electrónico: ${sessionScope.ses_correo}</p>

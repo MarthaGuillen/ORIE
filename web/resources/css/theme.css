@@ -5002,7 +5002,7 @@ previous button's border...
   background: #37bc9b;
 }
 .nano.affix.nano-dark > .nano-pane > .nano-slider {
-  background: #3b3f4f;
+  background: #25B563;
 }
 /* ============================================== 
  Colorpicker/Datepicker/DateRangePicker
@@ -6299,7 +6299,7 @@ form.hide-list-label .bootstrap-duallistbox-container label {
   background-color: #37bc9b;
 }
 #nprogress.npr-dark .bar {
-  background-color: #3b3f4f;
+  background-color: #25B563;
 }
 #nprogress.npr-light .bar {
   background-color: #fafafa;
@@ -6517,7 +6517,7 @@ form.hide-list-label .bootstrap-duallistbox-container label {
   background: #37bc9b;
 }
 .scroller-dark .scroller-handle {
-  background: #3b3f4f;
+  background: #25B563;
 }
 /* inverse light contextuals */
 .scroller-light .scroller-handle,
@@ -6634,8 +6634,8 @@ form.hide-list-label .bootstrap-duallistbox-container label {
 .select2-dark + .select2-container .select2-selection--single,
 .select2-dark + .select2-container .select2-selection--single .select2-selection__rendered {
   color: #FFF;
-  border-color: #3b3f4f;
-  background-color: #3b3f4f;
+  border-color: #25B563;
+  background-color: #25B563;
 }
 /* arrow */
 .select2-dark + .select2-container .select2-selection__arrow b {
@@ -7811,7 +7811,7 @@ table.footable > tbody > tr.footable-detail-show.row-system > td.footable-first-
 /* Dark Row */
 table.footable > tbody > tr.row-dark:hover > td.footable-first-column,
 table.footable > tbody > tr.footable-detail-show.row-dark > td.footable-first-column {
-  border-left-color: #3b3f4f;
+  border-left-color: #25B563;
 }
 /* Fixed width labels - used only in first column */
 table.footable.fw-labels > tbody > tr > td:first-child {

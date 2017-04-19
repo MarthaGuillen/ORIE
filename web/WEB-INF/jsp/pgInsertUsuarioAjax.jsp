@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pgContenedorAjax
-    Created on : 22-feb-2017, 17:06:33
+    Document   : pgInsertUsuarioAjax
+    Created on : 18-abr-2017, 19:14:56
     Author     : Sinergia14
 --%>
 
@@ -15,10 +15,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-        <input type="hidden" id="respLog" value="${resp}">
-        
-        <c:if test="${validaCadena eq 'si'}">
-            ${cadena1}
-            ${cadena2}
-        </c:if>
-
+<input type="hidden" id="respCreaUSsu" value="${resp}">

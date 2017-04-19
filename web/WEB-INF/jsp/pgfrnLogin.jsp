@@ -115,9 +115,11 @@
             </div>
         </div>
         <div class="container">
-                <div class="row vertical-offset-100">
+            <div class="row vertical-offset-100">
                     <div class="col-md-4 col-md-offset-4">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" style="-webkit-box-shadow: 1px 3px 15px 5px rgba(0,0,0,0.75);
+                        -moz-box-shadow: 1px 3px 15px 5px rgba(0,0,0,0.75);
+                        box-shadow: 1px 3px 15px 5px rgba(0,0,0,0.75);">
                             <div class="panel-heading">                                
                                 <div class="row-fluid user-row">
                                     <img src="<c:url value='/resources/img/header.png'/>" class="img-responsive" alt="Grupo GDC"/>

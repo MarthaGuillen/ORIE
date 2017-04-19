@@ -307,18 +307,18 @@ body.login1 {
 
           }
           .carousel .one {
-            background: url(../img/Fondo1.jpg);
+            background: url(../img/fondo1.png);
 			
             background-size: cover;
             -moz-background-size: cover;
           }
           .carousel .two {
-            background: url(../img/Fondo2.jpg);
+            background: url(../img/fondo1.png);
             background-size: cover;
             -moz-background-size: cover;
           }
           .carousel .three {
-            background: url(../img/Fondo3.jpg);
+            background: url(../img/fondo1.png);
             background-size: cover;
             -moz-background-size: cover;
           }

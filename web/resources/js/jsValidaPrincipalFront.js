@@ -1,13 +1,6 @@
 $( document ).ready(function() {
     
-        $("#activaTema").click(function() {  
-            if($("#activaTema").is(':checked')) {  
-                  document.getElementById('skin-toolbox').style.display = 'block';
-            } else {  
-                 document.getElementById('skin-toolbox').style.display = 'none';
-            }  
-        }); 
-    
+      
     
        
     

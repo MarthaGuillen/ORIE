@@ -77,7 +77,7 @@
         }*/
         .tab .nav-tabs li a{
             border: none;
-            padding: 13px 30px;
+            padding: 13px 23px;
             font-size: 14px;
             color: #777;
             background: transparent;
@@ -152,7 +152,7 @@
                
             }
     </style>
-    <body class="admin-wizard-page">
+    <body class="admin-wizard-page" onload="cargarContenido('PadTutores.gdc','divTablaPadTutor')">
         <!-------------------------------------------------------------+ 
             <body> Helper Classes: 
          ---------------------------------------------------------------+ 
@@ -409,7 +409,7 @@
     <section id="content_wrapper">
         <section id="content" class="animated fadeIn">
                 <div class="content-header">
-                    <h2><b class="text-success">Formulario de Solicitud para Matrícula 2016-2017</b></h2>
+                    <h2><b class="text-success">Formulario de Solicitud para Matrícula</b></h2>
                     <p class="text-justify"><strong>Instrucciones:</strong> Este parte es del paquete de matrícula usado en DelCampo International School
                      favor completar este formato cuidadosamente, teniendo la opcion que usted puede adjuntar directamente los documentos requeridos
                     para el grado que desea matricular.</p>
@@ -420,44 +420,53 @@
             <div class="tab" role="tabpanel">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#Section1" aria-controls="informacion" role="tab" data-toggle="tab">
-                            <img style="position: relative;top:15px;left: -10px;" width="20px"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                    
+                    <li role="presentation"><a href="#Section1" aria-controls="otros" role="tab" data-toggle="tab">
+                            <img style="position: relative;top:15px;left: -10px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                            <i class="fa fa-pencil-square-o"></i>Matrícula</a>
+                    </li>
+                    <li role="presentation" class="active"><a href="#Section2" aria-controls="informacion" role="tab" data-toggle="tab">
+                            <img style="position: relative;top:15px;left: -10px;" width="15px"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-graduation-cap"></i>Estudiante</a>
                     </li>
-                    <li role="presentation"><a href="#Section2" aria-controls="tutor" role="tab" data-toggle="tab" style="text-align: center">
-                            <img style="position: relative;top:15px;left: -10px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                    <li role="presentation"><a href="#Section3" aria-controls="tutor" role="tab" data-toggle="tab" style="text-align: center">
+                            <img style="position: relative;top:15px;left: -10px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-group"></i> Padres y/o<br/>Tutores</a>
                     </li>
-                    <li role="presentation"><a href="#Section3" aria-controls="otra" role="tab" data-toggle="tab" style="text-align: center">
-                             <img style="position: relative;top:15px;left: -10px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                    <li role="presentation"><a href="#Section4" aria-controls="otra" role="tab" data-toggle="tab" style="text-align: center">
+                             <img style="position: relative;top:15px;left: -10px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-home"></i>Otra<br/>Información</a>
                     </li>
-                    <li role="presentation"><a href="#Section4" aria-controls="educacion" role="tab" data-toggle="tab">
-                             <img style="position: relative;top:15px;left: -10px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                    <li role="presentation"><a href="#Section5" aria-controls="educacion" role="tab" data-toggle="tab">
+                             <img style="position: relative;top:15px;left: -10px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-th-list"></i>Educación</a>
                     </li>
-                    <li role="presentation"><a href="#Section5" aria-controls="salud" role="tab" data-toggle="tab">
-                             <img style="position: relative;top:15px;left: -25px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                    <li role="presentation"><a href="#Section6" aria-controls="salud" role="tab" data-toggle="tab">
+                             <img style="position: relative;top:15px;left: -25px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-heartbeat"></i>Salud</a>
                     </li>
-                    <li role="presentation"><a href="#Section6" aria-controls="transporte" role="tab" data-toggle="tab">
-                             <img style="position: relative;top:15px;left: -25px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                    <li role="presentation"><a href="#Section7" aria-controls="transporte" role="tab" data-toggle="tab">
+                             <img style="position: relative;top:15px;left: -25px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-bus"></i>Transporte</a>
                     </li>
-                    <li role="presentation"><a href="#Section7" aria-controls="otros" role="tab" data-toggle="tab" style="text-align: center">
-                            <img style="position: relative;top:15px;left: -25px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                    <li role="presentation"><a href="#Section8" aria-controls="otros" role="tab" data-toggle="tab" style="text-align: center">
+                            <img style="position: relative;top:15px;left: -25px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-files-o "></i>Documentos<br/> Adjuntos</a>
                     </li>
-                    <li role="presentation"><a href="#Section8" aria-controls="otros" role="tab" data-toggle="tab">
-                            <img style="position: relative;top:15px;left: -25px;" width="20px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
+                    <li role="presentation"><a href="#Section9" aria-controls="otros" role="tab" data-toggle="tab">
+                            <img style="position: relative;top:15px;left: -25px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-list-alt"></i>Otros</a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <!--Div datos 1--> 
                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                         <div class="admin-form theme-primary mw1000 center-block" id="contenedor1">
+                        </div>
+                    </div>
+                    <!--Div datos 1--> 
+                    <div role="tabpanel" class="tab-pane fade" id="Section2">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor2">
                         <form id="defaultForm" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -637,8 +646,8 @@
                     </div>
                     </div>                    
                     <!--Div datos 2-->      
-                    <div role="tabpanel" class="tab-pane fade" id="Section2">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor2">
+                    <div role="tabpanel" class="tab-pane fade" id="Section3">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor3">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                     <div class="content-header">
@@ -647,246 +656,39 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                    <c:set var="validapt" value="${fn:length(idpadreTutor)}" />
-                                    <c:if test="${validapt > 0}">
-                                        <table class="table">
-                                            <thead>
-                                                <tr class="primary">
-                                                    <th></th>
-                                                    <th>Nombre</th>
-                                                    <th>Teléfono</th>
-                                                    <th>Correo</th>
-                                                    <th>País</th>
-                                                    <th>Identidad/Pasaporte</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach var="i" begin="0" end="${fn:length(idpadreTutor)-1}">
-                                                    <tr>
-                                                        <c:if test="${esPadreTutor[i].toString() == '1'}">
-                                                            <td><span class="label label-system">Padre</span></td>
-                                                        </c:if>
-                                                        <c:if test="${esPadreTutor[i].toString() == '0'}">
-                                                            <td><span class="label label-warning">Tutor</span></td>
-                                                        </c:if>
-                                                        <td><b>${nombrePadreTutor[i]}</b></td>
-                                                        <td>${telefonoPadreTutor[i]}</td>
-                                                        <td>${correoPadreTutor[i]}</td>
-                                                        <td>${paisPadreTutor[i]}</td>
-                                                        <td>${idnPadreTutor[i]} / ${pasaPadreTutor[i]}</td>
-                                                        <td class="text-right">
-                                                            <label class="checkbox-custom fill checkbox-system mb5">
-                                                                <input type="checkbox" name="padSel" value="${idpadreTutor[i]}">
-                                                                <span class="checkbox"></span>
-                                                            </label>
-                                                          </td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </c:if>
-                                </div>
+                            <div class="row" id="divTablaPadTutor" name="divTablaPadTutor">
                             </div>
                             <hr/>      
-                            <form id="formTutor" action="#"
-                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"> 
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                        <h2><b class="text-success">Nuevo Padre o Tutor:</b></h2>
-                                    </div>
-                                </div>  
-                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                                    <div class="row">
-                                        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
-                                            <div class="form-group">
-                                                <label for="nomPadTutor">*Nombre:</label>
-                                                <input maxlength="120" type="text" class="form-control gui-input" name="nomPadTutor" id="nomPadTutor" placeholder="Nombre Completo" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" />
-                                            </div>
-                                        </div>  
-                                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
-                                            <label for="TipoPadTutor">*Rol:</label>
-                                            <select class="form-control" id ="TipoPadTutor" name="TipoPadTutor">                                                
-                                                <option value="1">Padre</option>
-                                                <option value="0">Tutor</option>
-                                            </select>
-                                        </div> 
-                                    </div>
-                                    <div class="row">                                           
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="telcelPadTutor">*Teléfono Celular:</label>
-                                                <input data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="gui-input form-control" maxlength="15" type="text" id ="telcelPadTutor" name="telcelPadTutor" placeholder="Teléfono Celular">
-                                            </div>
-                                        </div>   
-                                       <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                           <div class="form-group">
-                                               <label for="correoPadTutor">Correo electrónico:</label>
-                                               <input class="gui-input form-control" maxlength="150" type="email" id ="correoPadTutor" name="correoPadTutor" placeholder="example@dominio.com">
-                                           </div>
-                                       </div>
-                                    </div>
-                                    <div class="row"> 
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                               <label for="nIdentidadPadTutor">Número de identidad:</label>
-                                               <input class="gui-input form-control" maxlength="13" type="text" data-bv-trigger="keyup" data-bv-notempty-message="Campo obligatorio" id ="nIdentidadPadTutor" name="nIdentidadPadTutor" placeholder="xxxxxxxxxxxxx">
-                                           </div>           
-                                       </div>
-                                       <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                           <div class="form-group">
-                                               <label for="pasaportePadTutor">Pasaporte:</label>
-                                               <input class="gui-input form-control" maxlength="13" type="text" data-bv-trigger="keyup" data-bv-notempty-message="Campo obligatorio" id ="pasaportePadTutor" name="pasaportePadTutor" placeholder="xxxxxxxxxxxxx">
-                                           </div>
-                                       </div>
-                                    </div>                                    
-                                </div>  
-                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                                    <h3 style="margin-left: 6px;"><b class="text-success">Domicilio:</b></h3>                                                                   
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="telDomPadTutor">Teléfono: <small style="font-weight: normal;"><i>(Incluya Códigos de Área, Ciudad y País)</i></small></label>
-                                                <input class="gui-input form-control" maxlength="15" type="text" id ="telDomPadTutor" name="telDomPadTutor" placeholder="Teléfono">
-                                            </div>
-                                        </div> 
-                                         <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label>*País:</label>
-                                                <label style="color:red;display:none;" id="paisPadTutorval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                                <select class="select2-single form-control"  id="paisPadTutor" name="paisPadTutor" style="width: 100%">
-                                                    <option value=""></option>
-                                                    <c:set var="valida" value="${fn:length(paisTemp)}" />
-                                                    <c:if test="${valida > 0}">
-                                                        <c:forEach var="i" begin="0" end="${fn:length(paisTemp)-1}">
-                                                            <option value="${idpaisTemp[i]}">${paisTemp[i]}</option>
-                                                        </c:forEach>
-                                                    </c:if>
-                                                </select>
-                                            </div>  
-                                        </div> 
-                                    </div>
-                                    <div class="row">
-
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="ciudPadTutor">*Ciudad:</label>
-                                                <input data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="gui-input form-control" type="text" maxlength="180" id ="ciudPadTutor" name="ciudPadTutor" placeholder="Ciudad">
-                                            </div>  
-                                        </div>    
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="direccionPadTutor">*Dirección:</label>
-                                                <textarea data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="form-control" id="direccionPadTutor" name="direccionPadTutor" rows="4"></textarea>
-                                            </div> 
-                                        </div>
-
-                                    </div> 
-                                </div> 
-
-                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                                    <h3 style="margin-left: 6px;"><b class="text-success">Trabajo u Ocupación:</b></h3> 
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="empresaPadTutor">Empresa:</label>
-                                                <input class="gui-input form-control" type="text" maxlength="180" id ="empresaPadTutor" name="empresaPadTutor" placeholder="Empresa">
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="ocupacionPadTutor">Ocupación:</label>
-                                                <select class="select2-single form-control"  id="ocupacionPadTutor" name="ocupacionPadTutor" style="width: 100%">
-                                                    <option value=""></option>
-                                                    <c:set var="valida" value="${fn:length(ocupacionesTemp)}" />
-                                                    <c:if test="${valida > 0}">
-                                                        <c:forEach var="i" begin="0" end="${fn:length(ocupacionesTemp)-1}">
-                                                            <option value="${idocupacionesTemp[i]}">${ocupacionesTemp[i]}</option>
-                                                        </c:forEach>
-                                                    </c:if>
-                                                </select>
-                                                
-                                            </div> 
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="telTrabPadTutor">Teléfono:  <small style="font-weight: normal;"><i>(Incluya Códigos de Área, Ciudad y País)</i></small></label>
-                                                <input class="gui-input form-control" maxlength="15" type="text" id ="telTrabPadTutor" name="telTrabPadTutor" placeholder="Teléfono">
-                                            </div>
-                                        </div> 
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label>País:</label>
-                                                <label style="color:red;display:none;" id="paisTrabPadTutorval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                                <select class="select2-single form-control"  id="paisTrabPadTutor" name="paisTrabPadTutor" style="width: 100%">
-                                                    <option value=""></option>
-                                                    <c:set var="valida" value="${fn:length(paisTemp)}" />
-                                                    <c:if test="${valida > 0}">
-                                                        <c:forEach var="i" begin="0" end="${fn:length(paisTemp)-1}">
-                                                            <option value="${idpaisTemp[i]}">${paisTemp[i]}</option>
-                                                        </c:forEach>
-                                                    </c:if>
-                                                </select>
-                                            </div>  
-                                        </div> 
-                                    </div>
-                                    <div class="row"> 
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="ciudTrabPadTutor">Ciudad:</label>
-                                                <input class="gui-input form-control" type="text" maxlength="180" id ="ciudTrabPadTutor" name="ciudTrabPadTutor" placeholder="Ciudad">
-                                            </div>  
-                                        </div>  
-                                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                            <div class="form-group">
-                                                <label for="direccionTrabPadTutor">Dirección:</label>
-                                                <textarea class="form-control" id="direccionTrabPadTutor" name="direccionTrabPadTutor" rows="4"></textarea>
-                                            </div> 
-                                        </div> 
-                                    </div>                                
-                                </div>      
-
-
-                            <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                                <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                    <input type="hidden" id="cantidad" name="cantidad" value="1"/>
-                                    <button type="submit" class="btn btn-lg btn-primary btn-block" id="botonform2"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-                                </div>
+                            <div class="row">
+                                <div class="content-header">
+                                    <h2><b class="text-success">Agregar Padre o Tutor:</b></h2>
                                 </div>
                             </div>  
-                                
-                            <div id="tutoresCreados" class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em; display: none;">
-                                <hr style="border: 1px solid #0e6e15;">
-                                <h2><b class="text-success">Padres y/o tutores agregados:</b></h2>
-                                <div class="row">
-                                    <table class="table" id="tablaPadTutor">
-                                        <thead>
-                                          <tr class="success">
-                                            <th>Nombre</th>
-                                            <th>Rol</th>
-                                            <th>Eliminar</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                    <br/>
+                            <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-right: 1em;">
+                                <div class="form-group">
+                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                                        <button type="button" class="btn btn-lg btn-system btn-block" id="GuardarPadSel" name="GuardarPadSel" onclick="cargarContenido('formPadTutor.gdc','divformPadTutor')"><span class="glyphicon glyphicon-plus-sign"></span> Nuevo</button>
+                                    </div>
                                 </div>
-                            </div>    
-                            </form>
+                                <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                                </div>
+                            </div>
+                            <div class="row" >
+                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1">
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-lg-10 col-xs-10" id="divformPadTutor" name="divformPadTutor">
+                                </div>
+                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1">
+                                </div>
+                            </div>  
                         </div>
                         
                     </div>
  
-                    <div role="tabpanel" class="tab-pane fade" id="Section3">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor3">
+                    <div role="tabpanel" class="tab-pane fade" id="Section4">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor4">
                             <form id="formOtraInfo" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -1134,8 +936,8 @@
                         </div>
                     </div>
                     
-                    <div role="tabpanel" class="tab-pane fade" id="Section4">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor4">
+                    <div role="tabpanel" class="tab-pane fade" id="Section5">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor5">
                             <form id="formInfoEducacion" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -1347,16 +1149,20 @@
                             </form>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="Section5">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor5">
-                        </div>
-                    </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section6">
                         <div class="admin-form theme-primary mw1000 center-block" id="contenedor6">
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section7">
                         <div class="admin-form theme-primary mw1000 center-block" id="contenedor7">
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section8">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor8">
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section9">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor9">
                             <form id="formOtros" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -1465,7 +1271,7 @@
                                                 </div>
                                             </div>
                                     </div>
-                                </div>    
+                                </div>  
                                 <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
                                     <div class="form-group">
                                         <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
