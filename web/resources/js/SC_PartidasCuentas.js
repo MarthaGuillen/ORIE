@@ -53,17 +53,62 @@ $( document ).ready(function() {
         {placeholder: "Seleccione Sub-cuenta",
                  allowClear: true
         });
+        $("#cuenta2").select2(
+        {placeholder: "Seleccione la Cuenta",
+                 allowClear: true
+        });
+        
+        $("#origen2").select2(
+        {placeholder: "Seleccione Origen",
+                 allowClear: true
+        });
+        $("#sociedad2").select2(
+        {placeholder: "Seleccione Sociedad",
+                 allowClear: true
+        });
+        $("#subcuenta2").select2(
+        {placeholder: "Seleccione Sub-cuenta",
+                 allowClear: true
+        });
+       
        
        $("#add").click(function(){
            
             var monto=$("#monto").val();
           var descripcion=$("#des").val();
-           var subcuenta =$("#subcuenta").val();
+           var origen =$("#origen2").val();
+           var sociedad =$("#sociedad2").val();
+           var cuenta =$("#cuenta2").val();
+           var subcuenta =$("#subcuenta2").val();
            var movimiento=$('input:radio[name=movi]:checked').val();
            var debe=0;
            var haber=0;
            var e=0;
            var transaccion;
+           
+           if(sociedad==""){
+               e=1;
+              
+              document.getElementById('sociedadval2').style.display = 'block'; 
+           }
+           if(origen==""){
+               e=1;
+              
+              document.getElementById('origenval2').style.display = 'block'; 
+           }
+          
+           
+           
+           if(subcuenta==""){
+               e=1;
+              
+              document.getElementById('subcuentaval2').style.display = 'block'; 
+           }
+            if(cuenta==""){
+               e=1;
+              
+              document.getElementById('cuentaval2').style.display = 'block'; 
+           }
            if(descripcion==""){
                e=1;
               
@@ -95,6 +140,10 @@ $( document ).ready(function() {
           
            document.getElementById('movival').style.display = 'none';
            document.getElementById('montoval').style.display = 'none';
+           document.getElementById('sociedadval2').style.display = 'none'; 
+           document.getElementById('origenval2').style.display = 'none'; 
+            document.getElementById('cuentaval2').style.display = 'none'; 
+             document.getElementById('subcuentaval2').style.display = 'none';
          
             var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
@@ -125,8 +174,23 @@ $( document ).ready(function() {
            var e=0;
         var nombret= $("#nombret").val();
         var fecha= $("#fecha").val();
+         var subcuenta =$("#subcuenta").val();
         var sociedad= $("#sociedad").val();
+        var origen= $("#origen").val();
         fecha2=fecha;
+        if(origen==""){
+               e=1;
+              
+              document.getElementById('origenval').style.display = 'block'; 
+           }
+          
+           
+           
+           if(subcuenta==""){
+               e=1;
+              
+              document.getElementById('subcuentaval').style.display = 'block'; 
+           }
          if(nombret==""){
              e=1;
              document.getElementById('nombreval').style.display = 'block';
@@ -142,7 +206,7 @@ $( document ).ready(function() {
              document.getElementById('sociedadval').style.display = 'block';
              
          }
-         if(cuenta==""){
+         if(subcuenta==""){
              e=1;
              document.getElementById('cuentaval').style.display = 'block';
              
@@ -153,7 +217,8 @@ $( document ).ready(function() {
            document.getElementById('cuentaval').style.display = 'none';
            document.getElementById('nombreval').style.display = 'none';
            document.getElementById('btnagregar').style.display = 'none';
-         
+           document.getElementById('origenval').style.display = 'none';
+           document.getElementById('subcuentaval').style.display = 'none';
          
          $("#partida").css("display", "block");  
         
@@ -163,7 +228,8 @@ $( document ).ready(function() {
                          document.getElementById("alerta2").innerHTML = xhttp.responseText;
                         var id =$("#idt").val();
                         idcrearpartida= id.substring(1, id.length-1);
-                       
+                        document.getElementById('sociedadval').style.disabled = true;
+         
                         
                          
                     }
@@ -171,8 +237,8 @@ $( document ).ready(function() {
 
                 xhttp.open("POST", "crearpartida.gdc", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("nombret="+nombret+"&fecha="+fecha+"&sociedad="+sociedad);
-        document.getElementById('btnt').style.display = 'block';
+                xhttp.send("subcuenta="+subcuenta+"&nombret="+nombret+"&fecha="+fecha+"&sociedad="+sociedad);
+               document.getElementById('btnt').style.display = 'block';
          
          
        }
@@ -184,6 +250,7 @@ $( document ).ready(function() {
               document.getElementById('btnagregar').style.display = 'block';
                document.getElementById('partida').style.display = 'none';
                document.getElementById('verpartida').style.display = 'none';
+            
                 $("#nombret").val("");
          $("#fecha").val("");
     
@@ -267,12 +334,96 @@ $( document ).ready(function() {
         
 });
 
+
+
+function llenarcombcuenta2(){
+       var origen=$("#origen2").val().trim();
+       var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              limpiarcombo2();
+                document.getElementById("alerta2").innerHTML = xhttp.responseText;
+               var idcuenta=$("#prueba").val();
+               var codigo=$("#codigocuenta").val();
+               var nombre=$("#nombrecuenta").val();
+              
+                 var lid_tipo= idcuenta.substring(1, idcuenta.length-1);
+           
+                 var lcodigoarea= codigo.substring(1, codigo.length-1);
+                
+                 var lnombretipo= nombre.substring(1, nombre.length-1);
+                
+                 
+                 var arrayid_tipo=lid_tipo.split(",");
+                 var arraycodigoarea=lcodigoarea.split(",");               
+                 var arraynombretip=lnombretipo.split(",");
+              
+                 var cadena="<option value=''>Seleccione El Area de la Cuenta</option>";
+                 for (var i = 0; i < arraycodigoarea.length; i++) {
+                 
+               cadena+=" <option value='"+arrayid_tipo[i]+"'>"+arraycodigoarea[i]+"  "+arraynombretip[i]+"</option>";
+            }
+           
+            
+            $("#cuenta2").html(cadena);
+                         }
+        
+        }
+       
+      xhttp.open("POST", "llenarcombocuentat.gdc", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
+        xhttp.send("origen="+origen);  
+    
+    
+}
+function llenarcombosubcuenta2(){
+ var sociedad=$("#sociedad2").val().trim();
+ var cuenta=$("#cuenta2").val().trim();
+   
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              
+                document.getElementById("alerta2").innerHTML = xhttp.responseText;
+               var idcuenta=$("#subprueba").val();
+               var codigo=$("#subcodigocuenta").val();
+               var nombre=$("#subnombrecuenta").val();
+              
+                 var lid_tipo= idcuenta.substring(1, idcuenta.length-1);
+           
+                 var lcodigoarea= codigo.substring(1, codigo.length-1);
+                
+                 var lnombretipo= nombre.substring(1, nombre.length-1);
+                
+                 
+                 var arrayid_tipo=lid_tipo.split(",");
+                 var arraycodigoarea=lcodigoarea.split(",");               
+                 var arraynombretip=lnombretipo.split(",");
+              
+                 var cadena="<option value=''>Seleccione El Area de la Cuenta</option>";
+                 for (var i = 0; i < arraycodigoarea.length; i++) {
+                 
+               cadena+=" <option value='"+arrayid_tipo[i]+"'>"+arraycodigoarea[i]+"  "+arraynombretip[i]+"</option>";
+            }
+           
+            
+            $("#subcuenta2").html(cadena);
+                         }
+        
+        }
+        
+      xhttp.open("POST", "llenarsubcuenta.gdc", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
+        xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad);   
+ 
+}
 function llenarcombcuenta(){
+    limpiarcombo();
        var origen=$("#origen").val().trim();
        var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-              
+              limpiarcombo();
                 document.getElementById("alerta2").innerHTML = xhttp.responseText;
                var idcuenta=$("#prueba").val();
                var codigo=$("#codigocuenta").val();
@@ -348,14 +499,14 @@ function llenarcombosubcuenta(){
         xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad);   
  
 }
- function modificar(id,fila){
+/* function modificar(id,fila){
    var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
                 /* $("#des").val("");
                  $("#monto").value("");
                   $("#Debito").attr('checked', false);
-                  $("#Credito").attr('checked', false);*/
+                  $("#Credito").attr('checked', false);
                 document.getElementById("alerta2").innerHTML = xhttp.responseText;
                 document.getElementById('btnt').style.display = 'none';
                 document.getElementById('btnmodificar').style.display = 'block';
@@ -407,7 +558,7 @@ function llenarcombosubcuenta(){
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("transaccion="+id);    
        
- }
+ }*/
 
 function creartabla(t,d,monto,movi){
     ii=ii+1;
@@ -431,7 +582,8 @@ function creartabla(t,d,monto,movi){
                       nuevaFila +="<td>"+monto+"</td>";
                       saldohaber = parseFloat(saldohaber) + parseFloat(monto);
                             }
-                            nuevaFila+="<td><a href='#'onclick='modificar("+t+","+ii+")'><span class='glyphicon glyphicon-pencil' ></a></td>";
+                       
+                       
     
                 
             }
@@ -452,13 +604,14 @@ function creartabla(t,d,monto,movi){
                       nuevaFila +="<td >"+monto.toFixed(2)+"</td>";
                       saldohaber = parseFloat(saldohaber) + parseFloat(monto);
                       }
-                      nuevaFila+="<td><a href='#'onclick='modificar("+t,ii+")'><span class='glyphicon glyphicon-pencil' ></a></td>";
+                     
+                     
             }}
             // Añadimos una columna con el numero total de columnas.
             // Añadimos uno al total, ya que cuando cargamos los valores para la
             // columna, todavia no esta añadida
             nuevaFila+="</tr>";
-             var final="<td></td><td></td> <td></td>"
+            
             $("#tpartida").append(nuevaFila);
            $("#monto").val("");
          $("#descripcion").val("");
@@ -468,11 +621,11 @@ function creartabla(t,d,monto,movi){
            if(saldodebe>saldohaber){
                
                total=saldodebe-saldohaber;
-                final="<tr><td></td><td>Saldo</td><td>"+total.toFixed(2)+"</td> <td ></td></tr>";
+                final="<tr><td></td><td>Saldo</td><td style='color: green;' >"+total.toFixed(2)+"</td></tr>";
            }
            if(saldodebe<saldohaber){
                total=saldohaber-saldodebe;
-               final="<tr><td></td><td>Saldo</td><td ></td><td '>"+total.toFixed(2)+"</td></tr>";
+               final="<tr><td></td><td>Saldo</td><td ></td><td style='color: red;' >"+total.toFixed(2)+"</td></tr>";
            }
          
           $("#saldo").html(final);
@@ -482,7 +635,34 @@ function creartabla(t,d,monto,movi){
                   $("#Credito").attr('checked', false);
     
 }
+/*function cambiarestado(r){
+    var estadooperacion=$("#estado"+r).text();
+    alert(estadooperacion);
+    alert(r);
+    if(estadooperacion!="Cerrado"){
+    var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                         document.getElementById("alerta2").innerHTML = xhttp.responseText;
+                        var idrt =$("#dato1").val();
+                       
+                        
+                            $("#estado"+r).text("Cerrado");
+                            $("#estado"+r).css("color","red");
+                            $("#crearcomp"+r).css("display", "none");
+                        
+                       
+                        
+                         
+                    }
+                }
 
+                xhttp.open("POST", "modificarestadopartida.gdc", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("transaccion="+r);
+            }else(swal("Operacion Cerrada"))
+            
+}*/
 function llenarcombosub(){
  var sociedad=$("#idsociedad").val().trim();
  var cuenta=$("#cuenta").val().trim();
@@ -515,6 +695,47 @@ function llenarcombosub(){
            
             
             $("#subcuenta").html(cadena);
+                         }
+        
+        }
+        
+      xhttp.open("POST", "llenarsubcuenta.gdc", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
+        xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad);   
+ 
+}
+function llenarcombosub2(){
+ var sociedad=$("#idsociedad2").val().trim();
+ var cuenta=$("#cuenta2").val().trim();
+   
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              
+                document.getElementById("alerta2").innerHTML = xhttp.responseText;
+               var idcuenta=$("#subprueba").val();
+               var codigo=$("#subcodigocuenta").val();
+               var nombre=$("#subnombrecuenta").val();
+              
+                 var lid_tipo= idcuenta.substring(1, idcuenta.length-1);
+           
+                 var lcodigoarea= codigo.substring(1, codigo.length-1);
+                
+                 var lnombretipo= nombre.substring(1, nombre.length-1);
+                
+                 
+                 var arrayid_tipo=lid_tipo.split(",");
+                 var arraycodigoarea=lcodigoarea.split(",");               
+                 var arraynombretip=lnombretipo.split(",");
+              
+                 var cadena="<option value=''>Seleccione El Area de la Cuenta</option>";
+                 for (var i = 0; i < arraycodigoarea.length; i++) {
+                 
+               cadena+=" <option value='"+arrayid_tipo[i]+"'>"+arraycodigoarea[i]+"  "+arraynombretip[i]+"</option>";
+            }
+           
+            
+            $("#subcuenta2").html(cadena);
                          }
         
         }
@@ -595,3 +816,53 @@ function librodiario(){
  
 }
 
+function mostrarpartidas(){
+    var sociedad=$("#sociedadp").val();
+
+   
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("alerta2").innerHTML = xhttp.responseText;
+                var idpartid= $("dato_1").val();
+                 var codigopartid =$("dato_2").val();
+                 var fechp=$("dato_3").val();
+                 var nombrepartid=$("dato_4").val();
+                 var usuariopartid=$("dato_5").val();
+                 alert(idpartid);
+                    /* var partidaJson ={"idpartida":idpartida,"codigopartida":codigopartida,
+                         "fechap":fechap,"nombrepartida":nombrepartida,"usuariopartida":usuariopartida}
+                    alert(partidaJson);
+                      var tabla="";
+                for (var i =0;i< partidaJson.idpartida.length-1;i++ ) {
+                       tabla +="<tr>";
+                        tabla +="<td>"+partidaJson[i].codigopartida+"</td>";
+                        tabla +="<td>"+ partidaJson[i].fechap+"</td>";
+                        tabla +="<td>"+ partidaJson[i].nombrepartida+"</td>";
+                         tabla +="<td>"+partidaJson[i].usuariopartida+"</td>";
+                        tabla +="<td>"+ partidaJson[i].usuariopartida+"</td>";
+                       tabla +="</tr>";
+            }*/
+            
+            }
+        
+        }
+        
+      xhttp.open("POST", "partidast.gdc", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
+        xhttp.send("sociedad="+sociedad);
+    
+}
+
+function limpiarcombo(){
+ 
+    $("#cuenta").select2("val", "");
+    $("#sociedad").select2("val", "");
+    $("#subcuenta").select2("val", "");
+}
+function limpiarcombo2(){
+   
+    $("#cuenta2").select2("val", "");
+    $("#sociedad2").select2("val", "");
+    $("#subcuenta2").select2("val", "");
+}

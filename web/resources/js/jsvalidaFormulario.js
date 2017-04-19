@@ -133,7 +133,7 @@ $( document ).ready(function() {
                          +"&pais="+pais+"&nacionalidad="+nacionalidad+"&nIdentidad="+nIdentidad
                          +"&email="+email+"&nombreem="+nombreem+"&telem="+telem);
             }
-        });;
+        });
         
         
         

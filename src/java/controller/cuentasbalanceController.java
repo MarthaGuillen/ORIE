@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class cuentasbalanceController {
     @RequestMapping(value= "CuentasBalance.gdc")
-      public ModelAndView funCuentabalance(){
+      public ModelAndView funCuentabalance( HttpServletRequest request){
     ModelAndView mv = new ModelAndView("pgSC_CuentaBalance");
      cuentabalanceDAO balance = new cuentabalanceDAO();
      ArrayList<String> origen = new ArrayList<String>();
@@ -35,13 +35,13 @@ public class cuentasbalanceController {
                 codigo.add((String) datos[1].toString());
                 nombre.add((String) datos[2]);
                         }  
-             
+        System.out.println("controller.cuentasbalanceController.funCuentabalance() Enviando");     
         System.out.println(origen);
         System.out.println(codigo);
         System.out.println(nombre);
             mv.addObject("idorigen",origen);
             mv.addObject("codigoorigen",codigo);
-            mv.addObject("nombreorigen",nombre);
+            mv.addObject("nombreorigen2",nombre);
      //obtener sociedad
      ArrayList<String> idsociedad =new ArrayList<String>();   
      ArrayList<String> sociedadnombre =new ArrayList<String>();   
@@ -58,22 +58,38 @@ public class cuentasbalanceController {
      mv.addObject("sociedadnombre",sociedadnombre);
      mv.addObject("logo",logo);
      //tabla
-     ArrayList<String> idtabla =new ArrayList<String>();   
-     ArrayList<String> tablacodigo =new ArrayList<String>();   
-     ArrayList<String> tablanombre =new ArrayList<String>();  
-     List Tabla =balance.ver();
-     List<Object[]> tab=Tabla;
-     for(Object [] datos: tab){
-         idtabla.add((String)datos[0].toString());
-         tablacodigo.add((String)datos[1].toString());
-         tablanombre.add((String)datos[2].toString());
-     }
-        System.out.println(idtabla);
-        System.out.println(tablacodigo);
-        System.out.println(tablanombre);
-      mv.addObject("idtabla",idtabla);
-      mv.addObject("tablacodigo",tablacodigo);
-      mv.addObject("tablanombre",tablanombre);
+      ArrayList<String> nombreorigen = new ArrayList<String>();
+    ArrayList<String> codigocuentabalance = new ArrayList<String>();
+    ArrayList<String> nombrecuentabalance = new ArrayList<String>();
+    ArrayList<String> codigosubcuenta = new ArrayList<String>();
+    ArrayList<String> nombresubcuenta = new ArrayList<String>();
+    ArrayList<String> estadosubcuenta = new ArrayList<String>();
+     int id_sociedad = Integer.parseInt((String) request.getSession().getAttribute("ses_idsociedad"));
+    List cuentaorige =balance.generarcatalagos(id_sociedad);
+    //obtener cuenta origen
+     List<Object[]> listDatoorige = cuentaorige;
+            for (Object[] datos : listDatoorige) {
+                nombreorigen.add((String) datos[0]);
+                codigocuentabalance.add((String) datos[1]);
+                nombrecuentabalance.add((String) datos[2]);
+                codigosubcuenta.add((String) datos[3]);
+                nombresubcuenta.add((String) datos[4]);
+                estadosubcuenta.add((String) datos[5].toString());
+                        }  
+             
+          System.out.println(nombreorigen);
+          System.out.println(codigocuentabalance);
+          System.out.println(nombrecuentabalance);
+          System.out.println(codigosubcuenta);
+          System.out.println(nombresubcuenta);
+          System.out.println(estadosubcuenta);
+            mv.addObject("nombreorigen",nombreorigen);
+            mv.addObject("codigocuentabalance",codigocuentabalance);
+            mv.addObject("nombrecuentabalance",nombrecuentabalance);
+            mv.addObject("codigosubcuenta",codigosubcuenta);
+            mv.addObject("nombresubcuenta",nombresubcuenta);
+            mv.addObject("estadosubcuenta",estadosubcuenta);
+  
     return mv;
     }
       
@@ -93,9 +109,9 @@ public class cuentasbalanceController {
        ModelAndView mv=new ModelAndView("pgSCagregarcuentabalance");
        int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
        cuentabalanceDAO balance = new cuentabalanceDAO();
-       String resp=balance.agregarsubcuentabalance(cuenta, sociedad, codigosub, nombre, observacion, depuracion, idusuario);
-       
-       mv.addObject("resp",resp);
+        List resp=balance.agregarsubcuentabalance(cuenta, sociedad, nombre, observacion, depuracion, idusuario);
+          System.out.println("controller.cuentasbalanceController.funAgregarsubcuenta()"+resp.get(0));
+       mv.addObject("resp",resp.get(0));
        return mv;
        }
      

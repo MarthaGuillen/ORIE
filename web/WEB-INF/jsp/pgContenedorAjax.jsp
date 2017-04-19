@@ -14,10 +14,10 @@
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<html>
-    <head>
-        
-    <body>
+
         <input type="hidden" id="respLog" value="${resp}">
-    </body>
-</html>
+        <c:if test="${validaCadena eq 'si'}">
+            ${cadena1}
+            ${cadena2}
+        </c:if>
+

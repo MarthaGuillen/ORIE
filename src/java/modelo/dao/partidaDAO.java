@@ -18,14 +18,14 @@ import org.hibernate.Transaction;
  */
 public class partidaDAO {
     
-                 public List agregarpartida(
+                 public List agregarpartida(int subcuenta,
                  int sociedad,
                String nombre,String fecha,int idusuario
                ){
           
     System.out.println(" "+sociedad+" "+fecha+" "+idusuario);
     String resp="";
-    String sql = "SELECT fn_SCinsertpartida('"+sociedad+"','"+nombre+
+    String sql = "SELECT fn_SCinsertpartida('"+subcuenta+"','"+sociedad+"','"+nombre+
             "','"+fecha+"','"+idusuario+"')";
         List<String> r=new ArrayList<String>();
         try {
@@ -129,10 +129,10 @@ public class partidaDAO {
         return listaget;
     }
 
-            public List mostrarpartidas(){
+            public List mostrarpartidas(int sociedad){
           System.out.println("Estoy en el dao de Actualizar operacion modificacion");
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "select *from  fn_scobtenerpartida()";
+        String sql = "select * from fn_scobtenerpartida('"+sociedad+"')";
         
         List<Object[]> listaget = new ArrayList<Object[]>();
         try {
@@ -173,4 +173,22 @@ public class partidaDAO {
         return listaget;
     }
 
+            public List cambiarestado(int transaccion,int idusuario){
+                Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql ="Select fn_scmodificarestadooperaciones('"+transaccion+"','"+idusuario+"')";
+              List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+          
+       System.out.println("saliendo modificar estado: " +listaget);
+        return listaget;
+            }
 }

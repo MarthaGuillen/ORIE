@@ -6204,7 +6204,7 @@ ol.timeline-list li.timeline-item .timeline-date {
   background-color: #37bc9b;
 }
 .task-widget ul.task-list .task-item.dark .task-handle:after {
-  background-color: #3b3f4f;
+  background-color: #25B563;
 }
 .task-widget.task-alt {
   /* task widget mod */
@@ -8637,7 +8637,7 @@ ol.timeline-list li.timeline-item .timeline-date {
   border-color: #cccccc !important;
 }
 .br-dark {
-  border-color: #3b3f4f !important;
+  border-color: #25B563 !important;
 }
 .br-dark-light {
   border-color: #51566c !important;

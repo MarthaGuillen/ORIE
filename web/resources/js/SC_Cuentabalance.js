@@ -1,104 +1,231 @@
+jQuery('form[data-toggle="validator"] select').on('change', function(event) {
+    event.preventDefault();
+    jQuery(this).find('option[disabled]').remove();
+});
 
+$( document ).ready(function() {
+    
+        $("#activaTema").click(function() {  
+            if($("#activaTema").is(':checked')) {  
+                  document.getElementById('skin-toolbox').style.display = 'block';
+            } else {  
+                 document.getElementById('skin-toolbox').style.display = 'none';
+            }  
+        }); 
+    
+    
 
-function activarsubcuenta(){
-    document.getElementById('subcuentamayor').style.display = 'block';
-    document.getElementById('cuentamayor').style.display = 'none';
-    document.getElementById('cuentaorigen').style.display = 'none';
-} 
-function activarscuenta(){
-     document.getElementById('subcuentamayor').style.display ='none' ;
-    document.getElementById('cuentamayor').style.display = 'block';
-    document.getElementById('cuentaorigen').style.display = 'none';
-} 
-function activarorigen(){
-     document.getElementById('subcuentamayor').style.display ='none' ;
-    document.getElementById('cuentamayor').style.display ='none';
-    document.getElementById('cuentaorigen').style.display =  'block';
-} 
-
-
-function validarcuentaBalance(){
-     var e=0;
+       /*  $('#tablecuentas').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encuentran registros disponibles.",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros que coincidan con su busqueda.",
+                    "infoFiltered": "(Filtrado de _MAX_ registros.)",
+                    "decimal": ".",
+                    "thousands": ",",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando..",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Inicio",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    
+                    }
+                    
+                }
+                
+            });*/
+             
+        
+    // Order by the grouping
+    var table = $('#tablecuentas').DataTable({
+        "columnDefs": [
+            { "visible": false, "targets": 2 }
+        ],
+        "order": [[ 2, 'asc' ]],
+        "displayLength": 25,
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        },
+        "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encuentran registros disponibles.",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros que coincidan con su busqueda.",
+                    "infoFiltered": "(Filtrado de _MAX_ registros.)",
+                    "decimal": ".",
+                    "thousands": ",",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando..",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Inicio",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    
+                    }
+                    
+                }
+    } );
+ 
+    // Order by the grouping
+    $('#tablecuentas tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    } );
+  
+        $("#origen").select2(
+        {placeholder: "Seleccione Origen",
+                 allowClear: true
+        });
+        
+        $("#origen2").select2(
+        {placeholder: "Seleccione Origen",
+                 allowClear: true
+        });
+        
+       
+        
+        $("#cuenta").select2(
+        {placeholder: "Seleccione Cuenta",
+                 allowClear: true
+        });
+        $("#sociedad").select2(
+        {placeholder: "Seleccione Sociedad",
+                 allowClear: true
+        });
+      $("#codigoorigen").removeClass("camposvacios");
+      $("#nombreorigen").removeClass("camposvacios");
+       
+       $("#agregarsubcuenta").click(function(){
+          var e=0;
     var mjs="";
+    var origen= $("#origen").val().trim();
     var cuenta= $("#cuenta").val().trim();
     var sociedad=$("#sociedad").val().trim();
-    var codigosub=$("#codigosub").val().trim();
+ 
     var nombre=$("#nombresub").val().trim();
     var observacion=$("#observacion").val().trim();
     var depuracion=$("#depuracion").val().trim();
-    console.log(cuenta+"  "+sociedad+" "+" "+codigosub+" "+nombre);
+    console.log(cuenta+"  "+sociedad+" "+" "+nombre);
     
+    if(origen==""){
+      e=1;
+         
+         document.getElementById('origenval').style.display = 'block'; 
+    }
     if(cuenta==""){
       e=1;
-         $("#cuenta").css("border", "5px solid red");
+         
+         document.getElementById('cuentaval').style.display = 'block'; 
     }
     if(sociedad==""){
        e=1;
-        $("#sociedad").css("border", "5px solid red");
+        document.getElementById('sociedadval').style.display = 'block'; 
     }
-    if(codigosub==""){
+  /*  if(codigosub==""){
           e=1;
-         $("#codigosub").css("border", "5px solid red");
-    }
+         $("#codigosub").addClass("camposvacios");
+         document.getElementById('codigosubval').style.display = 'block'; 
+    }*/
     if(nombre==""){
       e=1;
-         $("#nombresub").css("border", "5px solid red");
+         $("#nombresub").addClass("camposvacios");
+          document.getElementById('nombresubval').style.display = 'block'; 
      }
     
     if (e==1) {
-        alert("Estoy aca4");
-        $("#resp2").html("<h1>Ingrese los datos</h1>");
+      
+       // $("#resp2").html("<h1>Ingrese los datos</h1>");
     }else{
     
-       alert("Estoy aca 2");
+       
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
-                       var resp= $("#resp").val();
-                       
-                        $("#resp2").html("<h1> La operacion Fue: Exitosa</h1>");
+                       var resp= $("#resp2").val();
+                       alert(resp);
+                       var re =resp;
+                       swal(
+                                
+                                'Codigo de Sub-Cuenta Es:    '+
+                                re.toString()  //preguntar      
+                            ) ; 
+                         document.getElementById('origenval').style.display = 'none'; 
+                         document.getElementById('cuentaval').style.display = 'none'; 
+                         document.getElementById('sociedadval').style.display = 'none';
+                       /*  $("#codigosub").removeClass("camposvacios");
+                         document.getElementById('codigosubval').style.display = 'none'; */
+                         $("#nombresub").removeClass("camposvacios");
+                         document.getElementById('nombresubval').style.display = 'none'; 
+                         $("#origen").select2("val", "");
+                         $("#cuenta").select2("val", "");
+                         $("#sociedad").select2("val", "");
+                        // $("#codigosub").val("");
+                         $("#nombresub").val("");
+                        $("#observacion").val("");
+                        $("#depuracion").val("");
                          }
         
         }
-       console.log(cuenta+"  "+sociedad+" "+" "+codigosub+" "+nombre);
-      xhttp.open("POST", "agregarsubcuenta.gdc", true);
+       console.log(cuenta+"  "+sociedad+" "+nombre);
+      xhttp.open("POST", "agregarsubcuenta.gdc", true);//uytyutyutyu
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
-        xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad+"&codigosub="+codigosub+"&nombre="+nombre+"&observacion="+observacion
+        xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad+"&nombre="+nombre+"&observacion="+observacion
                 +"&depuracion="+depuracion);   
  }
     
-    
-
-}
-
-function validarcuentaBalancemayor(){
-     var e=0;
+     
+       });
+       $("#agregarcuentamayor").click(function () {
+           var e=0;
     var mjs="";
-    var origenmayor= $("#origenmayor").val().trim();
+    var origenmayor= $("#origen2").val().trim();
     var codigomayor=$("#codigomayor").val().trim();
     var nombremayor=$("#nombremayor").val().trim();
     var obsevacionmayor=$("#obsevacionmayor").val().trim();
     
     if(origenmayor==""){
          e = 1;
-        $("#origenmayor").css("border", "5px solid red");
+       document.getElementById('origen2val').style.display = 'block'; 
     }
     if(codigomayor==""){
          e = 1;
-      $("#codigomayor").css("border", "5px solid red");
+      $("#codigomayor").addClass("camposvacios");
+       document.getElementById('codigomayorval').style.display = 'block'; 
     }
     if(nombremayor==""){
          e = 1;
-        $("#nombremayor").css("border", "5px solid red");
+        $("#nombremayor").addClass("camposvacios");
+        document.getElementById('nombremayorval').style.display = 'block'; 
     }
     
    
     if(e==1){
-      $("#alerta").css("display" ,"block" );
-      $("#mensaje").html(mjs);
-     $("#t").attr('disabled', true);
+      
   }else{
        
         var xhttp = new XMLHttpRequest();
@@ -107,7 +234,18 @@ function validarcuentaBalancemayor(){
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
                 var resp= $("#resp").val();
-                       $("#resp2").html("<h1> La operacion Fue: Exitosa</h1>");
+                swal(
+                                'Exito!!!...',
+                                'Cuenta agregada .'
+                            ) 
+                       $("#origen2").select2("val", "");
+                       document.getElementById('origen2val').style.display = 'none'; 
+                       $("#codigomayor").removeClass("camposvacios");
+                       $("#codigomayor").val("");
+                       document.getElementById('codigomayorval').style.display = 'none'; 
+                        $("#nombremayor").removeClass("camposvacios");
+                        $("#nombremayor").val("");
+                       document.getElementById('nombremayorval').style.display = 'none'; 
                          }
         
         }
@@ -117,31 +255,32 @@ function validarcuentaBalancemayor(){
         xhttp.send("origenmayor=" + origenmayor + "&codigomayor="+codigomayor+"&nombremayor="+nombremayor+
                 "&obsevacionmayor="+obsevacionmayor);   
  }
-    
-    
-}
-function validarcuentaBalanceorigen(){
-     var e=0;
+           
+       }); 
+         
+       $("#agregar_origen").click(function(){
+             
+             var e=0;
     var mjs="";
     var codigoorigen= $("#codigoorigen").val().trim();
     var nombreorigen=$("#nombreorigen").val().trim();
     var observacionorigen=$("#observacionorigen").val().trim();
         
-    if(codigoorigen==""){
+    if(codigoorigen===""){
          e = 1;
-       $("#codigoorigen").css("border", "5px solid red");
+         document.getElementById('codigoorigenval').style.display = 'block'; 
+       $("#codigoorigen").addClass("camposvacios");
     }
-    if(nombreorigen==""){
+    if(nombreorigen===""){
          e = 1;
-        $("#nombreorigen").css("border", "5px solid red");
+         document.getElementById('nombreorigenval').style.display = 'block'; 
+        $("#nombreorigen").addClass("camposvacios");
     }
    
     
    
-    if(e==1){
-      $("#alerta").css("display" ,"block" );
-      $("#mensaje").html(mjs);
-     $("#t").attr('disabled', true);
+    if(e===1){
+    
   }else{
        
         var xhttp = new XMLHttpRequest();
@@ -150,7 +289,17 @@ function validarcuentaBalanceorigen(){
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
                  var resp= $("#resp").val();
-                       $("#resp2").html("<h1> La operacion Fue: Exitosa</h1>");
+                      swal(
+                                'Exito!!!...',
+                                'Cuenta Origen agregada .'
+                            ) 
+                    
+                      $("#codigoorigen").removeClass("camposvacios");
+                      $("#codigoorigen").val("");
+                      $("#nombreorigen").removeClass("camposvacios");
+                      $("#nombreorigen").val("");
+                      $("#observacionorigen").val("");
+                      
                          }
         
         }
@@ -161,8 +310,70 @@ function validarcuentaBalanceorigen(){
                 "&observacionorigen="+observacionorigen);   
  }
     
+         });
+         $("#btnverpartidas").click(function(){});
+         $("#modificar").click(function(){});    
+           
+        
+});
+function limpiar(){
+                       document.getElementById('origen2val').style.display = 'none'; 
+                       $("#codigomayor").removeClass("camposvacios");
+                       $("#codigomayor").val("");
+                       document.getElementById('codigomayorval').style.display = 'none'; 
+                        $("#nombremayor").removeClass("camposvacios");
+                        $("#nombremayor").val("");
+                       document.getElementById('nombremayorval').style.display = 'none'; 
+                      $("#codigoorigen").addClass("camposvacios");
+                      $("#codigoorigen").val("");
+                      $("#nombreorigen").addClass("camposvacios");
+                      $("#nombreorigen").val("");
+                      $("#observacionorigen").val("");
+                      $("#origen2").select2("val", "");
+                       document.getElementById('origenval').style.display = 'none'; 
+                         document.getElementById('cuentaval').style.display = 'none'; 
+                         document.getElementById('sociedadval').style.display = 'none';
+                        /* $("#codigosub").removeClass("camposvacios");
+                         document.getElementById('codigosubval').style.display = 'none'; */
+                         $("#nombresub").removeClass("camposvacios");
+                         document.getElementById('nombresubval').style.display = 'none'; 
+                         $("#origen").attr("selected",false);
+                          $('#origen').select2("val", "");
+                         $("#cuenta").select2("val", "");
+                         $("#sociedad").select2("val", "");
+                         //$("#codigosub").val("");
+                         $("#nombresub").val("");
+                        $("#observacion").val("");
+                        $("#depuracion").val("");
     
 }
+
+
+function activarsubcuenta(){
+    limpiar();
+    document.getElementById('subcuentamayor').style.display = 'block';
+    document.getElementById('cuentamayor').style.display = 'none';
+    document.getElementById('cuentaorigen').style.display = 'none';  
+    document.getElementById('catalagoscrea').style.display = 'none';
+} 
+function activarscuenta(){
+    limpiar();
+     document.getElementById('subcuentamayor').style.display ='none' ;
+    document.getElementById('cuentamayor').style.display = 'block';
+    document.getElementById('cuentaorigen').style.display = 'none';
+     document.getElementById('catalagoscrea').style.display = 'none';
+} 
+function activarorigen(){
+    limpiar();
+     document.getElementById('subcuentamayor').style.display ='none' ;
+    document.getElementById('cuentamayor').style.display ='none';
+    document.getElementById('cuentaorigen').style.display =  'block';
+     document.getElementById('catalagoscrea').style.display = 'none';
+} 
+
+
+
+
 
 function llenarcombobox(){
  var origen=$("#origen").val().trim();
@@ -170,7 +381,7 @@ function llenarcombobox(){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-              
+             limpiarcombo();
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
                var idcuenta=$("#prueba").val();
                var codigo=$("#codigocuenta").val();
@@ -198,9 +409,90 @@ function llenarcombobox(){
                          }
         
         }
-       
+      
       xhttp.open("POST", "combobalance.gdc", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("origen="+origen);   
  
+}
+function crearcatalagos(sociedad ){
+ 
+     limpiar();
+     document.getElementById('subcuentamayor').style.display ='none' ;
+    document.getElementById('cuentamayor').style.display ='none';
+    document.getElementById('cuentaorigen').style.display =  'none';
+     document.getElementById('catalagoscrea').style.display = 'block';
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              
+                document.getElementById("catalagoscrea").innerHTML = xhttp.responseText;
+               // Order by the grouping
+    var table = $('#tablecuentas').DataTable({
+        "columnDefs": [
+            { "visible": false, "targets": 2 }
+        ],
+        "order": [[ 2, 'asc' ]],
+        "displayLength": 25,
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        },
+        "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encuentran registros disponibles.",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros que coincidan con su busqueda.",
+                    "infoFiltered": "(Filtrado de _MAX_ registros.)",
+                    "decimal": ".",
+                    "thousands": ",",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando..",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Inicio",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    
+                    }
+                    
+                }
+    } );
+ 
+    // Order by the grouping
+    $('#tablecuentas tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    } );
+            }
+        
+        }
+       
+      xhttp.open("POST", "crearcatalalagos.gdc", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
+        xhttp.send("idSociedad="+sociedad);   
+ 
+}
+function limpiarcombo(){
+ 
+    $("#cuenta").select2("val", "");
+    $("#sociedad").select2("val", "");
+   
 }
