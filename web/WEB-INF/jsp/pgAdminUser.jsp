@@ -50,10 +50,14 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/imageBack.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/magnific-popup.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/ssi-modal.css'/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrapValidator.css'/>">
+        <link rel="stylesheet" href="<c:url value='/resources/css/sweetalert2.min.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/fonts/glyphicons-pro/glyphicons-pro.css'/>">
          <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.min.css'/>">
+        <script>
+            var sociedaddef = "${sessionScope.ses_sociedadDefault}";
+            var tipoperf = "${sessionScope.ses_tipoperfil}";
+        </script>
     </head>
     <body class="profile-page">
    
@@ -70,140 +74,7 @@
            Example: <body class="example-page sb-l-o sb-r-c">
            Results: Sidebar left Open, Sidebar right Closed
          --------------------------------------------------------------->
-        <div id="skin-toolbox" style="display:none;">
-            <div class="panel">
-                <div class="panel-heading">
-                    <span class="panel-icon">
-                        <i class="fa fa-gear text-primary"></i>
-                    </span>
-                    <span class="panel-title"> Opciones visuales</span>
-                </div>
-                <div class="panel-body pn">
-                    <ul class="nav nav-list nav-list-sm pl15 pt10" role="tablist">
-                        <li class="active">
-                            <a href="#toolbox-header" role="tab" data-toggle="tab">Color barra de título</a>
-                        </li>
-                        <li>
-                            <a href="#toolbox-sidebar" role="tab" data-toggle="tab">Barra de navegación</a>
-                        </li>
-                        <li>
-                            <a href="#toolbox-settings" role="tab" data-toggle="tab">Diseño de barra de titulo</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content p20 ptn pb15">
-                        <div role="tabpanel" class="tab-pane active" id="toolbox-header">
-                            <form id="toolbox-header-skin">
-                                <h4 class="mv20">Colores</h4>
-                                <div class="skin-toolbox-swatches">
-                                    <div class="checkbox-custom checkbox-disabled fill mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin8" checked value="">
-                                        <label for="headerSkin8">Light</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-primary mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin1" value="bg-primary">
-                                        <label for="headerSkin1">Primario</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-info mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin3" value="bg-info">
-                                        <label for="headerSkin3">Información</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-warning mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin4" value="bg-warning">
-                                        <label for="headerSkin4">Advertencia</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-danger mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin5" value="bg-danger">
-                                        <label for="headerSkin5">Peligro</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-alert mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin6" value="bg-alert">
-                                        <label for="headerSkin6">Alerta</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-system mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin7" value="bg-system">
-                                        <label for="headerSkin7">Sistema</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-success mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin2" value="bg-success">
-                                        <label for="headerSkin2">Del Campo</label>
-                                    </div>
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="radio" name="headerSkin" id="headerSkin9" value="bg-dark">
-                                        <label for="headerSkin9">Oscuro</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="toolbox-sidebar">
-                            <form id="toolbox-sidebar-skin">
-                                <h4 class="mv20">Color menu lateral</h4>
-                                <div class="skin-toolbox-swatches">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="radio" name="sidebarSkin" checked id="sidebarSkin3" value="">
-                                        <label for="sidebarSkin3">Dark</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-disabled mb5">
-                                        <input type="radio" name="sidebarSkin" id="sidebarSkin1" value="sidebar-light">
-                                        <label for="sidebarSkin1">Light</label>
-                                    </div>
-                                    <div class="checkbox-custom fill checkbox-light mb5">
-                                        <input type="radio" name="sidebarSkin" id="sidebarSkin2" value="sidebar-light light">
-                                        <label for="sidebarSkin2">Lighter</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="toolbox-settings">
-                            <form id="toolbox-settings-misc">
-                                <h4 class="mv20 mtn">Opciones de diseño</h4>
-                                <div class="form-group">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="checkbox" checked="" id="header-option">
-                                        <label for="header-option">Cabecera fija</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="checkbox" checked="" id="sidebar-option">
-                                        <label for="sidebar-option">Menu fijo</label>
-                                    </div>
-                                </div>
-                                <div class="form-group" style="display:none;">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="checkbox" id="breadcrumb-option">
-                                        <label for="breadcrumb-option">Fixed Breadcrumbs</label>
-                                    </div>
-                                </div>
-                                <div class="form-group" style="display:none;">
-                                    <div class="checkbox-custom fill mb5">
-                                        <input type="checkbox" id="breadcrumb-hidden">
-                                        <label for="breadcrumb-hidden">Hide Breadcrumbs</label>
-                                    </div>
-                                </div>
-                                <h4 class="mv20">Opciones de diseño</h4>
-                                <div class="form-group">
-                                    <div class="radio-custom mb5">
-                                        <input type="radio" id="fullwidth-option" checked name="layout-option">
-                                        <label for="fullwidth-option">Fullwidth Layout</label>
-                                    </div>
-                                </div>
-                                <div class="form-group mb20">
-                                    <div class="radio-custom radio-disabled mb5">
-                                        <input type="radio" id="boxed-option" name="layout-option" disabled>
-                                        <label for="boxed-option">Boxed Layout
-                                            <b class="text-muted">(Coming Soon)</b>
-                                        </label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="form-group mn br-t p15">
-                        <a href="#" id="clearLocalStorage" class="btn btn-primary btn-block pb10 pt10">Limpiar configuración</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- End: Theme Settings Pane -->
          <div id="main">
         <!-- Start: Header -->
@@ -404,38 +275,59 @@
                     <div class="row">
                         <div class="panel heading-border">
                             
-                            <div class="panel-body bg-light">
+                            <div class="panel-body bg-light1">
+                            
+                            <form id="defaultForm" action="#"
+                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                                 
+   
                                 <div class="row">
-                                <form id="defaultForm" action="#"
-                                    data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                                    data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                                    data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">      
+                                    
                                 <div class="col-md-4">
                                   <div class="form-group">
-                                      <label for="usuario">Usuario:</label>
-                                      <input  maxlength="25" type="text" id="usuario" class="form-control gui-input" placeholder="Usuario..." data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
-                                  </div>  
-                                </div>
-                                <div class="col-md-4">
-                                  <div class="form-group">
-                                      <label for="correo">Correo electrónico:</label>
-                                      <input  maxlength="120" type="email" id="correo" class="form-control gui-input" placeholder="Correo electrónico..." data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                  <div class="form-group">
-                                      <label for="nombrec">Nombre completo:</label>
-                                      <input maxlength="120" type="text" id="nombrec" class="form-control gui-input" placeholder="Nombre completo..." data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                      <div class="form-group">
-                                          <label for="nombrec">Contraseña:</label>
-                                          <input maxlength="8" type="text" id="contrasenia" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="form-control gui-input" placeholder="Contraseña...">
-                                      </div>
+                                    <label class="control-label">Nombre de usuario:</label>
+                                    <div class="inputGroupContainer">
+
+                                        <input  name="usuario" id="usuario" placeholder="Usuario..." class="form-control"  type="text">
+
                                     </div>
-                               
+                                  </div>  
+
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                    <label class="control-label">Correo electrónico:</label>
+                                    <div class="inputGroupContainer">
+                                       <input  name="correo" id="correo" placeholder="Correo electrónico..." class="form-control"  type="email">
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label class="control-label">Nombre completo:</label>
+                                    <div class="inputGroupContainer">
+                                       <input  name="nombrec" id="nombrec" placeholder="Nombre completo..." class="form-control"  type="text">
+                                    </div>
+                                  </div>  
+                                  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                    <label class="control-label">Contraseña:</label>
+                                    <a style="cursor:pointer;" onclick="generpass();"><span class="glyphicon glyphicon-refresh"></span> Generar Contraseña</a>
+                                    <div class="inputGroupContainer">
+                                        
+                                       <input  name="contrasenia" id="contrasenia" placeholder="Contraseña..." class="form-control"  type="text">
+                                    </div>
+                                    
+                                  </div>
+                                 
+                                </div>
+                                </div>
+                                   
                                 <div class="row">
                                     <button type="button" class="btn btn-rounded btn-success" onclick="cargaperfil();"><span class="glyphicon glyphicon-indent-left"></span> Asignar perfil</button>
                                     <input type="hidden" id="idperfilselec">
@@ -479,6 +371,21 @@
                                 <!--FIn Perfiles--> 
                                 <!--Sociedades-->               
                                                 <h4><b class="text-primary">Seleccione las sociedades a las que pertenecerà el usuario:</b></h4>
+                                                <div class="alert alert-danger" style="display:none;" id="alert-demo-1">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                    <i class="fa fa-frown-o pr10"></i>
+                                                    Por favor seleccione por lo menos una sociedad para el usuario.
+                                                </div>
+                                                <div class="alert alert-danger" style="display:none;" id="alert-demo-2">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                    <i class="fa fa-frown-o pr10"></i>
+                                                    Por favor seleccione la sociedad default del usuario.
+                                                </div>
+                                                <div class="alert alert-danger" style="display:none;" id="alert-demo-3">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                    <i class="fa fa-frown-o pr10"></i>
+                                                    Recuerde que la sociedad default debe estar seleccionada.
+                                                </div>
                                                 <table class="table">
                                                     <thead>
                                                         <tr class="success">
@@ -499,13 +406,13 @@
                                                                     <td>${nomsoc[i]}</td>
                                                                     <td>
                                                                         <div class="checkbox-custom fill checkbox-success mb5">
-                                                                            <input type="checkbox" id="soc${idsoci[i]}">
+                                                                            <input type="checkbox" id="soc${idsoci[i]}" value="${nomsoc[i]}">
                                                                             <label for="soc${idsoci[i]}"></label>
                                                                         </div>
                                                                     </td>
                                                                     <td>
                                                                         <div class="radio-custom radio-success mb5">
-                                                                            <input type="radio" id="rdsoci${idsoci[i]}" name="socdefault">
+                                                                            <input type="radio" id="rdsoci${idsoci[i]}" value="${idsoci[i]}" name="socdefault">
                                                                             <label for="rdsoci${idsoci[i]}"></label>
                                                                         </div>
                                                                     </td>
@@ -519,20 +426,12 @@
                                                 </table>             
 
                                                 <!--fin sociedades--> 
-                                                <div class=" pull-right">  
+                                                <div class="form-group">
                                                     <br><br>
-                                                    <button type="submit" class="btn btn-lg btn-primary"><span class="glyphicons glyphicons-user_add"></span> Crear Usuario</button>
+                                                    <button type="submit" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
                                                 </div>
-                                </form> 
-                                </div> 
-                                
-                                    
-                                
-                                              
-                                                 
-                            
+                            </form>                 
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -541,12 +440,13 @@
         </div>               
     </section>
     </div> 
+        <div id="creusuajax"></div>                                               
          <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="text-center">
-                            <img src="<c:url value='/resources/img/cargaGif.gif'/>" class="icon" />
+                            <img src="<c:url value='/resources/img/Loading.gif'/>" />
                             <h4>Cargando...</h4>
                         </div>
                     </div>
@@ -564,7 +464,7 @@
        <script src="<c:url value='/resources/js/jsValidaAdminUser.js'/>"></script>
        <script src="<c:url value='/resources/js/ssi-modal.js'/>"></script>
        <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
-      
+       <script src="<c:url value='/resources/js/sweetalert2.min.js'/>"></script> 
        <script type="text/javascript">
         jQuery(document).ready(function() {
 
@@ -588,27 +488,7 @@
             // HighCharts, JvectorMap, Admin Panels
 
             // Init Admin Panels on widgets inside the ".admin-panels" container
-            $('.admin-panels').adminpanel({
-              grid: '.admin-grid',
-              draggable: true,
-              preserveGrid: true,
-              mobile: false,
-              onStart: function() {
-                // Do something before AdminPanels runs
-              },
-              onFinish: function() {
-                $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
-
-                // Init the rest of the plugins now that the panels
-                // have had a chance to be moved and organized.
-                // It's less taxing to organize empty panels
-                demoHighCharts.init();
-                runVectorMaps(); // function below
-              },
-              onSave: function() {
-                $(window).trigger('resize');
-              }
-            });
+            
         });
     </script>
     </body>

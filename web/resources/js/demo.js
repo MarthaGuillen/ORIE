@@ -177,9 +177,9 @@ var Demo = function() {
 
   // DEMO FUNCTIONS - primarily trash
   var runDemoSettings = function() {
-   
-    if ($('#skin-toolbox').length) {
-
+    
+    if (1) {
+      
       // Toggles Theme Settings Tray
       $('#skin-toolbox .panel-heading').on('click', function() {
         $('#skin-toolbox').toggleClass('toolbox-open');
@@ -199,6 +199,7 @@ var Demo = function() {
       var sidebarSkins = "sidebar-light light dark";
       var cabecera = "";
       var cabecera1 = "";
+      
       if(tipoperf==="Administrador"){
           cabecera = "bg-light";
           cabecera1 = "sidebar-dark";
@@ -216,6 +217,7 @@ var Demo = function() {
            cabecera1 = "sidebar-alert";  
         }
       }
+              
       // Theme Settings
       var settingsObj = {
         // 'headerTone': true,
@@ -230,7 +232,7 @@ var Demo = function() {
 
       // Local Storage Theme Key
       var themeKey = 'admin-settings1';
-
+         
       // Local Storage Theme Get
       //localStorage.setItem(themeKey, JSON.stringify(settingsObj));
       localStorage.setItem(themeKey, JSON.stringify(settingsObj));
