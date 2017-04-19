@@ -13,7 +13,7 @@
 </c:if>
 <c:set var="validaLista" value="${fn:length(sessionScope.ses_menus)}" />
 <h1>  Estoy   </h1>
-                            <table class="table table-responsive" id="tablalibro">
+                            <table class="table table-responsive" id="tablalibro" cellspacing="0" width="100%">
                                 <thead>
                                     <tr class="primary">
                                        
@@ -34,11 +34,11 @@
                                                     <td colspan="${list.get(i).getOperaciones()}">${list.get(i).getNombrepartida()}colspan</td>                                                     
                                                     <td colspan="${list.get(i).getOperaciones()}">${list.get(i).getCodigopartida()}colspan</td>  
                                                     <c:forEach var="j" begin="0" end="${fn:length(list.get(i).getOperaciones())-1}">
-                                                        <td> list.get(i).getOperaciones().get(j).getCodigo()</td>
-                                                        <td> list.get(i).getOperaciones().get(j).getNombrec()</td>
-                                                        <td> list.get(i).getOperaciones().get(j).getConcepto()</td>
-                                                        <td> list.get(i).getOperaciones().get(j).getDebe()</td>
-                                                        <td> list.get(i).getOperaciones().get(j).getHaber()/td>
+                                                        <td> ${list.get(i).getOperaciones().get(j).getCodigo()}</td>
+                                                        <td> ${list.get(i).getOperaciones().get(j).getNombrec()}</td>
+                                                        <td> ${list.get(i).getOperaciones().get(j).getConcepto()}</td>
+                                                        <td> ${list.get(i).getOperaciones().get(j).getDebe()}</td>
+                                                        <td> ${list.get(i).getOperaciones().get(j).getHaber()}</td>
                                                        
                                                     </c:forEach>
                                                     <td colspan="${list.get(i).getOperaciones().size()}">${list.get(i).getParcial()}</td>                                                     
