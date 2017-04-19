@@ -206,4 +206,67 @@ public class adminUsuarioController {
        
         return mv;
     } 
+    
+    
+    //crear Usuarios
+    @RequestMapping(value = "creaUsuario.gdc")
+    public ModelAndView userinsert(HttpServletRequest request,
+                                   @RequestParam("idperfil") int idperfil,
+                                   @RequestParam("usuario") String us,
+                                   @RequestParam("correo") String corr,
+                                   @RequestParam("nomc") String nomc,
+                                   @RequestParam("contr") String contr,
+                                   @RequestParam("sociedades") String soc,
+                                   @RequestParam("socdef") int socdef) throws Exception {
+        ModelAndView mv = new ModelAndView("pgInsertUsuarioAjax");
+        
+        adminUsuariosDAO opc = new adminUsuariosDAO();
+        perfilDAO pfdao = new perfilDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+                //parametros utf 8
+                String usu = new String(us.getBytes("ISO-8859-1"), "UTF-8");
+                String cor = new String(corr.getBytes("ISO-8859-1"), "UTF-8");
+                String nomco = new String(nomc.getBytes("ISO-8859-1"), "UTF-8");
+                String con = new String(contr.getBytes("ISO-8859-1"), "UTF-8");
+                int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
+                String insUsuario = opc.insertaUsuario(usu, cor, nomco, con, idusuario);
+                
+                if("S".equals(insUsuario)){
+                    String iduc = "";
+                    List listaP = pfdao.cargaDatosusr(cor);
+                    List<Object[]> listDatosp = listaP;
+                    for (Object[] datos : listDatosp) {
+                        iduc = (String) datos[0].toString();
+                    } 
+                    if(!"".equals(iduc)){
+                        String idperf = opc.insertaPerfil(Integer.parseInt(iduc), idperfil, idusuario);
+                        String[] idsoci;
+                        idsoci = soc.split(",");
+                        System.out.println(soc+" "+soc.length());
+                        for(int i=0;i<idsoci.length;i++){
+                            if(idsoci[i]!= null){
+                               String idso = opc.insertasoc(Integer.parseInt(iduc), Integer.parseInt(idsoci[i]), idusuario);
+                            }
+                            
+                        }
+                        String seleccionSocdefault = pfdao.activasoci(Integer.parseInt(iduc), socdef, idusuario);
+                        mv.addObject("resp","Exito");
+                    }else{
+                        mv.addObject("resp","Ocurrio un error al capturar datos del usuario.");
+                    }
+                }else{
+                   mv.addObject("resp","Usuario o correo existente.");
+                }
+                
+                
+               
+                
+            }
+        
+        
+        }
+       
+        return mv;
+    } 
 }

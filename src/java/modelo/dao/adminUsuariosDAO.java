@@ -77,4 +77,71 @@ public class adminUsuariosDAO {
         return listaget;
     }
     
+    //Insertausuario
+    public String insertaUsuario(String us, String ema, String nomc, String pass,int idu){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select fnInsertUser('"+us+"','"+ema+"','"+nomc+"','"+pass+"','1','"+idu+"');";
+        
+        
+        List<String> filmList = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            //int result = q.executeUpdate();
+            filmList = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return filmList.get(0).toString();
+       
+    }
+    
+       
+    //Inserta perfil - usuario
+    public String insertaPerfil(int idus, int idp, int idu){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select fninsertperfilUser('"+idus+"','"+idp+"','"+idu+"');";
+        
+        
+        List<String> filmList = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            //int result = q.executeUpdate();
+            filmList = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return filmList.get(0).toString();
+       
+    }
+    
+    //Inserta sociedad - usuario
+    public String insertasoc(int idus, int ids, int idu){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select fninsertusersoc('"+idus+"','"+ids+"','"+idu+"');";
+        
+        
+        List<String> filmList = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            //int result = q.executeUpdate();
+            filmList = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return filmList.get(0).toString();
+       
+    }
+    
 }

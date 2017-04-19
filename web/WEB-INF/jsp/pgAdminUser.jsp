@@ -50,7 +50,7 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/imageBack.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/magnific-popup.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/ssi-modal.css'/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrapValidator.css'/>">
+        <link rel="stylesheet" href="<c:url value='/resources/css/sweetalert2.min.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/fonts/glyphicons-pro/glyphicons-pro.css'/>">
          <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.min.css'/>">
@@ -276,34 +276,58 @@
                         <div class="panel heading-border">
                             
                             <div class="panel-body bg-light1">
+                            
+                            <form id="defaultForm" action="#"
+                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                                 
+   
                                 <div class="row">
                                     
                                 <div class="col-md-4">
                                   <div class="form-group">
-                                      <label for="usuario">Usuario:</label>
-                                      <input  maxlength="25" type="text" id="usuario" class="form-control gui-input" placeholder="Usuario..." data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
-                                  </div>  
-                                </div>
-                                <div class="col-md-4">
-                                  <div class="form-group">
-                                      <label for="correo">Correo electrónico:</label>
-                                      <input  maxlength="120" type="email" id="correo" class="form-control gui-input" placeholder="Correo electrónico..." data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                  <div class="form-group">
-                                      <label for="nombrec">Nombre completo:</label>
-                                      <input maxlength="120" type="text" id="nombrec" class="form-control gui-input" placeholder="Nombre completo..." data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio">
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                      <div class="form-group">
-                                          <label for="nombrec">Contraseña:</label>
-                                          <input maxlength="8" type="text" id="contrasenia" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" class="form-control gui-input" placeholder="Contraseña...">
-                                      </div>
+                                    <label class="control-label">Nombre de usuario:</label>
+                                    <div class="inputGroupContainer">
+
+                                        <input  name="usuario" id="usuario" placeholder="Usuario..." class="form-control"  type="text">
+
                                     </div>
+                                  </div>  
+
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                    <label class="control-label">Correo electrónico:</label>
+                                    <div class="inputGroupContainer">
+                                       <input  name="correo" id="correo" placeholder="Correo electrónico..." class="form-control"  type="email">
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label class="control-label">Nombre completo:</label>
+                                    <div class="inputGroupContainer">
+                                       <input  name="nombrec" id="nombrec" placeholder="Nombre completo..." class="form-control"  type="text">
+                                    </div>
+                                  </div>  
+                                  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                    <label class="control-label">Contraseña:</label>
+                                    <a style="cursor:pointer;" onclick="generpass();"><span class="glyphicon glyphicon-refresh"></span> Generar Contraseña</a>
+                                    <div class="inputGroupContainer">
+                                        
+                                       <input  name="contrasenia" id="contrasenia" placeholder="Contraseña..." class="form-control"  type="text">
+                                    </div>
+                                    
+                                  </div>
+                                 
+                                </div>
+                                </div>
+                                   
                                 <div class="row">
                                     <button type="button" class="btn btn-rounded btn-success" onclick="cargaperfil();"><span class="glyphicon glyphicon-indent-left"></span> Asignar perfil</button>
                                     <input type="hidden" id="idperfilselec">
@@ -347,6 +371,21 @@
                                 <!--FIn Perfiles--> 
                                 <!--Sociedades-->               
                                                 <h4><b class="text-primary">Seleccione las sociedades a las que pertenecerà el usuario:</b></h4>
+                                                <div class="alert alert-danger" style="display:none;" id="alert-demo-1">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                    <i class="fa fa-frown-o pr10"></i>
+                                                    Por favor seleccione por lo menos una sociedad para el usuario.
+                                                </div>
+                                                <div class="alert alert-danger" style="display:none;" id="alert-demo-2">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                    <i class="fa fa-frown-o pr10"></i>
+                                                    Por favor seleccione la sociedad default del usuario.
+                                                </div>
+                                                <div class="alert alert-danger" style="display:none;" id="alert-demo-3">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                    <i class="fa fa-frown-o pr10"></i>
+                                                    Recuerde que la sociedad default debe estar seleccionada.
+                                                </div>
                                                 <table class="table">
                                                     <thead>
                                                         <tr class="success">
@@ -367,13 +406,13 @@
                                                                     <td>${nomsoc[i]}</td>
                                                                     <td>
                                                                         <div class="checkbox-custom fill checkbox-success mb5">
-                                                                            <input type="checkbox" id="soc${idsoci[i]}">
+                                                                            <input type="checkbox" id="soc${idsoci[i]}" value="${nomsoc[i]}">
                                                                             <label for="soc${idsoci[i]}"></label>
                                                                         </div>
                                                                     </td>
                                                                     <td>
                                                                         <div class="radio-custom radio-success mb5">
-                                                                            <input type="radio" id="rdsoci${idsoci[i]}" name="socdefault">
+                                                                            <input type="radio" id="rdsoci${idsoci[i]}" value="${idsoci[i]}" name="socdefault">
                                                                             <label for="rdsoci${idsoci[i]}"></label>
                                                                         </div>
                                                                     </td>
@@ -387,20 +426,12 @@
                                                 </table>             
 
                                                 <!--fin sociedades--> 
-                                                <div class="pull-right">  
+                                                <div class="form-group">
                                                     <br><br>
-                                                    <button style=" margin-right: 6px;"  class="btn btn-lg btn-primary"><span class="glyphicons glyphicons-user_add"></span> Crear Usuario</button>
+                                                    <button type="submit" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
                                                 </div>
-                                 
-                                 
-                                
-                                    
-                                
-                                              
-                                                 
-                            
+                            </form>                 
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -409,12 +440,13 @@
         </div>               
     </section>
     </div> 
+        <div id="creusuajax"></div>                                               
          <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="text-center">
-                            <img src="<c:url value='/resources/img/cargaGif.gif'/>" class="icon" />
+                            <img src="<c:url value='/resources/img/Loading.gif'/>" />
                             <h4>Cargando...</h4>
                         </div>
                     </div>
@@ -432,7 +464,7 @@
        <script src="<c:url value='/resources/js/jsValidaAdminUser.js'/>"></script>
        <script src="<c:url value='/resources/js/ssi-modal.js'/>"></script>
        <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
-      
+       <script src="<c:url value='/resources/js/sweetalert2.min.js'/>"></script> 
        <script type="text/javascript">
         jQuery(document).ready(function() {
 
@@ -456,27 +488,7 @@
             // HighCharts, JvectorMap, Admin Panels
 
             // Init Admin Panels on widgets inside the ".admin-panels" container
-            $('.admin-panels').adminpanel({
-              grid: '.admin-grid',
-              draggable: true,
-              preserveGrid: true,
-              mobile: false,
-              onStart: function() {
-                // Do something before AdminPanels runs
-              },
-              onFinish: function() {
-                $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
-
-                // Init the rest of the plugins now that the panels
-                // have had a chance to be moved and organized.
-                // It's less taxing to organize empty panels
-                demoHighCharts.init();
-                runVectorMaps(); // function below
-              },
-              onSave: function() {
-                $(window).trigger('resize');
-              }
-            });
+            
         });
     </script>
     </body>

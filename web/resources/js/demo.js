@@ -217,6 +217,7 @@ var Demo = function() {
            cabecera1 = "sidebar-alert";  
         }
       }
+              
       // Theme Settings
       var settingsObj = {
         // 'headerTone': true,
