@@ -1,11 +1,13 @@
 <%-- 
-    Document   : pgLibrodiario
-    Created on : 03-abr-2017, 12:51:47
-    Author     : Sinergia003
+    Document   : pgSC_LibroDiario
+    Created on : 02-abr-2017, 20:50:34
+    Author     : Jerson
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
@@ -14,19 +16,18 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <c:set var="valida" value="${sessionScope.ses_estado}" />
 <c:if test="${valida != 'Activa'}">
-<c:redirect url="login.gdc"/>
+    <c:redirect url="Inicio.gdc"/>
 </c:if>
-<c:set var="validaLista" value="${fn:length(sessionScope.ses_menus)}" />
+
+
 <html>
-   <head>
-    
+    <head>
         <meta charset="utf-8">
         <title>Grupo del campo</title>
-         <meta name="keywords" content="Perfil GDC" />
+        <meta name="keywords" content="Perfil GDC" />
         <meta name="description" content="Grupo del campo">
         <meta name="author" content="Sinergia">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="<c:url value='/resources/favicon/favicon.ico'/>">
         <!-- Font CSS (Via CDN) -->
         <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600'>
@@ -34,127 +35,24 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme2.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme3.css'/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/magnific-popup.css'/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/cssIndex/sweetalert2.min.css'/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/core.css'/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrapValidator.css'/>">
-        <link rel="stylesheet" href="<c:url value='/resources/css/default.css'/>" id="theme_base">
-        <link rel="stylesheet" href="<c:url value='/resources/css/default.date.css'/>" id="theme_date">
-        <link rel="stylesheet" href="<c:url value='/resources/css/default.time.css'/>" id="theme_time">
-        <!-- Admin Forms CSS -->
-        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.min.css'/>">
-        <style type="text/css">
-            #contentbanco{
-                display :none ;
-            }
-        </style>
-   </head>
-    <style>
-        a:hover,a:focus{
-            text-decoration: none;
-            outline: none;
-        }
-        .tab .nav-tabs{
-            border-bottom: 1px solid #0e6e15;
-        }
-        .tab .nav-tabs li{
-            margin: 0 2px 0 0;
-            position: relative;
-        }
-        /*.tab .nav-tabs li.active:before{
-            content: "";
-            position: absolute;
-            bottom: -58px;
-            left: 51px;
-            border: 14px solid transparent;
-            border-top-color: #0e6e15;
-        }
-        .tab .nav-tabs li.active:after{
-            content: "";
-            position: absolute;
-            bottom: -30px;
-            left: 53px;
-            border: 12px solid transparent;
-            border-top-color: #fff;
-        }*/
-        .tab .nav-tabs li a{
-            border: none;
-            padding: 13px 35px;
-            font-size: 14px;
-            color: #777;
-            background: transparent;
-            border-radius: 0;
-        }
-        .tab .nav-tabs li a:hover{
-            color: #0e6e15;
-        }
-        .tab .nav-tabs li a i{
-            display: block;
-            text-align: center;
-            margin-bottom: 5px;
-        }
-        .tab .nav-tabs li.active a,
-        .tab .nav-tabs li.active a:focus,
-        .tab .nav-tabs li.active a:hover{
-            border: none;
-            background: transparent;
-            color: #0e6e15;
-            transition: background 0.20s linear 0s;
-        }
-        .tab .tab-content{
-            font-size: 14px;
-            color: #777;
-            background: #fff;
-            line-height: 25px;
-            padding: 10px;
-        }
-        .tab .tab-content h3{
-            font-size: 26px;
-        }
-        @media only screen and (max-width: 479px) {
-            .tab .nav-tabs li a{
-                padding: 10px;
-            }
-            .tab .nav-tabs li.active:before{
-                left: 28px;
-                bottom: -24px;
-                border-width: 12px;
-            }
-            .tab .nav-tabs li.active:after{
-                left: 30px;
-                bottom: -20px;
-                border-width: 10px;
-            }
-        }
-    </style>
-    <style>
-       html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 50%;
-        width: 80%;
-      }
-      body.modal-open #wrap{
-                -webkit-filter: blur(7px);
-                -moz-filter: blur(15px);
-                -o-filter: blur(15px);
-                -ms-filter: blur(15px);
-                filter: blur(15px);
-                
-            }
 
-            .modal-backdrop {background: #000;}
-              
-            .close {
-                font-size: 50px;
-                display:block;
-               
-            }
-    </style>
+        <!-- Admin Forms CSS -->
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/admin-forms.css'/>">
+    </head>
     <body class="profile-page">
+        <!-------------------------------------------------------------+ 
+            <body> Helper Classes: 
+         ---------------------------------------------------------------+ 
+            '.sb-l-o' - Sets Left Sidebar to "open"
+            '.sb-l-m' - Sets Left Sidebar to "minified"
+            '.sb-l-c' - Sets Left Sidebar to "closed"
+
+            '.sb-r-o' - Sets Right Sidebar to "open"
+            '.sb-r-c' - Sets Right Sidebar to "closed"
+         ---------------------------------------------------------------+
+           Example: <body class="example-page sb-l-o sb-r-c">
+           Results: Sidebar left Open, Sidebar right Closed
+         --------------------------------------------------------------->
         <div id="skin-toolbox" style="display:none;">
             <div class="panel">
                 <div class="panel-heading">
@@ -290,11 +188,11 @@
             </div>
         </div>
         <!-- End: Theme Settings Pane -->
-     <div id="main">
+         <div id="main">
         <!-- Start: Header -->
     <header class="navbar navbar-fixed-top">
       <div class="navbar-branding">
-        <a class="navbar-brand" href="perfil.gdc">
+        <a class="navbar-brand" href="#">
           <b>ORIE</b>
         </a>
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
@@ -345,12 +243,7 @@
               
 
             </li>  
-            <li class="list-group-item">
-              <a href="#" class="animated animated-short fadeInUp">
-                <span class="fa fa-user"></span> Perfil
-                
-              </a>
-            </li>
+            
                
             <li class="dropdown-footer">
               <a href="closeSes.gdc" class="">
@@ -361,9 +254,8 @@
       </ul>
 
     </header>
-     
     <!-- End: Header -->
-     <!-- Start: Sidebar Left -->
+    <!-- Start: Sidebar Left -->
     <aside id="sidebar_left" class="nano nano-primary affix">
 
       <!-- Start: Sidebar Left Content -->
@@ -372,27 +264,25 @@
        
 
         <!-- Start: Sidebar Left Menu -->
-   <ul class="nav sidebar-menu">
-            <c:if test="${validaLista > 0}">
-                <c:forEach var="i" begin="0" end="${fn:length(sessionScope.ses_labels)-1}">
-                    <li class="sidebar-label pt20">${sessionScope.ses_labels[i]}</li>
-                    <c:forEach var="j" begin="0" end="${fn:length(sessionScope.ses_urlmen)-1}">
-                    <c:if test="${sessionScope.ses_idmenlbl[j] == sessionScope.ses_idlbl[i]}">
-                    <li>
-                        <a href="${sessionScope.ses_urlmen[j]}">
-                          <span class="${sessionScope.ses_iconosmenu[j]}"></span>
-                          <span class="sidebar-title">${sessionScope.ses_menus[j]}</span>
-                        </a>
-                    </li>
-                    </c:if>
-                    </c:forEach>
-                </c:forEach>
-            </c:if>
-          
+        <ul class="nav sidebar-menu">
+          <li class="sidebar-label pt20">Matrícula</li>
+          <li>
+            <a href="PrimerIngreso.gdc">
+              <span class="glyphicon glyphicon-plus-sign"></span>
+              <span class="sidebar-title">Primer ingreso</span>
+            </a>
+          </li>
+          <li>
+            <a href="Reingreso.gdc">
+              <span class="glyphicon glyphicon-repeat"></span>
+              <span class="sidebar-title">Reingreso</span>
+            </a>
+          </li>
           
         </ul>
         <!-- End: Sidebar Menu -->
-         <!-- Start: Sidebar Collapse Button -->
+
+	      <!-- Start: Sidebar Collapse Button -->
 	      <div class="sidebar-toggle-mini">
 	        <a href="#">
 	          <span class="fa fa-sign-out"></span>
@@ -406,91 +296,128 @@
     </aside>
     <!-- End: Sidebar Left -->    
     <section id="content_wrapper">
+        
         <section id="content" class="animated fadeIn">
-              
-                <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="tab" role="tabpanel">
-                <!-- Nav tabs -->
-              
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <!--Div datos 1--> 
-                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor1">
-                        <form id="defaultForm" action="#"
-                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
-                        <div class="content-header">
-                            <h2><b class="text-success">Libro Diario</b></h2>
-                        </div>
-                        
-                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                            <div class="form-group">
-                                <label for="pnestudiante">Sociedad:</label>
-                                <h1> ${ses_sociedadDefault}</h1>
-                                <input type="hidden" id="idsociedad" value="${ses_idsociedad}">
-                            </div>
-                        </div>    
-                       
-                       
-                          
-                        </div> 
-                            <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                          
-                            <div class="form-group">
-                                <label for="snestudiante">Fecha:</label>
-                                <input  class="gui-input form-control" maxlength="120" type="text" id="fecha" name="" >
-                            </div> 
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-
-                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                    <button type="submit" id="generarlibro"class="btn btn-lg btn-primary btn-block" ><span class="glyphicon glyphicon-list-alt"></span> Generar Filtos</button>
-                                </div>
-                            </div>
-                        </div> 
-                        </div>
-                                
-                                
-                      </div>    
-                            <div id="alerta2"></div>
-                       
-                            <div class="row" id="datoslibrodiarios" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                         
-                        
-                          
-                        
-                       
-                          
-                        </div>  
-                        
-                        
-                     
-                       
-                          
-                        </form>                
-                    </div>
-                    </div>                    
-                    <!--Div datos 2-->      
-                    
-                </div>
+            <div class="page-heading">
+            <div class="media clearfix">
+              <div class="media-left pr30">
+                <a href="#">
+                  
+                    <img class="media-object mw150" height="150" width="270" src="<c:url value='/resources/img/principal.png'/>"   alt="...">
+                </a>
+              </div>                      
+            
             </div>
         </div>
-    </div>
-</div>
-        <div id="ajaxtemp"></div>        
+        
         </section>
+        <section id="content" class="table-layout animated fadeIn">
+
+        <!-- begin: .tray-left -->
+        <aside class="tray tray-left tray320">
+
+          
+        </aside>
+        <!-- end: .tray-left -->
+
+        <!-- begin: .tray-center -->
+        <div class="tray tray-center">
+
+          <!-- Begin: Admin Panel Wrapper -->
+          <div class="admin-panels mw900 center-block" style="padding-bottom: 125px;">
+ 
+              <!-- AdminPanel Row - General Options -->
+              <div class="row mt20">
+
+                <div class="col-md-12 admin-grid animated-delay" data-animate='["400","fadeIn"]'>
+
+                  <!-- transparent panel - used for creating titles in admin grids -->
+                
+                  
+                  <div class="panel sort-disable mb50" id="p0" data-panel-color="false" data-panel-remove="false" data-panel-title="false" data-panel-collapse="false">
+                    <div class="panel-heading">
+                      <span class="panel-icon">
+                        <i class="fa fa-exclamation-circle text-success fa-lg pr10"></i> Toddlers | Nursery | Pre-Kinder
+                      </span>
+                      
+                    </div>
+                    
+                  </div>
+
+                  
+
+                  <!-- transparent panel - used for creating titles in admin grids -->
+               
+
+                 <div class="panel sort-disable mb50" id="p1" data-panel-color="false" data-panel-remove="false" data-panel-title="false" data-panel-collapse="false">
+                    <div class="panel-heading">
+                      <span class="panel-icon">
+                       <i class="fa fa-exclamation-circle text-success fa-lg pr10"></i> Kinder
+                      </span>
+                      
+                    </div>
+                    <div class="panel-body">
+                      <img class="media-object mw150 pull-right" height="150" width="330" src="<c:url value='/resources/img/logoDelCampo.png'/>"   alt="...">
+
+                      <hr class="short alt">
+                      <p>Formulario de Solicitud para Admisión.</p>
+                      <hr class="short alt">
+                      <p>Partida de Nacimiento Original.</p>
+                      <hr class="short alt">
+                      <p>Dos Fotografías tamaño carnét.</p>
+                      <hr class="short alt">
+                      <p>Una copia de carné de Vacunas.</p>
+                       <hr class="short alt">
+                      <p>Examen de Admisión.</p>
+                    </div>
+                  </div>
+
+                  <!-- transparent panel - used for creating titles in admin grids -->
+                  <div class="panel panel-transparent" id="pt2">
+                    <h4 class="micro-header">REQUISITOS PARA MATRÍCULA DE PRIMER INGRESO</h4> 
+                  </div>
+
+                  <!-- Basic AdminPanel - All features disabled except "minimized" option -->
+                  <div class="panel sort-disable mb50" id="p2" data-panel-color="false" data-panel-remove="false" data-panel-title="false" data-panel-collapse="false">
+                    <div class="panel-heading">
+                      <span class="panel-icon">
+                        <i class="fa fa-exclamation-circle text-success fa-lg pr10"></i> Primaria
+                      </span>
+                      
+                    </div>
+                   
+                  </div>
+
+                  <!-- transparent panel - used for creating titles in admin grids -->
+                
+
+
+                  <!-- transparent panel - used for creating titles in admin grids -->
+                  
+
+
+                  <!-- transparent panel - used for creating titles in admin grids -->
+                  
+                  <!-- Basic AdminPanel - All features disabled except "Scroller" option -->
+                  
+                  
+
+                </div>
+
+              </div>
+
+              
+
+          
+
+          </div>
+          <!-- End: Admin Panel Wrapper -->
+
+        </div>
+        <!-- end: .tray-center -->
+
+      </section>
     </section>
-                            
-       <!-- Modal -->
-        \               
     
          </div>  
        <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
@@ -498,20 +425,9 @@
        <script src="<c:url value='/resources/js/utility.js'/>"></script>
        <script src="<c:url value='/resources/js/demo.js'/>"></script>
        <script src="<c:url value='/resources/js/main.js'/>"></script>
-       <script src="<c:url value='/resources/js/jquery.magnific-popup.js'/>"></script>
-       <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
-       <script src="<c:url value='/resources/js/jquery.steps.min.js'/>"></script>
-      
-      
+       <script src="<c:url value='/resources/js/widgets.js'/>"></script>
+       <script src="<c:url value='/resources/js/jsValidaPrincipalFront.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery.waypoints.min.js'/>"></script>
-       <script src="<c:url value='/resources/jsOr/sweetalert2.min.js'/>"></script>
-       <script src="<c:url value='/resources/js/picker.js'/>"></script>
-       <script src="<c:url value='/resources/js/picker.date.js'/>"></script>
-       <script src="<c:url value='/resources/js/globalize.min.js'/>"></script>
-       <script src="<c:url value='/resources/js/select2.min.js'/>"></script>
-       <script src="<c:url value='/resources/js/typeahead.bundle.min.js'/>"></script>
-        <script src="<c:url value='/resources/js/SC_PartidasCuentas.js'/>"></script>
-        <script src="<c:url value='/resources/js/SC_LibroDiario.js'/>"></script>
        <script type="text/javascript">
         jQuery(document).ready(function() {
 
@@ -523,24 +439,58 @@
             // Init Demo JS
             Demo.init();
 
-            
-            });
-        
-           
+            // Init Widget Demo JS
+            // demoHighCharts.init();
+
+            // Because we are using Admin Panels we use the OnFinish 
+            // callback to activate the demoWidgets. It's smoother if
+            // we let the panels be moved and organized before 
+            // filling them with content from various plugins
+
+            // Init plugins used on this page
+            // HighCharts, JvectorMap, Admin Panels
+
+            // Init Admin Panels on widgets inside the ".admin-panels" container
+            $('.admin-panels').adminpanel({
+      grid: '.admin-grid',
+      draggable: true,
+      mobile: false,
+      callback: function() {
+        bootbox.confirm('<h3>A Custom Callback!</h3>', function() {});
+      },
+      onFinish: function() {
+        $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+
+        // Init Demo settings 
+        $('#p0 .panel-control-color').click();
+
+        // Init Demo settings 
+        $('#p1 .panel-control-title').click();
+
+        // Create an example admin panel filter
+        $('#admin-panel-filter a').on('click', function() {
+          var This = $(this);
+          var Value = This.attr('data-filter');
+
+          // Toggle any elements whos name matches
+          // that of the buttons attr value
+          $('.admin-filter-panels').find($(Value)).each(function(i, e) {
+            if (This.hasClass('active')) {
+              $(this).slideDown('fast').removeClass('panel-filtered');
+            } else {
+              $(this).slideUp().addClass('panel-filtered');
+            }
+          });
+          This.toggleClass('active');
+        });
+
+      },
+      onSave: function() {
+        $(window).trigger('resize');
+      }
+    });
+        });
     </script>
-   
-      
-       
-      
-       <style>
-  /*page demo styles*/
-  .wizard .steps .fa,
-  .wizard .steps .glyphicon,
-  .wizard .steps .glyphicon {
-    display: none;
-  }
-  </style>
     </body>
 </html>
-
 

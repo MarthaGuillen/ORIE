@@ -152,7 +152,7 @@ $( document ).ready(function() {
                         var id =$("#cuentar").val();
                         
                         transaccion=  id.substring(1, id.length-1);
-                        
+                        alert(transaccion);
               creartabla(transaccion,descripcion,monto,movimiento) ;   
         
                     }
@@ -499,66 +499,27 @@ function llenarcombosubcuenta(){
         xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad);   
  
 }
-/* function modificar(id,fila){
+ function crearcontrapartida(id){
    var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                /* $("#des").val("");
-                 $("#monto").value("");
-                  $("#Debito").attr('checked', false);
-                  $("#Credito").attr('checked', false);
-                document.getElementById("alerta2").innerHTML = xhttp.responseText;
-                document.getElementById('btnt').style.display = 'none';
-                document.getElementById('btnmodificar').style.display = 'block';
-               var idoperacion=$("#dato1").val();
-               var descripcion=$("#dato2").val();
-               var d=$("#dato3").val();
-               var h=$("#dato4").val();
-               var tm=$("#dato5").val();
+            document.getElementById("alerta2").innerHTML = xhttp.responseText;
               
-                 var transaccion= idoperacion.substring(1, idoperacion.length-1);
-                 var descri= descripcion.substring(1, descripcion.length-1);
-                 var debe= d.substring(1, d.length-1);
-                 console.log(debe);var haber= h.substring(1, h.length-1);
-                 var tipo= tm.substring(1, tm.length-1);
-                tem=transaccion;
-                $("#des").val(descri);
-               console.log(tipo);
-                  if(tipo==="D"){
-                      
-                      document.getElementById("Debito").checked=true;
-                      saldodebe=saldodebe-parseFloat(debe);
-                      console.log(parseFloat(debe));
-                      $("#monto").val(debe);
-                    
-                  }else if(tipo==="H"){
-                      document.getElementById("Credito").checked=true;
-                                           
-                      saldohaber=saldohaber-parseFloat(haber);
-                      $("#monto").val(parseFloat(haber));
-                     
-                  }
-                     if(saldodebe>saldohaber){
-               
-               total=saldodebe-saldohaber;
-                final="<tr><td></td><td>Saldo</td><td>"+total.toFixed(2)+"</td> <td ></td></tr>";
-           }
-           if(saldodebe<saldohaber){
-               total=saldohaber-saldodebe;
-               final="<tr><td></td><td>Saldo</td><td ></td><td '>"+total.toFixed(2)+"</td></tr>";
-           }
-          $("#fila" + fila).remove();
-          $("#saldo").html(final);
-             ii=ii-1;       
-                }
+                          swal(
+                                'Exito!!!...',
+                                'Cuenta agregada .'
+                            );
+                    mostrarpartidas();
+                            
         
         };
+    }
        
-      xhttp.open("POST", "obteneroperacion.gdc", true);
+      xhttp.open("POST", "Crearcontrapartida.gdc", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("transaccion="+id);    
        
- }*/
+ }
 
 function creartabla(t,d,monto,movi){
     ii=ii+1;
@@ -746,7 +707,7 @@ function llenarcombosub2(){
  
 }
 
-function librodiario(){
+/*function librodiario(){
  var fecha=$("#fecha").val().trim();
 
    
@@ -814,35 +775,42 @@ function librodiario(){
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("fecha="+fecha);   
  
-}
+}*/
 
 function mostrarpartidas(){
     var sociedad=$("#sociedadp").val();
 
-   
+   var partidas;
+   var txt="";
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                document.getElementById("alerta2").innerHTML = xhttp.responseText;
-                var idpartid= $("dato_1").val();
-                 var codigopartid =$("dato_2").val();
-                 var fechp=$("dato_3").val();
-                 var nombrepartid=$("dato_4").val();
-                 var usuariopartid=$("dato_5").val();
-                 alert(idpartid);
-                    /* var partidaJson ={"idpartida":idpartida,"codigopartida":codigopartida,
-                         "fechap":fechap,"nombrepartida":nombrepartida,"usuariopartida":usuariopartida}
-                    alert(partidaJson);
-                      var tabla="";
-                for (var i =0;i< partidaJson.idpartida.length-1;i++ ) {
-                       tabla +="<tr>";
-                        tabla +="<td>"+partidaJson[i].codigopartida+"</td>";
-                        tabla +="<td>"+ partidaJson[i].fechap+"</td>";
-                        tabla +="<td>"+ partidaJson[i].nombrepartida+"</td>";
-                         tabla +="<td>"+partidaJson[i].usuariopartida+"</td>";
-                        tabla +="<td>"+ partidaJson[i].usuariopartida+"</td>";
-                       tabla +="</tr>";
-            }*/
+              document.getElementById("infopartida").innerHTML = xhttp.responseText;
+               
+             
+           $('#infodatos').DataTable({
+      
+        "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encuentran registros disponibles.",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros que coincidan con su busqueda.",
+                    "infoFiltered": "(Filtrado de _MAX_ registros.)",
+                    "decimal": ".",
+                    "thousands": ",",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando..",
+                    "search": "Buscar",
+                    "paginate": {
+                        "first": "Inicio",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    
+                    }
+                    
+                }
+    } );
             
             }
         
