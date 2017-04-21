@@ -1,9 +1,3 @@
-<%-- 
-    Document   : pgCuentaBalance
-    Created on : 08-mar-2017, 8:13:29
-    Author     : Sinergia003
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -237,7 +231,7 @@
                   </div>
                   
               </div>
-
+`
               
 
             </li>  
@@ -317,332 +311,73 @@
             
         
             <div class="media clearfix">
-         <ul class="nav nav-tabs" role="tablist">
-                  
-                      <li  onclick="activarsubcuenta()">
-                <a href="#subcuentamayor">
-                 Crear  Sub-Cuenta Mayor</a>
-              </li>
-              <li onclick="activarscuenta()">
-                <a href="#cuentamayor">
-                  Crear  Cuenta Mayor</a>
-              </li>
-              <li onclick="activarorigen()">
-                <a href="#cuentaorigen">
-                  Crear cuenta Origen</a>
-              </li>
-              <li onclick="crearcatalagos(${ses_idsociedad})">
-                <a href="#cuentaorigen">
-                  Catalagos Cuenta Balance</a>
-              </li>
-                    
-                    
-                </ul> 
-                            <br><br>
-              <div  id="subcuentamayor" style="display:none;" >
-            <div class="media clearfix">
-                <div id="resp2" ></div>
-                <div class="admin-form">
-                    <div class="panel heading-border">
-                        <div class="panel-body">
-                            <form  id="form-ui" action="#">
-                                <div class="section-divider mb40" id="spy1">
-                                    <span>Sub-Cuenta </span>
-                                </div>
-                               
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">
-                                        <div class="section">
-                                            <label class="field " for="area">
-                                                <h3>Cuenta Origén:</h3>  
-                                            </label>
-                                        </div>
-                                    
-                                     
-                                         <div class="form-group">
-                                    
-                                    <label style="color:red;display:none;" id="origenval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                    <select class="select2-single form-control"  id="origen" name="origen" onchange="llenarcombobox()" style=" width: 100%;">
-                                        <option value=""></option>
-                                        <c:set var="valida" value="${fn:length(idorigen)}" />
-                                        <c:if test="${valida > 0}">
-                                             <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
-                                                    <option value="${idorigen[i]}">${nombreorigen2[i]}</option>
-                                                </c:forEach>
-                                        </c:if>
-                                    </select>
-                                    
-                                          </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">
-                                        <div class="section">
-                                            <label class="field " for="cuenta">
-                                                <h3>Cuenta :</h3>  
-                                            </label>
-                                        </div>
-                                   
-                                        <div class="form-group">
-                                  
-                                    <label style="color:red;display:none;" id="cuentaval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                    <select class="select2-single form-control"  id="cuenta" name="cuenta" style=" width: 100%;">
-                                        <option value=""></option>
-                                       
-                                    </select>
-                                    
-                                          </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 col-xs-12">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Sociedad:</h3>  
-                                            </label>
-                                        </div>
-                                    
-                                         <div class="form-group">
-                                  
-                                    <label style="color:red;display:none;" id="sociedadval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                    <select class="select2-single form-control"  id="sociedad" name="sociedad" style=" width: 100%;">
-                                        <option value=""></option>
-                                        <c:set var="valida" value="${fn:length(idsociedad)}" />
-                                        <c:if test="${valida > 0}">
-                                             <c:forEach var="i" begin="0" end="${fn:length(idsociedad)-1}">
-                                                 <c:if test="${idsociedad[i] != '4'}">
-                                                    <option value="${idsociedad[i]}">${sociedadnombre[i]}</option>
-                                                    </c:if>
-                                                </c:forEach>
-                                        </c:if>
-                                    </select>
-                                    
-                                          </div>
-                                      </div>
-                                </div>
-                               
-                               
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Nombre de la Sub-Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                             <label style="color:red;display:none;" id="nombresubval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                          <input class="form-control" type="text" name="" id ="nombresub"placeholder="Ingrese el Nombre de la Cuenta">
-                                        </div>
-                                      </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Observación de la Cuenta  :</h3>  
-                                            </label> 
-                                        </div>
-                                    </div>
-                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                             <label style="color:red;display:none;" id="observacionval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                          <input class="form-control" type="text" name="" id ="observacion"placeholder="Observación">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Depuración  :</h3>  
-                                            </label> 
-                                        </div>
-                                    </div>
-                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                             <label style="color:red;display:none;" id="depuracionval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                          <input class="form-control" type="text" name="" id ="depuracion" placeholder="Depuración">
-                                        </div>
-                                      </div>
-                                </div>
-                                   
-                                <div class="panel-footer text-right">
-                                    <button type="submit" class="button btn-primary" id="agregarsubcuenta">  Agregar Cuenta </button>
-                                    <button type="reset" class="button"> Cancelar </button>
-                                  </div>
-                      
-                        </form>
-
-
-                    </div>
-                </div>
-                
-                
-            </div>
-        </div>
-           
-            </div>
-             <div  id="cuentamayor" style="display:none;" action="#">
-            <div class="media clearfix">
-                <div class="admin-form">
-                    <div class="panel heading-border">
-                        <div class="panel-body ">
-                            <form  id="form-ui">
-                                <div class="section-divider mb40" id="spy1">
-                                    <span>Cuenta Mayor</span>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Cuenta Origen :</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                       <div class="form-group">
-                                    
-                                    <label style="color:red;display:none;" id="origen2val"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                    <select class="form-control select2-single"  id="origen2" name="origen2" style=" width: 100%;">
-                                        <option value=""></option>
-                                        <c:set var="valida" value="${fn:length(idorigen)}"/>
-                                        <c:if test="${valida > 0}">
-                                             <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
-                                                    <option value="${idorigen[i]}">${nombreorigen[i]}</option>
-                                                </c:forEach>
-                                        </c:if>
-                                    </select>
-                                    
-                                          </div>
-                                    </div>
-                                       
-                                    
-                                </div>
-                               
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Codigo De Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                             <label style="color:red;display:none;" id="codigomayorval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                            <input class="form-control" type="text" name="" id ="codigomayor"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Nombre de la Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                             <label style="color:red;display:none;" id="nombremayorval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                          <input class="form-control" type="text" name="" id ="nombremayor"placeholder="Ingrese el Nombre de la Cuenta">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Observación:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="section">
-                                             <label style="color:red;display:none;" id="obsevacionmayorval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                          <input class="form-control" type="text" name="" id ="obsevacionmayor"placeholder="Ingrese el Nombre de la Cuenta">
-                                        </div>
-                                      </div>
-                                      </div>
-                                
-                                <div class="panel-footer text-right">
-                                    <button type="submit" class="button btn-primary" id="agregarcuentamayor" > Agregar Cuenta </button>
-                                    <button type="reset" class="button"> Cancelar </button>
-                                  </div>
-                            </form>
-                        </div> 
-                    </div>
-                        
-
-                    
-                </div>
-                </div>
-                
-                
-            </div>
-         <div  id="cuentaorigen"style="display:none;" action="#">
+       
+          
+             <div  id="cuentaorigen" action="#">
             <div class="media clearfix">
                 <div class="admin-form">
                     <div class="panel heading-border">
                         <div class="panel-body ">
                             <form  id="form-ui" data-toggle="validator" action="#">
                                 <div class="section-divider mb40" id="spy1">
-                                    <span>Cuenta Origén</span>
+                                    <h1><b >Libro Mayor</b></h1>
                                 </div>
                                
-                               
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Codigo De Cuenta:</h3>  
-                                            </label>
+                            
+                        
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="pnestudiante">Sociedad:</label>
+                                <h1> ${ses_sociedadDefault}</h1>
+                                <input type="hidden" id="idsociedad" value="${ses_idsociedad}">
+                            </div>
+                        </div>    
+                       
+                       
+                          
+                        </div> 
+                            <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                          
+                            <div class="form-group">
+                                <label>Fecha Inicial:</label>
+                                <label style="color:red;display:none;" id="fechaval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                <input  class="gui-input form-control" maxlength="120" type="text" id="fecha" name="" >
+                            </div> 
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                          
+                            <div class="form-group">
+                                <label>Fecha Final :</label>
+                                <label style="color:red;display:none;" id="fecha2val"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                <input  class="gui-input form-control" maxlength="120" type="text" id="fecha2" name="" >
+                            </div> 
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+
+                        <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                                    <button type="submit" id="generarlibro"class="btn btn-lg btn-primary btn-block" ><span class="glyphicon glyphicon-list-alt"></span> Generar Filtos</button>
+                                </div>
+                            </div>
+                        </div> 
+                        </div>
+                       
+                                
+                                
+                      </div>
+                                
+                                <section id="content" class="animated fadeIn">
+                                    <div >
+                                        <div id="tablalibromayor">
+
+                                  
+
                                         </div>
                                     </div>
-                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                             <label style="color:red;display:none;" id="codigoorigenval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                            <input class="form-control" type="text" name="" id ="codigoorigen"placeholder="Codigo Generado por los Seleccione de area y Tipo" value="">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Nombre de la Cuenta:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                             <label style="color:red;display:none;" id="nombreorigenval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                          <input class="form-control" type="text" name="" id ="nombreorigen"placeholder="Ingrese el Nombre de la Cuenta">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                            <label class="field ">
-                                                <h3>Observación:</h3>  
-                                            </label>
-                                        </div>
-                                    </div>
-                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
-                                        <div class="section">
-                                             <label style="color:red;display:none;" id="observacionorigenval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                          <input class="form-control" type="text" name="" id ="observacionorigen"placeholder="Ingrese el Nombre de la Cuenta">
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="panel-footer text-right">
-                                    <button type="submit" class="button btn-primary"id="agregar_origen"> Agregar Origen </button>
-                                    <button type="reset" class="button"> Cancelar </button>
-                                  </div>
+                                </section>
                             </form>
                         </div> 
 
@@ -651,47 +386,10 @@
                 
                 
             </div>
-        </div>        
-     <section id="content" class="animated fadeIn">
-            <div >
-                <div class="media clearfix" id="catalagoscrea">
-                                        
-               <h1>Cuentas </h1>
-                      
-                       <table class="table table-responsive" id="tablecuentas"  cellspacing="0" width="100%">
-                    <thead class="primary">
-                      <tr>
-                       
-                        <th> Cuenta Mayor </th>
-                        <th> Sub-Cuenta Mayor </th>
-                         <th>Cuenta Origen </th>
-                        <th> Estado </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                     
-                         <c:forEach var="i" begin="0" end="${fn:length(nombreorigen)-1}">
-                        <c:set var="contador" value="${i+1}"/>
-                        <tr>
-                            
-                            <td>${codigocuentabalance[i]}  ${nombrecuentabalance[i]}</td>
-                           <td>${codigosubcuenta[i]}  ${nombresubcuenta[i]}</td>
-                           <td>${nombreorigen[i]}</td>
-                             <td>Vigente</td>
-                           
-                        
-                       </tr>
-                        </c:forEach> 
+        </div>      
+             
                
-
-                    </tbody>
-                  </table>                  
-                                      
-                                      
-                  
-                </div>
-            </div>
-        </section>
+    
            
             </div>
         
@@ -719,11 +417,11 @@
     
    
    
-         <script>
-              var sociedaddef = "${sessionScope.ses_sociedadDefault}";
+<script>
+            var sociedaddef = "${sessionScope.ses_sociedadDefault}";
             var tipoperf = "${sessionScope.ses_tipoperfil}";
         </script>
-       <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
+    <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
        <script src="<c:url value='/resources/js/utility.js'/>"></script>
        <script src="<c:url value='/resources/js/demo.js'/>"></script>
@@ -739,9 +437,8 @@
        <script src="<c:url value='/resources/js/globalize.min.js'/>"></script>
        <script src="<c:url value='/resources/js/select2.min.js'/>"></script>
        <script src="<c:url value='/resources/js/typeahead.bundle.min.js'/>"></script>
-       <script src="<c:url value='/resources/js/SC_Cuen_contabilidad.js'/>"></script>
-        <script src="<c:url value='/resources/js/SC_Cuentabalance.js'/>"></script>
-       <script src="<c:url value='/resources/jsOr/jquery.dataTables.min.js'/>"></script>
+       <script src="<c:url value='/resources/js/SC_LibroMayor.js'/>"></script>
+        <script src="<c:url value='/resources/jsOr/jquery.dataTables.min.js'/>"></script>
     <script type="text/javascript">
   jQuery(document).ready(function() {
 

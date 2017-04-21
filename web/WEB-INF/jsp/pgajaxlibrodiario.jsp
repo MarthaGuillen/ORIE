@@ -12,43 +12,62 @@
     <c:redirect url="login.gdc"/>
 </c:if>
 <c:set var="validaLista" value="${fn:length(sessionScope.ses_menus)}" />
-<h1>  Estoy   </h1>
-                            <table class="table table-responsive" id="tablalibro" cellspacing="0" width="100%">
+
+<table class="table table-responsive" id="tablalibro" cellspacing="0" width="100%"  >
                                 <thead>
                                     <tr class="primary">
                                        
-                                        <th>nombre Partida</th>
-                                        <th>cuenta</th>
-                                        <th>Descripcion</th>
-                                        <th>debe</th>
-                                        <th>Haber</th>
-                                        <th>usuario</th>
-                                        <th>Descripcion</th>
+                                        <th>FECHA</th>
+                                        <th>PARTIDA</th>
+                                        <th>CUENTA </th>
+                                        <th style="font-size: 12px;">NOMBRE DE LA CUENTA</th>
+                                        <th>CONCEPTO</th>
+                                        <th>PARCIAL </th>
+                                        <th>DEBE</th>
+                                        <th>HABER</th>
+                                        <c:if test="${datosauditoria == 1}">
+                                        <th style="font-size: 12px;">ESTATUS DE PARTIDA</th>
+                                        <th style="font-size: 12px;">FECHA DE ELABORACION</th>
+                                        <th >USUARIO</th>
+                                        </c:if>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <c:set var="valida" value="${fn:length(list)}" />
+                                <tbody style="font-size: 12px;">
+                                    <c:set var="valida" value="${fn:length(fechap)}" />
                                     <c:if test="${valida > 0}">
-                                            <c:forEach var="i" begin="0" end="${fn:length(list)-1}">
+                                            <c:forEach var="i" begin="0" end="${fn:length(fechap)-1}">
                                                 <tr>
-                                                    <td colspan="${list.get(i).getOperaciones()}">${list.get(i).getNombrepartida()}colspan</td>                                                     
-                                                    <td colspan="${list.get(i).getOperaciones()}">${list.get(i).getCodigopartida()}colspan</td>  
-                                                    <c:forEach var="j" begin="0" end="${fn:length(list.get(i).getOperaciones())-1}">
-                                                        <td> ${list.get(i).getOperaciones().get(j).getCodigo()}</td>
-                                                        <td> ${list.get(i).getOperaciones().get(j).getNombrec()}</td>
-                                                        <td> ${list.get(i).getOperaciones().get(j).getConcepto()}</td>
-                                                        <td> ${list.get(i).getOperaciones().get(j).getDebe()}</td>
-                                                        <td> ${list.get(i).getOperaciones().get(j).getHaber()}</td>
-                                                       
-                                                    </c:forEach>
-                                                    <td colspan="${list.get(i).getOperaciones().size()}">${list.get(i).getParcial()}</td>                                                     
-                                                    <td colspan="${list.get(i).getOperaciones()}">${list.get(i).getEstado()}</td>                                                     
-                                                    <td colspan="${list.get(i).getOperaciones()}">${list.get(i).getFecha()}</td>                                                     
-                                                    <td colspan="${list.get(i).getOperaciones()}">${list.get(i).getUsuario()}</td>                                                     
-                                                    <td colspan="${list.get(i).getOperaciones()}">${list.get(i).getFechacreo()}</td>                                                     
-                                                    
+                                                    <td style="font-size: 10px;">${fechap[i]}</td>
+                                                    <td>${codigopartida[i]}</td>
+                                                    <td>${codigocuenta[i]}</td>
+                                                    <td>${nombrecuenta[i]}</td>
+                                                    <td>${concepto[i]}</td>
+                                                    <td></td>
+                                                    <td>${debe[i]}</td>
+                                                    <td>${haber[i]}</td>
+                                                    <c:if test="${datosauditoria == 1}">
+                                                    <td name="datosauditoria">${estado[i]}</td>
+                                                    <td name="datosauditoria">${usuario[i]}</td>
+                                                    <td name="datosauditoria">${fechacreo[i]}</td>
+                                                    </c:if>
                                                 </tr>
+                                                    
                                             </c:forEach>
                                     </c:if>
                                 </tbody>
+                                <tfoot>
+                                  <th></th>
+                                        <th></th>
+                                        <th> </th>
+                                        <th ></th>
+                                        <th></th>
+                                        <th> </th>
+                                        <th style="color: green">${saldodebe}</th>                                     
+                                        <th style="color: red">${saldohaber}</th>
+                                        <c:if test="${datosauditoria == 1}">
+                                        <th ></th>
+                                        <th ></th>
+                                        <th ></th>
+                                        </c:if>  
+                                </tfoot>
                             </table>

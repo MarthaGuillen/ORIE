@@ -2773,7 +2773,7 @@
 }
 .admin-form .heading-border:before {
   content: "";
-  background-color: #9999A3;
+  background-color: #0e6e15;
   position: absolute;
   height: 10px;
   z-index: 1;

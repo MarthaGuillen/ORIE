@@ -31,6 +31,7 @@
         <!-- Font CSS (Via CDN) -->
         <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600'>
         <!-- Theme CSS -->
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/jquery.dataTables.min.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme2.css'/>">
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/theme3.css'/>">
@@ -440,14 +441,15 @@
                           
                         </div> 
                             <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
                           
                             <div class="form-group">
-                                <label for="snestudiante">Fecha:</label>
+                                <label>Fecha:</label>
+                                <label style="color:red;display:none;" id="fechaval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                 <input  class="gui-input form-control" maxlength="120" type="text" id="fecha" name="" >
                             </div> 
                         </div>
-                        <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
 
                         <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
                             <div class="form-group">
@@ -457,9 +459,19 @@
                             </div>
                         </div> 
                         </div>
+                       
                                 
                                 
-                      </div>    
+                      </div>
+                            <div class="row">
+                                 <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+                                <div class="checkbox-custom fill checkbox-success checkbox-inline mb5">
+                                    <input type="checkbox" id="camposau">
+                                    <label for="camposau">Campos de Auditoria</label>
+                            </div>
+                        </div>
+                            </div>
+                            
                             <div id="alerta2"></div>
                        
                             <div class="row" id="datoslibrodiarios" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
@@ -501,8 +513,10 @@
        <script src="<c:url value='/resources/js/jquery.magnific-popup.js'/>"></script>
        <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery.steps.min.js'/>"></script>
-      
-      
+       <script>
+              var sociedaddef = "${sessionScope.ses_sociedadDefault}";
+            var tipoperf = "${sessionScope.ses_tipoperfil}";
+        </script>      
        <script src="<c:url value='/resources/js/jquery.waypoints.min.js'/>"></script>
        <script src="<c:url value='/resources/jsOr/sweetalert2.min.js'/>"></script>
        <script src="<c:url value='/resources/js/picker.js'/>"></script>
@@ -512,6 +526,7 @@
        <script src="<c:url value='/resources/js/typeahead.bundle.min.js'/>"></script>
         <script src="<c:url value='/resources/js/SC_PartidasCuentas.js'/>"></script>
         <script src="<c:url value='/resources/js/SC_LibroDiario.js'/>"></script>
+        <script src="<c:url value='/resources/jsOr/jquery.dataTables.min.js'/>"></script>
        <script type="text/javascript">
         jQuery(document).ready(function() {
 

@@ -8,11 +8,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import modelo.dao.cuentabalanceDAO;
 import modelo.dao.librodiarioDAO;
-import modelo.dao.operacion;
-import modelo.dao.partida;
-import modelo.dao.partidaDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,12 +25,12 @@ public class LibroDiarioController {
       return mv;
      }
     @RequestMapping(value ="librodiarioobtener.gdc", method = RequestMethod.POST)
-     public ModelAndView funbuscaroperaciones(@RequestParam("fecha") String fecha, HttpServletRequest request ) throws Exception{
+     public ModelAndView funbuscaroperaciones(@RequestParam("fecha") String fecha,
+           @RequestParam("datosauditoria") int datosauditoria, HttpServletRequest request ) throws Exception{
      ModelAndView mv = new ModelAndView("pgajaxlibrodiario");
      int sociedad = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
      librodiarioDAO libro = new librodiarioDAO();
-     partida partida =new partida();
-     operacion operaciones = new operacion();
+   
      List repuest = libro.filtrolibrodiario(sociedad,fecha);
      ArrayList<String> fechap = new ArrayList<String>();
     ArrayList<String> codigopartida = new ArrayList<String>();
@@ -49,60 +45,42 @@ public class LibroDiarioController {
     ArrayList<String> fechacreo = new ArrayList<String>();
      
    
-   
+    float saldodebe = 0,saldohaber = 0;
      List<Object[]> listDatoorigen = repuest;
             for (Object[] datos : listDatoorigen) {
                 fechap.add((String) datos[0].toString());
                 codigopartida.add((String) datos[1].toString());
+             
                 nombrepartida.add((String) datos[2]);
+              
                 codigocuenta.add((String) datos[3]);
                 nombrecuenta.add((String) datos[4]);
                 concepto.add((String) datos[5]);
                 debe.add((String) datos[6].toString());
+              saldodebe+=Float.parseFloat((String) datos[6].toString());
+              saldohaber+=Float.parseFloat((String) datos[7].toString());
                 haber.add((String) datos[7].toString());
                 estado.add((String) datos[8].toString());
                 usuario.add((String) datos[9]);
                 fechacreo.add((String) datos[10].toString());
                         }  
-            System.out.println("controller.LibroDiarioController.funbuscaroperaciones()");
-            System.out.println(concepto);
-          List<partida> part = new ArrayList();  
-           for(int i=0;i<codigopartida.size();i++){
-                String nombrepartid = "";
-               List<operacion> op =new ArrayList();
-                float parcial = 0;
-               if(i==0){
-               nombrepartid= nombrepartida.get(i);
-                 for( int j=0;j<nombrepartida.size();j++){
-                  if(nombrepartid==nombrepartida.get(j)){
-                    //operaciones=  );
-                      op.add(new operacion(codigocuenta.get(j), nombrecuenta.get(j), concepto.get(j),Float.parseFloat(debe.get(j)),Float.parseFloat(haber.get(j))));
-                      parcial+=Float.parseFloat(debe.get(j));
-                  }
-                 }
-                // partida=new partida(fechap.get(i),nombrepartida.get(i), codigopartida.get(i), op, parcial, estado.get(i), usuario.get(i), fechacreo.get(i));
-                 part.add(new partida(fechap.get(i),nombrepartida.get(i), codigopartida.get(i), op, parcial, estado.get(i), usuario.get(i), fechacreo.get(i)));
-                }else{
-                 
-                   if(nombrepartid!=nombrepartida.get(i)){
-                   nombrepartid= nombrepartida.get(i);
-                    
-                 for( int j=0;j<nombrepartida.size();j++){
-                  if(nombrepartid==nombrepartida.get(j)){
-                    operaciones=  new operacion(codigocuenta.get(j), nombrecuenta.get(j), concepto.get(j),Float.parseFloat(debe.get(j)),Float.parseFloat(haber.get(j)));
-                      op.add(operaciones);
-                      parcial+=Float.parseFloat(debe.get(j));
-                  }
-                 }
-                 partida=new partida(fechap.get(i),nombrepartida.get(i), codigopartida.get(i), op, parcial, estado.get(i), usuario.get(i), fechacreo.get(i));
-                 part.add(partida);
-                   }
-               
-               }
-           }
-           
-         System.out.println(part.size());
-         mv.addObject("list", part);
+            System.out.println("Haber"+saldohaber);
+            System.out.println("Debe"+saldodebe);
+ 
+         
+       mv.addObject("fechap",fechap);
+       mv.addObject("codigopartida",codigopartida);
+       mv.addObject("codigocuenta",codigocuenta);
+       mv.addObject("nombrecuenta",nombrecuenta);
+       mv.addObject("concepto",concepto);
+       mv.addObject("debe",debe);
+       mv.addObject("haber",haber);
+       mv.addObject("estado",estado);
+       mv.addObject("usuario",usuario);
+       mv.addObject("fechacreo",fechacreo);
+       mv.addObject("datosauditoria",datosauditoria);
+       mv.addObject("saldohaber",saldohaber);
+       mv.addObject("saldodebe",saldodebe);
      return mv;
      }
        
