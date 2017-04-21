@@ -71,7 +71,7 @@
        
         
         
-       
+        //button styles
 
 
         //default button
@@ -139,15 +139,58 @@
           color:white;
           width: 70%;
         }
-
-        
+             .form-signin input[type="text"] {
+        margin-bottom: 5px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .form-signin .form-control {
+        position: relative;
+        font-size: 16px;
+        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+        height: auto;
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .vertical-offset-100 {
+        padding-top: 100px;
+    }
+    .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    }
+    .panel {
+    margin-bottom: 20px;
+    background-color: rgba(12, 11, 11, 0.75);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+    
+        body { 
+            background: url("<c:url value='/resources/img/Log_inDCIS.png'/>") no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
         
         </style>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('.carousel').carousel({interval: 7000});
+             
 
-                $('#password').bind("enterKey", function (e) {
+            $('#password').bind("enterKey", function (e) {
                     validar();
                 });
                 $('#password').keyup(function (e) {
@@ -161,50 +204,60 @@
         </script>
     </head>
     <body class="login2">
-        <div id="myCarousel" class="carousel container slide" style="filter:alpha(opacity=50); opacity:0.9;">
-            <div class="carousel-inner">
-                <div class="active item one"></div>
-                <div class="item two"></div>
-                <div class="item three"></div>
-
-
-            </div>
-        </div> 
-        <!-- Login Screen -->
-        <div class = "pull-right">
-            <div class="login-wrapper">
-                <div class="container" style="margin-top: 2em;
-                     margin-bottom: 2em;
-                     margin-left: 2em;
-                     margin-right: 2em;">
-                    <h1>
-                        <img src ="<c:url value='/resources/img/logowhite.png'/>" alt="Logo" class="img-responsive center-block">
-                    </h1>
-                    
-                    <div class="form-group float-label-control">
-                        <label for="xtus">Usuario:</label>
-                        <input id="xtus" name="xtus" type="text" class="form-control" style="color:white;" placeholder="Usuario o correo electrónico" maxlength="120">
+        <div class="modal fade" id="modalcarg" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="container">
+              
+            <div class='row' > 
+                    <br><br><br><br><br><br>
+                    <div class="col-sm-12">
+                    <h1 class="text-center default" style="color:white;">Cargando, espere por favor...</h1>   
+                    <div class="col-sm-12">    
+                        <br>                        
+                        <img width="180px" heigth="180px" src='<c:url value='/resources/img/cargaGif1.gif'/>' alt="carga" class='img-responsive center-block'>
                     </div>
-                    <div class="form-group float-label-control">
-                        <label for="">Contraseña:</label>
-                        <input type="password" class="form-control"  style="color:white;" placeholder="Contraseña" id="xtpas" name="xtpas" maxlength="16">
                     </div>
                    
-                    <a  class="pull-left hvr-pulse" style="cursor:pointer;color:white;" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span> Crear cuenta</a>
-                    <a class="pull-right hvr-pulse" style="cursor:pointer;color:white;" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-repeat"></span> ¿Olvidó su contraseña?</a>
-                    <br>
-                    <br><br>
-                    <button class="btn btn-lg btn-primary btn-block" onclick="validar();">Ingresar</button>
-                    
-                    <div id="valida"></div>
-
-
-
+            </div>                 
+            </div>
+        </div> 
+        
+        <div class="container">
+            <div class="row vertical-offset-100">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="panel panel-default" style="-webkit-box-shadow: 1px 3px 15px 5px rgba(0,0,0,0.75);
+                        -moz-box-shadow: 1px 3px 15px 5px rgba(0,0,0,0.75);
+                        box-shadow: 1px 3px 15px 5px rgba(0,0,0,0.75);">
+                                                          
+                                <div class="row-fluid user-row">
+                                    <img src ="<c:url value='/resources/img/logowhite.png'/>" alt="Logo" class="img-responsive center-block">
+                                </div>
+                            
+                            <div class="panel-body">
+                                <form class="form-signin" action="">
+                                    
+                                        <label class="panel-login">
+                                            <div class="login_result"></div>
+                                        </label>
+                                        <h4 class="text-center" style="color:white;"><strong>DCIS Intranet</strong></h4>
+                                        <hr>
+                                        <div class="input-group">
+                                            <input id="xtus" name="xtus" type="text" class="form-control" placeholder="Usuario o correo electrónico" maxlength="120">
+                                            <input type="password" class="form-control"  placeholder="Contraseña" id="xtpas" name="xtpas" maxlength="16">
+                                        </div>
+                                        
+                                        <a class="pull-right hvr-pulse" style="cursor:pointer;color:white;" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-repeat"></span> ¿Olvidó su contraseña?</a>
+                                        <br><br>
+                                        <a class="btn btn-lg btn-success btn-block" onclick="validar();">Inciar sesion</a>
+                                        <div id="valida"></div>
+                                        <br>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-         
-        <form role="form" id="form1" name="form1" action="Principal.gdc" method="post">             
+                      
+            <form role="form" id="form1" name="form1" action="Principal.gdc" method="post">             
               <input type="hidden" id="id" name="id">             
                         
         </form>             
@@ -269,7 +322,7 @@
                     <h1 class="text-center default" style="color:white;">Registrando, espere por favor...</h1>   
                     <div class="col-sm-6 col-sm-offset-5">    
                         <br>                        
-                        <img width="180px" heigth="180px" src='<c:url value='/resources/img/cargaGif.gif'/>' alt="carga" class='img-responsive center-block'>
+                        <img width="180px" heigth="180px" src='<c:url value='/resources/img/cargaGif1.gif'/>' alt="carga" class='img-responsive center-block'>
                     </div>
                     </div>
                     <div class="col-sm-12" id="respuestaFinal" style="display:none;">
@@ -301,21 +354,6 @@
             </div>
         </div>
                         
-       <div class="modal fade" id="modalcarg" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="container">
-              
-            <div class='row' > 
-                    <div class="col-sm-12">
-                    <h1 class="text-center default" style="color:white;">Cargando, espere por favor...</h1>   
-                    <div class="col-sm-6 col-sm-offset-5">    
-                        <br>                        
-                        <img width="180px" heigth="180px" src='<c:url value='/resources/img/cargaGif.gif'/>' alt="carga" class='img-responsive center-block'>
-                    </div>
-                    </div>
                    
-            </div>                 
-            </div>
-        </div>                 
-                        
     </body>
 </html>
