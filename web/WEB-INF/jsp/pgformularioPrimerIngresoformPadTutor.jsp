@@ -167,7 +167,7 @@ data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
     <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
         <div class="form-group">
             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                  <button type="submit" class="btn btn-lg btn-danger btn-block" id="botonform2" onclick="cargarContenido('vacio.gdc','divformPadTutor')"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+                  <button type="button" class="btn btn-lg btn-danger btn-block" id="botonform2" onclick="cargarContenido('vacio.gdc','divformPadTutor')"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
             </div>
             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
                   <button type="submit" class="btn btn-lg btn-primary btn-block" id="botonform2"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
