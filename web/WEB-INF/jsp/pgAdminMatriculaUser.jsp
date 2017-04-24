@@ -264,6 +264,7 @@
                             <input id="nombrecliente" type="text" class="col-md-12 form-control" placeholder="Buscar usuario..." autocomplete="off" />
                         
                         </div> 
+                        <br><br>    
                         <button type="button" class="btn btn-rounded btn-primary" onclick="busqeda();"><span class="glyphicon glyphicon-search"></span> Buscar</button>     
                         </div>
                         <br><br>

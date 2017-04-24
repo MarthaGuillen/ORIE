@@ -501,7 +501,7 @@ function busqeda(){
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById("contenedorBusqueda").innerHTML = xhttp.responseText;
                 $("#processing-modal").modal('hide');
-                $('#tablaex').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
+                //$('#tablaex').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
             }
         }
         xhttp.open("POST", "consultaCliente.gdc", true);
