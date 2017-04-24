@@ -65,7 +65,60 @@
             var sociedaddef = "${sessionScope.ses_sociedadDefault}";
             var tipoperf = "${sessionScope.ses_tipoperfil}";
         </script>
-       
+        <style>
+            .paymentWrap {
+	padding: 50px;
+}
+
+.paymentWrap .paymentBtnGroup {
+	max-width: 800px;
+	margin: auto;
+}
+
+.paymentWrap .paymentBtnGroup .paymentMethod {
+	padding: 40px;
+	box-shadow: none;
+	position: relative;
+}
+
+.paymentWrap .paymentBtnGroup .paymentMethod.active {
+	outline: none !important;
+}
+
+.paymentWrap .paymentBtnGroup .paymentMethod.active .method {
+	border-color: #4cd264;
+	outline: none !important;
+	box-shadow: 0px 3px 22px 0px #7b7b7b;
+}
+
+.paymentWrap .paymentBtnGroup .paymentMethod .method {
+	position: absolute;
+	right: 3px;
+	top: 3px;
+	bottom: 3px;
+	left: 3px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: 2px solid transparent;
+	transition: all 0.5s;
+}
+
+.paymentWrap .paymentBtnGroup .paymentMethod .method.dc {
+	background-image: url("<c:url value='/resources/img/logoDelCampo450.png'/>");
+}
+
+.paymentWrap .paymentBtnGroup .paymentMethod .method.ac {
+	background-image: url("<c:url value='/resources/img/logoAcademy450.png'/>");
+}
+
+.paymentWrap .paymentBtnGroup .paymentMethod .method:hover {
+	border-color: #4cd264;
+	outline: none !important;
+}
+        </style> 
+        
+   
     </head>
     <body class="profile-page">
    
@@ -203,13 +256,26 @@
                   <span> Usuarios registrados </span>
                 </div>
                 <div class="section row">
-                    <c:if test="${creaUsuario eq 'Si'}">
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nombrecliente">Nombre del cliente:</label>
+                            <input id="nombrecliente" type="text" class="col-md-12 form-control" placeholder="Buscar usuario..." autocomplete="off" />
+                        
+                        </div> 
+                        <button type="button" class="btn btn-rounded btn-primary" onclick="busqeda();"><span class="glyphicon glyphicon-search"></span> Buscar</button>     
+                        </div>
+                        <br><br>
+                    </div>
+                    <div class="col-md-12">
+                        <c:if test="${creaUsuario eq 'Si'}">
                         <div class="pull-right">
                         <button type="button" class="btn btn-lg btn-primary" onclick="neuvoUS();"><span class="glyphicons glyphicons-user_add"></span> Nuevo usuario</button>
+                        <br><br><br>
                         </div>
-                    </c:if>
-                    
-                    <div class="col-md-12">
+                        </c:if>
+                        <div id="contenedorBusqueda">
                         <table class="table table-striped" >
                         <c:set var="validapt" value="${fn:length(idusLista)}" />
                         <c:if test="${validapt > 0}">
@@ -235,7 +301,7 @@
                                         <c:if test="${estadoLista[i].toString() == 'false'}">
                                             <span class="label label-default">Deshabilitado</span>
                                         </c:if>
-                                        <p>Estudiantes asignados: </p>
+                                            <p>Estudiantes asignados: <a style="cursor:pointer;" onclick="cargaHijos('${idusLista[i]}');"><span class="label label-info">${ctcliente[i]}</span></a></p>
                                     </td>
                                     
                                     <td>
@@ -247,10 +313,10 @@
                                     </td>
                                     <td>
                                         <c:if test="${estadoLista[i].toString() == 'true'}">
-                                           <button class="btn btn-default" onclick="cambiaestado('d','${idusLista[i]}');" type="button"><i class="fa fa-fw s fa-remove"></i>Deshabilitar</button>
+                                           <button class="btn btn-default" onclick="cambiaestado('d','${idusLista[i]}','${correoLista[i]}');" type="button"><i class="fa fa-fw s fa-remove"></i>Deshabilitar</button>
                                         </c:if>
                                         <c:if test="${estadoLista[i].toString() == 'false'}">
-                                            <button class="btn btn-default" onclick="cambiaestado('h','${idusLista[i]}');" type="button"><i class="fa fa-fw s fa-check"></i>Habilitar</button>
+                                            <button class="btn btn-default" onclick="cambiaestado('h','${idusLista[i]}','${correoLista[i]}');" type="button"><i class="fa fa-fw s fa-check"></i>Habilitar</button>
                                         </c:if>
                                     </td>            
                                     <td>
@@ -265,7 +331,7 @@
                             </tbody>
                             </c:if>
                         </table>
-                        
+                        </div>
                         
                         <div class="col-md-12 text-center">
                             <ul class="pagination pagination-lg pager" id="myPager"></ul>
@@ -273,7 +339,12 @@
                     </div>
                     <!--Perfiles-->
                     
-                                <!--FIn Perfiles-->     
+                                <!--FIn Perfiles-->
+                    <div style="display:none;">
+                        <div id="cargaEstPadres">
+                            
+                        </div>                
+                    </div>            
                 </div>  
               </div>
             </div>
@@ -402,9 +473,139 @@
           </div>
         </div>    
                                           
-                                        
+        <!-- Modal -->
+        <div id="modalNuevohijo" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static">
+          <div class="modal-dialog modal-lg">
+            
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header bg-light">
+                <button type="button" class="close" data-dismiss="modal" style="color:white;">&times;</button>
+                <h4 class="modal-title" style="color:white;">Asignar estudiante:</h4>
+              </div>
+              <div class="modal-body" style="max-height: calc(100vh - 210px);
+    overflow-y: auto;">
+                <div id="newUestu">
+                                       
+                                       <div class="row">
+                                       <div id="cargaeST"></div>    
+                                       <input type="hidden" id="idpadre">
+                                       <input type="hidden" id="iddivision">
+                                       <input type="hidden" id="idgrado">
+                                       <input type="hidden" id="idsociedad">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label class="control-label">Nombre de estudiante:</label>
+                                    <div class="inputGroupContainer">
+
+                                        <input  name="nomest" id="nomest" placeholder="Nombre de estudiante..." class="form-control"  type="text">
+
+                                    </div>
+                                  </div>  
+
+                                </div>
                                 
-                                </div> 
+                                
+                                
+                                </div>   
+                                <hr>
+                                
+                                        <div class="row">
+                                            <div class="content-header">
+                                                <h2 class="text-center text-primary"><strong>Institución académica:</strong></h2>
+                                            </div>
+                                            <div class="col-md-12">
+                                            <div class="paymentCont" id="socDelcampo" style="display:none;">
+						<div class="paymentWrap">    
+                                                <div class="btn-group paymentBtnGroup btn-group-justified" data-toggle="buttons">    
+                                                <label class="btn paymentMethod active">
+					            	<div class="method dc"></div>
+                                                        <input type="radio" name="instEducativa" value="1">
+                                                </label>
+                                                </div>     
+                                            </div>   
+                                            </div> 
+                                            <div class="paymentCont" id="socAcademy" style="display:none;">
+						<div class="paymentWrap">    
+                                                <div class="btn-group paymentBtnGroup btn-group-justified" data-toggle="buttons">    
+                                                <label class="btn paymentMethod active">
+					            	<div class="method ac"></div>
+                                                        <input type="radio" name="instEducativa" value="1">
+                                                </label>
+                                                </div>     
+                                            </div>   
+                                            </div>    
+                                            <div class="paymentCont">
+						<div class="paymentWrap" id="socSeleccion">
+							<div class="btn-group paymentBtnGroup btn-group-justified" data-toggle="buttons">
+					            <label class="btn paymentMethod" onclick="cargaDivisiones('1');">
+					            	<div class="method dc"></div>
+                                                        <input type="radio" name="instEducativa" value="1"> 
+					            </label>
+					            <label class="btn paymentMethod" onclick="cargaDivisiones('2');">
+					            	<div class="method ac"></div>
+					                <input type="radio" name="instEducativa" value="2"> 
+					            </label>
+					         
+					        </div>        
+						</div>
+					
+                                            </div>       
+                                                    
+                                                
+                                            <blockquote id="bloque" class="blockquote-success" style="display:none;">
+                                                <h5 id="divse"></h5>    
+                                                <h5 id="grase"></h5>   
+                                            </blockquote>        
+                                                
+                                                
+                                            </div>
+                                                
+
+                                            </div>  
+                                        </div>  
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-success" onclick="asignaEstudiante();"><span class="glyphicon glyphicon-floppy-disk"></span> Asignar alumno</button>
+                <button type="button" class="btn btn-danger" onclick="limpiaest();" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>                                 
+                                
+        <!-- Modal -->
+        <div id="modaliDivisiones" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">División - grado</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="content-header">
+                    <h2 class="text-center text-primary"><strong>División:</strong></h2>
+                  </div>
+                  <div id="divisionCar">
+                      
+                  </div>
+                  <div class="content-header">
+                    <h2 class="text-primary"><strong>Grados:</strong></h2>
+                  </div>
+                  <div id="gradoCar">
+                      
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-lg btn-success" onclick="capturaDivgr();">Aceptar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>                       
         <div id="creusuajax" style="display:none;"></div>                                               
         <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
@@ -432,7 +633,7 @@
        <script src="<c:url value='/resources/js/bootstrapValidator.js'/>"></script>
        <script src="<c:url value='/resources/js/sweetalert2.min.js'/>"></script> 
        <script src="<c:url value='/resources/js/validCampo.js'/>"></script> 
-       
+       <script src="<c:url value='/resources/js/bootstrap-typeahead.js'/>"></script>
        
        <script type="text/javascript">
         jQuery(document).ready(function() {
@@ -459,6 +660,24 @@
             // Init Admin Panels on widgets inside the ".admin-panels" container
             
         });
+        
+        $(document).ready(function() {
+
+                $('#nombrecliente').typeahead({
+                    source: [
+                        ${listaClinetes}
+                    ],
+                    scrollBar:true,
+                    onSelect: displayResult
+                });
+               
+               
+
+            });
+            
+         function displayResult(item) {
+                    $('.alert').show().html('You selected <strong>' + item.value + '</strong>: <strong>' + item.text + '</strong>');
+           }   
     </script>
     </body>
 </html>
