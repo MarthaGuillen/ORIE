@@ -370,4 +370,45 @@ public class matriculaPrimerIngresoController {
         return mv;
     }
     
+    @RequestMapping(value = "HermanosList.gdc")
+    public ModelAndView ListadoHermanosFormularioMat(HttpServletRequest request) throws Exception {
+        ModelAndView mv = new ModelAndView("pgformularioPrimerIngresoListaHermanos");
+        fomularioDAO opc = new fomularioDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){    
+                String idu = (String) request.getSession().getAttribute("ses_idusuario");               
+                
+                String idf = (String) request.getSession().getAttribute("ses_formulario");
+                
+                List listaHermanos = opc.cargaHermanos(idf);
+                ArrayList<String> nomherm = new ArrayList<String>();
+                ArrayList<String> edadherm = new ArrayList<String>();
+                ArrayList<String> escherm = new ArrayList<String>();
+                List<Object[]> listDatPadTut = listaHermanos;
+                
+                
+                for (Object[] datos : listDatPadTut) {
+                    nomherm.add((String) datos[1].toString());
+                    edadherm.add((String) datos[2].toString()); 
+                    escherm.add((String) datos[3].toString());
+                }
+                mv.addObject("nomhermano",nomherm);
+                mv.addObject("edadhermano",edadherm);
+                mv.addObject("escuelahermano",escherm);
+            }        
+        }
+        return mv;
+    }
+    
+    @RequestMapping(value = "formHermanos.gdc")
+    public ModelAndView Hermanoform(HttpServletRequest request) throws Exception {
+        ModelAndView mv = new ModelAndView("pgformularioPrimerIngresoformHermanos");
+        fomularioDAO opc = new fomularioDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+            }        
+        }
+        return mv;
+    }
+    
 }

@@ -259,41 +259,7 @@ $( document ).ready(function() {
             }
         });
         
-        $('#formHermanos').bootstrapValidator().on('success.form.bv', function(e) {
-            var NombreHermano = $('#NombreHerm').val();
-            var EdadHermano = $('#EdadHerm').val();
-            var EscuelaHermano = $('#EscuelaHerm').val();
-            
-            var error=0;
-            
-            if(NombreHermano == "" && EdadHermano=="" && EscuelaHermano==""){
-                swal(
-                    'Error',
-                    'Favor ingresar ingresar información de los hermanos.',
-                    'warning'
-                )
-                error = 1;
-            }
-            
-            if(error==0){
-                $('#hermanosCreados').show();
-                
-                var xhttp = new XMLHttpRequest();
-                
-                xhttp.onreadystatechange = function() {
-                    if (xhttp.readyState == 4 && xhttp.status == 200) {
-                        document.getElementById("ajaxtemp").innerHTML = xhttp.responseText;
-                        $('#tablaHermanos > tbody:last-child').append('<tr><td>'+NombreHermano+'</td><td>'+EdadHermano+'</td><td>'+EscuelaHermano+'</td><td><a href="#" onclick="" style="color: red;"><i class="fa fa-times" aria-hidden="true"></i></a></td></tr>');
-                        $('#formHermanos').bootstrapValidator('resetForm', true);
-                    }
-                }
-                xhttp.open("POST", "formulariofase4.gdc", true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("nom="+NombreHermano+"&edad="+EdadHermano+"&escuela="+EscuelaHermano); 
-
-                
-            }
-        });
+        
         
         $('#formInfoEducacion').bootstrapValidator().on('success.form.bv', function(e) {
               $('#formInfoEducacion').bootstrapValidator('resetForm', true);
@@ -488,6 +454,42 @@ function cargarContenido(pagina,destino){
                                  +"&paistrapad="+paistrapad+"&ciutrapad="+ciutrapad+"&dirtrapad="+dirtrapad+"&pasaporte="+pasaporte);  
                     }  
                 });
+            }else{
+                if(pagina=='formHermanos.gdc'){
+                    $('#formHermanos').bootstrapValidator().on('success.form.bv', function(e) {
+                        var NombreHermano = $('#NombreHerm').val();
+                        var EdadHermano = $('#EdadHerm').val();
+                        var EscuelaHermano = $('#EscuelaHerm').val();
+
+                        var error=0;
+
+                        if(NombreHermano == "" && EdadHermano=="" && EscuelaHermano==""){
+                            swal(
+                                'Error',
+                                'Favor ingresar ingresar información de los hermanos.',
+                                'warning'
+                            )
+                            error = 1;
+                        }
+
+                        if(error==0){
+                            var xhttp = new XMLHttpRequest();
+
+                            xhttp.onreadystatechange = function() {
+                                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                                    document.getElementById("ajaxtemp").innerHTML = xhttp.responseText;
+                                    cargarContenido('vacio.gdc','divformHermanos');
+                                    cargarContenido('HermanosList.gdc','divTablaHermanos');
+                                }
+                            }
+                            xhttp.open("POST", "formulariofase4.gdc", true);
+                            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                            xhttp.send("nom="+NombreHermano+"&edad="+EdadHermano+"&escuela="+EscuelaHermano); 
+
+
+                        }
+                    });
+                }
             }
         }
     }

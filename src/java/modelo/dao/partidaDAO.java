@@ -43,7 +43,7 @@ public class partidaDAO {
         System.out.println(resp+" "+r);
     return r;
     }
-      public List agregardatospartida(
+      public String agregardatospartida(
                 int idcrearpartida,int cuenta,String descripcion, float 
                         debe, float haber,String movimiento,int idusuario
                ){
@@ -65,10 +65,10 @@ public class partidaDAO {
             e.printStackTrace();
         }
         System.out.println(resp+" "+r);
-    return r;
+    return r.get(0);
     }
       public List vercuentapartida(int cuenta,int idsociedad ){
-          System.out.println("Estoy en el dao de sub cuenta");
+        
         Session session = HibernateUtil.getSessionFactory().openSession();
         String sql = "select * from fn_scpartidacuenta("+cuenta+","+idsociedad+")ORDER BY codigocuenta";
         
@@ -87,10 +87,10 @@ public class partidaDAO {
        
         return listaget;
     }
-      public List obteneroperacion(int operacion ){
+      public List obteneroperacion(int transaccion ){
           System.out.println("Estoy en el dao de obtener operacion");
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "select * from fn_scobteneroperacion("+operacion+")";
+        String sql = "select * from fn_scobteneroperacion("+transaccion+")";
         
         List<Object[]> listaget = new ArrayList<Object[]>();
         try {
@@ -107,11 +107,10 @@ public class partidaDAO {
        System.out.println("saliendo actualizaroperacion" +listaget);
         return listaget;
     }
-            public List actualizaroperacion(int operacion,String Descripcion,float debe,float haber,String movimiento,int usuario ){
-          System.out.println("Estoy en el dao de Actualizar operacion modificacion");
+      public List obtenerdatospartida(int transaccion ){
+          System.out.println("Estoy en el dao de obtener operacion");
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "select fn_scmodificaroperaciones('"+ operacion+"','"+Descripcion+"','"+debe+"','"+haber
-                +"','"+movimiento+"','"+ usuario+"' )";
+        String sql = " select * from fn_scobtenerdatopartida("+transaccion+")";
         
         List<Object[]> listaget = new ArrayList<Object[]>();
         try {
@@ -124,10 +123,52 @@ public class partidaDAO {
         }finally { 
           session.close();
         }
-          
-       System.out.println("saliendo Obtener operacion" +listaget);
+
+       System.out.println("saliendo actualizaroperacion" +listaget);
         return listaget;
     }
+      public List crearcontrapartida(int cuenta, int idsociedad,String nombre, int idusucreo){
+          System.out.println("Estoy en el dao de obtener operacion");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = " select   fn_SCinsertpartidacontra('"+cuenta+"','"+idsociedad+"','"+ nombre+"','"+idusucreo+"') as contra_p";
+        
+        List<String> listaget = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+
+       System.out.println("saliendo contrapartida" +listaget.get(0));
+        return listaget;
+    }
+      
+      public List modificarpartida(int transaccion ){
+          System.out.println("Estoy en el dao de obtener operacion");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = " select  fn_scmodificarestadopartida("+transaccion+")";
+        
+        List<String> listaget = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally { 
+          session.close();
+        }
+
+       System.out.println("saliendo actualizaroperacion " +listaget.get(0));
+        return listaget;
+    }
+      
 
             public List mostrarpartidas(int sociedad){
           System.out.println("Estoy en el dao de Actualizar operacion modificacion");
@@ -149,46 +190,7 @@ public class partidaDAO {
        System.out.println("saliendo Obtener operacion" +listaget);
         return listaget;
     }
-            public List filtrolibrodiario( String fecha ){
-         System.out.println("saliendo Obtener operacion libro");
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "select p.id_partida,p.fecha,p.nombrepartida, s.nombretp,s.codigo,  o.id_datospartida, o.descripcion, o.debe,o.haber, u.usuario from tbl_operaciones as o \n" +
-"inner join tbl_partida as p on p.id_partida = o.id_partida\n" +
-"inner join tbl_subcuentabalance as s on s.id_subcuentabalance =o.id_subcuentabalance \n" +
-"inner join tbl_usuario as u on u.id_usuario = o.id_usuario_creo where p.fecha = '"+ fecha+"'";
-        
-        List<Object[]> listaget = new ArrayList<Object[]>();
-        try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createSQLQuery(sql);
-            listaget = q.list();
+            
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally { 
-          session.close();
-        }
-          
-       System.out.println("saliendo Obtener operacion libro" +listaget);
-        return listaget;
-    }
 
-            public List cambiarestado(int transaccion,int idusuario){
-                Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql ="Select fn_scmodificarestadooperaciones('"+transaccion+"','"+idusuario+"')";
-              List<Object[]> listaget = new ArrayList<Object[]>();
-        try {
-            org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createSQLQuery(sql);
-            listaget = q.list();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally { 
-          session.close();
-        }
-          
-       System.out.println("saliendo modificar estado: " +listaget);
-        return listaget;
-            }
 }

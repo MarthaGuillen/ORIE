@@ -237,7 +237,7 @@ $( document ).ready(function() {
                 swal(
                                 'Exito!!!...',
                                 'Cuenta agregada .'
-                            ) 
+                            ) ;
                        $("#origen2").select2("val", "");
                        document.getElementById('origen2val').style.display = 'none'; 
                        $("#codigomayor").removeClass("camposvacios");

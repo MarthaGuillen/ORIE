@@ -431,8 +431,8 @@
                             <i class="fa fa-user"></i>Crear Partida
                         </a>
                     </li>
-                    <li role="presentation" id="btnverpartidas" onclick="mostrarpartidas()">
-                        <a href="#Section2" aria-controls="tutor" role="tab" data-toggle="tab">
+                    <li role="presentation" id="btnverpartidas" >
+                        <a href="#Section2" aria-controls="tutor" role="tab" data-toggle="tab" onclick="mostrarpartidas()"> 
                             <i class="fa fa-group"></i>Ver partidas
                         </a>
                     </li>
@@ -450,7 +450,7 @@
                     <div class="panel heading-border">
                         
                      
-                        <div class="panel-body bg-light" >
+                        <div class="panel-body " >
                             <form  id="form-ui"action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -544,7 +544,7 @@
                                     <button type="reset" class="button"> Cancelar </button>
                                   </div>
                         </div> 
-                                        <div class="panel-body bg-light" id="partida" style="display:none;"      >
+                                        <div class="panel-body " id="partida" style="display:none;"      >
                              <div class="section-divider mb40" id="spy1">
                                     <span>Operaciones Contable</span>
                                 </div>
@@ -706,40 +706,11 @@
                           <div class="media clearfix" >
                 <div class="admin-form">
                     <div class="panel heading-border">
-                        <div class="panel-body bg-light">
+                        <div class="panel-body ">
                             <input type="hidden" id="sociedadp" value="${ses_idsociedad}">
                             <h2 class="Primary">${ses_sociedadDefault}</h2>
-                                <div class="row">
-                                <table class="table table-responsive" id="infodatos">
-                                <thead>
-                                  <tr class="primary">
-                                    
-                                      <th>N. Referencia</th>                                    
-                                      <th>Nombre de partida</th>                                    
-                                    <th>Sociedad</th>                                    
-                                    <th>Fecha</th>                                    
-                                    <th>Usuario Que Creo</th>                                    
-                                                                       
-                                    <th> </th>  
-                                  </tr>
-                                </thead>
-                                <tbody >
-                                    <c:set var="valida" value="${fn:length(npartida)}" />
-                                        <c:if test="${valida > 0}">
-                                             <c:forEach var="i" begin="0" end="${fn:length(npartida)-1}">
-                                                 <tr>
-                                                <td>${npartida[i]}</td>                                    
-                                                <td>${nombrepartida[i]}</td>                                    
-                                              <td>${sociedadpartida[i]}</td>                                   
-                                              <td>${fechap[i]}</td>                    
-                                              <td>${usuariopartida[i]}</td> 
-                                              <td></td>
-                                                 </tr>
-                                                </c:forEach>
-                                        </c:if>
-                                </tbody>
-                               
-                                </table>
+                            <div class="row" id="infopartida">
+                              
                             </div>
                           </div>
 
@@ -771,7 +742,10 @@
                                             
         
                                               
-                                            
+          <script>
+              var sociedaddef = "${sessionScope.ses_sociedadDefault}";
+            var tipoperf = "${sessionScope.ses_tipoperfil}";
+        </script>                                  
      
     <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>
        <script src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
