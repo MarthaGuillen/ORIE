@@ -150,8 +150,8 @@ $( document ).ready(function() {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                          document.getElementById("alerta3").innerHTML = xhttp.responseText;
                         var id =$("#cuentar").val();
-                        
-                        transaccion=  id.substring(1, id.length-1);
+                       
+                        transaccion=  id;
                         alert(transaccion);
               creartabla(transaccion,descripcion,monto,movimiento) ;   
         
@@ -587,9 +587,9 @@ function creartabla(t,d,monto,movi){
            if(saldodebe<saldohaber){
                total=saldohaber-saldodebe;
                final="<tr><td></td><td>Saldo</td><td ></td><td style='color: red;' >"+total.toFixed(2)+"</td></tr>";
-           }else
-           {
-               final="<tr><td></td><td>Saldo</td><td ></td><td style='color: red;' >"+total.toFixed(2)+"</td></tr>";}
+           }if(saldohaber==saldodebe)
+           {total=saldohaber-saldodebe;
+               final="<tr><td></td><td>Saldo</td><td style='color: green;' >"+total.toFixed(2)+"</td><td style='color: red;' >"+total.toFixed(2)+"</td></tr>";}
                
          
           $("#saldo").html(final);
