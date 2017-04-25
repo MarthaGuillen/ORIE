@@ -19,6 +19,7 @@ import com.itextpdf.layout.Canvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.border.Border;
 import com.itextpdf.layout.border.SolidBorder;
+import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
@@ -67,7 +68,7 @@ public class LibroMayorController {
        System.out.println(" "+fecha);
        System.out.println(" "+fecha2);
           libroMayorDAO libro = new libroMayorDAO();
-          int sociedad = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
+          int sociedad = Integer.parseInt((String) request.getSession().getAttribute("ses_idsociedad"));
           String sociedadnom = (String) request.getSession().getAttribute("ses_sociedadDefault");
    List cuentalibroMayor= libro.cuentaslibroMayor(fecha, fecha2, sociedad);
     ArrayList<String> Codigocuentam = new ArrayList<String>();
@@ -105,7 +106,7 @@ public class LibroMayorController {
                 Saldo.add(String.valueOf(saldo));
                
                         } 
-           /* mv.addObject("fechap", fechap);
+            mv.addObject("fechap", fechap);
             mv.addObject("codigopartida", codigopartida);
             mv.addObject("codigocuenta", codigocuenta);
             mv.addObject("nombrecuenta", nombrecuenta);
@@ -114,13 +115,14 @@ public class LibroMayorController {
             mv.addObject("haber", haber);
             mv.addObject("saldodebe", saldodebe);
             mv.addObject("saldohaber", saldohaber);
-            mv.addObject("Saldo", Saldo);*/
+            mv.addObject("Saldo", Saldo);
      //crear evento
      
            
            
            
       // crear libro
+       double saldop=0;
         String ruta= HibernateUtil.class.getResource("/../../").getPath();
          System.out.println(ruta);
         ruta=ruta.replace("%20", " ");
@@ -129,21 +131,25 @@ public class LibroMayorController {
         PdfWriter writer = new PdfWriter(rutafinal+"resources/pdf/1.pdf");
        
 PdfDocument pdf = new PdfDocument(writer); 
+Document document = new Document(pdf, PageSize.LETTER);
+document.setMargins(20, 20, 20, 20);
    //Create event-handlers
         String header = sociedadnom;
         Header headerHandler = new Header(header);
         PageXofY footerHandler = new PageXofY(pdf);
   //Assign event-handlers
         pdf.addEventHandler(PdfDocumentEvent.START_PAGE,headerHandler);
-      
+      //variable encabezado
+       VariableHeaderEventHandler handler2 = new VariableHeaderEventHandler();
+        pdf.addEventHandler(PdfDocumentEvent.END_PAGE, handler2);
+       
+        
 
-Document document = new Document(pdf, PageSize.LETTER);
-document.setMargins(20, 20, 20, 20);
   // File path1 = new File(rutafinal+"../web/resources/pdf/"+sociedadnom+"-"+fecha+"-"+fecha2+".pdf");
      //*****fuente
         PdfFont baseFont= PdfFontFactory.createFont(FontConstants.TIMES_ROMAN);
         
-        System.out.println("fgfghgfh");
+    
         System.out.println(baseFont);
         Table table = new Table(new float[]{24, 8, 8,15,15,8, 8, 8, 8});
         //table.setWidthPercent(100);
@@ -195,10 +201,9 @@ document.setMargins(20, 20, 20, 20);
                 table.addCell(new Cell().add(new Paragraph(haber.get(j)).setFont(baseFont).setFontSize(7)).setBorder(Border.NO_BORDER));
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(df.format(Saldot)).replace(',','.')).setFont(baseFont).setFontSize(7)).setBorder(Border.NO_BORDER)); 
                 
-                
                 }
                  }
-             double saldop=0;
+            
             saldop=tdebe-thaber;
             table.addCell(new Cell().add(new Paragraph("").setFont(baseFont).setFontSize(7)).setBorder(Border.NO_BORDER));
             table.addCell(new Cell().add(new Paragraph("").setFont(baseFont).setFontSize(7)).setBorder(Border.NO_BORDER));
@@ -217,8 +222,10 @@ document.setMargins(20, 20, 20, 20);
                 Saldot=0; 
                thaber=0;
                thaber=0;
-           
+                
        }
+        
+        
         document.add(table.setBorder(Border.NO_BORDER));
         document.close();
         
@@ -289,5 +296,27 @@ document.setMargins(20, 20, 20, 20);
         
     }
  
+     protected class VariableHeaderEventHandler implements IEventHandler {
+        protected String header;
  
+        public void setHeader(String header) {
+            this.header = header;
+        }
+ 
+        @Override
+        public void handleEvent(Event event) {
+            PdfDocumentEvent documentEvent = (PdfDocumentEvent) event;
+            try {
+                new PdfCanvas(documentEvent.getPage())
+                        .beginText()
+                        .setFontAndSize(PdfFontFactory.createFont(FontConstants.HELVETICA), 12)
+                        .moveText(450, 806)
+                        .showText(header)
+                        .endText()
+                        .stroke();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
