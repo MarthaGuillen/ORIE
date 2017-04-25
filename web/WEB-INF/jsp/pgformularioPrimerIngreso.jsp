@@ -152,7 +152,7 @@
                
             }
     </style>
-    <body class="admin-wizard-page" onload="cargarContenido('PadTutores.gdc','divTablaPadTutor')">
+    <body class="admin-wizard-page" onload="cargarContenido('PadTutores.gdc','divTablaPadTutor'); cargarContenido('HermanosList.gdc','divTablaHermanos')">
         <!-------------------------------------------------------------+ 
             <body> Helper Classes: 
          ---------------------------------------------------------------+ 
@@ -421,52 +421,44 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     
-                    <li role="presentation"><a href="#Section1" aria-controls="otros" role="tab" data-toggle="tab">
-                            <img style="position: relative;top:15px;left: -10px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
-                            <i class="fa fa-pencil-square-o"></i>Matrícula</a>
-                    </li>
-                    <li role="presentation" class="active"><a href="#Section2" aria-controls="informacion" role="tab" data-toggle="tab">
+                    <li role="presentation" class="active"><a href="#Section1" aria-controls="informacion" role="tab" data-toggle="tab">
                             <img style="position: relative;top:15px;left: -10px;" width="15px"  src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-graduation-cap"></i>Estudiante</a>
                     </li>
-                    <li role="presentation"><a href="#Section3" aria-controls="tutor" role="tab" data-toggle="tab" style="text-align: center">
+                    <li role="presentation"><a href="#Section2" aria-controls="tutor" role="tab" data-toggle="tab" style="text-align: center">
                             <img style="position: relative;top:15px;left: -10px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-group"></i> Padres y/o<br/>Tutores</a>
                     </li>
-                    <li role="presentation"><a href="#Section4" aria-controls="otra" role="tab" data-toggle="tab" style="text-align: center">
+                    <li role="presentation"><a href="#Section3" aria-controls="otra" role="tab" data-toggle="tab" style="text-align: center">
                              <img style="position: relative;top:15px;left: -10px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-home"></i>Otra<br/>Información</a>
                     </li>
-                    <li role="presentation"><a href="#Section5" aria-controls="educacion" role="tab" data-toggle="tab">
+                    <li role="presentation"><a href="#Section4" aria-controls="educacion" role="tab" data-toggle="tab">
                              <img style="position: relative;top:15px;left: -10px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-th-list"></i>Educación</a>
                     </li>
-                    <li role="presentation"><a href="#Section6" aria-controls="salud" role="tab" data-toggle="tab">
+                    <li role="presentation"><a href="#Section5" aria-controls="salud" role="tab" data-toggle="tab">
                              <img style="position: relative;top:15px;left: -25px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-heartbeat"></i>Salud</a>
                     </li>
-                    <li role="presentation"><a href="#Section7" aria-controls="transporte" role="tab" data-toggle="tab">
+                    <li role="presentation"><a href="#Section6" aria-controls="transporte" role="tab" data-toggle="tab">
                              <img style="position: relative;top:15px;left: -25px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-bus"></i>Transporte</a>
                     </li>
-                    <li role="presentation"><a href="#Section8" aria-controls="otros" role="tab" data-toggle="tab" style="text-align: center">
+                    <li role="presentation"><a href="#Section7" aria-controls="docs" role="tab" data-toggle="tab" style="text-align: center">
                             <img style="position: relative;top:15px;left: -25px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-files-o "></i>Documentos<br/> Adjuntos</a>
                     </li>
-                    <li role="presentation"><a href="#Section9" aria-controls="otros" role="tab" data-toggle="tab">
+                    <li role="presentation"><a href="#Section8" aria-controls="otros" role="tab" data-toggle="tab">
                             <img style="position: relative;top:15px;left: -25px;" width="15px" src="<c:url value='/resources/img/done.png'/>" alt="check" class="img-responsive">
                             <i class="fa fa-list-alt"></i>Otros</a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
+                    <!--Div datos 1--> 
                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                         <div class="admin-form theme-primary mw1000 center-block" id="contenedor1">
-                        </div>
-                    </div>
-                    <!--Div datos 1--> 
-                    <div role="tabpanel" class="tab-pane fade" id="Section2">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor2">
                         <form id="defaultForm" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -646,8 +638,8 @@
                     </div>
                     </div>                    
                     <!--Div datos 2-->      
-                    <div role="tabpanel" class="tab-pane fade" id="Section3">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor3">
+                    <div role="tabpanel" class="tab-pane fade" id="Section2">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor2">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                                     <div class="content-header">
@@ -687,8 +679,8 @@
                         
                     </div>
  
-                    <div role="tabpanel" class="tab-pane fade" id="Section4">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor4">
+                    <div role="tabpanel" class="tab-pane fade" id="Section3">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor3">
                             <form id="formOtraInfo" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -878,66 +870,22 @@
                                 </div>  
                             </form>
                             <hr/>
-                            <form id="formHermanos" action="#"
-                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
-                                <div class="row">
-                                    <h3 style="margin-left: 6px;"><b class="text-success">Información de Hermanos:</b></h3>
-                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="NombreHerm">Nombre de Hermano/Hermana:</label>
-                                            <input class="gui-input form-control" type="text" maxlength="180" id ="NombreHerm" name="NombreHerm" placeholder="Nombre Completo">
-                                        </div>  
-                                    </div>
+                            <div class="row" id="divTablaHermanos" name="divTablaHermanos">
+                            </div>
+                            <br/>
+                            <div class="row" >
+                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1">
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label for="EdadHerm">Edad:</label>
-                                            <input class="gui-input form-control" maxlength="15" type="number" data-bv-trigger="keyup" required data-bv-notempty-message="Campo obligatorio" id ="EdadHerm" name="EdadHerm" placeholder="Edad" max="120" min="1">
-                                        </div>  
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label for="EscuelaHerm">Escuela:</label>
-                                            <input class="gui-input form-control" type="text" maxlength="180" id ="EscuelaHerm" name="EscuelaHerm" placeholder="Escuela">
-                                        </div>  
-                                    </div>
+                                <div class="col-md-10 col-sm-10 col-lg-10 col-xs-10" id="divformHermanos" name="divformHermanos">
                                 </div>
-                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                                    <div class="form-group">
-                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                            <button type="submit" class="btn btn-lg btn-primary btn-block" id="botonform3Herm"><span class="glyphicon glyphicon-plus"></span> Agregar </button>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div id="hermanosCreados" class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em; display: none;">
-                                    <hr style="border: 1px solid #0e6e15;">
-                                    <h2><b class="text-success">Hermanos agregados:</b></h2>
-                                    <div class="row">
-                                        <table class="table" id="tablaHermanos">
-                                            <thead>
-                                              <tr class="success">
-                                                <th>Nombre</th>
-                                                <th>Edad</th>
-                                                <th>Escuela</th>
-                                                <th>Eliminar</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                        <br/>
-                                    </div>
-                                </div>    
-                                
-                            </form>
+                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div role="tabpanel" class="tab-pane fade" id="Section5">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor5">
+                    <div role="tabpanel" class="tab-pane fade" id="Section4">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor4">
                             <form id="formInfoEducacion" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -1149,6 +1097,10 @@
                             </form>
                         </div>
                     </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section5">
+                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor5">
+                        </div>
+                    </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section6">
                         <div class="admin-form theme-primary mw1000 center-block" id="contenedor6">
                         </div>
@@ -1159,10 +1111,6 @@
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section8">
                         <div class="admin-form theme-primary mw1000 center-block" id="contenedor8">
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="Section9">
-                        <div class="admin-form theme-primary mw1000 center-block" id="contenedor9">
                             <form id="formOtros" action="#"
                               data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
                               data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pgContenedorAjax
-    Created on : 22-feb-2017, 17:06:33
+    Document   : pgGradosAjax
+    Created on : 21-abr-2017, 11:06:29
     Author     : Sinergia14
 --%>
 
@@ -15,10 +15,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-        <input type="hidden" id="respLog" value="${resp}">
-        <input type="hidden" id="respAsignada" value="${resp}">
-        <c:if test="${validaCadena eq 'si'}">
-            ${cadena1}
-            ${cadena2}
-        </c:if>
-
+<div class="row">
+<div class="radio-custom radio-success mb5">
+  <c:set var="validapt" value="${fn:length(idg)}" />
+  <c:if test="${validapt > 0}">
+      <c:forEach var="i" begin="0" end="${fn:length(idg)-1}">
+          
+          <div class="col-md-4">
+            <input type="radio" id="radg${idg[i]}" value="${idg[i]}"  name="rdGrado">
+            <label for="radg${idg[i]}">${gra[i]}</label>
+          </div>  
+      </c:forEach>
+  </c:if>  
+  
+</div></div>
