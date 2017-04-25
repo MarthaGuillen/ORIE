@@ -152,7 +152,7 @@ $( document ).ready(function() {
                         var id =$("#cuentar").val();
                        
                         transaccion=  id;
-                        alert(transaccion);
+                      
               creartabla(transaccion,descripcion,monto,movimiento) ;   
         
                     }
