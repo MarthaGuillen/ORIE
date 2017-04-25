@@ -470,7 +470,7 @@
                                 </div>
                                    
                                 <div class="panel-footer text-right">
-                                    <button type="submit" class="button btn-primary" id="agregarsubcuenta">  Agregar Cuenta </button>
+                                    <button type="submit" class="button btn-primary" id="agregarsubcuenta">  Agregar Sub-Cuenta </button>
                                     <button type="reset" class="button"> Cancelar </button>
                                   </div>
                       
@@ -508,10 +508,10 @@
                                     <label style="color:red;display:none;" id="origen2val"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
                                     <select class="form-control select2-single"  id="origen2" name="origen2" style=" width: 100%;">
                                         <option value=""></option>
-                                        <c:set var="valida" value="${fn:length(idorigen)}"/>
+                                       <c:set var="valida" value="${fn:length(idorigen)}" />
                                         <c:if test="${valida > 0}">
                                              <c:forEach var="i" begin="0" end="${fn:length(idorigen)-1}">
-                                                    <option value="${idorigen[i]}">${nombreorigen[i]}</option>
+                                                    <option value="${idorigen[i]}">${nombreorigen2[i]}</option>
                                                 </c:forEach>
                                         </c:if>
                                     </select>
@@ -739,7 +739,7 @@
        <script src="<c:url value='/resources/js/globalize.min.js'/>"></script>
        <script src="<c:url value='/resources/js/select2.min.js'/>"></script>
        <script src="<c:url value='/resources/js/typeahead.bundle.min.js'/>"></script>
-       <script src="<c:url value='/resources/js/SC_Cuen_contabilidad.js'/>"></script>
+      
         <script src="<c:url value='/resources/js/SC_Cuentabalance.js'/>"></script>
        <script src="<c:url value='/resources/jsOr/jquery.dataTables.min.js'/>"></script>
     <script type="text/javascript">

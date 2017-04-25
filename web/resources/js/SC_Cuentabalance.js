@@ -95,24 +95,20 @@ $( document ).ready(function() {
         }
     } );
   
-        $("#origen").select2(
-        {placeholder: "Seleccione Origen",
+        $("#origen").select2({placeholder: "Seleccione Origen",
                  allowClear: true
         });
         
-        $("#origen2").select2(
-        {placeholder: "Seleccione Origen",
+        $("#origen2").select2( {placeholder: "Seleccione Origen",
                  allowClear: true
         });
         
        
         
-        $("#cuenta").select2(
-        {placeholder: "Seleccione Cuenta",
+        $("#cuenta").select2({placeholder: "Seleccione Cuenta",
                  allowClear: true
         });
-        $("#sociedad").select2(
-        {placeholder: "Seleccione Sociedad",
+        $("#sociedad").select2({placeholder: "Seleccione Sociedad",
                  allowClear: true
         });
       $("#codigoorigen").removeClass("camposvacios");
@@ -128,7 +124,7 @@ $( document ).ready(function() {
     var nombre=$("#nombresub").val().trim();
     var observacion=$("#observacion").val().trim();
     var depuracion=$("#depuracion").val().trim();
-    console.log(cuenta+"  "+sociedad+" "+" "+nombre);
+   
     
     if(origen==""){
       e=1;
@@ -191,8 +187,8 @@ $( document ).ready(function() {
                          }
         
         }
-       console.log(cuenta+"  "+sociedad+" "+nombre);
-      xhttp.open("POST", "agregarsubcuenta.gdc", true);//uytyutyutyu
+            alert(cuenta+sociedad+nombre+observacion);
+      xhttp.open("POST", "agregarSubcuenta.gdc", true);//uytyutyutyu
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
         xhttp.send("cuenta="+cuenta+"&sociedad="+sociedad+"&nombre="+nombre+"&observacion="+observacion
                 +"&depuracion="+depuracion);   

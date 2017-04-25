@@ -24,6 +24,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.test.annotations.WrapToTest;
+
 import java.awt.Font;
  
 import java.io.BufferedReader;
@@ -42,6 +43,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+///
+
+
+
 @Controller
 public class LibroMayorController {
     public static final String rut = HibernateUtil.class.getResource("/../../").getPath()+"/resources";
@@ -282,8 +288,6 @@ document.setMargins(20, 20, 20, 20);
 
         
     }
-    public void onStartPage(PdfWriter writer, Document document) {
- ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_CENTER, new Phrase("Inicio de Pagina - El lado oscuro de Java"),200,830,0);
-}
+ 
  
 }

@@ -587,7 +587,10 @@ function creartabla(t,d,monto,movi){
            if(saldodebe<saldohaber){
                total=saldohaber-saldodebe;
                final="<tr><td></td><td>Saldo</td><td ></td><td style='color: red;' >"+total.toFixed(2)+"</td></tr>";
-           }
+           }else
+           {
+               final="<tr><td></td><td>Saldo</td><td ></td><td style='color: red;' >"+total.toFixed(2)+"</td></tr>";}
+               
          
           $("#saldo").html(final);
                   $("#des").val("");

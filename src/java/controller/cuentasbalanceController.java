@@ -96,26 +96,25 @@ public class cuentasbalanceController {
       
       
       
-      @RequestMapping(value = "agregarsubcuenta.gdc",method =RequestMethod.POST)
-       public ModelAndView funAgregarsubcuenta(
+     
+      @RequestMapping(value = "agregarSubcuenta.gdc",method =RequestMethod.POST)
+       public ModelAndView funsubcuenta(
           @RequestParam("cuenta") int cuenta,
           @RequestParam("sociedad") int sociedad,
-          @RequestParam("codigosub") String codigosub,
            @RequestParam("nombre")  String nombre,
             @RequestParam("observacion") String observacion,
              @RequestParam("depuracion") String depuracion,
              HttpServletRequest request
        )throws Exception{
        ModelAndView mv=new ModelAndView("pgSCagregarcuentabalance");
+       System.out.println(" estoy entrando en subcuenta");
        int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
        cuentabalanceDAO balance = new cuentabalanceDAO();
         List resp=balance.agregarsubcuentabalance(cuenta, sociedad, nombre, observacion, depuracion, idusuario);
-          System.out.println("controller.cuentasbalanceController.funAgregarsubcuenta()"+resp.get(0));
+        System.out.println("controller.cuentasbalanceController.funAgregarsubcuenta jers ()"+resp.get(0));
        mv.addObject("resp",resp.get(0));
        return mv;
        }
-     
-       
        
        @RequestMapping(value = "agregarcuenta.gdc",method =RequestMethod.POST)
        public ModelAndView funAgregarcuenta(

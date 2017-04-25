@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <input type="resp" value="Exitosa">
+        <input type="hidden" id="resp2" value="${resp}">
     </body>
 </html>
