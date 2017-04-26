@@ -152,7 +152,7 @@
                
             }
     </style>
-    <body class="admin-wizard-page" onload="cargarContenido('PadTutores.gdc','divTablaPadTutor'); cargarContenido('HermanosList.gdc','divTablaHermanos')">
+    <body class="admin-wizard-page" onload="cargarContenido('PadTutores.gdc','divTablaPadTutor'); cargarContenido('HermanosList.gdc','divTablaHermanos'); cargarContenido('EscuelasList.gdc','divTablaEscuelas')">
         <!-------------------------------------------------------------+ 
             <body> Helper Classes: 
          ---------------------------------------------------------------+ 
@@ -899,11 +899,11 @@
                                             <div class="form-group">
                                                 <label for="AplicaPV">¿Aplicando por primera vez a una escuela?</label>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="AplicaSi" name="AplicaPV">
+                                                    <input type="radio" id="AplicaSi" name="AplicaPV" value="Si">
                                                     <label for="AplicaSi">Si</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="AplicaNo" name="AplicaPV">
+                                                    <input type="radio" id="AplicaNo" name="AplicaPV" value="No">
                                                     <label for="AplicaNo">No</label>
                                                 </div>
                                             </div>
@@ -922,11 +922,11 @@
                                             <div class="form-group">
                                                 <label for="TipoEscuela">Tipo:</label>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="EscuelaPub" name="TipoEscuela">
+                                                    <input type="radio" id="EscuelaPub" name="TipoEscuela" value="Publica">
                                                     <label for="EscuelaPub">Pública</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="EscuelaPriv" name="TipoEscuela">
+                                                    <input type="radio" id="EscuelaPriv" name="TipoEscuela" value="Privada">
                                                     <label for="EscuelaPriv">Privada</label>
                                                 </div>
                                             </div>
@@ -1022,79 +1022,17 @@
                                 </div>  
                             </form>
                             <hr/>
-                            <form id="formOtrasEscuelas" action="#"
-                              data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                              data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                              data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">    
-                                <div class="row">
-                                    <h3 style="margin-left: 6px;"><b class="text-success">Otras escuelas a las que ha asistido desde preescolar:</b></h3>
-                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="NombreOtraEsc">Nombre de Escuela:</label>
-                                            <input class="gui-input form-control" type="text" maxlength="180" id ="NombreOtraEsc" name="NombreOtraEsc" placeholder="Escuela">
-                                        </div>  
-                                    </div>
+                            <div class="row" id="divTablaEscuelas" name="divTablaEscuelas">
+                            </div>
+                            <br/>
+                            <div class="row" >
+                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1">
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label for="CiudadOtraEsc">Ciudad:</label>
-                                            <input class="gui-input form-control" type="text" maxlength="180" id ="CiudadOtraEsc" name="CiudadOtraEsc" placeholder="Ciudad">
-                                        </div>  
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
-                                        <div class="form-group">
-                                            <label>País:</label>
-                                            <label style="color:red;display:none;" id="paisOtraEscval"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
-                                            <select class="select2-single form-control"  id="paisOtraEsc" name="paisOtraEsc" style="width: 100%">
-                                                <option value=""></option>
-                                                <c:set var="valida" value="${fn:length(paisTemp)}" />
-                                                <c:if test="${valida > 0}">
-                                                    <c:forEach var="i" begin="0" end="${fn:length(paisTemp)-1}">
-                                                        <option value="${idpaisTemp[i]}">${paisTemp[i]}</option>
-                                                    </c:forEach>
-                                                </c:if>
-                                            </select>
-                                        </div>    
-                                    </div>
+                                <div class="col-md-10 col-sm-10 col-lg-10 col-xs-10" id="divformEscuelas" name="divformEscuelas">
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="trasOtraEsc">Razon de Traslado:</label>
-                                            <textarea class="form-control" id="trasOtraEsc" name="trasOtraEsc" rows="4"></textarea>
-                                        </div> 
-                                    </div>
+                                <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1">
                                 </div>
-                                <div class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em;">
-                                    <div class="form-group">
-                                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                                            <button type="submit" class="btn btn-lg btn-primary btn-block" id="botonform5OtrasEsc"><span class="glyphicon glyphicon-plus"></span> Agregar </button>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div id="EscuelasCreadas" class="row" style="margin-left: 1em;margin-bottom: 1em;margin-top: 1em;margin-right: 1em; display: none;">
-                                    <hr style="border: 1px solid #0e6e15;">
-                                    <h2><b class="text-success">Escuelas previas:</b></h2>
-                                    <div class="row">
-                                        <table class="table" id="tablaEscuelas">
-                                            <thead>
-                                              <tr class="success">
-                                                <th>Nombre</th>
-                                                <th>País</th>
-                                                <th>Ciudad</th>
-                                                <th>Razon de Traslado</th>
-                                                <th>Eliminar</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                        <br/>
-                                    </div>
-                                </div>    
-                                
-                            </form>
+                            </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section5">
