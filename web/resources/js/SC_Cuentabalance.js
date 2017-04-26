@@ -239,7 +239,7 @@ $( document ).ready(function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
-                var resp= $("#resp").val();
+                var resp= $("#resp2").val();
                 console.log(resp);
                 document.getElementById('pertenece').style.display = 'none'; 
                        $("#grupo").select2("val", "");

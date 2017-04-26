@@ -693,8 +693,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                     
-                         <c:forEach var="i" begin="0" end="${fn:length(nombreorigen)-1}">
+                     <c:set var="valida" value="${fn:length(nombreorigen)}" />
+                     <c:if test="${valida>0}">
+                         
+                      <c:forEach var="i" begin="0" end="${fn:length(nombreorigen)-1}">
                         <c:set var="contador" value="${i+1}"/>
                         <tr>
                             
@@ -706,7 +708,7 @@
                         
                        </tr>
                         </c:forEach> 
-               
+                        </c:if>
 
                     </tbody>
                   </table>                  
@@ -743,8 +745,8 @@
     
    
    
-         <script>
-              var sociedaddef = "${sessionScope.ses_sociedadDefault}";
+        <script>
+            var sociedaddef = "${sessionScope.ses_sociedadDefault}";
             var tipoperf = "${sessionScope.ses_tipoperfil}";
         </script>
        <script src="<c:url value='/resources/js/jquery-1.11.1.min.js'/>"></script>

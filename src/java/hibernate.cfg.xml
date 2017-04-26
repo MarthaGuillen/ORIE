@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://181.115.18.178:5433/gdcSinergia17</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://192.168.1.179:5433/gdcSinergia17</property>
     <property name="hibernate.connection.username">gdcSinergia17</property>
     <property name="hibernate.connection.password">sinergia</property>
     <property name="hibernate.c3p0.min_size">1</property>

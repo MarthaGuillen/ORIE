@@ -42,12 +42,12 @@ public class cuentabalanceDAO {
     return r;
     }
         
-        public String agregarcuentabalance(
+        public List<String> agregarcuentabalance(
        int origen,int grupo,String codigo, String nombre,String observacion,int user){
           
    
     String resp="";
-    String sql = " SELECT fn_scinsertcuentamayor('"+origen+"'','"+grupo+"','"+codigo+"','"+nombre+"','"+observacion+"','"+user+"')";
+    String sql = " SELECT fn_scinsertcuentamayor('"+origen+"','"+grupo+"','"+codigo+"','"+nombre+"','"+observacion+"','"+user+"')";
         List<String> r=new ArrayList<String>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -56,13 +56,14 @@ public class cuentabalanceDAO {
              r= query.list();
             resp = "exito..";
             t.commit();
+            System.out.println(t);
             session.close();
         } catch (Exception e) {
             resp = "Fallo";
             e.printStackTrace();
         }
         System.out.println(resp+" dao  p->"+r);
-    return resp;
+    return r;
     }
         public String agregarcuentorigen(
        String codigoorigen,String nombreorigen,String observacionorigen , int user){

@@ -128,8 +128,8 @@ public class cuentasbalanceController {
        ModelAndView mv=new ModelAndView("pgSCagregarcuentabalance");
       int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
       cuentabalanceDAO balance = new cuentabalanceDAO();
-        String resp=balance.agregarcuentabalance(origenmayor,grupo, codigomayor, nombremayor, obsevacionmayor, idusuario);
-      mv.addObject("resp",resp);
+        List resp=balance.agregarcuentabalance(origenmayor,grupo, codigomayor, nombremayor, obsevacionmayor, idusuario);
+      mv.addObject("resp",resp.get(0));
        return mv;
        }
       
