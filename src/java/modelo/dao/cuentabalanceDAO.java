@@ -21,7 +21,7 @@ public class cuentabalanceDAO {
                  int cuenta,int sociedad,String nombre,String observacion
                ,String depuracion,int user){
           
-   
+   System.out.println("agregarsubcuentabalance 25 "+user+cuenta+sociedad);
     String resp="";
     String sql = "SELECT fnscinsertsubcuenta('"+cuenta+"','"+sociedad+"','"+nombre+
             "','"+observacion+"','"+depuracion+"','"+user+"')";

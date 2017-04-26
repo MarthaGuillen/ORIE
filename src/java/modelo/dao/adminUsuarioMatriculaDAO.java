@@ -37,6 +37,26 @@ public class adminUsuarioMatriculaDAO {
         return listaget;
     }
      
+     public List cargaUsuariospara(String nom) {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_listausuariosfrontParametros('"+nom+"')";
+     
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            return listaget;
+
+        } catch (Exception e) {
+            e.printStackTrace();System.out.println(e);
+        }finally { 
+          session.close();
+        }
+        return listaget;
+    } 
+     
      //tipod de clientes
      public List cargaClientes() {
         
@@ -124,4 +144,132 @@ public class adminUsuarioMatriculaDAO {
        
     }
     
+    //Captura divisiones
+     public List cargaDivisiones(int ids) {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_capturadivisiones('"+ids+"')";
+     
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            return listaget;
+
+        } catch (Exception e) {
+            e.printStackTrace();System.out.println(e);
+        }finally { 
+          session.close();
+        }
+        return listaget;
+    }
+     
+     //Captura grados
+     public List cargaGrados(int ids) {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_capturagrados('"+ids+"')";
+     
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            return listaget;
+
+        } catch (Exception e) {
+            e.printStackTrace();System.out.println(e);
+        }finally { 
+          session.close();
+        }
+        return listaget;
+    }
+     
+     //Captura grados
+     public List cargaEstudiantes(int id) {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_ListaEstudiantesPadre('"+id+"')";
+     
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            return listaget;
+
+        } catch (Exception e) {
+            e.printStackTrace();System.out.println(e);
+        }finally { 
+          session.close();
+        }
+        return listaget;
+    }
+    
+     //Insertausuario
+    public String insertaEstdudiante(int ids, int idd, int idg, int idua,int idu, String nom){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select fn_insertaEstudianteTemp('"+ids+"','"+idd+"','"+idg+"','"+idua+"','"+idu+"','"+nom+"')";
+        
+        
+        List<String> filmList = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            //int result = q.executeUpdate();
+            filmList = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return filmList.get(0).toString();
+       
+    } 
+    
+     public String delstdudiante(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select fn_eliminaEstudianteTemp('"+id+"')";
+        
+        
+        List<String> filmList = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            //int result = q.executeUpdate();
+            filmList = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return filmList.get(0).toString();
+       
+    }
+     
+    //cambia estado de usuario
+      public String estadoUsu(int id, int idus, String est){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select fn_cambiaEstadoUsuario('"+id+"','"+idus+"','"+est+"')";
+        
+        
+        List<String> filmList = new ArrayList<String>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            //int result = q.executeUpdate();
+            filmList = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return filmList.get(0).toString();
+       
+    } 
+     
 }

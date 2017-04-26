@@ -125,9 +125,17 @@ function generpass(){
 
 function neuvoUS(){
     $("#modalNuevoUs").modal('show');
-    
-    
-
+    $("#idsociedad").val("");
+    $("#nomest").val("");
+    $("#iddivision").val("");
+    $("#idgrado").val("");
+    document.getElementById('socSeleccion').style.display = 'block';
+    document.getElementById('socDelcampo').style.display = 'none';
+    document.getElementById('socAcademy').style.display = 'none';
+    document.getElementById("gradoCar").innerHTML = "";
+    document.getElementById("divisionCar").innerHTML = "";
+    document.getElementById("divse").innerHTML = "";
+    document.getElementById("grase").innerHTML = "";
    
     
 }
@@ -238,7 +246,15 @@ $( document ).ready(function() {
             return  false;
         });   
   
-        $('#tablaex').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:5});
+        $('#tablaex').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
+        
+        /*$('input:radio[name=rdDivision]').change(function() {
+        
+            alert(this.value);
+            cargagrados(this.value);
+        });*/
+        
+        
     
 });
 
@@ -253,4 +269,244 @@ function limpia(){
     $("#txtdireccion").val("");
     $("#numtel").val("");
     $('#defaultForm').data('bootstrapValidator').resetForm();
+}
+
+function agregaHijo(id){
+    document.getElementById('socSeleccion').style.display = 'block';
+    document.getElementById('socDelcampo').style.display = 'none';
+    document.getElementById('socAcademy').style.display = 'none';
+    document.getElementById("gradoCar").innerHTML = "";
+    document.getElementById("divisionCar").innerHTML = "";
+    document.getElementById("divse").innerHTML = "";
+    document.getElementById("grase").innerHTML = ""; 
+   $("#idpadre").val(id);
+   $("#modalNuevohijo").modal('show');
+}
+
+function limpiaest(){
+    $("#nomest").val("");
+    
+}
+
+function cargaDivisiones(id){
+    document.getElementById('socSeleccion').style.display = 'block';
+    document.getElementById('socDelcampo').style.display = 'none';
+    document.getElementById('socAcademy').style.display = 'none';
+    document.getElementById("gradoCar").innerHTML = "";
+    document.getElementById("divisionCar").innerHTML = "";
+    document.getElementById("divse").innerHTML = "";
+    document.getElementById("grase").innerHTML = "";
+    $("#processing-modal").modal('show');
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        document.getElementById("divisionCar").innerHTML = xhttp.responseText;
+                        $("#idsociedad").val(id);
+                        $("#processing-modal").modal('hide');
+                        $("#modaliDivisiones").modal('show');
+                    }
+    }
+    xhttp.open("POST", "cargadivisiones.gdc", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("ids="+id); 
+    
+}
+
+function cargagrados(idd){  
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+        document.getElementById("gradoCar").innerHTML = xhttp.responseText;
+                        
+                        
+        }
+    }
+    xhttp.open("POST", "cargagrados.gdc", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("idd="+idd); 
+    
+}
+
+function capturaDivgr(){
+    var e=0;
+    var division = $('input:radio[name=rdDivision]:checked').val();
+    var grad = $('input:radio[name=rdGrado]:checked').val();
+    if(division===undefined){
+        e=1;
+        ssi_modal.notify('error', {
+            position: 'left top',
+            backdrop:'shared',outSideClose:true,
+            content: 'Por favor seleccione la división, en que estará el estudiante.'
+        })
+    }else{
+       
+        if(grad===undefined){
+            ssi_modal.notify('error', {
+                position: 'left top',
+                backdrop:'shared',outSideClose:true,
+                content: 'Por favor seleccione el grado, en que estará el estudiante.'
+            })
+            e=1;
+        }  
+        
+    }
+    
+    if(e===0){
+        
+        $("#modaliDivisiones").modal('hide');
+        $("#iddivision").val(division);
+        $("#idgrado").val(grad);
+        var soc = $("#idsociedad").val();
+        
+        document.getElementById('socSeleccion').style.display = 'none';
+        if(parseInt(soc)===1){
+            
+            document.getElementById('socDelcampo').style.display = 'block';
+        }
+        if(parseInt(soc)===2){
+            document.getElementById('socAcademy').style.display = 'block';
+        }
+        
+               
+        document.getElementById("divse").innerHTML = "División: "+ $("label[for='radd"+division+"']").text();
+        document.getElementById("grase").innerHTML = "Grado: "+$("label[for='radg"+grad+"']").text();
+       
+        
+        document.getElementById('bloque').style.display = 'block';
+    }
+}
+
+
+function asignaEstudiante(){
+    var nom = $("#nomest").val();
+    var e=0;
+    var soc = $("#idsociedad").val();
+    var idd = $("#iddivision").val();
+    var idg = $("#idgrado").val();
+    var cadena = "";
+    if(nom===""){
+        ssi_modal.notify('error', {
+                position: 'left top',
+                backdrop:'byKindShared',outSideClose:true,
+                content: "Por favor ingrese el nombre del estudiante."
+        }) 
+        
+        e=1;
+    }  
+    if(soc===""){
+        ssi_modal.notify('error', {
+                position: 'left top',
+                backdrop:'byKindShared',outSideClose:true,
+                content: "Por favor seleccione la escuela del estudiante."
+        }) 
+        
+        e=1;
+    }
+    if(idd===""){
+        ssi_modal.notify('error', {
+                position: 'left top',
+                backdrop:'byKindShared',outSideClose:true,
+                content: "Por favor seleccione la división del estudiante."
+        }) 
+       
+        e=1;
+    }
+    if(idg===""){
+        ssi_modal.notify('error', {
+                position: 'left top',
+                backdrop:'byKindShared',outSideClose:true,
+                content: "Por favor seleccione el grado del estudiante."
+        }) 
+        
+        e=1;
+    }
+    
+    if(e===0){
+        var idua = $("#idpadre").val();
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("cargaeST").innerHTML = xhttp.responseText;
+                        
+                            window.location="adminuserMatricula.gdc";
+                        
+            }
+        }
+        xhttp.open("POST", "asignaEstudiante.gdc", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("ids="+soc+"&idd="+idd+"&idg="+idg+"&idua="+idua+"&nom="+nom); 
+    
+        
+    }
+ 
+        
+      
+}
+
+function cargaHijos(id){
+    
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("cargaEstPadres").innerHTML = xhttp.responseText;
+                ssi_modal.show({
+                    content:$('#cargaEstPadres'),
+                    bodyElement:true,
+                    title:'Estudiantes asignados:',
+                        extendOriginalContent:true
+                });
+            }
+        }
+        xhttp.open("POST", "cargaListaEstudiante.gdc", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("id="+id); 
+    
+}
+
+function eliminaestudiante(id,nom){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("cargaEstPadres").innerHTML = xhttp.responseText;
+                window.location="adminuserMatricula.gdc";
+            }
+        }
+        xhttp.open("POST", "deleteEstudiante.gdc", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("id="+id+"&nom="+nom); 
+    
+    
+}
+
+function cambiaestado(est,id,nom){
+        $("#processing-modal").modal('show');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("cargaEstPadres").innerHTML = xhttp.responseText;
+                $("#processing-modal").modal('hide');
+                window.location="adminuserMatricula.gdc";
+            }
+        }
+        xhttp.open("POST", "estadoUsuario.gdc", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("id="+id+"&nom="+nom+"&estado="+est);
+}
+
+function busqeda(){
+        var nom = $("#nombrecliente").val();
+        $("#processing-modal").modal('show');
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("contenedorBusqueda").innerHTML = xhttp.responseText;
+                $("#processing-modal").modal('hide');
+                //$('#tablaex').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
+            }
+        }
+        xhttp.open("POST", "consultaCliente.gdc", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("nom="+nom);
+    
+    
 }

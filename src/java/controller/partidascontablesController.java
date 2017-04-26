@@ -183,7 +183,7 @@ public class partidascontablesController {
     int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
         partidaDAO partida =new partidaDAO();
        String id=partida.agregardatospartida(idcrearpartida,subcuenta,descripcion, debe, haber,movimiento,idusuario);
-       System.out.println("Regreso del Dao");
+       System.out.println("Regreso del Dao add partida");
        System.out.println(id);
         mv.addObject("numerocuenta",id);
     return mv;
