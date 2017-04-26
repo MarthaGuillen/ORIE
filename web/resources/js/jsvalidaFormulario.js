@@ -246,7 +246,6 @@ $( document ).ready(function() {
                         $('input[type="radio"][name="ResponsableAdmi"]').prop('checked',false);
                         $('input[type="radio"][name="ComFin"]').prop('checked',false);
                         
-                        $('#formOtraInfo').bootstrapValidator('resetForm', true);
                     }
                 }
                 xhttp.open("POST", "formulariofase3.gdc", true);
@@ -262,7 +261,41 @@ $( document ).ready(function() {
         
         
         $('#formInfoEducacion').bootstrapValidator().on('success.form.bv', function(e) {
-              $('#formInfoEducacion').bootstrapValidator('resetForm', true);
+            var apl = $('input[type="radio"][name="AplicaPV"]:checked').val();
+            var escActual = $("#NomEscuelaAct").val();
+            var tipEsc = $('input[type="radio"][name="TipoEscuela"]:checked').val();
+            var fechaInicio = $("#fechain").val();
+            var fechafinal = $("#fechafin").val();
+            var paisEscAct = $("#paisEscAct").val();
+            var CodPost = $("#CodPost").val();
+            var CiudadEscAct = $("#CiudadEscAct").val();
+            var EstadoEscAct = $("#EstadoEscAct").val();
+            var direccionEscAct = $("#direccionEscAct").val();
+            var NomDirEscAct = $("#NomDirEscAct").val();
+            var telDirEscAct = $("#telDirEscAct").val();
+            var CorreoDirEscAct = $("#CorreoDirEscAct").val();
+            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("ajaxtemp").innerHTML = xhttp.responseText;
+                    swal({
+                        type: 'success',
+                        text: 'La información se guardo correctamente.',
+                        timer: 1500,
+                        showCloseButton: false,
+                        showCancelButton: false,
+                        showConfirmButton: false
+                    });
+                }
+            }
+            xhttp.open("POST", "formulariofase5.gdc", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("apl="+apl+"&escActual="+escActual+"&paestudiante="+tipEsc+"&fechaInicio="
+                     +"&fechafinal="+"&paisEscAct="+paisEscAct+"&CodPost="+CodPost
+                     +"&CiudadEscAct="+CiudadEscAct+"&EstadoEscAct="+EstadoEscAct+"&direccionEscAct="+direccionEscAct
+                     +"&NomDirEscAct="+NomDirEscAct+"&telDirEscAct="+telDirEscAct+"&CorreoDirEscAct="+CorreoDirEscAct);
+                 
         });
         
         $('#formOtrasEscuelas').bootstrapValidator().on('success.form.bv', function(e) {

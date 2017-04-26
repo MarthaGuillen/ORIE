@@ -899,11 +899,11 @@
                                             <div class="form-group">
                                                 <label for="AplicaPV">¿Aplicando por primera vez a una escuela?</label>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="AplicaSi" name="AplicaPV">
+                                                    <input type="radio" id="AplicaSi" name="AplicaPV" value="Si">
                                                     <label for="AplicaSi">Si</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="AplicaNo" name="AplicaPV">
+                                                    <input type="radio" id="AplicaNo" name="AplicaPV" value="No">
                                                     <label for="AplicaNo">No</label>
                                                 </div>
                                             </div>
@@ -922,11 +922,11 @@
                                             <div class="form-group">
                                                 <label for="TipoEscuela">Tipo:</label>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="EscuelaPub" name="TipoEscuela">
+                                                    <input type="radio" id="EscuelaPub" name="TipoEscuela" value="Publica">
                                                     <label for="EscuelaPub">Pública</label>
                                                 </div>
                                                 <div class="radio-custom radio-success radio-inline mb5">
-                                                    <input type="radio" id="EscuelaPriv" name="TipoEscuela">
+                                                    <input type="radio" id="EscuelaPriv" name="TipoEscuela" value="Privada">
                                                     <label for="EscuelaPriv">Privada</label>
                                                 </div>
                                             </div>

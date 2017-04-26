@@ -411,4 +411,49 @@ public class matriculaPrimerIngresoController {
         return mv;
     }
     
+    
+    @RequestMapping(value = "formulariofase5.gdc", method = RequestMethod.POST)
+    public ModelAndView guarda5form(HttpServletRequest request,
+            @RequestParam("apl") String aplicaPrim, 
+            @RequestParam("escActual") String escuelaAc,
+            @RequestParam("tipEsc") String TipoEsc,
+            @RequestParam("fechaInicio") String FecIn,
+            @RequestParam("fechafinal") String FecFin,
+            @RequestParam("paisEscAct") String paisEsc,
+            @RequestParam("CodPost") String codPostEsc,
+            @RequestParam("CiudadEscAct") String CiudEsc,
+            @RequestParam("EstadoEscAct") String EstadoEsc,
+            @RequestParam("direccionEscAct") String dirEsc,
+            @RequestParam("NomDirEscAct") String DirectorEsc,
+            @RequestParam("telDirEscAct") String telefonoDirEsc,
+            @RequestParam("CorreoDirEscAct") String CorreoDirEsc
+    ) throws Exception {
+      
+        ModelAndView mv = new ModelAndView("pgFormularioAjax");
+        fomularioDAO opc = new fomularioDAO();
+        if((String) request.getSession().getAttribute("ses_idusuario") != null){
+            if("Activa".equals((String) request.getSession().getAttribute("ses_estado"))){
+                //Manda a insertar usuario
+                String idu = (String) request.getSession().getAttribute("ses_idusuario");
+                String idf = (String) request.getSession().getAttribute("ses_formulario");
+                       
+                String ea = new String(escuelaAc.getBytes("ISO-8859-1"), "UTF-8");
+                String ca = new String(CiudEsc.getBytes("ISO-8859-1"), "UTF-8");
+                String ee = new String(EstadoEsc.getBytes("ISO-8859-1"), "UTF-8");
+                String de = new String(dirEsc.getBytes("ISO-8859-1"), "UTF-8");
+                String nde = new String(DirectorEsc.getBytes("ISO-8859-1"), "UTF-8");
+                String cde = new String(CorreoDirEsc.getBytes("ISO-8859-1"), "UTF-8");
+                
+                //inserta forma 5 
+                String resp = opc.insertaFase5(aplicaPrim, ea, TipoEsc, FecIn, FecFin, de, ca, ee, paisEsc, codPostEsc, nde, telefonoDirEsc, cde, idu, idf);
+                
+            
+            }
+        
+        
+        }
+        
+        
+        return mv;
+    }
 }
