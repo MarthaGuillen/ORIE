@@ -119,6 +119,7 @@ public class cuentasbalanceController {
        @RequestMapping(value = "agregarcuenta.gdc",method =RequestMethod.POST)
        public ModelAndView funAgregarcuenta(
           @RequestParam("origenmayor") int origenmayor,
+          @RequestParam("grupo") int grupo,
           @RequestParam("codigomayor") String codigomayor,
           @RequestParam("nombremayor") String nombremayor,
           @RequestParam("obsevacionmayor") String obsevacionmayor,
@@ -127,7 +128,7 @@ public class cuentasbalanceController {
        ModelAndView mv=new ModelAndView("pgSCagregarcuentabalance");
       int idusuario = Integer.parseInt((String) request.getSession().getAttribute("ses_idusuario"));
       cuentabalanceDAO balance = new cuentabalanceDAO();
-      String resp=balance.agregarcuentabalance(origenmayor, codigomayor, nombremayor, obsevacionmayor, idusuario);
+        String resp=balance.agregarcuentabalance(origenmayor,grupo, codigomayor, nombremayor, obsevacionmayor, idusuario);
       mv.addObject("resp",resp);
        return mv;
        }

@@ -108,6 +108,9 @@ $( document ).ready(function() {
         $("#cuenta").select2({placeholder: "Seleccione Cuenta",
                  allowClear: true
         });
+        $("#grupo").select2({placeholder: "Seleccione Grupo corriente o no corriente",
+                 allowClear: true
+        });
         $("#sociedad").select2({placeholder: "Seleccione Sociedad",
                  allowClear: true
         });
@@ -203,7 +206,7 @@ $( document ).ready(function() {
     var codigomayor=$("#codigomayor").val().trim();
     var nombremayor=$("#nombremayor").val().trim();
     var obsevacionmayor=$("#obsevacionmayor").val().trim();
-    
+    var grupo=$("#grupo").val();
     if(origenmayor==""){
          e = 1;
        document.getElementById('origen2val').style.display = 'block'; 
@@ -218,7 +221,14 @@ $( document ).ready(function() {
         $("#nombremayor").addClass("camposvacios");
         document.getElementById('nombremayorval').style.display = 'block'; 
     }
-    
+     if(origenmayor==1 || origenmayor==2){
+               if(grupo==""){
+                   e = 1;
+                  document.getElementById('grupo2val').style.display = 'block';   
+               }
+                   
+             
+          }
    
     if(e==1){
       
@@ -230,10 +240,17 @@ $( document ).ready(function() {
               
                 document.getElementById("alerta").innerHTML = xhttp.responseText;
                 var resp= $("#resp").val();
-                swal(
+                console.log(resp);
+                document.getElementById('pertenece').style.display = 'none'; 
+                       $("#grupo").select2("val", "");
+                       document.getElementById('grupo2val').style.display = 'none';
+                       if(resp=='S'){ swal(
                                 'Exito!!!...',
                                 'Cuenta agregada .'
-                            ) ;
+                            )}else{swal(
+                                'Fallo!!!...',
+                                'Cuenta  No agregada .'
+                            )} ;
                        $("#origen2").select2("val", "");
                        document.getElementById('origen2val').style.display = 'none'; 
                        $("#codigomayor").removeClass("camposvacios");
@@ -243,12 +260,13 @@ $( document ).ready(function() {
                         $("#nombremayor").val("");
                        document.getElementById('nombremayorval').style.display = 'none'; 
                          }
+                         
         
         }
        
       xhttp.open("POST", "agregarcuenta.gdc", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=ISO-8859-1");
-        xhttp.send("origenmayor=" + origenmayor + "&codigomayor="+codigomayor+"&nombremayor="+nombremayor+
+        xhttp.send("origenmayor=" + origenmayor+"&grupo="+grupo + "&codigomayor="+codigomayor+"&nombremayor="+nombremayor+
                 "&obsevacionmayor="+obsevacionmayor);   
  }
            
@@ -309,10 +327,19 @@ $( document ).ready(function() {
          });
          $("#btnverpartidas").click(function(){});
          $("#modificar").click(function(){});    
-           
+      $("#origen2").change(function (){
+          var origen2=$("#origen2").val();
+          if(origen2==1 || origen2==2){
+               $("#grupo").select2("val", "");
+              document.getElementById('pertenece').style.display = 'block'; 
+          }else{
+               document.getElementById('pertenece').style.display = 'none'; 
+          }
+      });
         
 });
 function limpiar(){
+                         
                        document.getElementById('origen2val').style.display = 'none'; 
                        $("#codigomayor").removeClass("camposvacios");
                        $("#codigomayor").val("");

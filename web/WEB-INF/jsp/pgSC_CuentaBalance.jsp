@@ -521,7 +521,31 @@
                                        
                                     
                                 </div>
-                               
+                                <div class="row" style="color:red;display:none;" id="pertenece">
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                        <div class="section">
+                                            <label class="field ">
+                                                <h3>Grupo de la Cuenta :</h3>  
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                       <div class="form-group">
+                                    
+                                    <label style="color:red;display:none;" id="grupo2val"> <span class="glyphicon glyphicon-remove"></span> Campo obligatorio</label>
+                                    <select class="form-control select2-single"  id="grupo"  style=" width: 100%;">
+                                        <option value=""></option>
+                                        <option value="1">CORRIENTE</option>
+                                        <option value="2">NO CORRIENTE</option>
+                                      
+                                    </select>
+                                    
+                                          </div>
+                                    </div>
+                                       
+                                    
+                                </div>
+                                        
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-6">
                                         <div class="section">

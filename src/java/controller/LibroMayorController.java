@@ -130,13 +130,16 @@ public class LibroMayorController {
         System.out.println(rutafinal+"/web/resources/pdf/1.pdf");
         PdfWriter writer = new PdfWriter(rutafinal+"resources/pdf/1.pdf");
        
+       
+        
+        
 PdfDocument pdf = new PdfDocument(writer); 
 Document document = new Document(pdf, PageSize.LETTER);
 document.setMargins(20, 20, 20, 20);
    //Create event-handlers
         String header = sociedadnom;
         Header headerHandler = new Header(header);
-        PageXofY footerHandler = new PageXofY(pdf);
+      //  PageXofY footerHandler = new PageXofY(pdf);
   //Assign event-handlers
         pdf.addEventHandler(PdfDocumentEvent.START_PAGE,headerHandler);
       //variable encabezado
