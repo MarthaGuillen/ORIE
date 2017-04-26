@@ -252,10 +252,10 @@ public class fomularioDAO {
     } 
      
      
-     public String insertaFase6(String nombre, String ciudEscuela, String idPais, String razonTras, String idUsuario, String idFormulario) {
+     public String insertaFase6(String nombre,  String idPais, String ciudEscuela, String razonTras, String idUsuario, String idFormulario) {
          
         Session session = HibernateUtil.getSessionFactory().openSession();                                                             
-        String sql = "SELECT fn_insertafase6('"+nombre+"','"+ciudEscuela+"','"+idPais+"','"+razonTras+"''"+idUsuario+"','"+idFormulario+"')";
+        String sql = "SELECT fn_insertafase6('"+nombre+"','"+ciudEscuela+"','"+idPais+"','"+razonTras+"','"+idUsuario+"','"+idFormulario+"')";
         
         List<String> listaget = new ArrayList<String>();
         try {
@@ -315,5 +315,24 @@ public class fomularioDAO {
         return listaget.get(0).toString();
     } 
      
-    
+    public List cargaEscuelas(String form) {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select * from fn_capturaescuelas('"+form+"')";
+     
+        List<Object[]> listaget = new ArrayList<Object[]>();
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createSQLQuery(sql);
+            listaget = q.list();
+            return listaget;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }finally { 
+          session.close();
+        }
+        return listaget;
+    }
 }
